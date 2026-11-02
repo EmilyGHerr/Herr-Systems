@@ -6,6 +6,7 @@
 {{ with $settings.owner }}<meta name="author" content="{{ . }}">{{ end }}
 <meta name="description" content="{{ $description }}"><meta name="theme-color" content="#164f91"><title>{{ $title }}</title>
 {{ $canonical := .Params.canonicalURL | default .Permalink }}
+{{ if and .IsSection (eq .Section "blog") }}{{ with .Paginator }}{{ if gt .PageNumber 1 }}{{ $canonical = .URL | absURL }}{{ end }}{{ end }}{{ end }}
 <link rel="canonical" href="{{ $canonical }}">
 <meta name="robots" content="{{ if partial "is-noindex.html" . }}noindex, follow{{ else }}index, follow{{ end }}">
 <meta property="og:type" content="{{ if and .IsPage (eq .Section "blog") }}article{{ else }}website{{ end }}"><meta property="og:title" content="{{ .Params.ogTitle | default $title }}"><meta property="og:description" content="{{ .Params.ogDescription | default $description }}"><meta property="og:url" content="{{ $canonical }}"><meta property="og:site_name" content="{{ $brand }}">

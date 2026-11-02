@@ -74,12 +74,13 @@ await check('Generated search index and sitemap contain every published service'
   assert((await read(path.join(output,'robots.txt'))).includes('Sitemap:'));
 });
 }
-await check('Isolated fixtures: 10-post pagination, per-page and global noindex',async()=>{
+await check('Isolated fixtures: 10-post pagination, canonical URLs, generic subtitle, per-page and global noindex',async()=>{
   const source=await fixture(work), content=path.join(source,'content');
   await mkdir(path.join(content,'blog'),{recursive:true});
   const existing=(await files(path.join(content,'blog'))).filter(f=>/\.md$/.test(f)&&!path.basename(f).startsWith('_'));
   const required=Math.max(0,11-existing.length);
   for(let i=0;i<required;i++)await writeFile(path.join(content,'blog',`verification-post-${i}.md`),`---\ntitle: Verification post ${i}\nsubtitle: Test fixture\ndescription: Deterministic pagination fixture\ndate: 2026-01-${String(i+1).padStart(2,'0')}\n---\nFixture article.\n`);
+  await writeFile(path.join(content,'blog/verification-generic.md'),'---\ntitle: Verification generic post\nsubtitle: Unique generic post subtitle\ndescription: Distinct generic post description\ndate: 2025-01-01\ncanonicalURL: https://example.com/original-post/\n---\nGeneric fixture article.\n');
   const hiddenFile=path.join(content,'verification-private.md');
   await writeFile(hiddenFile,'---\ntitle: Verification private page\nsubtitle: Private fixture\ndescription: Noindex fixture\nnoindex: true\n---\nNever include in discovery.\n');
   let dest=path.join(work,'fixture-public');build(source,dest);
@@ -87,6 +88,13 @@ await check('Isolated fixtures: 10-post pagination, per-page and global noindex'
   const posts=new Set($('main a[href]').toArray().map(e=>$(e).attr('href')).filter(h=>/^\/blog\/[^/]+\/$/.test(h)&&!h.startsWith('/blog/page/')));
   assert.equal(posts.size,10,`Expected ten unique post links on first blog page, got ${[...posts]}`);
   const second=await html(path.join(dest,'blog/page/2/index.html'));assert(second('main a[href^="/blog/"]').length>0,'Empty second blog page');
+  assert.equal($('link[rel="canonical"]').attr('href'),'https://herr.test/blog/');
+  assert.equal(second('link[rel="canonical"]').attr('href'),'https://herr.test/blog/page/2/');
+  assert.equal(second('meta[property="og:url"]').attr('content'),'https://herr.test/blog/page/2/');
+  const generic=await html(path.join(dest,'blog/verification-generic/index.html'));
+  assert.equal(generic('.detail-lead').text(),'Unique generic post subtitle');
+  assert.equal(generic('link[rel="canonical"]').attr('href'),'https://example.com/original-post/');
+  assert.equal(generic('meta[property="og:url"]').attr('content'),'https://example.com/original-post/');
   const hidden=await html(path.join(dest,'verification-private/index.html'));
   assert.match(hidden('meta[name="robots"]').attr('content')||'',/noindex/);
   assert(!(await read(path.join(dest,'sitemap.xml'))).includes('/verification-private/'));
