@@ -1,0 +1,526 @@
+.pricing-page {
+  --pricing-surface:#241053;
+  --pricing-soft:#1c0c45;
+  --pricing-input:#160a32;
+  --pricing-muted:#d8d2e5;
+}
+.pricing-page .pricing-intro > p {
+  max-width: 72ch;
+}
+.pricing-page .pricing-main {
+  padding-top: 20px;
+}
+.pricing-page .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.pricing-page .estimate-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: start;
+  padding: 18px 16px 30px;
+}
+.pricing-page h2 {
+  margin: 0;
+  font: 700 clamp(28px, 3vw, 40px)/1.15 var(--sans);
+  letter-spacing: -0.035em;
+}
+.pricing-page .estimate-heading p:last-child {
+  margin-bottom: 0;
+  color: var(--pricing-muted);
+}
+.pricing-page .estimate-tag {
+  flex-shrink: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  color: var(--pricing-muted);
+  font: 500 12px/1.5 var(--mono);
+}
+.pricing-page .estimate-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.pricing-page #estimate-controls {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.pricing-page .option-section {
+  margin-bottom: 20px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  background: var(--pricing-surface);
+}
+.pricing-page h3 {
+  margin: 0 0 22px;
+  font: 700 22px/1.3 var(--sans);
+  letter-spacing: -0.025em;
+}
+.pricing-page .option-section h3 > span {
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--cyan);
+  font: 500 13px var(--mono);
+}
+.pricing-page .control-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.pricing-page #template-count-output {
+  color: var(--cyan);
+}
+.pricing-page input[type=range] {
+  width: 100%;
+  min-height: 40px;
+  margin: 0;
+  accent-color: var(--cyan);
+  cursor: pointer;
+}
+.pricing-page .range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--pricing-muted);
+  font: 500 12px/1.5 var(--mono);
+}
+.pricing-page .control-help {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--pricing-muted);
+}
+.pricing-page .design-options {
+  display: grid;
+  gap: 14px;
+  margin: 24px 0 0;
+  padding: 0;
+  border: 0;
+}
+.pricing-page .design-options legend {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.pricing-page .design-options label {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  cursor: pointer;
+}
+.pricing-page .design-options small {
+  display: block;
+  color: var(--pricing-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-top: 4px;
+}
+.pricing-page input[type=checkbox], .pricing-page input[type=radio] {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--cyan);
+}
+.pricing-page .feature-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.pricing-page .feature-option {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  background: var(--pricing-soft);
+}
+.pricing-page .feature-option:has(input:checked) {
+  border-color: var(--cyan);
+  box-shadow: inset 0 0 0 1px var(--cyan);
+}
+.pricing-page .feature-option strong, .pricing-page .feature-option small, .pricing-page .feature-option b {
+  display: block;
+}
+.pricing-page .feature-option strong {
+  font-size: 15px;
+  line-height: 1.4;
+}
+.pricing-page .feature-option small {
+  margin: 8px 0 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--pricing-muted);
+}
+.pricing-page .feature-option b {
+  color: var(--cyan);
+  font: 700 13px/1.5 var(--mono);
+}
+.pricing-page .pricing-select {
+  position: relative;
+  min-width: 0;
+}
+.pricing-page .pricing-select select {
+  display: block;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 54px;
+  padding: 13px 62px 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--pricing-input);
+  color: var(--white);
+  font: 400 16px/1.6 var(--sans);
+  color-scheme: dark;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+.pricing-page .pricing-select::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  width: 46px;
+  border-left: 1px solid var(--line);
+  background: var(--pricing-soft);
+  pointer-events: none;
+}
+.pricing-page .pricing-select::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--cyan);
+  border-bottom: 2px solid var(--cyan);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.pricing-page .pricing-select:hover select, .pricing-page .pricing-select:focus-within select {
+  border-color: var(--cyan);
+}
+.pricing-page .pricing-select:hover::before, .pricing-page .pricing-select:focus-within::before {
+  border-left-color: var(--cyan);
+}
+.pricing-page .pricing-select option {
+  color: var(--white);
+  background: var(--pricing-input);
+  font: 400 16px/1.6 var(--sans);
+}
+.pricing-page input:focus-visible, .pricing-page select:focus-visible, .pricing-page button:focus-visible, .pricing-page a:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 4px;
+}
+.pricing-page .estimate-form-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--pricing-muted);
+  font-size: 12px;
+  padding: 0 4px 20px;
+}
+.pricing-page .reset-estimate {
+  border: 0;
+  background: none;
+  padding: 8px 0;
+  color: var(--cyan);
+  font: 700 13px/1.5 var(--mono);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.pricing-page .estimate-summary {
+  position: sticky;
+  top: 110px;
+  padding: 26px;
+  border: 1px solid var(--cyan);
+  border-top-width: 3px;
+  background: var(--pricing-soft);
+}
+.pricing-page #estimate-lines {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.pricing-page #estimate-lines li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.pricing-page #estimate-lines b {
+  white-space: nowrap;
+  font: 500 13px/1.5 var(--mono);
+}
+.pricing-page .estimate-total {
+  padding-top: 22px;
+  border-top: 2px solid var(--cyan);
+}
+.pricing-page .estimate-total > span {
+  font-size: 13px;
+  color: var(--pricing-muted);
+}
+.pricing-page #project-total {
+  display: block;
+  margin-top: 8px;
+  font: 700 clamp(40px, 4vw, 58px)/1.1 var(--sans);
+  letter-spacing: -0.05em;
+}
+.pricing-page .estimate-monthly {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.pricing-page .estimate-monthly output {
+  color: var(--cyan);
+  font-weight: 700;
+}
+.pricing-page .estimate-footnote {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--pricing-muted);
+  margin: 22px 0;
+}
+.pricing-page .estimate-summary .button {
+  width: 100%;
+  justify-content: space-between;
+  font-size: 14px;
+}
+.pricing-page .estimate-summary > small {
+  display: block;
+  margin-top: 14px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--pricing-muted);
+}
+.pricing-page .pricing-explainer {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 48px;
+  padding: 36px 16px 16px;
+  margin-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.pricing-page .pricing-explainer p {
+  color: var(--pricing-muted);
+  line-height: 1.8;
+}
+.pricing-page .pricing-explainer a, .pricing-page .pricing-note a {
+  color: var(--cyan);
+  text-underline-offset: 4px;
+}
+.pricing-page .pricing-note {
+  padding: 20px;
+  border: 1px solid var(--cyan);
+}
+
+:root[data-theme=light] .pricing-page {
+  --pricing-surface:#f5faff;
+  --pricing-soft:#e7f2ff;
+  --pricing-input:#f8fbff;
+  --pricing-muted:#304b66;
+}
+:root[data-theme=light] .pricing-page select {
+  color-scheme: light;
+}
+
+@media (max-width: 960px) {
+  .pricing-page .estimate-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.85fr);
+    gap: 20px;
+  }
+  .pricing-page .feature-options {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 720px) {
+  .pricing-page .estimate-layout, .pricing-page .pricing-explainer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pricing-page .estimate-heading {
+    flex-direction: column;
+    padding-inline: 0;
+  }
+  .pricing-page .estimate-summary {
+    position: static;
+  }
+  .pricing-page .option-section, .pricing-page .estimate-summary {
+    padding: 22px;
+  }
+  .pricing-page .pricing-explainer {
+    gap: 16px;
+    padding-inline: 0;
+  }
+  .pricing-page .pricing-main {
+    padding-top: 6px;
+  }
+}
+.pricing-page .mobile-estimate {
+  display: none;
+}
+
+.pricing-page #estimate-summary {
+  scroll-margin-top: 100px;
+}
+
+@media (max-width: 720px) {
+  .pricing-page .mobile-estimate {
+    display: flex;
+    position: sticky;
+    top: 76px;
+    z-index: 10;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border: 1px solid var(--cyan);
+    background: var(--pricing-soft);
+    font-size: 12px;
+  }
+  .pricing-page .mobile-estimate strong {
+    font-size: 20px;
+    margin-left: 4px;
+  }
+  .pricing-page .mobile-estimate small {
+    display: block;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--pricing-muted);
+  }
+  .pricing-page .mobile-estimate a {
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 700;
+    text-underline-offset: 4px;
+  }
+  .pricing-page #estimate-summary {
+    scroll-margin-top: 180px;
+  }
+}
+@media (forced-colors: active) {
+  .pricing-page .pricing-select::before, .pricing-page .pricing-select::after {
+    display: none;
+  }
+  .pricing-page .pricing-select select {
+    appearance: auto;
+    -webkit-appearance: auto;
+    padding-right: 14px;
+  }
+}
+.pricing-page #estimate-form, .pricing-page .estimate-fields {
+  min-width: 0;
+}
+.pricing-page .service-options {
+  display: grid;
+  gap: 12px;
+}
+.pricing-page .service-options .feature-option small {
+  margin-bottom: 0;
+}
+.pricing-page .service-group {
+  min-width: 0;
+  margin-inline: 0;
+}
+.pricing-page .service-group[hidden] {
+  display: none;
+}
+.pricing-page .service-group > legend {
+  padding: 0 8px;
+  font: 700 22px/1.3 var(--sans);
+}
+.pricing-page .service-group h4 {
+  font-size: 16px;
+  margin: 26px 0 14px;
+}
+.pricing-page .quote-contact {
+  display: grid;
+  gap: 12px;
+}
+.pricing-page .quote-contact h3, .pricing-page .quote-contact p {
+  margin: 0 0 8px;
+}
+.pricing-page .quote-contact label {
+  font-size: 14px;
+  font-weight: 700;
+}
+.pricing-page .quote-contact input:not([type=hidden]), .pricing-page .quote-contact textarea, .pricing-page .service-group input[type=number] {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  min-height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 13px 14px;
+  background: var(--pricing-input);
+  color: var(--white);
+  font: 400 16px/1.6 var(--sans);
+}
+.pricing-page .quote-contact textarea {
+  resize: vertical;
+}
+.pricing-page .service-group input[type=number] {
+  margin-bottom: 20px;
+}
+.pricing-page textarea:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 4px;
+}
+.pricing-page #scope-summary {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--pricing-muted);
+  overflow-wrap: anywhere;
+}
+.pricing-page .submit-status {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--pricing-muted);
+  overflow-wrap: anywhere;
+}
+.pricing-page [data-submit-button] {
+  min-height: 50px;
+  cursor: pointer;
+}
+.pricing-page [data-submit-button]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.pricing-page [aria-invalid=true] {
+  border-color: var(--cyan) !important;
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+.pricing-page .mobile-estimate > span {
+  min-width: 0;
+}
+.pricing-page .mobile-estimate a {
+  flex-shrink: 0;
+}
+
+:root[data-theme=light] .pricing-page .pricing-main a:not(.button) {
+  color: var(--cyan);
+}

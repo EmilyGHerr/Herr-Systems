@@ -1,0 +1,1 @@
+{{ define "main" }}{{ if .Params.fragment }}{{ partial .Params.fragment . }}{{ else }}<div class="site-shell"><main id="main"><h1>{{ .Title }}</h1>{{ .Content }}</main></div>{{ end }}{{ end }}

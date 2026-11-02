@@ -1,0 +1,24 @@
+baseURL: https://herrsystems.com/
+languageCode: en-us
+title: Herr Systems
+enableRobotsTXT: true
+pagination:
+  pagerSize: 10
+outputs:
+  home: [HTML, RSS, SearchIndex]
+outputFormats:
+  SearchIndex:
+    mediaType: application/json
+    baseName: search-index
+    isPlainText: true
+    notAlternative: true
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+sitemap:
+  changeFreq: monthly
+  filename: sitemap.xml
+params:
+  noindex: false
+disableKinds: [taxonomy, term]

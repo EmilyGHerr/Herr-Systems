@@ -1,0 +1,126 @@
+/* Shared interactions for current templates; archived designs remain untouched. */
+:root {
+  --link-hover: #d5ff48;
+  --card-glow-cyan: #49f5e64d;
+  --card-glow-green: #b5ff455c;
+}
+:root[data-theme="light"] {
+  /* Dark leaf green keeps ordinary links legible on pale surfaces. */
+  --link-hover: #3c6500;
+  --card-glow-cyan: #00a9c147;
+  --card-glow-green: #72b60059;
+}
+.hero, .contact, .global-footer { --link-hover: #d5ff48; }
+
+/* Exclude filled controls and navigation, which already have their own states. */
+:root[data-theme] body a:not(.button, .logo, .skip, .case-card-image, .post-image-link,
+  .global-nav a, .mobile-nav a) {
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+:root[data-theme] body a:not(.button, .logo, .skip, .case-card-image, .post-image-link,
+  .global-nav a, .mobile-nav a):is(:hover, :focus-visible) {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+/* A real stretched anchor—not a JS click handler—covers the whole card. */
+body [data-interactive-card] {
+  position: relative;
+  isolation: isolate;
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+body [data-interactive-card]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: transparent;
+  box-shadow: -12px 8px 24px var(--card-glow-cyan),
+    12px 12px 32px var(--card-glow-green);
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+body [data-card-link] { position: static; }
+/* A transformed or filtered CTA would become the containing block for its stretched hit area. */
+body [data-card-link].button:is(:hover, :focus-visible) { transform: none; filter: none; }
+body [data-card-link]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+body [data-interactive-card]:focus-within {
+  border-color: var(--link-hover);
+  box-shadow: 0 0 0 1px var(--link-hover),
+    -8px 6px 24px var(--card-glow-cyan), 10px 10px 32px var(--card-glow-green);
+}
+body [data-interactive-card]:focus-within::before { opacity: .5; transform: scale(1.035); }
+/* Keyboard focus outlines the actual hit area, rather than just the CTA text. */
+body [data-card-link]:focus-visible { outline: none; }
+body [data-card-link]:focus-visible::after {
+  outline: 3px solid var(--link-hover);
+  outline-offset: 5px;
+}
+body [data-interactive-card]:is(:hover, :focus-within) [data-card-link]:not(.button) {
+  color: var(--link-hover);
+}
+.staff-link {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--cyan);
+  font: 500 12px/1.8 var(--mono);
+  text-underline-offset: 4px;
+}
+@media (hover: hover) and (pointer: fine) {
+  body [data-interactive-card]:hover {
+    transform: translateY(-4px);
+    border-color: var(--link-hover);
+    box-shadow: 0 0 0 1px var(--link-hover),
+      -8px 6px 24px var(--card-glow-cyan), 10px 10px 32px var(--card-glow-green);
+  }
+  body [data-interactive-card]:hover::before { opacity: .5; transform: scale(1.035); }
+}
+body [data-interactive-card]:active { transform: translateY(-1px); }
+.case-swipe-hint { display: none; }
+
+/* Homepage only: a native horizontal slider, with the next card peeking in. */
+@media (max-width: 800px) {
+  .home-case-studies .case-grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 66.6667vw;
+    gap: 18px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 10px;
+    padding: 20px 10px 30px;
+    margin: -12px -10px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cyan) transparent;
+  }
+  .home-case-studies .case-card { scroll-snap-align: start; }
+  .home-case-studies .case-card-copy { padding: 20px; }
+  .home-case-studies .case-swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 10px;
+    color: var(--cyan);
+    font: 500 12px/1.8 var(--mono);
+  }
+}
+.home-case-studies .case-grid:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body [data-interactive-card], body [data-interactive-card]::before,
+  body a { transition: none !important; }
+  body [data-interactive-card]:is(:hover, :active) { transform: none; }
+}

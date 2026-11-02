@@ -1,0 +1,19 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{{ $settings := site.Data.settings }}
+{{ $brand := $settings.brand | default site.Title }}
+{{ $title := .Params.seoTitle | default (printf "%s // %s" .Title $brand) }}
+{{ $description := .Params.seoDescription | default .Description | default $settings.description }}
+{{ with $settings.owner }}<meta name="author" content="{{ . }}">{{ end }}
+<meta name="description" content="{{ $description }}"><meta name="theme-color" content="#164f91"><title>{{ $title }}</title>
+{{ $canonical := .Params.canonicalURL | default .Permalink }}
+<link rel="canonical" href="{{ $canonical }}">
+<meta name="robots" content="{{ if partial "is-noindex.html" . }}noindex, follow{{ else }}index, follow{{ end }}">
+<meta property="og:type" content="{{ if and .IsPage (eq .Section "blog") }}article{{ else }}website{{ end }}"><meta property="og:title" content="{{ .Params.ogTitle | default $title }}"><meta property="og:description" content="{{ .Params.ogDescription | default $description }}"><meta property="og:url" content="{{ $canonical }}"><meta property="og:site_name" content="{{ $brand }}">
+{{ $image := .Params.seoImage | default $settings.seoImage }}{{ with $image }}<meta property="og:image" content="{{ . | absURL }}"><meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ .Params.twitterTitle | default $title }}"><meta name="twitter:description" content="{{ .Params.twitterDescription | default $description }}">
+<link rel="icon" type="image/png" sizes="85x85" href="{{ "assets/davy-hexagon-mark.png" | relURL }}"><link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+{{ range .Params.styles }}<link rel="stylesheet" href="{{ . }}">{{ end }}
+<link rel="stylesheet" href="{{ "cms-content.css" | relURL }}">
+{{ if .IsHome }}<link rel="preload" href="{{ "search-index.json" | relURL }}" as="fetch" crossorigin="anonymous">{{ end }}
+
+{{ with .Params.seoImageAlt }}<meta property="og:image:alt" content="{{ . }}"><meta name="twitter:image:alt" content="{{ . }}">{{ end }}

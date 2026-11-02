@@ -1,0 +1,11 @@
+/* Shared accessible validation and delivery states for both real forms. */
+[data-inquiry-form] [hidden] { display:none !important; }
+[data-inquiry-form] .form-errors { grid-column:1 / -1; margin:0 0 24px; padding:20px; border:2px solid var(--desk-error,var(--cyan)); color:var(--white); background:var(--desk-surface,var(--pricing-soft)); overflow-wrap:anywhere; }
+[data-inquiry-form] .form-errors p { font-weight:700; margin-top:0; }
+[data-inquiry-form] .form-errors ul { padding-left:20px; line-height:1.8; }
+[data-inquiry-form] .form-errors a,[data-inquiry-form] #form-delivery-note a { color:var(--cyan); text-underline-offset:4px; }
+[data-submit-status] { font-size:14px; line-height:1.8; overflow-wrap:anywhere; }
+[data-submit-status]:not(:empty) { margin-top:20px; padding:18px; border:1px solid var(--cyan); background:var(--desk-surface,var(--pricing-soft)); color:var(--white); }
+[data-submit-status]:focus-visible,[data-inquiry-form] [data-form-errors]:focus-visible { outline:3px solid var(--cyan); outline-offset:4px; }
+[data-submit-button]:disabled { cursor:wait; opacity:.65; }
+[data-inquiry-form] [aria-invalid=true] { outline:2px solid var(--desk-error,var(--cyan)); outline-offset:2px; }

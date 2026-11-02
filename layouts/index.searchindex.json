@@ -1,0 +1,10 @@
+{{- $records := slice -}}
+{{- range site.Pages -}}
+  {{- if and (not .Params.noindex) (ne .Kind "taxonomy") (ne .Kind "term") -}}
+    {{- $slug := path.Base .RelPermalink -}}{{- if .IsHome -}}{{- $slug = "home" -}}{{- end -}}
+    {{- $page := . -}}
+    {{- $content := .Plain -}}{{- with .Params.fragment -}}{{- $content = partial . $page | plainify -}}{{- end -}}
+    {{- $records = $records | append (dict "title" .Title "slug" $slug "url" .RelPermalink "section" .Section "service" (and (eq .Section "services") .IsPage) "description" (.Description | default .Summary | plainify) "subtitle" (.Params.subtitle | default "" | plainify) "content" $content) -}}
+  {{- end -}}
+{{- end -}}
+{{- dict "pages" $records | jsonify -}}

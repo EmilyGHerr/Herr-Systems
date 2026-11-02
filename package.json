@@ -1,0 +1,18 @@
+{
+  "name": "herr-systems-verification",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/verify.mjs",
+    "test:visual": "node tests/visual.mjs",
+    "test:all": "npm test && npm run test:visual",
+    "test:install": "playwright install chromium"
+  },
+  "devDependencies": {
+    "cheerio": "^1.1.2",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.58.0",
+    "pngjs": "^7.0.0",
+    "yaml": "^2.8.2"
+  }
+}

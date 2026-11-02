@@ -1,0 +1,124 @@
+.about-page .about-location {
+  margin: 24px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  color: var(--detail-muted);
+  font: 500 12px/1.8 var(--mono);
+}
+.about-page .about-section-top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.about-page .about-preview-label {
+  flex-shrink: 0;
+  border: 1px dashed var(--line);
+  padding: 7px 10px;
+  color: var(--detail-muted);
+  font: 500 12px/1.5 var(--mono);
+}
+.about-page .about-preview-note {
+  margin: 0 0 24px;
+  max-width: 72ch;
+  color: var(--detail-muted);
+  font-size: 14px;
+}
+.about-page .staff-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.about-page .staff-card {
+  border: 1px solid var(--line);
+  background: var(--detail-soft-surface);
+  min-width: 0;
+}
+.about-page .staff-photo {
+  position: relative;
+  border-bottom: 2px solid var(--cyan);
+}
+.about-page .staff-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 6/7;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.about-page .staff-photo-label {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: #112a53;
+  border: 1px solid #55eee3;
+  color: #e2f5ff;
+  padding: 5px 8px;
+  font: 500 12px/1.5 var(--mono);
+}
+.about-page .staff-info {
+  padding: 24px;
+}
+.about-page .staff-info .detail-label {
+  margin: 0 0 10px;
+}
+.about-page .staff-info h3 {
+  font-size: 25px;
+}
+.about-page .staff-info > p:not(.detail-label) {
+  margin: 0;
+  color: var(--detail-muted);
+  font-size: 15px;
+}
+.about-page .staff-info .staff-specialty {
+  margin-top: 20px !important;
+  padding-top: 16px;
+  border-top: 1px dotted var(--line);
+  font-size: 13px !important;
+}
+.about-page .about-services {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 24px;
+}
+.about-page .about-services p:not(.kicker) {
+  margin: 0 0 20px;
+  color: var(--detail-muted);
+  font-size: 17px;
+}
+.about-page .mobile-nav a[aria-current=page] {
+  background: var(--lime);
+  color: var(--ink);
+}
+
+@media (max-width: 900px) and (min-width: 721px) {
+  .about-page .staff-grid {
+    gap: 14px;
+  }
+  .about-page .staff-info {
+    padding: 18px;
+  }
+}
+@media (max-width: 720px) {
+  .about-page .about-section-top {
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .about-page .about-section-top .detail-section-heading {
+    margin-bottom: 0;
+  }
+  .about-page .staff-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .about-page .staff-photo img {
+    aspect-ratio: 1;
+  }
+  .about-page .about-services {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    margin-top: 12px;
+  }
+}

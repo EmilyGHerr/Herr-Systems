@@ -1,0 +1,4 @@
+/* Minimal styles for content features not present in the original prototype. */
+.blog-pagination { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:32px 0; }
+.blog-pagination a, .blog-pagination span { padding:10px 16px; border:1px solid currentColor; }
+.blog-pagination [aria-current] { font-weight:bold; }

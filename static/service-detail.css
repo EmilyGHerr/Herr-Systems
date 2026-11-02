@@ -1,0 +1,370 @@
+@charset "UTF-8";
+.service-detail-page {
+  --detail-surface: #241053;
+  --detail-soft-surface: #1c0c45;
+  --detail-muted: #d8d2e5;
+}
+.service-detail-page .billboard-stage .detail-billboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+}
+.service-detail-page .detail-breadcrumb {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: var(--detail-muted);
+  font: 500 12px/1.5 var(--mono);
+}
+.service-detail-page .detail-breadcrumb a {
+  color: var(--cyan);
+  text-underline-offset: 4px;
+}
+.service-detail-page .detail-billboard .detail-lead {
+  max-width: 56ch;
+  margin: 18px 0 24px;
+  color: var(--detail-muted);
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.7;
+}
+.service-detail-page .detail-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.service-detail-page .detail-billboard-art {
+  justify-self: end;
+  width: 100%;
+  max-width: 432px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.service-detail-page .detail-billboard-art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+.service-detail-page .detail-billboard-art figcaption {
+  margin-top: 12px;
+  text-align: center;
+  color: var(--detail-muted);
+  font: 500 12px/1.5 var(--mono);
+  letter-spacing: 0.06em;
+}
+.service-detail-page a:focus-visible, .service-detail-page summary:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 5px;
+}
+.service-detail-page .footer-info a {
+  color: #49f5e6;
+}
+
+.service-detail h2 {
+  margin: 0 0 18px;
+  font: 700 clamp(28px, 3vw, 38px)/1.15 var(--sans);
+  letter-spacing: -0.035em;
+}
+.service-detail h3 {
+  margin: 0 0 10px;
+  font: 700 20px/1.3 var(--sans);
+  letter-spacing: -0.02em;
+}
+.service-detail p {
+  line-height: 1.75;
+}
+.service-detail .detail-overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(230px, 280px);
+  gap: clamp(24px, 3vw, 40px);
+  padding: 24px 16px 34px;
+}
+.service-detail .detail-overview > div > p:not(.kicker) {
+  max-width: 72ch;
+  color: var(--detail-muted);
+  font-size: 17px;
+  margin: 12px 0 0;
+}
+.service-detail .detail-sidebar {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+  min-width: 0;
+}
+.service-detail .detail-sidebar .mini-panel {
+  padding: 22px;
+}
+.service-detail .detail-sidebar .mini-panel h2 {
+  font: 400 28px/1.2 var(--pixel);
+  letter-spacing: 0.04em;
+}
+.service-detail .detail-fit {
+  align-self: start;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--cyan);
+  background: var(--detail-soft-surface);
+}
+.service-detail .detail-label {
+  display: block;
+  color: var(--info-accent);
+  font: 500 12px/1.5 var(--mono);
+  letter-spacing: 0.06em;
+}
+.service-detail .detail-fit .detail-label {
+  margin: 0 0 14px;
+}
+.service-detail .detail-checklist {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  color: var(--detail-muted);
+  font-size: 15px;
+}
+.service-detail .detail-checklist li {
+  padding-left: 20px;
+  position: relative;
+}
+.service-detail .detail-checklist li::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+  font-family: var(--mono);
+}
+.service-detail .detail-section {
+  border-top: 1px solid var(--line);
+  padding: 36px 16px;
+  scroll-margin-top: 100px;
+}
+.service-detail .detail-section-heading {
+  max-width: 70ch;
+  margin-bottom: 24px;
+}
+.service-detail .detail-section-heading > p:last-child:not(.kicker) {
+  margin: 0;
+  color: var(--detail-muted);
+  font-size: 16px;
+}
+.service-detail .detail-process-panel {
+  margin: 8px 0 0;
+  padding: 32px;
+  border: 1px solid var(--cyan);
+  background: var(--detail-soft-surface);
+}
+.service-detail a:not(.button) {
+  color: var(--cyan);
+  text-underline-offset: 4px;
+}
+.service-detail .detail-process {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.service-detail .detail-process li {
+  padding-top: 20px;
+  border-top: 2px solid var(--cyan);
+}
+.service-detail .detail-step {
+  display: block;
+  color: var(--info-accent);
+  font: 400 44px/1 var(--pixel);
+  margin-bottom: 16px;
+}
+.service-detail .detail-process p {
+  color: var(--detail-muted);
+  margin: 0;
+  font-size: 15px;
+}
+.service-detail .detail-faq {
+  display: grid;
+  grid-template-columns: 0.85fr 1.4fr;
+  gap: 40px;
+}
+.service-detail .detail-questions details {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.service-detail .detail-questions details:first-child {
+  padding-top: 0;
+}
+.service-detail summary {
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  padding-right: 12px;
+}
+.service-detail summary::marker {
+  color: var(--cyan);
+}
+.service-detail .detail-questions p {
+  margin: 14px 0 0;
+  max-width: 62ch;
+  color: var(--detail-muted);
+  font-size: 15px;
+}
+.service-detail .detail-contact {
+  scroll-margin-top: 100px;
+}
+.service-detail .detail-contact h2 {
+  font-family: var(--pixel);
+  font-weight: 400;
+  font-size: clamp(43px, 5vw, 70px);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+.service-detail .detail-contact .kicker {
+  color: #d5ff48;
+}
+.service-detail .detail-return {
+  padding: 28px 0 8px;
+  font: 500 13px/1.6 var(--mono);
+}
+
+:root[data-theme=light] .service-detail-page {
+  --detail-surface: #f5faff;
+  --detail-soft-surface: #e7f2ff;
+  --detail-muted: #304b66;
+}
+
+@media (max-width: 720px) {
+  .service-detail-page .billboard-stage .detail-billboard {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .service-detail-page .detail-billboard-art {
+    display: none;
+  }
+  .service-detail-page .detail-breadcrumb {
+    margin-bottom: 20px;
+  }
+  .service-detail .detail-overview, .service-detail .detail-faq {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .service-detail .detail-overview {
+    padding: 12px 0 28px;
+  }
+  .service-detail .detail-section {
+    padding: 28px 0;
+    scroll-margin-top: 20px;
+  }
+  .service-detail .detail-process-panel {
+    padding: 24px;
+  }
+  .service-detail .detail-faq .detail-section-heading {
+    margin-bottom: 0;
+  }
+  .service-detail .detail-process {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .service-detail .detail-process li {
+    padding-left: 56px;
+    position: relative;
+  }
+  .service-detail .detail-step {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    font-size: 36px;
+  }
+  .service-detail .detail-contact {
+    scroll-margin-top: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .service-detail .detail-fit {
+    padding: 22px;
+  }
+}
+.service-detail-page .service-detail .detail-subtypes {
+  padding-top: 30px;
+  padding-bottom: 34px;
+}
+.service-detail-page .service-detail .detail-subtypes-intro {
+  max-width: 70ch;
+  margin-bottom: 22px;
+}
+.service-detail-page .service-detail .detail-subtypes-intro h2 {
+  font-size: clamp(24px, 2.4vw, 30px);
+  margin-bottom: 10px;
+}
+.service-detail-page .service-detail .detail-subtypes-intro p {
+  margin: 0;
+  color: var(--detail-muted);
+  font-size: 15px;
+}
+.service-detail-page .service-detail .detail-subtype-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 40px;
+  align-items: start;
+}
+.service-detail-page .service-detail .detail-subtype {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 110px;
+}
+.service-detail-page .service-detail .detail-subtype > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 2px;
+  list-style: none;
+  font: 700 16px/1.5 var(--sans);
+  letter-spacing: -0.015em;
+}
+.service-detail-page .service-detail .detail-subtype > summary::-webkit-details-marker {
+  display: none;
+}
+.service-detail-page .service-detail .detail-subtype > summary::after {
+  content: "+";
+  flex-shrink: 0;
+  color: var(--cyan);
+  font: 500 20px/1 var(--mono);
+}
+.service-detail-page .service-detail .detail-subtype[open] > summary::after {
+  content: "−";
+}
+.service-detail-page .service-detail .detail-subtype > summary:hover {
+  color: var(--cyan);
+}
+.service-detail-page .service-detail .detail-subtype-copy {
+  padding: 0 2px 20px;
+}
+.service-detail-page .service-detail .detail-subtype-copy p {
+  margin: 0 0 14px;
+  color: var(--detail-muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+.service-detail-page .service-detail .detail-subtype-copy a {
+  display: inline-block;
+  font: 700 12px/1.7 var(--mono);
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 720px) {
+  .service-detail-page .service-detail .detail-subtype-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .service-detail-page .service-detail .detail-subtypes {
+    padding-top: 26px;
+    padding-bottom: 28px;
+  }
+}
