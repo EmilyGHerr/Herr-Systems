@@ -1,3 +1,5 @@
+import { prepareTurnstile } from './inquiry-turnstile.js';
+
 // Shared submission boundary: enable only after deploying a real same-origin Worker.
 // No personal data is stored, logged, or put in URLs here.
 for (const form of document.querySelectorAll('[data-inquiry-form]')) {
@@ -12,6 +14,7 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
   form.noValidate = true; button.disabled = false;
   const idleLabel = button.textContent;
   let pending = false;
+  const verification = prepareTurnstile(form);
   function showStatus(message, state) {
     status.textContent = message; status.dataset.state = state; status.focus();
   }
@@ -28,6 +31,7 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
   });
   form.addEventListener('reset', () => {
     clearErrors();
+    void verification.reset();
     if (!pending) { status.textContent = ''; delete status.dataset.state; }
   });
   form.addEventListener('submit', async event => {
@@ -71,10 +75,17 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
     if (endpoint.origin !== location.origin || !['http:', 'https:'].includes(endpoint.protocol)) {
       showStatus('The form endpoint is not configured correctly. Nothing was sent. Please contact us by email.', 'error'); return;
     }
+    // Lock while waiting for the widget too, preventing concurrent submissions.
+    pending = true; button.disabled = true;
+    const turnstileToken = await verification.token();
+    if (!turnstileToken) {
+      pending = false; button.disabled = false;
+      showStatus('Please complete the spam verification. If it does not appear, reload the page or contact us by email.', 'error'); return;
+    }
     const data = new FormData(form);
     const text = key => String(data.get(key) || '').trim();
     const payload = {
-      schemaVersion: 1, kind: form.dataset.formKind,
+      schemaVersion: 1, kind: form.dataset.formKind, turnstileToken,
       contact: { name: text('name'), email: text('email'), business: text('business'), website: text('website') },
       topic: text('topic'), message: text('message'),
       ...(typeof form.buildInquiryPayload === 'function' ? form.buildInquiryPayload() : {}),
@@ -98,6 +109,7 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
     } catch {
       showStatus('We couldn’t confirm receipt. Your details are still here. Check your connection or contact us by email before resubmitting.', 'error');
     } finally {
+      void verification.reset();
       clearTimeout(timer); pending = false; button.disabled = false; button.textContent = idleLabel; form.removeAttribute('aria-busy');
     }
   });

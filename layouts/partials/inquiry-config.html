@@ -1,0 +1,4 @@
+{{/* Only the public site key may be read from the build environment. */}}
+{{ $key := strings.TrimSpace (os.Getenv "TURNSTILE_SITE_KEY") }}
+{{ if not $key }}{{ $key = strings.TrimSpace (site.Data.forms.turnstile_site_key | default "") }}{{ end }}
+{{ return (dict "sitekey" $key "enabled" (and site.Data.forms.enabled (ne $key ""))) }}

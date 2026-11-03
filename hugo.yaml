@@ -22,3 +22,8 @@ sitemap:
 params:
   noindex: false
 disableKinds: [taxonomy, term]
+
+# Preserve Hugo defaults and allow only the PUBLIC Turnstile site key.
+security:
+  funcs:
+    getenv: ["^HUGO_", "^CI$", "^TURNSTILE_SITE_KEY$"]

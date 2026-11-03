@@ -1,0 +1,7 @@
+# Public browser configuration only. Never put the Turnstile secret here.
+# Optional fallback PUBLIC key; Cloudflare TURNSTILE_SITE_KEY takes precedence.
+# Leave blank when configuring the public key in Cloudflare Pages.
+turnstile_site_key: ""
+# Keep false until /api/inquiries validates tokens and delivers real email.
+# Both contact and quote forms use this flag; a missing site key fails closed.
+enabled: false

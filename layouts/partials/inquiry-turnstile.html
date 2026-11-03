@@ -1,0 +1,4 @@
+{{ $config := partial "inquiry-config.html" . }}
+{{ if $config.enabled }}
+<div class="inquiry-verification" data-turnstile data-sitekey="{{ $config.sitekey }}" data-action="{{ . }}" aria-label="Spam protection"></div>
+{{ end }}
