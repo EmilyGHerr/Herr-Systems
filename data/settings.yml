@@ -1,67 +1,14 @@
 brand: Herr Systems
 owner: Emily Herr
+description: Web design, development, hosting, AI workflow setup, consulting and
+  contract support from Herr Systems.
+seoImage: /assets/davy-hexagon-mark.png
+location: Union, Missouri
 email: hello@herrsystems.com
 phone: "7177442552"
 address: ""
 noindex: true
-skip_label: Skip to main content
 copy:
-  brand_tools_1:
-    aria_label_a_1: Herr Systems home
-    span_1: SYSTEMS
-    b_1: HERR
-    small_1: LOCAL WEB SERVICES
-    aria_label_button_1: Dark mode active — switch to light mode
-    title_button_1: Switch color mode
-    span_2: ☀
-  nav_2:
-    aria_label_nav_1: Main navigation
-    summary_1: Services
-    span_3: ▾
-    a_1: All services
-    a_2: Web Design
-    a_3: Development
-    a_4: Hosting
-    a_5: Agentic Setups
-    a_6: Consulting
-    a_7: Contract Work
-    a_8: Work
-    a_9: Pricing
-    summary_2: About
-    span_4: ▾
-    a_10: About us
-    a_11: Blog
-    a_12: Contact
-  mobile_nav_3:
-    aria_label_nav_2: Mobile navigation
-    a_14: Services
-    a_15: Work
-    a_16: Contact
-    mobile_more_1: More
-  site_menu_header_4:
-    p_1: HERR SYSTEMS
-    site_menu_title_1: Explore the site
-    aria_label_button_2: Close menu
-    site_menu_close_1: ×
-  site_menu_links_5:
-    aria_label_nav_3: All pages
-    active_1: Home
-    a_17: All services
-    a_18: Work
-    a_19: Pricing
-    a_20: About us
-    a_21: Blog
-    a_22: Contact
-  site_menu_services_6:
-    site_menu_services_title_1: Our services
-    a_23: Web Design
-    a_24: Development
-    a_25: Hosting
-    a_26: Agentic Setups
-    a_27: Consulting
-    a_28: Contract Work
-  site_menu_note_7:
-    site_menu_note_1: Useful websites. Clear next steps.
   noscript_8:
     aria_label_nav_4: All pages
     active_2: Home
@@ -71,13 +18,71 @@ copy:
     a_32: About us
     a_33: Blog
     a_34: Contact
-  global_footer_9:
-    aria_label_svg_1: Pixel-art night scene showing a Herr Systems field station, mountains, moon, and radio tower
+  site_menu_links_5:
+    aria_label_nav_3: All pages
+    active_1: Home
+    a_17: All services
+    a_18: Work
+    a_19: Pricing
+    a_20: About us
+    a_21: Blog
+    a_22: Contact
+  site_menu_header_4:
+    p_1: HERR SYSTEMS
+    site_menu_title_1: Explore the site
+    aria_label_button_2: Close menu
+    site_menu_close_1: ×
   footer_info_10:
     b_2: HERR SYSTEMS
     span_5: MAKING THE LOCAL WEB A LITTLE MORE USEFUL.
     span_6: © 2026 / ST. LOUIS + REMOTE
     a_13: RETURN TO TOP ↑
+  global_footer_9:
+    aria_label_svg_1: Pixel-art night scene showing a Herr Systems field station,
+      mountains, moon, and radio tower
+  site_menu_note_7:
+    site_menu_note_1: Useful websites. Clear next steps.
+  brand_tools_1:
+    aria_label_a_1: Herr Systems home
+    span_1: SYSTEMS
+    b_1: HERR
+    small_1: LOCAL TO UNION, MO
+    aria_label_button_1: Dark mode active — switch to light mode
+    title_button_1: Switch color mode
+    span_2: ☀
+  nav_2:
+    a_1: All services
+    aria_label_nav_1: Main navigation
+    a_2: Web Design
+    a_3: Development
+    a_4: Hosting
+    a_5: Agentic Setups
+    summary_1: Services
+    a_6: Consulting
+    summary_2: About
+    a_7: Contract Work
+    a_8: Work
+    a_9: Pricing
+    a_10: About us
+    span_3: ▾
+    a_11: Blog
+    span_4: ▾
+    a_12: Contact
+  mobile_nav_3:
+    aria_label_nav_2: Mobile navigation
+    a_14: Services
+    a_15: Work
+    a_16: Contact
+    mobile_more_1: More
+  site_menu_services_6:
+    site_menu_services_title_1: Our services
+    a_23: Web Design
+    a_24: Development
+    a_25: Hosting
+    a_26: Agentic Setups
+    a_27: Consulting
+    a_28: Contract Work
+skip_label: Skip to main content
 service_fit_label: A good fit for your next step
 services_label: Services
 blog_home: Home
@@ -87,7 +92,3 @@ blog_back: ← All workshop notes
 blog_read: Read the story
 blog_previous: ← Previous
 blog_next: Next →
-description: Web design, development, hosting, AI workflow setup, consulting and contract support
-  from Herr Systems.
-seoImage: /assets/davy-hexagon-mark.png
-location: St. Louis, Missouri
