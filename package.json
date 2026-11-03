@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/verify.mjs && node tests/page-transitions.mjs",
+    "test": "node tests/verify.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs",
     "test:cms-ui": "node tests/cms-ui.mjs",
     "test:visual": "node tests/visual.mjs",
     "test:all": "npm test && npm run test:visual",
-    "test:install": "playwright install chromium",
+    "test:install": "playwright install chromium firefox",
     "test:cms-media": "node tests/cms-media-ui.mjs",
     "test:cms-content": "node tests/cms-unified-ui.mjs"
   },

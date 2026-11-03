@@ -1,0 +1,13 @@
+{{/* Local fonts avoid cross-origin discovery and fallback-font layout flashes. */}}
+<link rel="preload" href="{{ "fonts/vt323-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/dm-sans-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/dm-mono-400.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<style id="site-fonts">
+@font-face { font-family: 'DM Mono'; font-style: normal; font-weight: 400; font-display: block; src: url('/fonts/dm-mono-400.woff2') format('woff2'); }
+@font-face { font-family: 'DM Mono'; font-style: normal; font-weight: 500; font-display: block; src: url('/fonts/dm-mono-500.woff2') format('woff2'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 400; font-display: block; src: url('/fonts/dm-sans-400.woff2') format('woff2'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 500; font-display: block; src: url('/fonts/dm-sans-500.woff2') format('woff2'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 700; font-display: block; src: url('/fonts/dm-sans-700.woff2') format('woff2'); }
+@font-face { font-family: 'DM Sans'; font-style: normal; font-weight: 800; font-display: block; src: url('/fonts/dm-sans-800.woff2') format('woff2'); }
+@font-face { font-family: 'VT323'; font-style: normal; font-weight: 400; font-display: block; src: url('/fonts/vt323-400.woff2') format('woff2'); }
+</style>

@@ -14,8 +14,9 @@
 {{ $image := $meta.seoimage | default $settings.seoImage }}{{ with $image }}<meta property="og:image" content="{{ . | absURL }}"><meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ $meta.twittertitle | default $title }}"><meta name="twitter:description" content="{{ $meta.twitterdescription | default $description }}">
 <link rel="icon" type="image/png" sizes="85x85" href="{{ "assets/davy-hexagon-mark.png" | relURL }}"><link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
+{{ partial "site-fonts.html" . }}
 {{ partial "navigation-paint.html" . }}
-{{ range .Params.styles }}<link rel="stylesheet" href="{{ . }}">{{ end }}
+{{ range .Params.styles }}{{ if eq . "/retro3.css" }}{{ $css := resources.FromString "retro3.css" (readFile "static/retro3.css") | resources.Fingerprint "sha256" }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">{{ else }}<link rel="stylesheet" href="{{ . }}">{{ end }}{{ end }}
 <link rel="stylesheet" href="{{ "cms-content.css" | relURL }}">
 {{ if .IsHome }}<link rel="preload" href="{{ "search-index.json" | relURL }}" as="fetch" crossorigin="anonymous">{{ end }}
 

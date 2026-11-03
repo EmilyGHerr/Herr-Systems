@@ -4,13 +4,13 @@ From the repository root:
 
 ```sh
 npm ci
-npm run test:install           # Chromium only; Linux CI may need: npx playwright install --with-deps chromium
+npm run test:install           # Chromium + Firefox; Linux CI may need: npx playwright install --with-deps chromium firefox
 npm test                       # Hugo, output crawl, CMS, fixtures and browser interactions
 npm run test:visual            # 20 source/Hugo screenshot comparisons
 npm run test:all               # both (stops if functional checks fail)
 ```
 
-Requirements: Node 20.19+ (Node 22.12+ or 24 recommended), Hugo (resolved on `PATH`, override with `HUGO_BIN`) and Chromium host dependencies. No credentials or running dev server required. Tests build into an OS temporary directory; their own HTTP servers use random loopback ports and close in `finally`. Nothing modifies repository content, settings or generated `public/`. Pagination/noindex fixtures copy the project excluding Git, dependencies, output and tests, retain original posts, and add enough fixture posts to cross the ten-post boundary.
+Requirements: Node 20.19+ (Node 22.12+ or 24 recommended), Hugo (resolved on `PATH`, override with `HUGO_BIN`) and Chromium/Firefox host dependencies. No credentials or running dev server required. Tests build into an OS temporary directory; their own HTTP servers use random loopback ports and close in `finally`. Nothing modifies repository content, settings or generated `public/`. Pagination/noindex fixtures copy the project excluding Git, dependencies, output and tests, retain original posts, and add enough fixture posts to cross the ten-post boundary.
 
 `npm test` checks:
 - Build, all generated local links/assets/fragments, page metadata, and unfilled filler and visible disclosures for intentional sample content.
@@ -71,4 +71,7 @@ Directory preview controls are owned by each item, not duplicated in Site pages.
 
 ## Native multi-page navigation
 
-`npm test` also runs `tests/page-transitions.mjs`: native cross-document swap/reveal events, a fresh document on internal navigation (not SPA routing), Back navigation, reduced-motion styles, the early dark canvas with external CSS held pending, mobile/no-JavaScript links, and uncaught browser errors. The tiny inline `navigation-paint.html` partial opts public Hugo documents into a 160ms browser-native crossfade; unsupported browsers use unchanged full-page navigation. It never intercepts clicks, hides content, or delays navigation. Existing SEO settings and dark-on-every-load behavior remain unchanged.
+`npm test` also runs `tests/page-transitions.mjs`: native cross-document swap/reveal events, a fresh document on internal navigation (not SPA routing), Back navigation, reduced-motion styles, the early dark canvas with external CSS held pending, mobile/no-JavaScript links, and uncaught browser errors. The tiny inline `navigation-paint.html` partial opts public Hugo documents into a 160ms browser-native crossfade; unsupported browsers use unchanged full-page navigation. It never intercepts clicks or delays navigation. A separate bounded font-readiness guard prevents fallback-font layout flashes. Existing SEO settings and dark-on-every-load behavior remain unchanged.
+
+
+`tests/font-loading.mjs` runs in real Firefox and Chromium with delayed, failed, and stalled fonts, and with Google Fonts blocked. It verifies the font-ready reveal, navigation/Back, reduced motion, 1.5-second fail-safe and no-JavaScript behavior. Fonts are locally served WOFF2 conversions of the Google Fonts releases (SIL OFL licenses included under `static/fonts/`). Main CSS is content-fingerprinted so previously cached Google Fonts imports cannot override the new faces. The readiness guard runs only with JavaScript, never changes links or HTML content, and clears even when fonts fail; no-JavaScript pages remain visible. The native cross-document effect remains a progressive enhancement, not a Firefox promise.
