@@ -26,17 +26,51 @@ The Site ID is public configuration, not a password. Never add account passwords
 
 After deploying, open `/sudo/`, choose Login with Turbo, and verify a draft, media upload, and publish. Authentication and publishing remain unverified until that real-account check succeeds. The custom route and noindex directive are not access controls.
 
-## Content schema
+## Editing order and field guide
 
-Pages have plain `title` and `description`, rich-inline `hero_title` and `subtitle` (retain `<br>`/`<em>` where desired), and a `copy` map of labeled visible text, alternative text, placeholders and labels. Every extracted copy slot has a CMS field. Source classes/IDs and DOM wrappers remain in the layout fragments.
+Pages and services are organized to follow the live page, not HTML tag names:
 
-`data/settings.yml` contains contact email, optional phone/address, brand/owner, global `noindex`, and shared navigation/footer/accessibility copy. Phone and address are blank because no verified values were provided. Optional contact values only appear when populated.
+1. Page title / navigation name — plain text used in listings, terminal search and fallback metadata.
+2. Billboard display heading and introductory text — the large visible heading and lead. Only these rich-inline fields support intentional `<em>` / `<br>` formatting.
+3. Page summary — plain-text listing copy and the default search description. This is independent of the billboard introduction.
+4. Page sections, top to bottom — expandable sections for nearby text, buttons, images and accessibility labels. Service cards, case-study cards, form fields, article sidebars and closing calls to action have their own groups.
+5. Search engines and social sharing — collapsed by default, with separate Google/search and social link-preview groups. Blank overrides inherit page/site defaults.
 
-Original blog posts are Markdown at `content/blog/<slug>/index.md`; newly created CMS posts use `content/blog/<slug>.md`. Create posts in Blog posts; original articles also have dedicated file editors for sidebar, author and takeaway copy. Existing articles retain original fragments; new articles use a reusable layout. Original Markdown articles wrap sections in `article-section` shortcodes to preserve source section spacing and contents-link IDs. Edit the Markdown inside these wrappers and keep IDs stable. Hugo pagination limits listing pages to ten posts total, including the featured card on page one.
+Inline markup in ordinary section text is escaped. Link destinations shown in hints describe the existing template links; changing a link's text does not change its destination.
 
-Six services have native Hugo records; original directory anchor IDs remain unchanged. Web design retains the full detail layout. Other services reuse billboard/detail visual language with original directory facts. No fictional team profiles are published. The about page identifies Emily Herr without inventing a biography. Concept studies retain explicit fictional/concept disclosures and no fabricated clients/results.
+### Homepage announcement
 
-`styles`, `scripts`, `body_class` and `fragment` are preserved hidden template-resource fields. Template-driven pages expose their actual copy fields rather than an ignored body editor. Blog articles and generic service pages have working Markdown bodies. The terminal index renders the current page fragments, so copy edits are reflected automatically without maintaining duplicate search prose. SEO title, description, social image and noindex controls are available on every page. New-blog and original-article collections are separated to preserve the original article layouts when editing.
+Open **Pages and services → Home → Page sections — top to bottom → Announcement / system message**.
+
+- **Show announcement below the billboard**: off removes the entire strip from HTML and terminal search. The prefix and message stay saved.
+- **Announcement prefix**: the short emphasized label, such as “★ ALERT:”.
+- **Announcement message**: the text following that label.
+
+The switch is on initially to preserve the current design. A missing switch also keeps the announcement visible for backwards compatibility.
+
+### Metadata
+
+**Google / search results** contains the search title, search description, per-page noindex switch and advanced canonical URL. Leave canonical blank unless another URL is deliberately the preferred source. Pagination keeps distinct canonical URLs.
+
+**Link previews** contains the social image and description (alternative text), followed by optional Facebook/LinkedIn and X/Twitter text overrides. The shared default image and its alternative text live under Site-wide settings. A page-specific image needs its own meaningful description.
+
+Page-level noindex removes that page from the sitemap and terminal index. Global noindex remains a crawler control, not a visitor-interface switch: the terminal continues working on a noindexed site. Neither option protects private data. The current global noindex setting is preserved by this CMS reorganization.
+
+### Blog and article images
+
+**Blog — existing articles** edits the original leaf-bundle articles and their sidebar/author/takeaway copy. **Blog — new articles** creates flat Markdown files in `content/blog/`. New articles use the generic article template.
+
+Blog listing cards inherit the article's title, summary, image, image description, category and reading-time label. Edit those on the article, not the Blog listing page. The listing's unused legacy card slots are preserved as hidden data so they cannot mislead editors. Existing articles now use the same image and image description for the article cover and listing card; captions remain in the article-cover section.
+
+Keep the `article-section` shortcode wrappers and their IDs when editing original article bodies: they preserve spacing and table-of-contents anchors. Future publish dates are omitted by Hugo until their date is reached.
+
+### Shared settings and preserved technical fields
+
+Site-wide settings keep brand/author, default metadata, contact fields and crawlability together, followed by header, desktop/mobile navigation, expanded-menu and footer groups. Optional phone/address remain blank when not supplied. The configured email controls both visible email text and email links.
+
+The site configuration editor exposes production URL, site title and language. Resource fields (`styles`, `scripts`, `body_class`, `fragment`, and legacy `lead`) remain hidden and preserved. Do not move or rename grouped YAML keys manually; they are wired into the templates. A compatibility helper continues to render older flat copy and metadata records.
+
+All original copy values and inline body content were retained during migration. The verification suite exercises a CMS edit in every visible section group, rebuilds, and checks that it reaches HTML. It also checks metadata inheritance, explicit noindex, announcement states and preservation of unrelated page content. `npm run test:cms-ui` additionally runs the actual Decap editor with an isolated test backend; it never changes the production Turbo backend or verifies production login.
 
 Contact and quote forms retain disabled delivery and honest email fallback until a real endpoint is configured and verified. Calculator figures are planning estimates, not binding quotes.
 

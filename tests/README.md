@@ -39,3 +39,12 @@ Contact visual comparisons retain untouched `source-raw.png` screenshots, then
 normalize only the deliberately removed fictional phone row/note and the preview
 delivery notice before comparing layout. No source files or baseline images are
 modified; all other comparisons use the unmodified original build.
+
+
+## Grouped Decap editor
+
+`npm test` includes isolated content-save/rebuild checks for every visible CMS section group, grouped metadata and inheritance, announcement visibility, and article-image bindings. It respects production global noindex and uses isolated fixtures for indexable-page assertions.
+
+Run `npm run test:cms-ui` to fetch the pinned Decap distribution and exercise the actual Home editor in Chromium using an intercepted `test-repo` backend. This validates the schema/UI, not real Turbo login or publishing. It produces `tests/test-results/cms-home-editor.png` and never modifies production backend configuration.
+
+For a CMS-only migration, compare against a clean pre-change Hugo build rather than the older template source: `SOURCE_DIST=/tmp/herr-cms-before MAX_VISUAL_DIFF=0 npm run test:visual`. This exercises desktop/mobile and dark/light variants without accepting incidental design drift.

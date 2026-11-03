@@ -5,6 +5,7 @@ import { load } from 'cheerio';
 import YAML from 'yaml';
 import { chromium } from 'playwright';
 import { root, results, workspace, files, build, fixture, serve, cleanup } from './support.mjs';
+import { verifyCms } from './cms-editing.mjs';
 const report=[];
 async function check(name,fn) {
   const start=Date.now();
@@ -22,7 +23,7 @@ await check('Decap editor is published at /sudo/ only',async()=>{
   const editor=load(await read(path.join(output,'sudo/index.html')));
   assert(editor('script[src*="decap-cms"]').length,'Missing Decap loader');
   assert(editor('meta[name="robots"]').attr('content').includes('noindex'));
-  assert((await read(path.join(output,'robots.txt'))).includes('Disallow: /sudo/'));
+  const robots=await read(path.join(output,'robots.txt'));assert(/Disallow: \/sudo\/|Disallow: \/(?:\s|$)/.test(robots));
   assert(!(await files(output)).some(f=>f.includes('/admin/')),'Old admin route is still published');
   const config=YAML.parse(await read(path.join(output,'sudo/config.yml')));
   assert.equal(config.backend.turbo_site_id,'a9aed266-1523-4548-b632-3cda0ddf7d55');
@@ -37,7 +38,12 @@ await check('Decap collections: editorial SEO fields and editable globals',async
   const missing=[];
   for(const c of content) {
     const names=new Set((c.fields||[]).map(f=>f.name));
-    for(const key of ['title','subtitle','description','seoTitle','seoDescription','noindex']) if(!names.has(key))missing.push(`${c.name}: ${key}`);
+    for(const key of ['title','subtitle','description','seo']) if(!names.has(key))missing.push(`${c.name}: ${key}`);
+    const seo=c.fields.find(f=>f.name==='seo');
+    assert.deepEqual(seo.fields.map(f=>f.name),['search','social']);
+    for(const key of ['title','description','noindex','canonicalURL'])assert(seo.fields[0].fields.some(f=>f.name===key),`${c.name}: missing search ${key}`);
+    for(const key of ['image','imageAlt','ogTitle','ogDescription','twitterTitle','twitterDescription'])assert(seo.fields[1].fields.some(f=>f.name===key),`${c.name}: missing social ${key}`);
+    const copy=c.fields.find(f=>f.name==='copy');if(copy)assert(copy.fields.every(f=>f.widget==='hidden'||(f.widget==='object' && f.collapsed)),`${c.name}: ungrouped copy`);
   }
   assert.deepEqual(missing,[],`Missing CMS fields: ${missing.join(', ')}`);
   const globals=entries.filter(c=>c.file?.startsWith('data/'));
@@ -79,11 +85,13 @@ await check('Generated search index and sitemap contain every published service'
   const serviceFiles=(await files(path.join(root,'content/services'))).filter(f=>/\.(md|html)$/.test(f)&&!path.basename(f).startsWith('_'));
   assert(serviceFiles.length>=6,'Expected all six services');
   const sitemap=await read(path.join(output,'sitemap.xml'));
-  for(const f of serviceFiles) {const slug=path.basename(f).startsWith('index.')?path.basename(path.dirname(f)):path.basename(f).replace(/\.(md|html)$/,'');const route=`/services/${slug}/`;assert(index.pages.some(p=>p.url===route&&p.service),`${route} absent from terminal service index`);assert(sitemap.includes(route),`${route} absent from sitemap`);}
+  const globallyHidden=YAML.parse(await read(path.join(root,'data/settings.yml'))).noindex||YAML.parse(await read(path.join(root,'hugo.yaml'))).params?.noindex;
+  for(const f of serviceFiles) {const slug=path.basename(f).startsWith('index.')?path.basename(path.dirname(f)):path.basename(f).replace(/\.(md|html)$/,'');const route=`/services/${slug}/`;assert(index.pages.some(p=>p.url===route&&p.service),`${route} absent from terminal service index`);assert.equal(sitemap.includes(route),!globallyHidden,`${route}: sitemap must respect global visibility`);}
   for(const p of index.pages){assert(p.title&&p.url.startsWith('/'));assert(!p.url.startsWith('//'));}
   assert((await read(path.join(output,'robots.txt'))).includes('Sitemap:'));
 });
 }
+await check('CMS save/rebuild: all section groups, metadata overrides, fallbacks and announcement on/off',async()=>{const count=await verifyCms(work,root);console.log(`Verified edits in ${count} CMS section groups`);});
 await check('Isolated fixtures: 10-post pagination, canonical URLs, generic subtitle, per-page and global noindex',async()=>{
   const source=await fixture(work), content=path.join(source,'content');
   await mkdir(path.join(content,'blog'),{recursive:true});

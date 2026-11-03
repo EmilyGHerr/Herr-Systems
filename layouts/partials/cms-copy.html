@@ -1,0 +1,10 @@
+{{- /* Flatten editor section groups for existing templates; old flat files remain supported. */ -}}
+{{- $copy := dict -}}
+{{- range $key, $value := . -}}
+  {{- if reflect.IsMap $value -}}
+    {{- $copy = merge $copy $value -}}
+  {{- else -}}
+    {{- $copy = merge $copy (dict $key $value) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $copy -}}

@@ -1,0 +1,18 @@
+{{- /* Explicit nested values take priority, including false; support older flat records. */ -}}
+{{- $meta := dict -}}
+{{- $params := .Params -}}
+{{- $search := .Params.seo.search | default dict -}}
+{{- $social := .Params.seo.social | default dict -}}
+{{- $mapping := dict "seotitle" "title" "seodescription" "description" "noindex" "noindex" "canonicalurl" "canonicalurl" -}}
+{{- range $old, $new := $mapping -}}
+  {{- $value := index $params $old -}}
+  {{- if isset $search $new -}}{{- $value = index $search $new -}}{{- end -}}
+  {{- $meta = merge $meta (dict $old $value) -}}
+{{- end -}}
+{{- $mapping = dict "seoimage" "image" "seoimagealt" "imagealt" "ogtitle" "ogtitle" "ogdescription" "ogdescription" "twittertitle" "twittertitle" "twitterdescription" "twitterdescription" -}}
+{{- range $old, $new := $mapping -}}
+  {{- $value := index $params $old -}}
+  {{- if isset $social $new -}}{{- $value = index $social $new -}}{{- end -}}
+  {{- $meta = merge $meta (dict $old $value) -}}
+{{- end -}}
+{{- return $meta -}}

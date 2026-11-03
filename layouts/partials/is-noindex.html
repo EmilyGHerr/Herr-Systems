@@ -1,1 +1,1 @@
-{{- return (or (default false site.Params.noindex) (default false site.Data.settings.noindex) (default false .Params.noindex) (eq .Kind "404")) -}}
+{{- return (or (default false site.Params.noindex) (default false site.Data.settings.noindex) (default false (partial "page-meta.html" .).noindex) (eq .Kind "404")) -}}

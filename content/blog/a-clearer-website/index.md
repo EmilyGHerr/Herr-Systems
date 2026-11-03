@@ -1,18 +1,17 @@
 ---
 title: A clearer website starts with better questions.
 description: Before colors, layouts, or clever effects, get clear on what your visitors actually need.
-noindex: false
 styles:
-- /retro3.css
-- /services.css
-- /services-billboard.css
-- /service-detail.css
-- /blog.css
-- /interactions.css
-- /navigation.css
+  - /retro3.css
+  - /services.css
+  - /services-billboard.css
+  - /service-detail.css
+  - /blog.css
+  - /interactions.css
+  - /navigation.css
 scripts:
-- /navigation.js
-- /retro3.js
+  - /navigation.js
+  - /retro3.js
 fragment: pages/blog-a-clearer-website.html
 date: 2026-11-02
 category: Web design
@@ -22,36 +21,53 @@ reading_label: 4 min read
 hero_title: A clearer website starts with better questions.
 lead: Before colors, layouts, or clever effects, get clear on what your visitors actually need.
 copy:
-  a_79: Home
-  span_55: /
-  a_80: Blog
-  span_56: /
-  span_57: Web design
-  figcaption_10: Workshop illustration / Herr Systems
-  kicker_19: TAKE THIS WITH YOU
-  p_44: Choose clarity over complexity. Make the next useful step easy to find.
-  b_30: Herr Systems
-  p_45: Thoughtful websites. Practical technology. Remote friendly.
-  a_81: Meet the people behind the work →
-  contents_title_3: IN THIS NOTE
-  a_82: Start with the person visiting
-  a_83: Give each page a job
-  a_84: Make the important details easy to scan
-  a_85: Choose a useful next step
-  contents_return_3: ← All workshop notes
-  kicker_20: KEEP THE SIGNAL GOING
-  next_title_3: Something here spark an idea?
-  button_10: Let’s talk
-  b_31: »
-  aria_label_nav_16: Breadcrumb
-  alt_img_19: Pixel-art website on a desktop monitor with a clear call to action.
-  aria_label_aside_3: Key takeaway
-  aria_label_nav_17: Article contents
+  detail_breadcrumb_1:
+    aria_label_nav_16: Breadcrumb
+    a_79: Home
+    span_55: /
+    a_80: Blog
+    span_56: /
+    span_57: Web design
+  article_cover_2:
+    alt_img_19: Pixel-art website on a desktop monitor with a clear call to action.
+    figcaption_10: Workshop illustration / Herr Systems
+  article_takeaway_3:
+    aria_label_aside_3: Key takeaway
+    kicker_19: TAKE THIS WITH YOU
+    p_44: Choose clarity over complexity. Make the next useful step easy to find.
+  article_author_4:
+    b_30: Herr Systems
+    p_45: Thoughtful websites. Practical technology. Remote friendly.
+    a_81: Meet the people behind the work →
+  article_contents_5:
+    contents_title_3: IN THIS NOTE
+    contents_return_3: ← All workshop notes
+  nav_6:
+    aria_label_nav_17: Article contents
+    a_82: Start with the person visiting
+    a_83: Give each page a job
+    a_84: Make the important details easy to scan
+    a_85: Choose a useful next step
+  blog_bottom_7:
+    kicker_20: KEEP THE SIGNAL GOING
+    next_title_3: Something here spark an idea?
+    button_10: Let’s talk
+    b_31: »
 body_class: services-billboard-variant service-detail-page blog-page blog-single-page
 subtitle: Before colors, layouts, or clever effects, get clear on what your visitors actually need.
-seoTitle: ''
-seoDescription: ''
-seoImage: ''
+seo:
+  search:
+    title: ""
+    description: ""
+    noindex: false
+    canonicalURL: ""
+  social:
+    image: ""
+    imageAlt: ""
+    ogTitle: ""
+    ogDescription: ""
+    twitterTitle: ""
+    twitterDescription: ""
 ---
 
 {{< article-section id="start-with-people" >}}

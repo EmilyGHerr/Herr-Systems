@@ -1,6 +1,6 @@
 {{- $records := slice -}}
 {{- range site.Pages -}}
-  {{- if and (not .Params.noindex) (ne .Kind "taxonomy") (ne .Kind "term") -}}
+  {{- if and (not (partial "page-meta.html" .).noindex) (ne .Kind "taxonomy") (ne .Kind "term") -}}
     {{- $slug := path.Base .RelPermalink -}}{{- if .IsHome -}}{{- $slug = "home" -}}{{- end -}}
     {{- $page := . -}}
     {{- $content := .Plain -}}{{- with .Params.fragment -}}{{- $content = partial . $page | plainify -}}{{- end -}}
