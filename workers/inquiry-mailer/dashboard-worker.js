@@ -288,6 +288,13 @@ var index_default = {
         reject(502, "submission_unconfirmed");
       }
       if (typeof result?.messageId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._:@/+=-]{0,255}$/.test(result.messageId)) {
+        console.error(JSON.stringify({
+          event: "email_acknowledgement_shape",
+          resultType: typeof result,
+          messageIdType: typeof result?.messageId,
+          messageIdLength: typeof result?.messageId === "string" ? result.messageId.length : null,
+          messageIdHasAngleBrackets: typeof result?.messageId === "string" ? /[<>]/.test(result.messageId) : false
+        }));
         diagnose("email_acknowledgement");
         reject(502, "submission_unconfirmed");
       }
