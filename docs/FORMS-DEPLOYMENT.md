@@ -128,3 +128,22 @@ actual Pages -> service-binding -> Worker code path without using real keys.
 Wrangler build/dry-run validates bundles but is not a Cloudflare deployment.
 Never paste private values into test fixtures. Local .dev.vars/.env files and
 Wrangler state are Git-ignored. Revoke/rotate any accidentally committed secret.
+
+## Dashboard editor alternative
+
+`workers/inquiry-mailer/dashboard-worker.js` is a self-contained module bundle.
+Copy its entire contents into the existing Worker code editor, replacing Hello
+World. Do NOT paste index.js by itself: that source imports local helper files.
+Regenerate the bundle with `npm run build:mailer-dashboard` after source changes.
+
+Before using the pasted code, the Worker requires SEND_EMAIL, INQUIRY_TO (Secret),
+INQUIRY_FROM=forms@herrsystems.com (Text), and INQUIRY_RATE_LIMITER (native rate
+binding). Disable workers.dev, version preview URLs and all public routes in
+Worker settings. Keep it accessible only through the Pages service binding.
+
+Pasting JavaScript does NOT apply wrangler.jsonc or create bindings. In particular,
+the native rate limiter is not exposed in the dashboard binding picker according
+to current Cloudflare docs. It still needs a configuration deployment using the
+checked-in Wrangler config (through Workers Builds or your own authenticated CLI).
+The handler intentionally returns 503 without it; do not remove that protection
+or mistake successful editor deployment for a fully configured mail service.

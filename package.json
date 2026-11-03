@@ -14,7 +14,8 @@
     "test:backend": "node --test tests/inquiries-backend.mjs tests/inquiries-frontend-contract.mjs",
     "build:functions": "wrangler pages functions build --outdir .wrangler/pages-build",
     "build:mailer": "wrangler deploy --config workers/inquiry-mailer/wrangler.jsonc --dry-run --outdir .wrangler/mailer-build",
-    "test:deployment": "node tests/forms-deployment.mjs"
+    "test:deployment": "node tests/forms-deployment.mjs",
+    "build:mailer-dashboard": "npm run build:mailer && node scripts/export-mailer-dashboard.mjs"
   },
   "devDependencies": {
     "cheerio": "^1.1.2",
