@@ -56,3 +56,7 @@ body{font-size:clamp(14px,1.05vw,16px)}.logo{font-size:clamp(18px,1.55vw,23px)}.
 
 /* Five-link navigation keeps the same single-row mobile bar. Four-link archives are unaffected. */
 @media(max-width:720px){.mobile-nav:has(>a:nth-child(5)){grid-template-columns:repeat(5,minmax(0,1fr))}}
+
+/* The optional alert must not be responsible for hero/services separation.
+   Match the surrounding section rhythm only when these sections are adjacent. */
+#main > .hero + .home-services { margin-block-start: clamp(24px, 3vw, 36px); }

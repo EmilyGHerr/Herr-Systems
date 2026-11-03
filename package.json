@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/verify.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs",
+    "test": "node tests/verify.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs && node tests/home-spacing.mjs",
     "test:cms-ui": "node tests/cms-ui.mjs",
     "test:visual": "node tests/visual.mjs",
     "test:all": "npm test && npm run test:visual",
