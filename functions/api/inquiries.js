@@ -19,7 +19,7 @@ export async function onRequest({ request, env }) {
       const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
         method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ secret: env.TURNSTILE_SECRET_KEY, response: inquiry.turnstileToken, remoteip: clientIp }),
-        signal: AbortSignal.timeout(5000), redirect: 'error',
+        signal: AbortSignal.timeout(5000), redirect: 'manual',
       });
       diagnostic.upstreamStatus = response.status;
       if (!response.ok) reject(502, 'verification_unavailable');
