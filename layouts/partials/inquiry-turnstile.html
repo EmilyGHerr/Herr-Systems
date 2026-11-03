@@ -1,3 +1,4 @@
-{{ if and site.Data.forms.enabled site.Data.forms.turnstile_site_key }}
-<div class="inquiry-verification" data-turnstile data-sitekey="{{ site.Data.forms.turnstile_site_key }}" data-action="{{ . }}" aria-label="Spam protection"></div>
+{{ $config := partial "inquiry-config.html" . }}
+{{ if $config.enabled }}
+<div class="inquiry-verification" data-turnstile data-sitekey="{{ $config.sitekey }}" data-action="{{ . }}" aria-label="Spam protection"></div>
 {{ end }}

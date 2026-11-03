@@ -7,6 +7,9 @@ import { chromium } from "playwright";
 import { root, workspace, fixture, build, serve, cleanup } from "./support.mjs";
 const work = await workspace();
 let server, browser;
+const originalKey = process.env.TURNSTILE_SITE_KEY;
+const originalSecret = process.env.TURNSTILE_SECRET_KEY;
+delete process.env.TURNSTILE_SITE_KEY;
 try {
   const source = await fixture(work);
   const config = path.join(source, "data/forms.yml");
@@ -32,8 +35,30 @@ turnstile_site_key: "1x00000000000000000000AA"
 turnstile_site_key: ""
 `);
   build(source, path.join(work, "missing"));
-  const missing = load(await readFile(path.join(work, "missing/contact/index.html"), "utf8"));
-  assert.equal(missing("[data-inquiry-form]").attr("data-endpoint-enabled"), "false");
+  for (const name of ["contact", "pricing"]) {
+    const missing = load(await readFile(path.join(work, "missing", name, "index.html"), "utf8"));
+    assert.equal(missing("[data-inquiry-form]").attr("data-endpoint-enabled"), "false");
+  }
+  // Pages build variable works without any site key committed to Git.
+  process.env.TURNSTILE_SITE_KEY = "public-env-test-key";
+  process.env.TURNSTILE_SECRET_KEY = "private-test-sentinel-not-a-real-key";
+  const envOutput = path.join(work, "env-key");
+  build(source, envOutput);
+  for (const name of ["contact", "pricing"]) {
+    const html = await readFile(path.join(envOutput, name, "index.html"), "utf8");
+    const $ = load(html);
+    assert.equal($("[data-inquiry-form]").attr("data-endpoint-enabled"), "true");
+    assert.equal($("[data-turnstile]").attr("data-sitekey"), "public-env-test-key");
+    assert.ok(!html.includes(process.env.TURNSTILE_SECRET_KEY));
+  }
+  // Environment key takes precedence over the optional Git fallback.
+  await writeFile(config, `enabled: true
+turnstile_site_key: "public-git-fallback"
+`);
+  build(source, path.join(work, "precedence"));
+  const preferred = load(await readFile(path.join(work, "precedence/contact/index.html"), "utf8"));
+  assert.equal(preferred("[data-turnstile]").attr("data-sitekey"), "public-env-test-key");
+  delete process.env.TURNSTILE_SITE_KEY;
   server = await serve(output);
   browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
@@ -83,7 +108,9 @@ turnstile_site_key: ""
   for (const file of [".env", ".env.production", ".dev.vars", "workers/inquiries/.dev.vars", "workers/inquiries/.env.local", "workers/inquiries/.wrangler/state/db"]) {
     execFileSync("git", ["check-ignore", "--quiet", file], { cwd: root });
   }
-  console.log("PASS: safe defaults, missing-key gate, both widgets, token gating, success/error resets, preserved inputs, secret ignores. Turnstile/API mocked; no live email.");
+  console.log("PASS: Pages public variable/fallback precedence, secret isolation, safe defaults, missing-key gate, both widgets, token gating, success/error resets, preserved inputs, secret ignores. Turnstile/API mocked; no live email.");
 } finally {
+  if (originalKey === undefined) delete process.env.TURNSTILE_SITE_KEY; else process.env.TURNSTILE_SITE_KEY = originalKey;
+  if (originalSecret === undefined) delete process.env.TURNSTILE_SECRET_KEY; else process.env.TURNSTILE_SECRET_KEY = originalSecret;
   await browser?.close(); await server?.close(); await cleanup(work);
 }

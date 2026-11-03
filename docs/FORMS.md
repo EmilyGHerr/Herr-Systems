@@ -12,11 +12,25 @@ this file. Keep enabled false until a real /api/inquiries Worker validates
 tokens and delivers email. A blank site key also keeps delivery disabled.
 When disabled, neither the widget nor its third-party script is loaded.
 
+## Cloudflare Pages variables (recommended)
+
+Set TURNSTILE_SITE_KEY as a Text variable in the Pages project. Hugo reads it
+during the build; it takes precedence over the optional data/forms.yml key.
+Leave the Git key blank when using this approach. The public key is intentionally
+included in the browser output when enabled. Redeploy/rebuild after changing it.
+Configure Production and Preview separately; do not expose production secrets
+to untrusted preview branches.
+
+TURNSTILE_SECRET_KEY stays a Secret in Pages. A future Pages Function can read
+it from context.env.TURNSTILE_SECRET_KEY at runtime. Hugo only allowlists the
+public key name, not the secret name. The secret is never needed for the build.
+This configuration change does not implement that server handler.
+
 ## Secret: Cloudflare only
 
 Never commit the Turnstile SECRET key or put it in Hugo data, browser JS,
-CMS fields, screenshots, or chat. In the inquiry Worker (not Pages build
-settings), open Settings > Variables and Secrets > Add > Secret:
+CMS fields, screenshots, or chat. For a Pages Function use the existing Pages project; for a separate Worker
+use that Worker. Open Settings > Variables and Secrets > Add > Secret:
 
 Name: TURNSTILE_SECRET_KEY
 Value: your private Turnstile secret
@@ -54,7 +68,7 @@ inputs. Missing/blocked verification prevents submission.
 
 1. Use a Managed Turnstile widget allowing herrsystems.com (www only if used).
    Use separate development/test keys rather than broadly allowing previews.
-2. Commit the PUBLIC site key in data/forms.yml, leaving enabled false.
+2. Set TURNSTILE_SITE_KEY in Pages (or the public Git fallback), leaving enabled false.
 3. Deploy a real Worker and configure its secret privately in Cloudflare.
 4. Test verification, failures and actual email receipt on both forms.
 5. Set enabled true and update unavailable-delivery copy in

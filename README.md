@@ -89,6 +89,7 @@ presented as client engagements. Fictional staff profiles are not published.
 
 ## Secure form configuration
 
-See [docs/FORMS.md](docs/FORMS.md). Set the public Turnstile site key in
-`data/forms.yml`; keep the secret in the Cloudflare Worker, never in Git.
+See [docs/FORMS.md](docs/FORMS.md). Set `TURNSTILE_SITE_KEY` as a public Pages
+variable (or use `data/forms.yml` as a fallback). Keep `TURNSTILE_SECRET_KEY`
+in Pages/Worker secrets, never in Git.
 Delivery remains disabled until a real validating Worker is deployed.
