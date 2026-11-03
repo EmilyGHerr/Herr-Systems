@@ -287,7 +287,9 @@ var index_default = {
         diagnose("email_send", error);
         reject(502, "submission_unconfirmed");
       }
-      if (typeof result?.messageId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._:@/+=-]{0,255}$/.test(result.messageId)) {
+      const rawMessageId = result?.messageId;
+      const messageId = typeof rawMessageId === "string" && rawMessageId.startsWith("<") && rawMessageId.endsWith(">") ? rawMessageId.slice(1, -1) : rawMessageId;
+      if (typeof messageId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._:@/+=-]{0,255}$/.test(messageId) || /[\r\n]/.test(messageId)) {
         console.error(JSON.stringify({
           event: "email_acknowledgement_shape",
           resultType: typeof result,

@@ -24,7 +24,7 @@ for (const [label, handler] of [['source',worker],['bundle',bundled]]) test(`${l
    event: "email_acknowledgement_shape", resultType: "object",
    messageIdType: "string", messageIdLength: (privateValues[0]+"\r\n").length, messageIdHasAngleBrackets: false,
   });
-  for (const result of [undefined, {[privateValues[0]]:privateValues[3]}, {messageId:"<private-message@example.net>"}]) {
+  for (const result of [undefined, {[privateValues[0]]:privateValues[3]}, {messageId:"<private-message@example.net"}, {messageId:"private-message@example.net>"}, {messageId:"<>"}, {messageId:"<<nested>>"}]) {
    env.SEND_EMAIL.send=async()=>result;
    assert.equal((await handler.fetch(req(),env)).status,502);
    assert.deepEqual(JSON.parse(logs.at(-2)), {
@@ -36,8 +36,10 @@ for (const [label, handler] of [['source',worker],['bundle',bundled]]) test(`${l
   }
   for(const value of [...privateValues,'Private Name']) assert.ok(!logs.join(' ').includes(value));
   const count=logs.length;
-  env.SEND_EMAIL.send=async()=>({messageId:'accepted-123'});
-  assert.equal((await handler.fetch(req(),env)).status,202);
+  for (const messageId of ["accepted-123", "<private-message@example.net>"]) {
+   env.SEND_EMAIL.send=async()=>({messageId});
+   assert.equal((await handler.fetch(req(),env)).status,202);
+  }
   assert.equal(logs.length,count);
  } finally {console.error=original;}
 });

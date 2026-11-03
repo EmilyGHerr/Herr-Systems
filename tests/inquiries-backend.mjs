@@ -104,3 +104,16 @@ test('Pages never treats an ambiguous/malformed service acknowledgement as succe
   assert.equal(h.sent.length,0);
  }finally{h.restore();}
 });
+
+test("bracketed provider acknowledgement returns submission success through Pages and Worker",async()=>{
+ const h=setup();try{
+  h.we.SEND_EMAIL.send=async mail=>{h.sent.push(mail);return {messageId:"<provider-accepted@example.net>"};};
+  for(const p of [contact(),quote()]){
+   h.setKind(p.kind);
+   const response=await onRequest({request:h.req(p),env:h.env});
+   assert.equal(response.status,202);
+   assert.deepEqual(await response.json(),{ok:true,status:"submitted"});
+  }
+  assert.equal(h.sent.length,2);
+ }finally{h.restore();}
+});
