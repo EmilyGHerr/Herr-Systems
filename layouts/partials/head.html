@@ -17,7 +17,7 @@
 {{ partial "site-fonts.html" . }}
 {{ partial "navigation-paint.html" . }}
 {{ range .Params.styles }}{{ if eq . "/retro3.css" }}{{ $css := resources.FromString "retro3.css" (readFile "static/retro3.css") | resources.Fingerprint "sha256" }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">{{ else }}<link rel="stylesheet" href="{{ . }}">{{ end }}{{ end }}
-<link rel="stylesheet" href="{{ "cms-content.css" | relURL }}">
+{{ $contentCSS := resources.FromString "cms-content.css" (readFile "static/cms-content.css") | resources.Fingerprint "sha256" }}<link rel="stylesheet" href="{{ $contentCSS.RelPermalink }}">
 {{ if .IsHome }}<link rel="preload" href="{{ "search-index.json" | relURL }}" as="fetch" crossorigin="anonymous">{{ end }}
 
 {{ $imageAlt := $meta.seoimagealt }}{{ if not $meta.seoimage }}{{ $imageAlt = $imageAlt | default $settings.seoImageAlt }}{{ end }}
