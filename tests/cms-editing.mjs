@@ -15,11 +15,14 @@ export async function verifyCms(work,root){
  let checked=0;const markers=[];
  for(const e of entries.filter(e=>e.file && e.fields.some(f=>f.name==='copy'))){
   const file=path.join(source,e.file);const data=e.file.endsWith('.md')?parse(await read(file)):YAML.parse(await read(file));const copy=e.fields.find(f=>f.name==='copy');if(!data.copy)continue;const keys=new Set();
-  assert.deepEqual(Object.keys(data.copy),copy.fields.map(f=>f.name),`${e.name}: group order / stored groups`);
+  // Decap may reorder YAML maps on save; the schema, not storage order, defines editor order.
+  assert.deepEqual(Object.keys(data.copy).sort(),copy.fields.map(f=>f.name).sort(),`${e.name}: stored groups`);
   for(const g of copy.fields){
    const fields=new Set(g.fields.map(f=>f.name));
    for(const key of Object.keys(data.copy[g.name])){assert(fields.has(key),`${e.name}/${g.name}/${key}: stored value lacks CMS field`);assert(!keys.has(key),`${e.name}: duplicate flattened key ${key}`);keys.add(key);}
    if(g.widget==='hidden')continue;
+   // Enable the announcement only in this isolated field-coverage fixture.
+   if(g.fields.some(f=>f.name==='enabled'&&f.widget==='boolean'))data.copy[g.name].enabled=true;
    const editable=g.fields.filter(f=>!['boolean','hidden'].includes(f.widget));if(!editable.length)continue;checked++;
    for(const f of editable){const marker='CMS_EDIT_'+markers.length+'_END';data.copy[g.name][f.name]=marker;markers.push(marker);}
   }
