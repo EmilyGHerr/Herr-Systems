@@ -1,6 +1,6 @@
 backend:
-  name: github
-  repo: EmilyGHerr/Herr-Systems
+  name: turbo-github
+  turbo_site_id: a9aed266-1523-4548-b632-3cda0ddf7d55
   branch: main
 media_folder: static/uploads
 public_folder: /uploads

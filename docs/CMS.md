@@ -1,10 +1,30 @@
 # Editing Herr Systems
 
-Open `/admin/` on the deployed site. Decap edits `EmilyGHerr/Herr-Systems`, branch `main`, using editorial-workflow pull requests.
+Open `/sudo/` on the deployed site. Decap edits `EmilyGHerr/Herr-Systems`, branch `main`, using editorial-workflow pull requests.
 
-## Authentication requires external setup
+## Decap Turbo setup
 
-A static site cannot securely exchange a GitHub OAuth code by itself. Deploy or select a trusted Decap-compatible OAuth proxy, register a GitHub OAuth App with its exact callback URL, store its client secret only server-side, and set `backend.base_url` and optionally `backend.auth_endpoint` in `static/admin/config.yml` to that real service. Restrict allowed origins and repository access. Test login, draft PR, media upload and publishing. No proxy URL or fake authentication is supplied. Local development can use Decap local backend with its proxy; do not expose that proxy publicly.
+This editor loads Decap CMS 3.17.0, which supports the Turbo backend.
+
+In your Turbo organization:
+
+1. Under Git connection, install the Turbo GitHub App for `EmilyGHerr/Herr-Systems` only.
+2. Create or open the site with repository `EmilyGHerr/Herr-Systems`, branch `main`.
+3. Set Config path to `static/sudo/config.yml` (a repository path, not the public URL).
+4. Set the primary Admin interface URL to your deployed site's `https://herrsystems.com/sudo/`. Use the actual deployment origin; add staging origins separately if needed.
+5. Copy the Site ID UUID from the site's Overview tab.
+6. Replace the existing `backend` block in `static/sudo/config.yml` with:
+
+```yaml
+backend:
+  name: turbo-github
+  turbo_site_id: a9aed266-1523-4548-b632-3cda0ddf7d55
+  branch: main
+```
+
+The Site ID is public configuration, not a password. Never add account passwords or API keys. The backend is configured for this site ID. Turbo takes the repository from its dashboard, not a local `repo` setting.
+
+After deploying, open `/sudo/`, choose Login with Turbo, and verify a draft, media upload, and publish. Authentication and publishing remain unverified until that real-account check succeeds. The custom route and noindex directive are not access controls.
 
 ## Content schema
 

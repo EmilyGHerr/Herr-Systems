@@ -18,9 +18,19 @@ const output=path.join(work,'public');
 let built=false;
 try {
 await check('Hugo production build',async()=>{const log=build(root,output);await writeFile(path.join(results,'hugo-build.txt'),log);assert((await read(path.join(output,'index.html'))).includes('<html'));built=true;});
+await check('Decap editor is published at /sudo/ only',async()=>{
+  const editor=load(await read(path.join(output,'sudo/index.html')));
+  assert(editor('script[src*="decap-cms"]').length,'Missing Decap loader');
+  assert(editor('meta[name="robots"]').attr('content').includes('noindex'));
+  assert((await read(path.join(output,'robots.txt'))).includes('Disallow: /sudo/'));
+  assert(!(await files(output)).some(f=>f.includes('/admin/')),'Old admin route is still published');
+  const config=YAML.parse(await read(path.join(output,'sudo/config.yml')));
+  assert.equal(config.backend.turbo_site_id,'a9aed266-1523-4548-b632-3cda0ddf7d55');
+  assert.equal(config.backend.branch,'main');
+});
 await check('Decap collections: editorial SEO fields and editable globals',async()=>{
-  const config=YAML.parse(await read(path.join(root,'static/admin/config.yml')));
-  assert.equal(config.backend.name,'github');assert(Array.isArray(config.collections));
+  const config=YAML.parse(await read(path.join(root,'static/sudo/config.yml')));
+  assert.equal(config.backend.name,'turbo-github');assert(Array.isArray(config.collections));
   const entries=config.collections.flatMap(c=>c.files||[c]);
   const content=entries.filter(c=>c.folder?.startsWith('content')||c.file?.startsWith('content'));
   assert(content.length>0,'No CMS content collections');
@@ -37,7 +47,7 @@ await check('Decap collections: editorial SEO fields and editable globals',async
 });
 if(built) {
 await check('Published HTML: local links/assets/fragments, metadata, and no demo-facing copy',async()=>{
-  const pages=(await files(output)).filter(f=>f.endsWith('.html')&&!f.includes('/admin/'));
+  const pages=(await files(output)).filter(f=>f.endsWith('.html')&&!f.includes('/sudo/'));
   assert(pages.length>=12,`Only ${pages.length} HTML pages`);const broken=[];
   for(const file of pages) {
     const $=await html(file);assert($('title').text().trim(),`${file}: empty title`);
@@ -107,7 +117,7 @@ await check('Isolated fixtures: 10-post pagination, canonical URLs, generic subt
       const settingsPath=path.join(source,'data/settings.yml');const settings=YAML.parse(await read(settingsPath));settings.noindex=true;await writeFile(settingsPath,YAML.stringify(settings));
     }
     dest=path.join(work,`global-${mode}`);build(source,dest);
-    for(const f of (await files(dest)).filter(f=>f.endsWith('.html')&&!f.includes('/admin/')))assert.match((await html(f))('meta[name="robots"]').attr('content')||'',/noindex/,`${mode}: ${f} missing robots noindex`);
+    for(const f of (await files(dest)).filter(f=>f.endsWith('.html')&&!f.includes('/sudo/')))assert.match((await html(f))('meta[name="robots"]').attr('content')||'',/noindex/,`${mode}: ${f} missing robots noindex`);
     const visitorIndex=JSON.parse(await read(path.join(dest,'search-index.json'))).pages;
     assert(visitorIndex.some(p=>p.service),`${mode}: global crawler noindex must not break the visitor terminal`);
     assert(!visitorIndex.some(p=>p.url==='/verification-private/'),`${mode}: per-page exclusion must remain effective`);

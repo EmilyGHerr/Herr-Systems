@@ -21,10 +21,9 @@ not change hosting or publish to an unconfigured production destination.
 
 ## Content and CMS
 
-Visit `/admin/` for Decap CMS. Its GitHub backend writes to this repository's
-`main` branch. Production GitHub authentication requires an OAuth provider
-(see `docs/CMS.md`); the static admin page is not itself an authentication
-server. Never put client secrets or access tokens in this repository.
+Visit `/sudo/` for Decap CMS. Its GitHub backend writes to this repository's
+`main` branch. Production authentication uses Decap Turbo
+(see `docs/CMS.md`); its Site ID is configured in `static/sudo/config.yml`. Never put client secrets or access tokens in this repository.
 
 Page titles, subtitles, descriptions, SEO titles/descriptions, social images
 and indexability are editable. Page-specific copy and global contact details
@@ -63,15 +62,14 @@ instead of fabricated responses.
 Set `noindex: true` in global settings (or `params.noindex` in `hugo.yaml`) to
 emit `noindex, follow` on every page and `Disallow: /` in `robots.txt`. Set a
 page's `noindex` to exclude only that page. The automatic sitemap and terminal
-index omit noindex pages. `/admin/` is always noindex and disallowed.
+index omit noindex pages. `/sudo/` is always noindex and disallowed.
 
 Robots directives are crawler hints, not access controls. A previously indexed
 site may need to remain crawlable temporarily for crawlers to observe its
 noindex metadata; blocking crawling alone does not remove existing results.
 
-Before production, confirm `baseURL` in `hugo.yaml`. It currently follows the
-contact domain used in the source template (`https://herrsystems.com/`); this
-is a deployment setting, not a claim that this repository is deployed there.
+The production domain is `https://herrsystems.com/`, configured as `baseURL`
+in `hugo.yaml`. The content editor is at `https://herrsystems.com/sudo/`.
 Canonical URLs, Open Graph URLs, robots and sitemap use the configured baseURL.
 
 ## Hosting
