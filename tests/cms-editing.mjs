@@ -3,6 +3,7 @@ import path from 'node:path';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import YAML from 'yaml';
 import {load} from 'cheerio';
+import {cmsEntries} from './cms-entries.mjs';
 import {build,fixture,files} from './support.mjs';
 const read=f=>readFile(f,'utf8');
 const parse=s=>YAML.parse(s.match(/^---\n([\s\S]*?)\n---/)[1]);
@@ -10,10 +11,10 @@ const save=async(f,d)=>{const s=await read(f);await writeFile(f,s.replace(/^---\
 export async function verifyCms(work,root){
  const dir=path.join(work,'cms-editing');await mkdir(dir);const source=await fixture(dir);const output=path.join(dir,'output');
  const config=YAML.parse(await read(path.join(source,'static/sudo/config.yml')));
- const entries=config.collections.flatMap(c=>c.files||[c]);
+ const entries=cmsEntries(config,source);
  let checked=0;const markers=[];
  for(const e of entries.filter(e=>e.file && e.fields.some(f=>f.name==='copy'))){
-  const file=path.join(source,e.file);const data=e.file.endsWith('.md')?parse(await read(file)):YAML.parse(await read(file));const copy=e.fields.find(f=>f.name==='copy');const keys=new Set();
+  const file=path.join(source,e.file);const data=e.file.endsWith('.md')?parse(await read(file)):YAML.parse(await read(file));const copy=e.fields.find(f=>f.name==='copy');if(!data.copy)continue;const keys=new Set();
   assert.deepEqual(Object.keys(data.copy),copy.fields.map(f=>f.name),`${e.name}: group order / stored groups`);
   for(const g of copy.fields){
    const fields=new Set(g.fields.map(f=>f.name));

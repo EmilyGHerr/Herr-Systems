@@ -12,7 +12,7 @@ styles:
 scripts:
   - /navigation.js
   - /retro3.js
-fragment: pages/services-web-design.html
+fragment: pages/service.html
 hero_title: Web design with<br/>business in mind.
 lead: A website that feels like you, makes sense to your customers, and gives them a clear next
   step. Thoughtful design. Useful pages. No unnecessary complexity.
@@ -152,4 +152,34 @@ seo:
     ogDescription: ""
     twitterTitle: ""
     twitterDescription: ""
+detailed_layout: true
+weight: 10
+listing:
+  title: Web Design
+  description: Thoughtful, responsive websites that make your business easy to understand and easy to
+    contact. From a fresh look to a full rebuild, every page has a purpose.
+  includes:
+    - Page structure, visual direction, and clear calls to action
+    - Responsive layouts for phones, tablets, and desktops
+    - Accessible typography and a search-friendly foundation
+  fit: New businesses, tired websites, and brands ready for a refresh.
+  fit_label: "A good fit for:"
+  link_text: Explore web design
+  link_icon: →
+  image: /assets/services/web-design-transparent.svg
+  image_alt: A pixel-art design workstation with a colorful website layout, swatches, and an oversized cursor.
+  caption: DESIGN THAT CONNECTS
+homepage:
+  show: true
+  title: Web design
+  description: Polished pages that feel like you—not an off-the-shelf pitch.
+  link_text: Learn more »
+  image: /assets/services/web-design-transparent.svg
+  image_width: 44
+  image_height: 33
+image: /assets/services/web-design-transparent.svg
+image_alt: A pixel-art design workstation with a colorful website layout, swatches, and an oversized cursor.
+cta: Let’s talk websites
+fit: New businesses, tired websites, and brands ready for a refresh.
+caption: DESIGN THAT CONNECTS
 ---

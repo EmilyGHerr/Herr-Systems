@@ -26,9 +26,33 @@ The Site ID is public configuration, not a password. Never add account passwords
 
 After deploying, open `/sudo/`, choose Login with Turbo, and verify a draft, media upload, and publish. Authentication and publishing remain unverified until that real-account check succeeds. The custom route and noindex directive are not access controls.
 
+## Media gallery
+
+The repository-backed media gallery uses `static/uploads` → `/uploads`. It now contains reusable copies of all existing site illustrations and brand images, with searchable category-prefixed names such as `services-web-design-transparent.svg`, `case-studies-maple-street-workshop.svg`, and `about-team-station.svg`. The source-to-gallery catalog is `docs/media-catalog.json`.
+
+In an image field, choose **Choose an image**, search by filename, select a thumbnail, and click **Choose selected**. Saving the entry stores a public `/uploads/...` URL. You can also open **Media** to browse or upload. SVG and PNG images are supported; new uploads continue to use the same gallery.
+
+The GitHub-backed built-in media library lists only the immediate media folder, so the reusable catalog is deliberately flat. Existing nested `/assets/...` URLs and images were not moved or changed. Gallery copies are independent editable media, not live mirrors: replacing a gallery file affects entries using its `/uploads/...` URL, not original hardcoded `/assets/...` artwork. Changing a source artwork later does not automatically overwrite an editor-modified gallery copy. Avoid deleting a gallery file referenced by published entries.
+
+These images become visible in the production dashboard after the files are committed to its configured branch. Refresh Decap after deployment. The isolated browser tests verify thumbnails, searching every catalog image, selection, save/reopen and Hugo rendering, but do not authenticate to the production Turbo account or verify account-specific media permissions. The separate optional Turbo S3 media-library service is not required for these repository assets.
+
+## Services and case studies
+
+The sidebar has separate **Services** and **Case studies** collections. Each lists existing records and has a **＋ Service** / **＋ Case study** creation action. **Site pages** now holds only the main page editors, including the Services and Case studies directory introductions.
+
+New entries are saved as `content/services/<slug>/index.md` or `content/case-studies/<slug>/index.md`. Keep their hidden template fields intact. Shared uploads go to `static/uploads` and use `/uploads` URLs.
+
+- **Services:** use the standard Markdown layout for ordinary new services. Web design keeps its expanded layout; the **Use detailed service layout** switch selects which content controls are used. The detailed page-section controls are only used when that switch is on. Service directory cards have their own expandable preview group. Included items in that group are directory bullets; the standard page body is edited independently.
+- **Case studies:** new studies start in **Article** format with a Markdown body. The three existing studies retain **Detailed** format and their structured project facts/story sections. The disclosure, cover caption, related-study and contact-link controls work in either format. Detailed project-fact/story controls are only used in Detailed format. Use a short **Card / project name** when the page's full headline is too long for a directory card. Identify concept work honestly; don't invent client results.
+- **Ordering:** lower order numbers appear first in the directories and homepage cards.
+- **Homepage cards:** use **Homepage — service card** or **Homepage — case study card**, then enable **Show on the homepage**. New entries default off; existing cards remain on. Preview title/summary overrides are optional.
+- **Automatic discovery:** published records appear in the corresponding directory and terminal search without editing the directory template. Directory links open the actual detail pages. Global/per-page noindex still controls sitemap inclusion; per-page noindex also removes terminal discovery, but it does not hide a page from a public directory. A noindex switch is not access control.
+
+Refresh the editor and reopen entries after this migration. Turbo collection-level permissions, if configured for collaborators, may need to grant the new `services` and `case_studies` collections.
+
 ## Editing order and field guide
 
-Pages and services are organized to follow the live page, not HTML tag names:
+Site pages are organized to follow the live page, not HTML tag names:
 
 1. Page title / navigation name — plain text used in listings, terminal search and fallback metadata.
 2. Billboard display heading and introductory text — the large visible heading and lead. Only these rich-inline fields support intentional `<em>` / `<br>` formatting.
@@ -40,7 +64,7 @@ Inline markup in ordinary section text is escaped. Link destinations shown in hi
 
 ### Homepage announcement
 
-Open **Pages and services → Home → Page sections — top to bottom → Announcement / system message**.
+Open **Site pages → Home → Page sections — top to bottom → Announcement / system message**.
 
 - **Show announcement below the billboard**: off removes the entire strip from HTML and terminal search. The prefix and message stay saved.
 - **Announcement prefix**: the short emphasized label, such as “★ ALERT:”.

@@ -20,6 +20,12 @@ try {
  assert((await page.locator('body').innerText()).includes('ANNOUNCEMENT MESSAGE'));
  await page.getByText('Search engines and social sharing',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();await page.getByText('Google / search results',{exact:true}).last().waitFor();
  await page.getByText('Google / search results',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();await page.getByText('Search result title',{exact:false}).first().waitFor();
+ for(const [collection,label]of [['services','Service'],['case_studies','Case study']]){
+  await page.evaluate(hash=>{location.hash=hash;},'#/collections/'+collection);
+  const add=page.getByText('＋ '+label,{exact:true});await add.waitFor();await add.click();
+  await page.getByText(collection==='services'?'Page title / navigation name':'Page title',{exact:false}).first().waitFor();
+  assert((await page.locator('body').innerText()).includes(collection==='services'?'STANDARD LAYOUT — MAIN CONTENT':'STUDY ARTICLE'));
+ }
  assert.deepEqual(errors,[]);await page.screenshot({path:path.join(results,'cms-home-editor.png'),fullPage:true});
- console.log('PASS real Decap UI: grouped home fields, working announcement controls, grouped SEO fields, zero runtime errors (isolated test backend).');
+ console.log('PASS real Decap UI: grouped home fields, working announcement controls, grouped SEO fields, Services/Case studies creation screens, zero runtime errors (isolated test backend).');
 } finally {await browser?.close();await server?.close();await cleanup(work);}

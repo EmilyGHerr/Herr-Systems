@@ -48,3 +48,15 @@ modified; all other comparisons use the unmodified original build.
 Run `npm run test:cms-ui` to fetch the pinned Decap distribution and exercise the actual Home editor in Chromium using an intercepted `test-repo` backend. This validates the schema/UI, not real Turbo login or publishing. It produces `tests/test-results/cms-home-editor.png` and never modifies production backend configuration.
 
 For a CMS-only migration, compare against a clean pre-change Hugo build rather than the older template source: `SOURCE_DIST=/tmp/herr-cms-before MAX_VISUAL_DIFF=0 npm run test:visual`. This exercises desktop/mobile and dark/light variants without accepting incidental design drift.
+
+
+## Creatable service and case-study collections
+
+`tests/cms-entries.mjs` resolves folder editors against concrete Markdown records and collection filters. `tests/collections.mjs` creates isolated bundle records using the CMS field defaults, then verifies their detail routes, directory cards, homepage opt-in, terminal discovery, sitemap inclusion and draft exclusion. The actual editor UI smoke test also opens both sidebar collections and their new-entry forms.
+
+Directory preview controls are owned by each item, not duplicated in Site pages. Archived directory/homepage card copy remains hidden compatibility data. Existing detailed service/case layouts are preserved; new records start in standard service / article study format.
+
+
+## Media gallery
+
+`npm run test:cms-media` exercises the actual Decap distribution against an isolated in-memory backend seeded with the repository's real gallery image bytes. It searches all catalog images, checks decoded thumbnails, selects an image in the actual Services editor, saves and reopens the bundle entry, and rebuilds the serialized content with Hugo to verify the public image URL. It never authenticates to Turbo or writes to the real repository. `npm test` also validates catalog coverage, flat discoverability, collection folder overrides and built public assets.

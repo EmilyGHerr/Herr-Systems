@@ -1,0 +1,19 @@
+{{- $raw := strings.TrimSpace (printf "%v" (. | default "")) -}}
+{{- $digits := replaceRE "[^0-9]" "" $raw -}}
+{{- $display := $raw -}}
+{{- $href := printf "tel:%s" $raw -}}
+{{- if and $digits (findRE "^[+0-9() .-]+$" $raw) -}}
+  {{- $prefix := "" -}}{{- if hasPrefix $raw "+" -}}{{- $prefix = "+" -}}{{- end -}}
+  {{- $href = printf "tel:%s%s" $prefix $digits -}}
+{{- end -}}
+{{- $national := "" -}}
+{{- if and (eq (len $digits) 10) (not (hasPrefix $raw "+")) -}}
+  {{- $national = $digits -}}
+{{- else if and (eq (len $digits) 11) (hasPrefix $digits "1") -}}
+  {{- $national = substr $digits 1 -}}
+{{- end -}}
+{{- with $national -}}
+  {{- $display = printf "(%s) %s-%s" (substr . 0 3) (substr . 3 3) (substr . 6 4) -}}
+  {{- $href = printf "tel:+1%s" . -}}
+{{- end -}}
+{{- return (dict "display" $display "href" $href) -}}

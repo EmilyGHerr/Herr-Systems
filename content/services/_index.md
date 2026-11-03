@@ -24,6 +24,7 @@ copy:
   services_2:
     services_title_1: Find your next step
     span_14: 06 SERVICES
+    services_count_label: SERVICES
   web_design_3:
     web_design_title_1: Web Design
     service_description_1: Thoughtful, responsive websites that make your business easy to understand

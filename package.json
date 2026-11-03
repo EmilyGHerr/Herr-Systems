@@ -7,7 +7,8 @@
     "test:cms-ui": "node tests/cms-ui.mjs",
     "test:visual": "node tests/visual.mjs",
     "test:all": "npm test && npm run test:visual",
-    "test:install": "playwright install chromium"
+    "test:install": "playwright install chromium",
+    "test:cms-media": "node tests/cms-media-ui.mjs"
   },
   "devDependencies": {
     "cheerio": "^1.1.2",

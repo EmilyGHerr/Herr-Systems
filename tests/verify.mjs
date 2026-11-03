@@ -1,3 +1,4 @@
+import {verifyMedia} from './media.mjs';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -5,6 +6,8 @@ import { load } from 'cheerio';
 import YAML from 'yaml';
 import { chromium } from 'playwright';
 import { root, results, workspace, files, build, fixture, serve, cleanup } from './support.mjs';
+import { verifyPhone } from './phone.mjs';
+import { verifyCollections } from './collections.mjs';
 import { verifyCms } from './cms-editing.mjs';
 const report=[];
 async function check(name,fn) {
@@ -91,6 +94,9 @@ await check('Generated search index and sitemap contain every published service'
   assert((await read(path.join(output,'robots.txt'))).includes('Sitemap:'));
 });
 }
+await check('Decap media catalog: every existing image is present in the flat repository gallery and published',async()=>{await verifyMedia(output);});
+await check('Phone display formatting and click-to-call links',async()=>{await verifyPhone(work);});
+await check('Decap creates services and case studies: detail pages, directories, homepage, search and sitemap',async()=>{await verifyCollections(work);});
 await check('CMS save/rebuild: all section groups, metadata overrides, fallbacks and announcement on/off',async()=>{const count=await verifyCms(work,root);console.log(`Verified edits in ${count} CMS section groups`);});
 await check('Isolated fixtures: 10-post pagination, canonical URLs, generic subtitle, per-page and global noindex',async()=>{
   const source=await fixture(work), content=path.join(source,'content');

@@ -41,6 +41,31 @@ seo:
     ogDescription: ""
     twitterTitle: ""
     twitterDescription: ""
+detailed_layout: false
+weight: 40
+listing:
+  title: Agentic Setups
+  description: Put AI to work on the repeat tasks that slow you down. We set up focused assistants
+    with clear boundaries, sensible permissions, and human review where it matters.
+  includes:
+    - Assistants tailored to your workflow and tools
+    - Repeat-task automation and useful handoff points
+    - Scoped access, approval steps, and setup guidance
+  fit: Teams with repetitive admin, research, or information-sorting tasks.
+  fit_label: "A good fit for:"
+  link_text: Talk about an AI setup
+  image: /assets/services/agentic-setups-transparent.svg
+  image_alt: A pixel-art friendly robot assistant sorting task cards into a connected workflow.
+  caption: HELPFUL BY DESIGN
+  link_icon: →
+homepage:
+  show: true
+  title: Agentic setups
+  description: Careful AI helpers for repeat tasks, with humans still in charge.
+  link_text: Learn more »
+  image: /assets/services/agentic-setups-transparent.svg
+  image_width: 44
+  image_height: 33
 ---
 
 ## Agentic Setups
