@@ -9,3 +9,5 @@
 [data-submit-status]:focus-visible,[data-inquiry-form] [data-form-errors]:focus-visible { outline:3px solid var(--cyan); outline-offset:4px; }
 [data-submit-button]:disabled { cursor:wait; opacity:.65; }
 [data-inquiry-form] [aria-invalid=true] { outline:2px solid var(--desk-error,var(--cyan)); outline-offset:2px; }
+
+.inquiry-verification { margin: 1rem 0; min-width: 0; max-width: 100%; }

@@ -86,3 +86,9 @@ contact email controls the direct-email handoff; a static site alone cannot send
 phone/address settings are intentionally omitted rather than filled with
 fictional contact details. Concept studies remain labelled as concepts, not
 presented as client engagements. Fictional staff profiles are not published.
+
+## Secure form configuration
+
+See [docs/FORMS.md](docs/FORMS.md). Set the public Turnstile site key in
+`data/forms.yml`; keep the secret in the Cloudflare Worker, never in Git.
+Delivery remains disabled until a real validating Worker is deployed.
