@@ -2,6 +2,6 @@
 # Optional fallback PUBLIC key; Cloudflare TURNSTILE_SITE_KEY takes precedence.
 # Leave blank when configuring the public key in Cloudflare Pages.
 turnstile_site_key: ""
-# Keep false until /api/inquiries validates tokens and delivers real email.
+# Enabled for controlled production testing; set false to pause browser submissions.
 # Both contact and quote forms use this flag; a missing site key fails closed.
-enabled: false
+enabled: true

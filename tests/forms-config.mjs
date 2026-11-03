@@ -13,7 +13,8 @@ delete process.env.TURNSTILE_SITE_KEY;
 try {
   const source = await fixture(work);
   const config = path.join(source, "data/forms.yml");
-  assert.match(await readFile(config, "utf8"), /enabled: false/);
+  // Test the disabled state explicitly, independent of production activation.
+  await writeFile(config, `enabled: false\nturnstile_site_key: ""\n`);
   const output = path.join(work, "site");
   build(source, output);
   for (const name of ["contact", "pricing"]) {

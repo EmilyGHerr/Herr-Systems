@@ -127,7 +127,7 @@ copy:
       guaranteed completion time. Final scope and hours are agreed before work starts.
   option_section_11:
     quote_contact_title_1: Your quote request
-    control_help_2: Tell us about the outcome you need. Online delivery is not connected yet; for now,
+    control_help_2: Tell us about the outcome you need. Prefer email? You can also
     control_help_3: . Please leave out passwords, payment information, and other sensitive details.
     a_52: email us directly
     label_1: Name (required)
@@ -147,8 +147,7 @@ copy:
       work is $70/hour. We confirm scope and final pricing before work starts.
     button_4: Send quote request
     b_21: »
-    submit_status_1: Sending is not connected yet. This form does not send your details while the
-      inquiry endpoint is disabled.
+    submit_status_1: Complete the spam verification, then send your quote request.
   estimate_disclaimer_13:
     kicker_8: NO MYSTERY MATH
     pricing_details_title_1: A starting point.

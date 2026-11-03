@@ -63,13 +63,13 @@ copy:
     placeholder_inquiry_message_1: Here’s what I’m thinking…
     message_count_1: 0 / 3,000
   inquiry_form_11:
-    form_delivery_note_1: Online form delivery is unavailable. Please
+    form_delivery_note_1: Prefer email? You can also
     form_delivery_note_2: .
     a_58: email us directly
     field_hint_1: Please leave out passwords, payment information, and other sensitive details.
     send_inquiry_1: Send message
     b_22: »
-    desk_errors_1: Online submission needs JavaScript and a connected delivery endpoint. You can still
+    desk_errors_1: Online submission needs JavaScript and spam verification. You can still
     a_59: email us directly
     desk_errors_2: .
   desk_direct_12:
