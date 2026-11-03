@@ -2,3 +2,9 @@
 .blog-pagination { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:32px 0; }
 .blog-pagination a, .blog-pagination span { padding:10px 16px; border:1px solid currentColor; }
 .blog-pagination [aria-current] { font-weight:bold; }
+
+/* Separate new prose sections from preceding copy without moving first headings
+   or changing card, billboard, and navigation spacing. */
+.service-detail :is(p, ul, ol, blockquote, pre, table):not(.kicker) + :is(h2, h3, h4, h5, h6) {
+  margin-top: clamp(28px, 3vw, 44px);
+}
