@@ -20,6 +20,20 @@ for (const [label, handler] of [['source',worker],['bundle',bundled]]) test(`${l
   assert.equal((await handler.fetch(req(),env)).status,502);
   assert.match(logs.at(-1),/email_acknowledgement/);
   assert.equal(calls,3);
+  assert.deepEqual(JSON.parse(logs.at(-2)), {
+   event: "email_acknowledgement_shape", resultType: "object",
+   messageIdType: "string", messageIdLength: (privateValues[0]+"\r\n").length, messageIdHasAngleBrackets: false,
+  });
+  for (const result of [undefined, {[privateValues[0]]:privateValues[3]}, {messageId:"<private-message@example.net>"}]) {
+   env.SEND_EMAIL.send=async()=>result;
+   assert.equal((await handler.fetch(req(),env)).status,502);
+   assert.deepEqual(JSON.parse(logs.at(-2)), {
+    event: "email_acknowledgement_shape", resultType: typeof result,
+    messageIdType: typeof result?.messageId,
+    messageIdLength: typeof result?.messageId === "string" ? result.messageId.length : null,
+    messageIdHasAngleBrackets: typeof result?.messageId === "string" ? /[<>]/.test(result.messageId) : false,
+   });
+  }
   for(const value of [...privateValues,'Private Name']) assert.ok(!logs.join(' ').includes(value));
   const count=logs.length;
   env.SEND_EMAIL.send=async()=>({messageId:'accepted-123'});
