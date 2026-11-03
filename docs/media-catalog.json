@@ -98,5 +98,17 @@
   {
     "source": "/assets/services/web-design.svg",
     "library": "/uploads/services-web-design.svg"
+  },
+  {
+    "source": "/assets/about/headshot-1.svg",
+    "library": "/uploads/about-headshot-1.svg"
+  },
+  {
+    "source": "/assets/about/headshot-2.svg",
+    "library": "/uploads/about-headshot-2.svg"
+  },
+  {
+    "source": "/assets/about/headshot-3.svg",
+    "library": "/uploads/about-headshot-3.svg"
   }
 ]

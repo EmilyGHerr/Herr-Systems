@@ -52,8 +52,8 @@ copy:
     about_location_1: CLEAR COMMUNICATION / REMOTE FRIENDLY
   team_6:
     kicker_10: 01 // PEOPLE, NOT A TICKET QUEUE
-    team_title_1: Emily Herr. A direct connection.
-    p_29: Work directly with Emily Herr on websites and practical technical projects.
+    team_title_1: Meet the demo team.
+    p_29: Explore three fictional profiles showing design, development, and project coordination.
   staff_card_7:
     staff_role_1: YOUR POINT OF CONTACT
     h3_9: Emily Herr

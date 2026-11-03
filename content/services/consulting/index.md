@@ -81,3 +81,29 @@ Make confident choices about your website, tools, and technical priorities. We h
 - Project scoping and guidance for your team
 
 Business owners and teams who need a second opinion or a clearer technical direction.
+
+## Example engagement: choose the next useful improvement
+
+A consultation can help turn a broad concern—an outdated website, too many disconnected tools, or an unclear project brief—into a manageable decision. We can examine the current setup, identify constraints, and outline sensible options before committing to a build.
+
+This is an example engagement, not a fixed package or a promise of specific business results. The review depth, deliverables, and any follow-up work would be scoped together.
+
+## What a review can cover
+
+- Whether visitors can understand the services, find important information, and contact the business.
+- Which manual workflow steps are creating unnecessary repetition.
+- Ownership, permissions, and maintenance obligations across the tools involved.
+- The trade-offs between improving the existing setup and replacing part of it.
+
+## How the conversation works
+
+1. **Bring the problem into focus.** Describe the goal, what currently gets in the way, and any time or budget constraints.
+2. **Review the evidence.** Walk through the relevant website or workflow rather than choosing tools from a feature list.
+3. **Compare practical options.** Identify dependencies, risks, and work that can wait.
+4. **Agree on next steps.** Leave with a prioritized recommendation and enough context to decide what to do next.
+
+## Example deliverables
+
+A short findings summary, a prioritized improvement list, open questions, and an outline for any implementation work. You can use the recommendations to plan a project or discuss the work with your existing team.
+
+[Start with a clearer technical direction →](/contact/)

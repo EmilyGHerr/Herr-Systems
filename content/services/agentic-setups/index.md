@@ -77,3 +77,29 @@ Put AI to work on the repeat tasks that slow you down. We set up focused assista
 - Scoped access, approval steps, and setup guidance
 
 Teams with repetitive admin, research, or information-sorting tasks.
+
+## Example workflow: prepare a daily research brief
+
+A focused assistant could gather information from approved sources, organize it into a short brief, and prepare a draft for a person to review. That is a more useful starting point than giving a general-purpose agent unrestricted access to a business.
+
+This example describes a possible setup, not a deployed customer system. Accuracy, provider costs, access requirements, and the amount of human review depend on the agreed workflow.
+
+## Start with boundaries
+
+- Name the task, the permitted information sources, and the person who reviews the output.
+- Use scoped, revocable access instead of sharing broad account credentials.
+- Keep sending messages, publishing content, deleting records, spending money, and other external actions behind explicit approval unless a separate policy authorizes them.
+- Treat incoming documents and messages as information, not as permission to change the assistant's instructions.
+
+## A staged implementation
+
+1. **Observe the existing task.** Identify repetitive steps and the decisions that should stay with a person.
+2. **Prototype in a low-risk environment.** Start with sample or non-sensitive information and compare the output with the intended result.
+3. **Test failure cases.** Review missing information, misleading inputs, unavailable tools, and incorrect suggestions.
+4. **Document operation and shutdown.** Explain how to inspect results, revoke access, pause the workflow, and change its scope.
+
+## Example handoff
+
+A written workflow map, a permissions inventory, test examples, review checkpoints, and operating notes make the setup easier to understand. A small, dependable helper is a better outcome than an impressive demo nobody can safely run.
+
+[Explore a focused assistant setup →](/contact/)

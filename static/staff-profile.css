@@ -1,0 +1,328 @@
+.staff-profile-page {
+  --profile-muted:#d8d2e5;
+  --profile-panel:#1c0c45;
+  --profile-soft:#241053;
+}
+.staff-profile-page .billboard-stage .profile-billboard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+  gap: clamp(28px, 6vw, 80px);
+  align-items: center;
+}
+.staff-profile-page .profile-hero-copy {
+  min-width: 0;
+}
+.staff-profile-page .profile-role {
+  color: var(--cyan);
+  font: 500 clamp(17px, 1.8vw, 21px)/1.5 var(--sans);
+  margin: 14px 0 26px;
+}
+.staff-profile-page .profile-billboard h1 {
+  max-width: none;
+  font-size: clamp(52px, 6.5vw, 88px);
+  overflow-wrap: break-word;
+}
+.staff-profile-page .profile-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+.staff-profile-page .profile-hero-actions > a:not(.button), .staff-profile-page .profile-text-link {
+  color: var(--cyan);
+  font: 700 13px/1.7 var(--mono);
+  text-underline-offset: 4px;
+}
+.staff-profile-page .profile-portrait {
+  margin: 0;
+  min-width: 0;
+}
+.staff-profile-page .profile-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 6/7;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-bottom: 3px solid var(--cyan);
+}
+.staff-profile-page .profile-portrait figcaption {
+  color: var(--profile-muted);
+  font: 500 12px/1.6 var(--mono);
+  padding-top: 12px;
+}
+.staff-profile-page .profile-main {
+  padding: 24px 16px 12px;
+}
+.staff-profile-page .profile-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+.staff-profile-page .profile-story {
+  min-width: 0;
+}
+.staff-profile-page .profile-section {
+  padding: 0 0 30px;
+  margin: 0 0 30px;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 110px;
+}
+.staff-profile-page h2 {
+  font: 700 clamp(25px, 2.6vw, 34px)/1.2 var(--sans);
+  letter-spacing: -0.035em;
+  margin: 0 0 20px;
+}
+.staff-profile-page h3 {
+  font: 700 18px/1.4 var(--sans);
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+.staff-profile-page .profile-section > p {
+  max-width: 68ch;
+  color: var(--profile-muted);
+  font-size: 16px;
+  line-height: 1.85;
+  margin: 16px 0 0;
+}
+.staff-profile-page .profile-section .profile-intro {
+  font-size: 18px;
+  color: var(--white);
+  line-height: 1.75;
+}
+.staff-profile-page .profile-label, .staff-profile-page .profile-section > .profile-label {
+  color: var(--cyan);
+  font: 500 12px/1.7 var(--mono);
+  letter-spacing: 0.06em;
+  margin: 0 0 12px;
+}
+.staff-profile-page .profile-approach {
+  display: grid;
+  gap: 24px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.staff-profile-page .profile-approach li {
+  display: flex;
+  gap: 20px;
+}
+.staff-profile-page .profile-approach li > span {
+  flex-shrink: 0;
+  color: var(--cyan);
+  font: 400 30px/1.2 var(--pixel);
+}
+.staff-profile-page .profile-approach p, .staff-profile-page .profile-contributions p {
+  margin: 0;
+  color: var(--profile-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+.staff-profile-page .profile-section .profile-section-note {
+  font-size: 13px;
+  margin-top: -8px;
+}
+.staff-profile-page .profile-contributions {
+  display: grid;
+  gap: 22px;
+  margin: 24px 0;
+}
+.staff-profile-page .profile-contributions > div {
+  padding-left: 18px;
+  border-left: 2px solid var(--line);
+}
+.staff-profile-page .profile-interests {
+  border: 0;
+  margin-bottom: 0;
+}
+.staff-profile-page .profile-sidebar {
+  display: grid;
+  gap: 24px;
+  min-width: 0;
+}
+.staff-profile-page .profile-skill-panel {
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--cyan);
+  background: var(--profile-panel);
+  padding: 24px;
+  scroll-margin-top: 110px;
+}
+.staff-profile-page .profile-sidebar h2 {
+  font-size: 23px;
+  margin-bottom: 18px;
+}
+.staff-profile-page .profile-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.staff-profile-page .profile-skills li {
+  padding: 7px 10px;
+  border: 1px solid var(--line);
+  background: var(--profile-soft);
+  color: var(--white);
+  font: 500 12px/1.6 var(--mono);
+}
+.staff-profile-page .profile-facts {
+  padding: 0 4px;
+}
+.staff-profile-page .profile-facts dl {
+  margin: 0;
+}
+.staff-profile-page .profile-facts dt {
+  color: var(--cyan);
+  font: 500 12px/1.6 var(--mono);
+  margin-top: 20px;
+}
+.staff-profile-page .profile-facts dd {
+  margin: 6px 0 0;
+  color: var(--profile-muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+.staff-profile-page .profile-sidebar-note {
+  margin: 0;
+  padding: 18px 4px 0;
+  border-top: 1px solid var(--line);
+  color: var(--profile-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.staff-profile-page .profile-connect {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 28px;
+  border: 1px solid var(--cyan);
+  background: var(--profile-panel);
+  margin: 24px 0 36px;
+}
+.staff-profile-page .profile-connect h2 {
+  font-size: clamp(24px, 2.5vw, 30px);
+  max-width: 30ch;
+  margin-bottom: 12px;
+}
+.staff-profile-page .profile-connect p {
+  color: var(--profile-muted);
+  max-width: 60ch;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.staff-profile-page .profile-connect .button {
+  flex-shrink: 0;
+}
+.staff-profile-page .profile-others-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.staff-profile-page .profile-others-heading h2 {
+  font-size: 22px;
+  margin: 0;
+}
+.staff-profile-page .profile-other-people a {
+  color: var(--cyan);
+  text-underline-offset: 4px;
+}
+.staff-profile-page .profile-others-heading > a {
+  font: 500 12px/1.7 var(--mono);
+}
+.staff-profile-page .profile-other-people > div:last-child {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.staff-profile-page .profile-other-people > div:last-child > a {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  border-top: 1px solid var(--line);
+  padding: 18px 28px 18px 0;
+}
+.staff-profile-page .profile-other-people a > span {
+  display: block;
+  font-weight: 700;
+  font-size: 17px;
+}
+.staff-profile-page .profile-other-people a > small {
+  display: block;
+  color: var(--profile-muted);
+  font-size: 13px;
+  margin-top: 5px;
+}
+.staff-profile-page .profile-other-people a > b {
+  position: absolute;
+  right: 0;
+  top: 18px;
+}
+.staff-profile-page a:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 4px;
+}
+.staff-profile-page .footer-info a {
+  color: #49f5e6;
+}
+
+:root[data-theme=light] .staff-profile-page {
+  --profile-muted:#304b66;
+  --profile-panel:#e7f2ff;
+  --profile-soft:#f5faff;
+}
+
+@media (max-width: 900px) {
+  .staff-profile-page .profile-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+    gap: 28px;
+  }
+  .staff-profile-page .profile-connect {
+    align-items: start;
+    flex-direction: column;
+  }
+}
+@media (max-width: 720px) {
+  .staff-profile-page .billboard-stage .profile-billboard {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .staff-profile-page .profile-portrait {
+    width: 120px;
+    grid-row: 1;
+  }
+  .staff-profile-page .profile-portrait figcaption {
+    display: none;
+  }
+  .staff-profile-page .profile-billboard h1 {
+    font-size: clamp(48px, 12vw, 72px);
+  }
+  .staff-profile-page .profile-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .staff-profile-page .profile-sidebar {
+    width: 100%;
+  }
+  .staff-profile-page .profile-main {
+    padding: 18px 18px 8px;
+  }
+  .staff-profile-page .profile-skill-panel {
+    padding: 22px;
+    scroll-margin-top: 95px;
+  }
+  .staff-profile-page .profile-connect {
+    padding: 22px;
+  }
+  .staff-profile-page .profile-other-people > div:last-child {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

@@ -13,7 +13,7 @@ npm run test:all               # both (stops if functional checks fail)
 Requirements: Node 20.19+ (Node 22.12+ or 24 recommended), Hugo (resolved on `PATH`, override with `HUGO_BIN`) and Chromium host dependencies. No credentials or running dev server required. Tests build into an OS temporary directory; their own HTTP servers use random loopback ports and close in `finally`. Nothing modifies repository content, settings or generated `public/`. Pagination/noindex fixtures copy the project excluding Git, dependencies, output and tests, retain original posts, and add enough fixture posts to cross the ten-post boundary.
 
 `npm test` checks:
-- Build, all generated local links/assets/fragments, page metadata, and common demo-facing copy patterns.
+- Build, all generated local links/assets/fragments, page metadata, and unfilled filler and visible disclosures for intentional sample content.
 - Six service records against content files, terminal index and sitemap; robots sitemap declaration.
 - Decap YAML parse, required title/subtitle/description/SEO/noindex fields for each editable content entry, plus editable global contacts/noindex.
 - Ten unique post destinations on the first blog page and a populated second page; per-page noindex and both global switches (`params.noindex` and `data/settings.yml`), including meta, sitemap exclusion and robots disallow, while global crawler noindex keeps the visitor terminal working.
@@ -60,3 +60,10 @@ Directory preview controls are owned by each item, not duplicated in Site pages.
 ## Media gallery
 
 `npm run test:cms-media` exercises the actual Decap distribution against an isolated in-memory backend seeded with the repository's real gallery image bytes. It searches all catalog images, checks decoded thumbnails, selects an image in the actual Services editor, saves and reopens the bundle entry, and rebuilds the serialized content with Hugo to verify the public image URL. It never authenticates to Turbo or writes to the real repository. `npm test` also validates catalog coverage, flat discoverability, collection folder overrides and built public assets.
+
+
+## Unified Blog and original Staff profiles
+
+`npm test` includes `tests/staff-blog.mjs`: one creatable Blog collection, dynamic About cards, source portraits, shared profile sections, editable names/summaries/body/skills, new blog and staff fixture records, search/sitemap, sample-vs-real disclosure and draft exclusion. Service completeness accepts both standard Markdown and Web design’s existing detailed layout. Tests follow editable content instead of freezing the original sample names or exact record counts.
+
+`npm run test:cms-content` uses the pinned actual Decap editor and an isolated backend seeded with real content, settings and gallery images. It saves/reopens an existing article with its full original body and grouped copy preserved, then creates/saves/reopens a new article and a new staff profile, selects real gallery images, and builds the serialized records with Hugo. Its deterministic publish date is a test-only override. It does not authenticate to Turbo, alter production configuration, or claim real-account permissions/publishing.

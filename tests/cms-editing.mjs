@@ -13,6 +13,23 @@ export async function verifyCms(work,root){
  const config=YAML.parse(await read(path.join(source,'static/sudo/config.yml')));
  const entries=cmsEntries(config,source);
  let checked=0;const markers=[];
+ const markText=(fields,data)=>{
+  let count=0;
+  for(const field of fields){
+   if(['boolean','hidden','number','datetime','image'].includes(field.widget)||/^(url|href|id)$/.test(field.name))continue;
+   if(field.widget==='list'){
+    if(!Array.isArray(data[field.name]))continue;
+    if(field.fields)for(const item of data[field.name])count+=markText(field.fields,item);
+    else if(field.field)data[field.name]=data[field.name].map(value=>{const holder={[field.field.name]:value};count+=markText([field.field],holder);return holder[field.field.name];});
+   }else if(field.widget==='object'){
+    if(data[field.name]&&typeof data[field.name]==='object')count+=markText(field.fields||[],data[field.name]);
+   }else{
+    const marker='CMS_EDIT_'+markers.length+'_END';data[field.name]=marker;markers.push(marker);count++;
+   }
+  }
+  return count;
+ };
+
  for(const e of entries.filter(e=>e.file && e.fields.some(f=>f.name==='copy'))){
   const file=path.join(source,e.file);const data=e.file.endsWith('.md')?parse(await read(file)):YAML.parse(await read(file));const copy=e.fields.find(f=>f.name==='copy');if(!data.copy)continue;const keys=new Set();
   // Decap may reorder YAML maps on save; the schema, not storage order, defines editor order.
@@ -23,8 +40,7 @@ export async function verifyCms(work,root){
    if(g.widget==='hidden')continue;
    // Enable the announcement only in this isolated field-coverage fixture.
    if(g.fields.some(f=>f.name==='enabled'&&f.widget==='boolean'))data.copy[g.name].enabled=true;
-   const editable=g.fields.filter(f=>!['boolean','hidden'].includes(f.widget));if(!editable.length)continue;checked++;
-   for(const f of editable){const marker='CMS_EDIT_'+markers.length+'_END';data.copy[g.name][f.name]=marker;markers.push(marker);}
+   if(markText(g.fields,data.copy[g.name]))checked++;
   }
   if(e.file.endsWith('.md'))await save(file,data);else await writeFile(file,YAML.stringify(data));
  }

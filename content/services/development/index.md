@@ -77,3 +77,29 @@ Turn a good-looking website into a tool that does real work. We build practical 
 - Performance improvements and maintainable code
 
 Sites that need more capability, fewer workarounds, or a custom feature.
+
+## Example project: a clearer inquiry workflow
+
+A useful starting point is a focused feature that removes one awkward manual step. For example, a service inquiry could collect the right project details, validate the information, and prepare a handoff to the business tool your team already uses.
+
+This is an illustrative scope, not a claim about completed client work. The final feature, integrations, and responsibilities would be agreed before development begins.
+
+## How the work can take shape
+
+1. **Map the journey.** Identify who uses the feature, the information they need, and what should happen when a request succeeds or fails.
+2. **Build a small, testable version.** Connect the necessary pieces without adding unrelated features or collecting unnecessary information.
+3. **Check the edges.** Review keyboard use, mobile layouts, validation, loading states, and the way errors are explained.
+4. **Leave a maintainable handoff.** Document configuration, dependencies, and the steps needed to make future changes.
+
+## Example deliverables
+
+- A working feature in an agreed test environment.
+- Clear validation and useful empty, loading, and error states.
+- Setup notes and a record of external services or permissions required.
+- A launch checklist and a practical maintenance discussion.
+
+## Before we start
+
+Bring the existing website, an example of the task that feels cumbersome, and any constraints around your current tools. Do not send passwords or sensitive customer information in an initial inquiry.
+
+[Discuss a development project →](/contact/)

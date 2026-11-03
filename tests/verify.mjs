@@ -1,3 +1,4 @@
+import {verifyStaffBlog} from './staff-blog.mjs';
 import {verifyMedia} from './media.mjs';
 import assert from 'node:assert/strict';
 import path from 'node:path';
@@ -55,7 +56,7 @@ await check('Decap collections: editorial SEO fields and editable globals',async
   for(const key of ['email','phone','noindex']) assert(fields.toLowerCase().includes(key),`Global ${key} not editable`);
 });
 if(built) {
-await check('Published HTML: local links/assets/fragments, metadata, and no demo-facing copy',async()=>{
+await check('Published HTML: local links/assets/fragments, metadata, and honest sample-content disclosures',async()=>{
   const pages=(await files(output)).filter(f=>f.endsWith('.html')&&!f.includes('/sudo/'));
   assert(pages.length>=12,`Only ${pages.length} HTML pages`);const broken=[];
   for(const file of pages) {
@@ -63,7 +64,8 @@ await check('Published HTML: local links/assets/fragments, metadata, and no demo
     assert($('meta[name="description"]').attr('content')?.trim(),`${file}: missing description`);
     $('script,style,noscript,.hero-terminal').remove();
     const text=$('body').text().replace(/\s+/g,' ');
-    assert(!/\b(lorem ipsum|demo (?:profile|content|site|project)|placeholder (?:name|content|image)|fictional (?:client|team|project)|sample (?:case stud|content|profile)|template preview)\b/i.test(text),`Demo-facing copy in ${path.relative(output,file)}`);
+    assert(!/\blorem ipsum\b/i.test(text),`Unfilled filler in ${path.relative(output,file)}`);
+    if(/\b(demo (?:profile|content|site|project)|placeholder (?:name|content|image)|fictional (?:client|team|project)|sample (?:case stud|content|profile)|template preview)\b/i.test(text))assert($('.sample-content-notice').text().trim(),`Sample content must carry a visible disclosure in ${path.relative(output,file)}`);
     const original=await html(file);
     for(const el of original('[href],[src],[srcset]').toArray()) {
       const node=original(el);
@@ -97,6 +99,7 @@ await check('Generated search index and sitemap contain every published service'
 await check('Decap media catalog: every existing image is present in the flat repository gallery and published',async()=>{await verifyMedia(output);});
 await check('Phone display formatting and click-to-call links',async()=>{await verifyPhone(work);});
 await check('Decap creates services and case studies: detail pages, directories, homepage, search and sitemap',async()=>{await verifyCollections(work);});
+await check('Unified Blog and original Staff: discovery, new records, profile edits, sample labels and drafts',()=>verifyStaffBlog(work));
 await check('CMS save/rebuild: all section groups, metadata overrides, fallbacks and announcement on/off',async()=>{const count=await verifyCms(work,root);console.log(`Verified edits in ${count} CMS section groups`);});
 await check('Isolated fixtures: 10-post pagination, canonical URLs, generic subtitle, per-page and global noindex',async()=>{
   const source=await fixture(work), content=path.join(source,'content');

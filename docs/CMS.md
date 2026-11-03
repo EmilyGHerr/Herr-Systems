@@ -48,7 +48,7 @@ New entries are saved as `content/services/<slug>/index.md` or `content/case-stu
 - **Homepage cards:** use **Homepage — service card** or **Homepage — case study card**, then enable **Show on the homepage**. New entries default off; existing cards remain on. Preview title/summary overrides are optional.
 - **Automatic discovery:** published records appear in the corresponding directory and terminal search without editing the directory template. Directory links open the actual detail pages. Global/per-page noindex still controls sitemap inclusion; per-page noindex also removes terminal discovery, but it does not hide a page from a public directory. A noindex switch is not access control.
 
-Refresh the editor and reopen entries after this migration. Turbo collection-level permissions, if configured for collaborators, may need to grant the new `services` and `case_studies` collections.
+Refresh the editor and reopen entries after this migration. Turbo collection-level permissions, if configured for collaborators, may need to grant the `services`, `case_studies`, `blog`, and `staff` collections.
 
 ## Editing order and field guide
 
@@ -70,7 +70,7 @@ Open **Site pages → Home → Page sections — top to bottom → Announcement 
 - **Announcement prefix**: the short emphasized label, such as “★ ALERT:”.
 - **Announcement message**: the text following that label.
 
-The switch is on initially to preserve the current design. A missing switch also keeps the announcement visible for backwards compatibility.
+Your saved switch is respected. A missing switch keeps the announcement visible for backwards compatibility.
 
 ### Metadata
 
@@ -82,11 +82,25 @@ Page-level noindex removes that page from the sitemap and terminal index. Global
 
 ### Blog and article images
 
-**Blog — existing articles** edits the original leaf-bundle articles and their sidebar/author/takeaway copy. **Blog — new articles** creates flat Markdown files in `content/blog/`. New articles use the generic article template.
+**Blog** is one creatable collection for existing and new articles. Use **＋ Article** to create a post; all posts use `content/blog/<slug>/index.md` and the same article layout. The original three articles retain their text, section shortcodes, artwork, captions, sidebar links, author and takeaway. New articles have the same optional page-section controls; their contents sidebar follows Markdown headings unless custom section links are supplied. Do not change a section heading ID without updating custom contents links.
 
 Blog listing cards inherit the article's title, summary, image, image description, category and reading-time label. Edit those on the article, not the Blog listing page. The listing's unused legacy card slots are preserved as hidden data so they cannot mislead editors. Existing articles now use the same image and image description for the article cover and listing card; captions remain in the article-cover section.
 
 Keep the `article-section` shortcode wrappers and their IDs when editing original article bodies: they preserve spacing and table-of-contents anchors. Future publish dates are omitted by Hugo until their date is reached.
+
+### Staff and the About page
+
+**Staff** lists the restored Alex Morgan, Sam Rivera, and Jordan Ellis sample profiles and supports **＋ Staff profile**. Their names, illustrated portraits, roles, biographies, skills, work approaches and example contributions come from the original static About/profile templates, not actual employee records.
+
+Profiles live at `content/about/team/<slug>/index.md` and `/about/team/<slug>/`. About now uses a branch bundle (`content/about/_index.md`) so those nested pages can be published. Its Staff cards are generated from profile records; edits to a person's name, role, portrait, summary or order flow through automatically. Legacy single-card data is retained but hidden in the editor.
+
+- **Fictional demo profile** defaults on. Keep it on for samples; visible disclosures distinguish them from real employees. Turn it off only after replacing the record with approved details for a real person.
+- The About sample disclosure is edited in **Site pages → About → Page sections — top to bottom → Team** and appears when at least one published profile is marked as a sample.
+- **Biography**, **Skills**, **At a glance**, **How I work**, **What I bring to a project**, **Beyond the brief**, and a related-service link populate the shared profile design.
+- **Display order** sorts cards; draft profiles have no public card or built page. Deleting/drafting a sample does not require editing the About template.
+- The three original portraits are available in the image library as `about-headshot-1.svg` through `about-headshot-3.svg`. All original images remain at their existing paths as well.
+
+The existing six service records and three case studies remain seeded. The five standard service pages have fuller illustrative scope, process and handoff copy; Web design retains its complete detailed layout. Example scopes do not claim completed client work, guarantees or current availability. Contact delivery remains gated until a real endpoint is configured and verified.
 
 ### Shared settings and preserved technical fields
 

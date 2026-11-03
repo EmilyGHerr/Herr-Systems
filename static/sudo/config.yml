@@ -2854,7 +2854,7 @@ collections:
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
       - name: about
         label: About
-        file: content/about/index.md
+        file: content/about/_index.md
         fields:
           - name: title
             label: Page title / navigation name
@@ -3035,10 +3035,15 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Emily Herr. A direct connection.."
+                  - name: preview_note
+                    label: Sample staff disclosure
+                    widget: text
+                    required: false
+                    hint: Shown above the team when any visible profile is marked as a fictional demo.
                 summary: Emily Herr. A direct connection.
               - name: staff_card_7
                 label: Team / Emily Herr
-                widget: object
+                widget: hidden
                 collapsed: true
                 fields:
                   - name: staff_role_1
@@ -3062,6 +3067,7 @@ collections:
                     required: false
                     hint: "Location: Team / Emily Herr. Link destination: /contact/."
                 summary: Team / Emily Herr
+                hint: Legacy single-person card retained. Edit individual profiles in the Staff collection.
               - name: approach_8
                 label: Easy to work with. Serious about the work.
                 widget: object
@@ -5250,966 +5256,30 @@ collections:
       - title
     editor:
       preview: false
-  - name: original_articles
-    label: Blog — existing articles
-    files:
-      - name: blog_what-good-hosting-should-cover
-        label: What should good website hosting cover?
-        file: content/blog/what-good-hosting-should-cover/index.md
-        fields:
-          - name: title
-            label: Page title / navigation name
-            widget: string
-            hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
-              have a separate display heading.
-          - name: hero_title
-            label: Billboard — display heading
-            widget: text
-            required: false
-            hint: Large visible heading. Preserve intended <em> and <br> formatting.
-          - name: subtitle
-            label: Billboard — introductory text
-            widget: text
-            required: false
-            hint: Visible below the main heading. Inline <em> and <br> are supported.
-          - name: description
-            label: Page summary (listing and default search preview)
-            widget: text
-            hint: Plain text. Used in listings, terminal search, and metadata unless overridden.
-          - name: date
-            label: Publish date
-            widget: datetime
-            hint: Future-dated entries are not published until their date is reached.
-          - name: category
-            label: Article category / card label
-            widget: string
-            hint: Displayed on the blog listing card.
-          - name: reading_label
-            label: Reading time label
-            widget: string
-            hint: Text displayed on blog listing cards, for example “5 min read”.
-          - name: image
-            label: Page / article image
-            widget: image
-            required: false
-          - name: image_alt
-            label: Page / article image description
-            widget: string
-            required: false
-          - name: copy
-            label: Page sections — top to bottom
-            widget: object
-            collapsed: false
-            fields:
-              - name: detail_breadcrumb_1
-                label: Billboard — breadcrumb navigation
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_nav_12
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
-                  - name: a_67
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
-                  - name: span_49
-                    label: Label
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                  - name: a_68
-                    label: Link text 2
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Link destination: /blog/."
-                  - name: span_50
-                    label: Label 2
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                  - name: span_51
-                    label: Label 3
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
-              - name: article_cover_2
-                label: Article cover image
-                widget: object
-                collapsed: true
-                fields:
-                  - name: alt_img_17
-                    label: Image description
-                    widget: hidden
-                    required: false
-                    hint: Legacy image description preserved. Use the page / article image description above.
-                  - name: figcaption_8
-                    label: Image caption
-                    widget: text
-                    required: false
-                    hint: "Location: Article cover image."
-                summary: Article cover image
-              - name: article_takeaway_3
-                label: Article takeaway
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_aside_1
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway. Accessibility text; not a visible headline."
-                  - name: kicker_15
-                    label: Section eyebrow / small heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway."
-                  - name: p_40
-                    label: Paragraph 2
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway."
-                summary: Article takeaway
-              - name: article_author_4
-                label: Article author
-                widget: object
-                collapsed: true
-                fields:
-                  - name: b_26
-                    label: Emphasis / icon
-                    widget: text
-                    required: false
-                    hint: "Location: Article author."
-                  - name: p_41
-                    label: Paragraph
-                    widget: text
-                    required: false
-                    hint: "Location: Article author."
-                  - name: a_69
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article author. Link destination: /about/."
-                summary: Article author
-              - name: article_contents_5
-                label: Article contents sidebar
-                widget: object
-                collapsed: true
-                fields:
-                  - name: contents_title_1
-                    label: Paragraph
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents sidebar."
-                  - name: contents_return_1
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents sidebar. Link destination: /blog/."
-                summary: Article contents sidebar
-              - name: nav_6
-                label: Article contents — section links
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_nav_13
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Accessibility text; not a visible headline."
-                  - name: a_70
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #know-the-scope."
-                  - name: a_71
-                    label: Link text 2
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #ask-about-recovery."
-                  - name: a_72
-                    label: Link text 3
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #keep-your-keys."
-                summary: Article contents — section links
-              - name: blog_bottom_7
-                label: Article footer
-                widget: object
-                collapsed: true
-                fields:
-                  - name: kicker_16
-                    label: Section eyebrow / small heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                  - name: next_title_1
-                    label: Heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                  - name: button_8
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer. Link destination: mailto:{{ .Site.Data.settings.email }}."
-                  - name: b_27
-                    label: Emphasis / icon
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                summary: Article footer
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
-          - name: body
-            label: Main content
-            widget: markdown
-            required: false
-          - name: lead
-            label: Lead
-            widget: hidden
-            required: false
-          - name: styles
-            label: styles
-            widget: hidden
-            default:
-              - /retro3.css
-              - /services.css
-              - /services-billboard.css
-              - /service-detail.css
-              - /blog.css
-              - /interactions.css
-              - /navigation.css
-          - name: scripts
-            label: scripts
-            widget: hidden
-            default:
-              - /navigation.js
-              - /retro3.js
-          - name: fragment
-            label: fragment
-            widget: hidden
-            default: pages/blog-what-good-hosting-should-cover.html
-          - name: body_class
-            label: body_class
-            widget: hidden
-            default: services-billboard-variant service-detail-page blog-page blog-single-page
-          - name: seo
-            label: Search engines and social sharing
-            widget: object
-            collapsed: true
-            fields:
-              - name: search
-                label: Google / search results
-                widget: object
-                collapsed: true
-                fields:
-                  - name: title
-                    label: Search result title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the page title followed by the site brand.
-                  - name: description
-                    label: Search result description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the page summary. Write a useful 1–2 sentence preview.
-                  - name: noindex
-                    label: Hide this page from search engines
-                    widget: boolean
-                    required: false
-                    default: false
-                    hint: Also removes this page from the sitemap and terminal search. This does not make it private.
-                  - name: canonicalURL
-                    label: Canonical URL (advanced)
-                    widget: string
-                    required: false
-                    hint: Normally leave blank. Only set a full https:// URL for another preferred source.
-                    pattern:
-                      - ^$|^https?://[^\s]+$
-                      - Use a complete http(s) URL or leave blank.
-              - name: social
-                label: Link previews — image and social networks
-                widget: object
-                collapsed: true
-                fields:
-                  - name: image
-                    label: Social preview image
-                    widget: image
-                    required: false
-                    hint: Optional. Blank uses the shared default social image.
-                  - name: imageAlt
-                    label: Social image description
-                    widget: string
-                    required: false
-                  - name: ogTitle
-                    label: Facebook / LinkedIn title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the search title.
-                  - name: ogDescription
-                    label: Facebook / LinkedIn description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the search description.
-                  - name: twitterTitle
-                    label: X / Twitter title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the search title.
-                  - name: twitterDescription
-                    label: X / Twitter description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the search description.
-            hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
-      - name: blog_start-small-with-automation
-        label: Start small. Automate something useful.
-        file: content/blog/start-small-with-automation/index.md
-        fields:
-          - name: title
-            label: Page title / navigation name
-            widget: string
-            hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
-              have a separate display heading.
-          - name: hero_title
-            label: Billboard — display heading
-            widget: text
-            required: false
-            hint: Large visible heading. Preserve intended <em> and <br> formatting.
-          - name: subtitle
-            label: Billboard — introductory text
-            widget: text
-            required: false
-            hint: Visible below the main heading. Inline <em> and <br> are supported.
-          - name: description
-            label: Page summary (listing and default search preview)
-            widget: text
-            hint: Plain text. Used in listings, terminal search, and metadata unless overridden.
-          - name: date
-            label: Publish date
-            widget: datetime
-            hint: Future-dated entries are not published until their date is reached.
-          - name: category
-            label: Article category / card label
-            widget: string
-            hint: Displayed on the blog listing card.
-          - name: reading_label
-            label: Reading time label
-            widget: string
-            hint: Text displayed on blog listing cards, for example “5 min read”.
-          - name: image
-            label: Page / article image
-            widget: image
-            required: false
-          - name: image_alt
-            label: Page / article image description
-            widget: string
-            required: false
-          - name: copy
-            label: Page sections — top to bottom
-            widget: object
-            collapsed: false
-            fields:
-              - name: detail_breadcrumb_1
-                label: Billboard — breadcrumb navigation
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_nav_14
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
-                  - name: a_73
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
-                  - name: span_52
-                    label: Label
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                  - name: a_74
-                    label: Link text 2
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Link destination: /blog/."
-                  - name: span_53
-                    label: Label 2
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                  - name: span_54
-                    label: Label 3
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
-              - name: article_cover_2
-                label: Article cover image
-                widget: object
-                collapsed: true
-                fields:
-                  - name: alt_img_18
-                    label: Image description
-                    widget: hidden
-                    required: false
-                    hint: Legacy image description preserved. Use the page / article image description above.
-                  - name: figcaption_9
-                    label: Image caption
-                    widget: text
-                    required: false
-                    hint: "Location: Article cover image."
-                summary: Article cover image
-              - name: article_takeaway_3
-                label: Article takeaway
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_aside_2
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway. Accessibility text; not a visible headline."
-                  - name: kicker_17
-                    label: Section eyebrow / small heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway."
-                  - name: p_42
-                    label: Paragraph 2
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway."
-                summary: Article takeaway
-              - name: article_author_4
-                label: Article author
-                widget: object
-                collapsed: true
-                fields:
-                  - name: b_28
-                    label: Emphasis / icon
-                    widget: text
-                    required: false
-                    hint: "Location: Article author."
-                  - name: p_43
-                    label: Paragraph
-                    widget: text
-                    required: false
-                    hint: "Location: Article author."
-                  - name: a_75
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article author. Link destination: /about/."
-                summary: Article author
-              - name: article_contents_5
-                label: Article contents sidebar
-                widget: object
-                collapsed: true
-                fields:
-                  - name: contents_title_2
-                    label: Paragraph
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents sidebar."
-                  - name: contents_return_2
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents sidebar. Link destination: /blog/."
-                summary: Article contents sidebar
-              - name: nav_6
-                label: Article contents — section links
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_nav_15
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Accessibility text; not a visible headline."
-                  - name: a_76
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #find-the-repeat."
-                  - name: a_77
-                    label: Link text 2
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #keep-a-checkpoint."
-                  - name: a_78
-                    label: Link text 3
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #measure-the-result."
-                summary: Article contents — section links
-              - name: blog_bottom_7
-                label: Article footer
-                widget: object
-                collapsed: true
-                fields:
-                  - name: kicker_18
-                    label: Section eyebrow / small heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                  - name: next_title_2
-                    label: Heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                  - name: button_9
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer. Link destination: mailto:{{ .Site.Data.settings.email }}."
-                  - name: b_29
-                    label: Emphasis / icon
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                summary: Article footer
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
-          - name: body
-            label: Main content
-            widget: markdown
-            required: false
-          - name: lead
-            label: Lead
-            widget: hidden
-            required: false
-          - name: styles
-            label: styles
-            widget: hidden
-            default:
-              - /retro3.css
-              - /services.css
-              - /services-billboard.css
-              - /service-detail.css
-              - /blog.css
-              - /interactions.css
-              - /navigation.css
-          - name: scripts
-            label: scripts
-            widget: hidden
-            default:
-              - /navigation.js
-              - /retro3.js
-          - name: fragment
-            label: fragment
-            widget: hidden
-            default: pages/blog-start-small-with-automation.html
-          - name: body_class
-            label: body_class
-            widget: hidden
-            default: services-billboard-variant service-detail-page blog-page blog-single-page
-          - name: seo
-            label: Search engines and social sharing
-            widget: object
-            collapsed: true
-            fields:
-              - name: search
-                label: Google / search results
-                widget: object
-                collapsed: true
-                fields:
-                  - name: title
-                    label: Search result title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the page title followed by the site brand.
-                  - name: description
-                    label: Search result description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the page summary. Write a useful 1–2 sentence preview.
-                  - name: noindex
-                    label: Hide this page from search engines
-                    widget: boolean
-                    required: false
-                    default: false
-                    hint: Also removes this page from the sitemap and terminal search. This does not make it private.
-                  - name: canonicalURL
-                    label: Canonical URL (advanced)
-                    widget: string
-                    required: false
-                    hint: Normally leave blank. Only set a full https:// URL for another preferred source.
-                    pattern:
-                      - ^$|^https?://[^\s]+$
-                      - Use a complete http(s) URL or leave blank.
-              - name: social
-                label: Link previews — image and social networks
-                widget: object
-                collapsed: true
-                fields:
-                  - name: image
-                    label: Social preview image
-                    widget: image
-                    required: false
-                    hint: Optional. Blank uses the shared default social image.
-                  - name: imageAlt
-                    label: Social image description
-                    widget: string
-                    required: false
-                  - name: ogTitle
-                    label: Facebook / LinkedIn title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the search title.
-                  - name: ogDescription
-                    label: Facebook / LinkedIn description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the search description.
-                  - name: twitterTitle
-                    label: X / Twitter title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the search title.
-                  - name: twitterDescription
-                    label: X / Twitter description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the search description.
-            hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
-      - name: blog_a-clearer-website
-        label: A clearer website starts with better questions.
-        file: content/blog/a-clearer-website/index.md
-        fields:
-          - name: title
-            label: Page title / navigation name
-            widget: string
-            hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
-              have a separate display heading.
-          - name: hero_title
-            label: Billboard — display heading
-            widget: text
-            required: false
-            hint: Large visible heading. Preserve intended <em> and <br> formatting.
-          - name: subtitle
-            label: Billboard — introductory text
-            widget: text
-            required: false
-            hint: Visible below the main heading. Inline <em> and <br> are supported.
-          - name: description
-            label: Page summary (listing and default search preview)
-            widget: text
-            hint: Plain text. Used in listings, terminal search, and metadata unless overridden.
-          - name: date
-            label: Publish date
-            widget: datetime
-            hint: Future-dated entries are not published until their date is reached.
-          - name: category
-            label: Article category / card label
-            widget: string
-            hint: Displayed on the blog listing card.
-          - name: reading_label
-            label: Reading time label
-            widget: string
-            hint: Text displayed on blog listing cards, for example “5 min read”.
-          - name: image
-            label: Page / article image
-            widget: image
-            required: false
-          - name: image_alt
-            label: Page / article image description
-            widget: string
-            required: false
-          - name: copy
-            label: Page sections — top to bottom
-            widget: object
-            collapsed: false
-            fields:
-              - name: detail_breadcrumb_1
-                label: Billboard — breadcrumb navigation
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_nav_16
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
-                  - name: a_79
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
-                  - name: span_55
-                    label: Label
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                  - name: a_80
-                    label: Link text 2
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation. Link destination: /blog/."
-                  - name: span_56
-                    label: Label 2
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                  - name: span_57
-                    label: Label 3
-                    widget: text
-                    required: false
-                    hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
-              - name: article_cover_2
-                label: Article cover image
-                widget: object
-                collapsed: true
-                fields:
-                  - name: alt_img_19
-                    label: Image description
-                    widget: hidden
-                    required: false
-                    hint: Legacy image description preserved. Use the page / article image description above.
-                  - name: figcaption_10
-                    label: Image caption
-                    widget: text
-                    required: false
-                    hint: "Location: Article cover image."
-                summary: Article cover image
-              - name: article_takeaway_3
-                label: Article takeaway
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_aside_3
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway. Accessibility text; not a visible headline."
-                  - name: kicker_19
-                    label: Section eyebrow / small heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway."
-                  - name: p_44
-                    label: Paragraph 2
-                    widget: text
-                    required: false
-                    hint: "Location: Article takeaway."
-                summary: Article takeaway
-              - name: article_author_4
-                label: Article author
-                widget: object
-                collapsed: true
-                fields:
-                  - name: b_30
-                    label: Emphasis / icon
-                    widget: text
-                    required: false
-                    hint: "Location: Article author."
-                  - name: p_45
-                    label: Paragraph
-                    widget: text
-                    required: false
-                    hint: "Location: Article author."
-                  - name: a_81
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article author. Link destination: /about/."
-                summary: Article author
-              - name: article_contents_5
-                label: Article contents sidebar
-                widget: object
-                collapsed: true
-                fields:
-                  - name: contents_title_3
-                    label: Paragraph
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents sidebar."
-                  - name: contents_return_3
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents sidebar. Link destination: /blog/."
-                summary: Article contents sidebar
-              - name: nav_6
-                label: Article contents — section links
-                widget: object
-                collapsed: true
-                fields:
-                  - name: aria_label_nav_17
-                    label: Accessibility label
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Accessibility text; not a visible headline."
-                  - name: a_82
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #start-with-people."
-                  - name: a_83
-                    label: Link text 2
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #give-pages-purpose."
-                  - name: a_84
-                    label: Link text 3
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #make-reading-easy."
-                  - name: a_85
-                    label: Link text 4
-                    widget: text
-                    required: false
-                    hint: "Location: Article contents — section links. Link destination: #choose-next-step."
-                summary: Article contents — section links
-              - name: blog_bottom_7
-                label: Article footer
-                widget: object
-                collapsed: true
-                fields:
-                  - name: kicker_20
-                    label: Section eyebrow / small heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                  - name: next_title_3
-                    label: Heading
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                  - name: button_10
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer. Link destination: mailto:{{ .Site.Data.settings.email }}."
-                  - name: b_31
-                    label: Emphasis / icon
-                    widget: text
-                    required: false
-                    hint: "Location: Article footer."
-                summary: Article footer
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
-          - name: body
-            label: Main content
-            widget: markdown
-            required: false
-          - name: lead
-            label: Lead
-            widget: hidden
-            required: false
-          - name: styles
-            label: styles
-            widget: hidden
-            default:
-              - /retro3.css
-              - /services.css
-              - /services-billboard.css
-              - /service-detail.css
-              - /blog.css
-              - /interactions.css
-              - /navigation.css
-          - name: scripts
-            label: scripts
-            widget: hidden
-            default:
-              - /navigation.js
-              - /retro3.js
-          - name: fragment
-            label: fragment
-            widget: hidden
-            default: pages/blog-a-clearer-website.html
-          - name: body_class
-            label: body_class
-            widget: hidden
-            default: services-billboard-variant service-detail-page blog-page blog-single-page
-          - name: seo
-            label: Search engines and social sharing
-            widget: object
-            collapsed: true
-            fields:
-              - name: search
-                label: Google / search results
-                widget: object
-                collapsed: true
-                fields:
-                  - name: title
-                    label: Search result title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the page title followed by the site brand.
-                  - name: description
-                    label: Search result description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the page summary. Write a useful 1–2 sentence preview.
-                  - name: noindex
-                    label: Hide this page from search engines
-                    widget: boolean
-                    required: false
-                    default: false
-                    hint: Also removes this page from the sitemap and terminal search. This does not make it private.
-                  - name: canonicalURL
-                    label: Canonical URL (advanced)
-                    widget: string
-                    required: false
-                    hint: Normally leave blank. Only set a full https:// URL for another preferred source.
-                    pattern:
-                      - ^$|^https?://[^\s]+$
-                      - Use a complete http(s) URL or leave blank.
-              - name: social
-                label: Link previews — image and social networks
-                widget: object
-                collapsed: true
-                fields:
-                  - name: image
-                    label: Social preview image
-                    widget: image
-                    required: false
-                    hint: Optional. Blank uses the shared default social image.
-                  - name: imageAlt
-                    label: Social image description
-                    widget: string
-                    required: false
-                  - name: ogTitle
-                    label: Facebook / LinkedIn title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the search title.
-                  - name: ogDescription
-                    label: Facebook / LinkedIn description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the search description.
-                  - name: twitterTitle
-                    label: X / Twitter title
-                    widget: string
-                    required: false
-                    hint: Optional. Blank uses the search title.
-                  - name: twitterDescription
-                    label: X / Twitter description
-                    widget: text
-                    required: false
-                    hint: Optional. Blank uses the search description.
-            hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
-    editor:
-      preview: false
   - name: blog
-    label: Blog — new articles
+    label: Blog
     folder: content/blog
     create: true
     slug: "{{slug}}"
+    path: "{{slug}}/index"
+    media_folder: /static/uploads
+    public_folder: /uploads
+    filter:
+      field: fragment
+      value: pages/blog-article.html
+    editor:
+      preview: false
     fields:
       - name: title
         label: Page title / navigation name
         widget: string
         hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
           have a separate display heading.
+      - name: hero_title
+        label: Billboard — display heading
+        widget: text
+        required: false
+        hint: Optional display heading. Blank uses the page title.
       - name: subtitle
         label: Billboard — introductory text
         widget: text
@@ -6227,22 +5297,166 @@ collections:
         label: Article category / card label
         widget: string
         hint: Displayed on the blog listing card.
+        required: false
       - name: reading_label
         label: Reading time label
         widget: string
-        default: 2 min read
         hint: Text displayed on blog listing cards, for example “5 min read”.
+        required: false
       - name: image
         label: Page / article image
         widget: image
+        required: false
       - name: image_alt
         label: Page / article image description
         widget: string
+        required: false
+      - name: copy
+        label: Page sections — top to bottom
+        widget: object
+        collapsed: false
+        fields:
+          - name: breadcrumb
+            label: Billboard — breadcrumb navigation
+            widget: object
+            collapsed: true
+            fields:
+              - name: breadcrumb_label
+                label: Breadcrumb label
+                widget: text
+                required: false
+              - name: home_label
+                label: Home label
+                widget: text
+                required: false
+              - name: home_separator
+                label: Home separator
+                widget: text
+                required: false
+              - name: blog_label
+                label: Blog label
+                widget: text
+                required: false
+              - name: blog_separator
+                label: Blog separator
+                widget: text
+                required: false
+              - name: current_label
+                label: Current label
+                widget: text
+                required: false
+            required: false
+          - name: cover
+            label: Article cover image
+            widget: object
+            collapsed: true
+            fields:
+              - name: image_caption
+                label: Image caption
+                widget: text
+                required: false
+            required: false
+          - name: takeaway
+            label: Article takeaway
+            widget: object
+            collapsed: true
+            fields:
+              - name: takeaway_aria_label
+                label: Takeaway aria label
+                widget: text
+                required: false
+              - name: takeaway_label
+                label: Takeaway label
+                widget: text
+                required: false
+              - name: takeaway_text
+                label: Takeaway text
+                widget: text
+                required: false
+            required: false
+          - name: author
+            label: Article author
+            widget: object
+            collapsed: true
+            fields:
+              - name: author_name
+                label: Author name
+                widget: text
+                required: false
+              - name: author_description
+                label: Author description
+                widget: text
+                required: false
+              - name: author_link_label
+                label: Author link label
+                widget: text
+                required: false
+            required: false
+          - name: contents
+            label: Article contents sidebar
+            widget: object
+            collapsed: true
+            fields:
+              - name: contents_label
+                label: Contents label
+                widget: text
+                required: false
+              - name: contents_return_label
+                label: Contents return label
+                widget: text
+                required: false
+              - name: contents_aria_label
+                label: Contents accessibility label
+                widget: string
+                required: false
+              - name: toc_links
+                label: Custom contents links (optional)
+                hint: Leave empty for automatic Markdown headings. Existing notes retain their original section
+                  anchors.
+                widget: list
+                required: false
+                fields:
+                  - name: label
+                    label: Section title
+                    widget: string
+                  - name: url
+                    label: Section anchor
+                    widget: string
+                    pattern:
+                      - ^#[A-Za-z0-9_-]+$
+                      - "Use an on-page #section-id."
+            required: false
+          - name: footer
+            label: Article footer
+            widget: object
+            collapsed: true
+            fields:
+              - name: footer_label
+                label: Footer label
+                widget: text
+                required: false
+              - name: footer_title
+                label: Closing heading
+                widget: text
+                required: false
+              - name: footer_link_label
+                label: Contact link text
+                widget: text
+                required: false
+              - name: footer_link_icon
+                label: Footer link icon
+                widget: text
+                required: false
+            required: false
+        hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+        required: false
       - name: body
         label: Main content
         widget: markdown
+        required: true
+        hint: Write the article here. Markdown headings generate the contents links automatically.
       - name: styles
-        label: Styles
+        label: styles
         widget: hidden
         default:
           - /retro3.css
@@ -6253,17 +5467,19 @@ collections:
           - /interactions.css
           - /navigation.css
       - name: scripts
-        label: Scripts
+        label: scripts
         widget: hidden
         default:
           - /navigation.js
           - /retro3.js
+      - name: fragment
+        label: fragment
+        widget: hidden
+        default: pages/blog-article.html
       - name: body_class
+        label: body_class
         widget: hidden
         default: services-billboard-variant service-detail-page blog-page blog-single-page
-      - name: editorial
-        widget: hidden
-        default: true
       - name: seo
         label: Search engines and social sharing
         widget: object
@@ -6333,9 +5549,217 @@ collections:
                 required: false
                 hint: Optional. Blank uses the search description.
         hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+    format: yaml-frontmatter
+    label_singular: Article
+  - name: staff
+    label: Staff
+    folder: content/about/team
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}/index"
+    media_folder: /static/uploads
+    public_folder: /uploads
     filter:
-      field: editorial
-      value: true
+      field: fragment
+      value: pages/staff-profile.html
+    fields:
+      - name: title
+        label: Name
+        widget: string
+      - name: subtitle
+        label: Profile introduction
+        widget: text
+      - name: description
+        label: Card biography and default search summary
+        widget: text
+      - name: image
+        label: Portrait
+        widget: image
+        required: false
+      - name: image_alt
+        label: Portrait alternative text
+        widget: string
+        required: false
+      - name: role
+        label: Role
+        widget: string
+      - name: specialty
+        label: Specialty
+        widget: string
+        required: false
+      - name: sample
+        label: Fictional demo profile
+        widget: boolean
+        default: true
+        hint: Keep on for sample profiles. Turn off only for a real person with approved content.
+      - name: weight
+        label: Display order
+        widget: number
+        default: 100
+        value_type: int
+      - name: body
+        label: Biography
+        widget: markdown
+      - name: skills
+        label: Skills
+        widget: list
+        required: false
+        field:
+          name: skill
+          label: Skill
+          widget: string
+      - name: facts
+        label: At a glance
+        widget: object
+        required: false
+        fields:
+          - name: focus
+            label: Focus
+            widget: string
+            required: false
+          - name: collaboration
+            label: Works with
+            widget: string
+            required: false
+          - name: handoff
+            label: A useful handoff
+            widget: string
+            required: false
+      - name: approach
+        label: How I work
+        widget: list
+        required: false
+        fields:
+          - name: title
+            label: Heading
+            widget: string
+          - name: text
+            label: Description
+            widget: text
+      - name: contributions
+        label: What I bring to a project
+        widget: list
+        required: false
+        fields:
+          - name: title
+            label: Heading
+            widget: string
+          - name: text
+            label: Description
+            widget: text
+      - name: interests
+        label: Beyond the brief
+        widget: text
+        required: false
+      - name: related_service
+        label: Related service
+        widget: object
+        required: false
+        fields:
+          - name: url
+            label: Service URL
+            widget: string
+            required: false
+          - name: label
+            label: Link label
+            widget: string
+            required: false
+      - name: seo
+        label: Search engines and social sharing
+        widget: object
+        collapsed: true
+        fields:
+          - name: search
+            label: Google / search results
+            widget: object
+            collapsed: true
+            fields:
+              - name: title
+                label: Search result title
+                widget: string
+                required: false
+                hint: Optional. Blank uses the page title followed by the site brand.
+              - name: description
+                label: Search result description
+                widget: text
+                required: false
+                hint: Optional. Blank uses the page summary. Write a useful 1–2 sentence preview.
+              - name: noindex
+                label: Hide this page from search engines
+                widget: boolean
+                required: false
+                default: false
+                hint: Also removes this page from the sitemap and terminal search. This does not make it private.
+              - name: canonicalURL
+                label: Canonical URL (advanced)
+                widget: string
+                required: false
+                hint: Normally leave blank. Only set a full https:// URL for another preferred source.
+                pattern:
+                  - ^$|^https?://[^\s]+$
+                  - Use a complete http(s) URL or leave blank.
+          - name: social
+            label: Link previews — image and social networks
+            widget: object
+            collapsed: true
+            fields:
+              - name: image
+                label: Social preview image
+                widget: image
+                required: false
+                hint: Optional. Blank uses the shared default social image.
+              - name: imageAlt
+                label: Social image description
+                widget: string
+                required: false
+              - name: ogTitle
+                label: Facebook / LinkedIn title
+                widget: string
+                required: false
+                hint: Optional. Blank uses the search title.
+              - name: ogDescription
+                label: Facebook / LinkedIn description
+                widget: text
+                required: false
+                hint: Optional. Blank uses the search description.
+              - name: twitterTitle
+                label: X / Twitter title
+                widget: string
+                required: false
+                hint: Optional. Blank uses the search title.
+              - name: twitterDescription
+                label: X / Twitter description
+                widget: text
+                required: false
+                hint: Optional. Blank uses the search description.
+        hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+      - name: fragment
+        label: fragment
+        widget: hidden
+        default: pages/staff-profile.html
+      - name: styles
+        label: styles
+        widget: hidden
+        default:
+          - /retro3.css
+          - /services.css
+          - /services-billboard.css
+          - /service-detail.css
+          - /staff-profile.css
+          - /interactions.css
+          - /navigation.css
+      - name: scripts
+        label: scripts
+        widget: hidden
+        default:
+          - /navigation.js
+          - /retro3.js
+      - name: body_class
+        label: body_class
+        widget: hidden
+        default: services-billboard-variant service-detail-page staff-profile-page
+    label_singular: Staff profile
+    format: yaml-frontmatter
     editor:
       preview: false
   - name: settings

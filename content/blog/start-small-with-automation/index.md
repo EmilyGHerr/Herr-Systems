@@ -2,17 +2,17 @@
 title: Start small. Automate something useful.
 description: A practical way to choose your first automation without handing over the whole business.
 styles:
-  - /retro3.css
-  - /services.css
-  - /services-billboard.css
-  - /service-detail.css
-  - /blog.css
-  - /interactions.css
-  - /navigation.css
+- /retro3.css
+- /services.css
+- /services-billboard.css
+- /service-detail.css
+- /blog.css
+- /interactions.css
+- /navigation.css
 scripts:
-  - /navigation.js
-  - /retro3.js
-fragment: pages/blog-start-small-with-automation.html
+- /navigation.js
+- /retro3.js
+fragment: pages/blog-article.html
 date: 2026-11-02
 category: Automation
 image: /assets/blog/useful-automation.svg
@@ -21,53 +21,55 @@ reading_label: 2 min read
 hero_title: Start small. Automate something useful.
 lead: A practical way to choose your first automation without handing over the whole business.
 copy:
-  detail_breadcrumb_1:
-    aria_label_nav_14: Breadcrumb
-    a_73: Home
-    span_52: /
-    a_74: Blog
-    span_53: /
-    span_54: Automation
-  article_cover_2:
-    alt_img_18: Pixel-art workflow connecting three task panels with a completed checkmark.
-    figcaption_9: Workshop illustration / Herr Systems
-  article_takeaway_3:
-    aria_label_aside_2: Key takeaway
-    kicker_17: TAKE THIS WITH YOU
-    p_42: Start with a clear scope, know who is responsible, and keep the important decisions in human
-      hands.
-  article_author_4:
-    b_28: Herr Systems
-    p_43: Thoughtful websites. Practical technology. Remote friendly.
-    a_75: Meet the people behind the work →
-  article_contents_5:
-    contents_title_2: IN THIS NOTE
-    contents_return_2: ← All workshop notes
-  nav_6:
-    aria_label_nav_15: Article contents
-    a_76: Find the repeat, not the novelty
-    a_77: Keep a human checkpoint
-    a_78: Check whether it actually helps
-  blog_bottom_7:
-    kicker_18: KEEP THE SIGNAL GOING
-    next_title_2: Something here spark an idea?
-    button_9: Let’s talk
-    b_29: »
+  breadcrumb:
+    breadcrumb_label: Breadcrumb
+    home_label: Home
+    home_separator: /
+    blog_label: Blog
+    blog_separator: /
+    current_label: Automation
+  cover:
+    image_caption: Workshop illustration / Herr Systems
+  takeaway:
+    takeaway_aria_label: Key takeaway
+    takeaway_label: TAKE THIS WITH YOU
+    takeaway_text: Start with a clear scope, know who is responsible, and keep the important decisions
+      in human hands.
+  author:
+    author_name: Herr Systems
+    author_description: Thoughtful websites. Practical technology. Remote friendly.
+    author_link_label: Meet the people behind the work →
+  contents:
+    contents_label: IN THIS NOTE
+    contents_return_label: ← All workshop notes
+    contents_aria_label: Article contents
+    toc_links:
+    - label: Find the repeat, not the novelty
+      url: '#find-the-repeat'
+    - label: Keep a human checkpoint
+      url: '#keep-a-checkpoint'
+    - label: Check whether it actually helps
+      url: '#measure-the-result'
+  footer:
+    footer_label: KEEP THE SIGNAL GOING
+    footer_title: Something here spark an idea?
+    footer_link_label: Let’s talk
+    footer_link_icon: »
 body_class: services-billboard-variant service-detail-page blog-page blog-single-page
 subtitle: A practical way to choose your first automation without handing over the whole business.
 seo:
   search:
-    title: ""
-    description: ""
+    title: ''
+    description: ''
     noindex: false
-    canonicalURL: ""
+    canonicalURL: ''
   social:
-    image: ""
-    imageAlt: ""
-    ogTitle: ""
-    ogDescription: ""
-    twitterTitle: ""
-    twitterDescription: ""
+    image: ''
+    imageAlt: ''
+    ogTitle: ''
+    ogDescription: ''
+    twitterTitle: ''
+    twitterDescription: ''
 ---
 
 {{< article-section id="find-the-repeat" >}}
