@@ -93,3 +93,8 @@ See [docs/FORMS.md](docs/FORMS.md). Set `TURNSTILE_SITE_KEY` as a public Pages
 variable (or use `data/forms.yml` as a fallback). Keep `TURNSTILE_SECRET_KEY`
 in Pages/Worker secrets, never in Git.
 Delivery remains disabled until a real validating Worker is deployed.
+
+The inquiry backend uses Pages Functions plus the private `herr-inquiry-mailer`
+Worker through the `INQUIRY_MAILER` service binding. See
+[docs/FORMS-DEPLOYMENT.md](docs/FORMS-DEPLOYMENT.md) for deployment and recipient
+configuration. Website builds remain `hugo --gc --minify` with output `public`.

@@ -21,10 +21,10 @@ included in the browser output when enabled. Redeploy/rebuild after changing it.
 Configure Production and Preview separately; do not expose production secrets
 to untrusted preview branches.
 
-TURNSTILE_SECRET_KEY stays a Secret in Pages. A future Pages Function can read
+TURNSTILE_SECRET_KEY stays a Secret in Pages. The Pages Function reads
 it from context.env.TURNSTILE_SECRET_KEY at runtime. Hugo only allowlists the
 public key name, not the secret name. The secret is never needed for the build.
-This configuration change does not implement that server handler.
+See FORMS-DEPLOYMENT.md for the server handler and bound email Worker.
 
 ## Secret: Cloudflare only
 
@@ -36,13 +36,12 @@ Name: TURNSTILE_SECRET_KEY
 Value: your private Turnstile secret
 
 Save/deploy as prompted. No Cloudflare credentials need to be shared.
-For local Worker development, use workers/inquiries/.dev.vars once that
-Worker exists. .env variants, .dev.vars variants and .wrangler/ directories
+For local Worker development, use workers/inquiry-mailer/.dev.vars for the email Worker. .env variants, .dev.vars variants and .wrangler/ directories
 are ignored throughout the repo. Never force-add secrets. Ignore rules do
 not protect already-tracked files. Rotate any accidentally committed secret;
 deleting it from the latest revision is not sufficient.
 
-## Required backend (not implemented by this frontend configuration change)
+## Backend security contract
 
 POST /api/inquiries receives JSON with turnstileToken, schemaVersion: 1,
 kind: contact or quote, contact fields and message. Quotes also include
@@ -75,7 +74,8 @@ inputs. Missing/blocked verification prevents submission.
    content/contact/index.md and content/pricing/index.md as appropriate.
 
 No separate repository or Cloudflare account token is needed for this config.
-There is no email handler deployed by this change and no live delivery claim.
+Code in Git is not a deployed handler: follow FORMS-DEPLOYMENT.md. There is no
+live delivery claim until an actual send and inbox check succeed.
 
 ## Tests
 
