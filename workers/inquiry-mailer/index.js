@@ -1,5 +1,16 @@
 import { reject, json, failure, readJson, normalizeInquiry, keys, email, validIp, formatInquiry } from '../../server/inquiries.js';
 
+const providerCodes = new Set([
+  'E_SENDER_NOT_VERIFIED', 'E_SENDER_DOMAIN_NOT_AVAILABLE', 'E_RECIPIENT_NOT_ALLOWED',
+  'E_VALIDATION_ERROR', 'E_RATE_LIMIT_EXCEEDED', 'E_DAILY_LIMIT_EXCEEDED',
+  'E_DELIVERY_FAILED', 'E_INTERNAL_SERVER_ERROR',
+]);
+function diagnose(stage, error) {
+  let providerCode = 'unrecognized';
+  try { if (providerCodes.has(error?.code)) providerCode = error.code; } catch {}
+  console.error(JSON.stringify({ event: 'mailer_diagnostic', stage, status: 502, providerCode }));
+}
+
 // SECURITY BOUNDARY: deploy ONLY as a service-binding-accessible Worker:
 // workers_dev=false, preview_urls=false, routes=[]. The internal hostname below
 // is defense in depth, NOT authentication. Any exposed route would break this
@@ -32,8 +43,14 @@ export default {
           subject: inquiry.kind === 'quote' ? 'Herr Systems quote inquiry' : 'Herr Systems contact inquiry',
           text: formatInquiry(inquiry),
         });
-      } catch { reject(502, 'submission_unconfirmed'); }
-      if (typeof result?.messageId !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._:@/+=-]{0,255}$/.test(result.messageId)) reject(502, 'submission_unconfirmed');
+      } catch (error) {
+        diagnose('email_send', error);
+        reject(502, 'submission_unconfirmed');
+      }
+      if (typeof result?.messageId !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._:@/+=-]{0,255}$/.test(result.messageId)) {
+        diagnose('email_acknowledgement');
+        reject(502, 'submission_unconfirmed');
+      }
       // Provider acceptance is submission, never proof of inbox delivery.
       return json(202, { ok: true, status: 'submitted' });
     } catch (error) { return failure(error); }

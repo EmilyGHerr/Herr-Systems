@@ -230,6 +230,25 @@ function formatInquiry(inquiry) {
 __name(formatInquiry, "formatInquiry");
 
 // index.js
+var providerCodes = /* @__PURE__ */ new Set([
+  "E_SENDER_NOT_VERIFIED",
+  "E_SENDER_DOMAIN_NOT_AVAILABLE",
+  "E_RECIPIENT_NOT_ALLOWED",
+  "E_VALIDATION_ERROR",
+  "E_RATE_LIMIT_EXCEEDED",
+  "E_DAILY_LIMIT_EXCEEDED",
+  "E_DELIVERY_FAILED",
+  "E_INTERNAL_SERVER_ERROR"
+]);
+function diagnose(stage, error) {
+  let providerCode = "unrecognized";
+  try {
+    if (providerCodes.has(error?.code)) providerCode = error.code;
+  } catch {
+  }
+  console.error(JSON.stringify({ event: "mailer_diagnostic", stage, status: 502, providerCode }));
+}
+__name(diagnose, "diagnose");
 var index_default = {
   async fetch(request, env) {
     try {
@@ -264,10 +283,14 @@ var index_default = {
           subject: inquiry.kind === "quote" ? "Herr Systems quote inquiry" : "Herr Systems contact inquiry",
           text: formatInquiry(inquiry)
         });
-      } catch {
+      } catch (error) {
+        diagnose("email_send", error);
         reject(502, "submission_unconfirmed");
       }
-      if (typeof result?.messageId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._:@/+=-]{0,255}$/.test(result.messageId)) reject(502, "submission_unconfirmed");
+      if (typeof result?.messageId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9._:@/+=-]{0,255}$/.test(result.messageId)) {
+        diagnose("email_acknowledgement");
+        reject(502, "submission_unconfirmed");
+      }
       return json(202, { ok: true, status: "submitted" });
     } catch (error) {
       return failure(error);

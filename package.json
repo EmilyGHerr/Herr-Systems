@@ -11,7 +11,7 @@
     "test:cms-media": "node tests/cms-media-ui.mjs",
     "test:cms-content": "node tests/cms-unified-ui.mjs",
     "test:forms": "node tests/forms-config.mjs",
-    "test:backend": "node --test tests/inquiries-backend.mjs tests/inquiries-frontend-contract.mjs tests/inquiry-diagnostics.mjs",
+    "test:backend": "node --test tests/inquiries-backend.mjs tests/inquiries-frontend-contract.mjs tests/inquiry-diagnostics.mjs tests/mailer-diagnostics.mjs",
     "build:functions": "wrangler pages functions build --outdir .wrangler/pages-build",
     "build:mailer": "wrangler deploy --config workers/inquiry-mailer/wrangler.jsonc --dry-run --outdir .wrangler/mailer-build",
     "test:deployment": "node tests/forms-deployment.mjs",
