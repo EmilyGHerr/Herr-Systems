@@ -67,3 +67,8 @@ Directory preview controls are owned by each item, not duplicated in Site pages.
 `npm test` includes `tests/staff-blog.mjs`: one creatable Blog collection, dynamic About cards, source portraits, shared profile sections, editable names/summaries/body/skills, new blog and staff fixture records, search/sitemap, sample-vs-real disclosure and draft exclusion. Service completeness accepts both standard Markdown and Web design’s existing detailed layout. Tests follow editable content instead of freezing the original sample names or exact record counts.
 
 `npm run test:cms-content` uses the pinned actual Decap editor and an isolated backend seeded with real content, settings and gallery images. It saves/reopens an existing article with its full original body and grouped copy preserved, then creates/saves/reopens a new article and a new staff profile, selects real gallery images, and builds the serialized records with Hugo. Its deterministic publish date is a test-only override. It does not authenticate to Turbo, alter production configuration, or claim real-account permissions/publishing.
+
+
+## Native multi-page navigation
+
+`npm test` also runs `tests/page-transitions.mjs`: native cross-document swap/reveal events, a fresh document on internal navigation (not SPA routing), Back navigation, reduced-motion styles, the early dark canvas with external CSS held pending, mobile/no-JavaScript links, and uncaught browser errors. The tiny inline `navigation-paint.html` partial opts public Hugo documents into a 160ms browser-native crossfade; unsupported browsers use unchanged full-page navigation. It never intercepts clicks, hides content, or delays navigation. Existing SEO settings and dark-on-every-load behavior remain unchanged.

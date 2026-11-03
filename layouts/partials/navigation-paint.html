@@ -1,0 +1,16 @@
+{{/* Native multi-page transitions: keep real document navigation and crawlable links.
+     Inline the small paint guard so even a cold cache has the correct canvas.
+     No JS interception, hidden content, artificial delays, or loading overlays. */}}
+<style id="navigation-paint">
+  html { background-color: #16073d; color-scheme: dark; }
+  html[data-theme="light"] { background-color: #eaf5ff; color-scheme: light; }
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation-duration: 160ms; animation-timing-function: ease-out; }
+  @media (prefers-reduced-motion: reduce) {
+    @view-transition { navigation: none; }
+    ::view-transition-old(root),
+    ::view-transition-new(root) { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
