@@ -13,7 +13,7 @@ styles:
 scripts:
   - /navigation.js
   - /retro3.js
-  - /pricing.js
+  - /pricing.js?v=hosting-plans-4
   - /inquiry-form.js
 fragment: pages/pricing.html
 hero_title: Good work. Clear pricing.
@@ -89,11 +89,13 @@ copy:
   hosting_options_7:
     legend_3: Hosting
     control_label_2: Monthly hosting plan
-    option_1: Hosting — $35/mo
-    option_2: Managed — $70/mo
-    hosting_help_1: "Illustrative monthly plans, separate from one-time work: $35 for hosting and
-      backups; $70 adds routine maintenance. An existing site can use hosting without any web design
-      charge. Migration and unlimited development are not included; we confirm coverage first."
+    option_1: Static Site Hosting — $5 / month
+    option_2: Basic Hosting — $10 / month
+    option_ecommerce: E-Commerce Hosting — $25 / month
+    hosting_help_1: "Monthly hosting, separate from one-time work: Static Site Hosting is $5/month,
+      Basic Hosting is $10/month, and E-Commerce Hosting is $25/month. An existing site can use
+      hosting without any web design charge. Migration and unlimited development are not included;
+      we confirm coverage first."
   agentic_options_8:
     legend_4: Agentic Setups
     control_help_1: "Sample base: $420 for one focused assistant or workflow, scoped tool access, human

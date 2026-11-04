@@ -191,6 +191,21 @@ await check('Pricing updates totals, hides inactive controls, and forms never fa
   await webControl.check();const old=await total.innerText();const templates=page.locator('[name="templates"]');
   await templates.fill('9');await templates.dispatchEvent('input');assert.notEqual(await total.innerText(),old,'Changing template quantity did not affect total');
   await webControl.uncheck();assert(await templates.isDisabled(),'Inactive service options remain enabled');
+  for (const width of [1440,390]) {
+    await page.setViewportSize({width,height:1000});
+    await page.locator('#service-hosting').check();
+    assert.deepEqual(await page.locator('#hosting option').allTextContents(), ['Static Site Hosting — $5 / month','Basic Hosting — $10 / month','E-Commerce Hosting — $25 / month']);
+    for (const [plan,label,price] of [['static','Static Site Hosting',5],['basic','Basic Hosting',10],['ecommerce','E-Commerce Hosting',25]]) {
+      await page.locator('#hosting').selectOption(plan);
+      assert.equal(await page.locator('#monthly-total').innerText(),`$${price} / month`);
+      assert.equal(await page.locator('#hosting-summary').innerText(),label);
+      assert.equal(await page.locator('#mobile-monthly-total').textContent(),`+ $${price}/month hosting`);
+      const payload=await page.evaluate(()=>document.querySelector('#estimate-form').buildInquiryPayload());
+      assert.equal(payload.options.hosting,plan);assert.equal(payload.estimate.monthly,price);
+    }
+    await page.locator('#service-hosting').uncheck();
+    assert.equal(await page.locator('#monthly-total').innerText(),'$0 / month');
+  }
   for(const route of ['/contact/','/pricing/']) {
     await page.goto(server.url+route);const posts=[];const listener=r=>{if(r.method()==='POST')posts.push(r.url());};page.on('request',listener);
     if(route.includes('pricing'))await page.locator('input[name="service"]').first().check();
