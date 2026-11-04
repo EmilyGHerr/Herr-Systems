@@ -1,13 +1,40 @@
 ---
+draft: false
 title: Septagon — a custom home for a gaming community
-hero_title: A community.<br/>A home of its own.
-subtitle: A custom gaming community built with Angular and Laravel, bringing news, discussion, and member conversations into one evolving platform.
-lead: A custom gaming community built with Angular and Laravel, bringing news, discussion, and member conversations into one evolving platform.
-description: Inside Septagon, Emily Herr’s live community platform. Custom Angular development, a Laravel API, forums, image uploads, private messaging, and Cloudflare hosting.
+hero_title: Septagon<br /> A Gaming Community
+subtitle: A custom gaming community built with Angular and Laravel, bringing
+  news, discussion, and member conversations into one evolving platform.
+description: Inside Septagon, Emily Herr’s live community platform. Custom
+  Angular development, a Laravel API, forums, image uploads, private messaging,
+  and Cloudflare hosting.
 listing_title: Septagon
 category: Web application + community platform
 weight: 5
-draft: false
+image: /uploads/septagon-homepage.jpg
+image_alt: Septagon’s live desktop homepage, with its custom wordmark, forum
+  navigation, and featured community news.
+detail_layout: article
+copy:
+  breadcrumb:
+    breadcrumb_current_label: Septagon
+  disclosure:
+    disclosure_text: "Live project: created and maintained by Emily Herr as a
+      self-directed community platform, not a commissioned client engagement.
+      Development is ongoing."
+  cover:
+    cover_caption: Septagon / the live homepage, captured November 2026.
+  next:
+    next_eyebrow: NEXT STUDY
+    next_heading: Maple Street Workshop
+    next_description: Web design + development / concept study
+    next_button_label: Explore the next study
+    next_button_icon: »
+    next_url: /case-studies/maple-street-workshop/
+  contact:
+    contact_label: Need something more than a brochure website? Let’s talk →
+    contact_url: /contact/
+lead: A custom gaming community built with Angular and Laravel, bringing news,
+  discussion, and member conversations into one evolving platform.
 styles:
   - /retro3.css
   - /services.css
@@ -21,41 +48,25 @@ scripts:
   - /retro3.js
 fragment: pages/case-study.html
 body_class: services-billboard-variant service-detail-page case-page
-detail_layout: article
-image: /uploads/septagon-homepage.jpg
-image_alt: Septagon’s live desktop homepage, with its custom wordmark, forum navigation, and featured community news.
 listing:
   title: Septagon
-  description: A live, self-directed gaming community. Custom Angular and Laravel development, from forum discussions and image uploads to private messaging.
+  description: A live, self-directed gaming community. Custom Angular and Laravel
+    development, from forum discussions and image uploads to private messaging.
   aria_label: Read the Septagon case study
   link_text: Explore the study →
 homepage:
   show: true
   title: Septagon
-  description: A live, self-directed gaming community. Custom Angular and Laravel development, from forum discussions and image uploads to private messaging.
+  description: A live, self-directed gaming community. Custom Angular and Laravel
+    development, from forum discussions and image uploads to private messaging.
   aria_label: Read the Septagon case study
   link_text: Explore the study →
-copy:
-  breadcrumb:
-    breadcrumb_current_label: Septagon
-  disclosure:
-    disclosure_text: "Live project: created and maintained by Emily Herr as a self-directed community platform, not a commissioned client engagement. Development is ongoing."
-  cover:
-    cover_caption: Septagon / the live homepage, captured November 2026.
-  next:
-    next_eyebrow: NEXT STUDY
-    next_heading: Maple Street Workshop
-    next_description: Web design + development / concept study
-    next_button_label: Explore the next study
-    next_button_icon: »
-    next_url: /case-studies/maple-street-workshop/
-  contact:
-    contact_label: Need something more than a brochure website? Let’s talk →
-    contact_url: /contact/
 seo:
   search:
     title: Septagon Case Study | Angular & Laravel Community Platform | Herr Systems
-    description: How Emily Herr built Septagon, a live gaming community with an Angular front end, Laravel API, forums, image uploads, and private messaging.
+    description: How Emily Herr built Septagon, a live gaming community with an
+      Angular front end, Laravel API, forums, image uploads, and private
+      messaging.
     noindex: false
     canonicalURL: ""
   social:
