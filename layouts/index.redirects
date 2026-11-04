@@ -1,0 +1,7 @@
+{{- $routes := partialCached "page-routes.html" site -}}
+{{- range $source, $target := $routes -}}
+{{- if ne $source $target -}}
+{{ printf "%s %s 301\n" $source $target }}
+{{ printf "%s %s 301\n" (strings.TrimRight "/" $source) $target }}
+{{- end -}}
+{{- end -}}

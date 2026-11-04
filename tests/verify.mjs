@@ -65,7 +65,9 @@ await check('Published HTML: local links/assets/fragments, metadata, and honest 
     $('script,style,noscript,.hero-terminal').remove();
     const text=$('body').text().replace(/\s+/g,' ');
     assert(!/\blorem ipsum\b/i.test(text),`Unfilled filler in ${path.relative(output,file)}`);
-    if(/\b(demo (?:profile|content|site|project)|placeholder (?:name|content|image)|fictional (?:client|team|project)|sample (?:case stud|content|profile)|template preview)\b/i.test(text))assert($('.sample-content-notice').text().trim(),`Sample content must carry a visible disclosure in ${path.relative(output,file)}`);
+    // Staff disclosure follows the editable sample flag, checked by verifyStaffBlog.
+    // A real person's page may also link to explicitly labelled demo peers.
+    if(!$('.staff-profile-page').length && /\b(demo (?:profile|content|site|project)|placeholder (?:name|content|image)|fictional (?:client|team|project)|sample (?:case stud|content|profile)|template preview)\b/i.test(text))assert($('.sample-content-notice').text().trim(),`Sample content must carry a visible disclosure in ${path.relative(output,file)}`);
     const original=await html(file);
     for(const el of original('[href],[src],[srcset]').toArray()) {
       const node=original(el);

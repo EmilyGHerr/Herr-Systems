@@ -18,6 +18,19 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
+          - name: aliases
+            label: Additional home URLs (redirects to /)
+            widget: list
+            required: false
+            hint: The homepage always lives at /. Add previous or alternative paths here to redirect visitors to the
+              homepage.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -584,6 +597,30 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
+              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
+              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
+              /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+              redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -920,6 +957,30 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
+              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
+              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
+              /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+              redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -1559,6 +1620,38 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
+          - name: slug
+            label: URL slug (last path segment)
+            widget: string
+            required: false
+            hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
+              this CMS entry or its source filename. Blank keeps the original filename-based slug.
+            pattern:
+              - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+              - Use lowercase letters, numbers, and single hyphens.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
+              trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
+              paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+              redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -2356,6 +2449,38 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
+          - name: slug
+            label: URL slug (last path segment)
+            widget: string
+            required: false
+            hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
+              this CMS entry or its source filename. Blank keeps the original filename-based slug.
+            pattern:
+              - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+              - Use lowercase letters, numbers, and single hyphens.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
+              trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
+              paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+              redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -2900,6 +3025,30 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
+              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
+              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
+              /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+              redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -3354,6 +3503,30 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
+              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
+              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
+              /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+              redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -3738,6 +3911,38 @@ collections:
         widget: string
         hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
           have a separate display heading.
+      - name: slug
+        label: URL slug (last path segment)
+        widget: string
+        required: false
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
+          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        pattern:
+          - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+          - Use lowercase letters, numbers, and single hyphens.
+      - name: url
+        label: Full page path (optional override)
+        widget: string
+        required: false
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
+          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
+          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        pattern:
+          - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+          - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+      - name: aliases
+        label: Previous URLs (redirects)
+        widget: list
+        required: false
+        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+          redirects automatically. Do not use the URL of another page.
+        field:
+          name: path
+          label: Previous path
+          widget: string
+          pattern:
+            - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+            - Use /lowercase-words/ with a trailing slash; system paths are reserved.
       - name: hero_title
         label: Billboard — display heading
         widget: text
@@ -4500,6 +4705,38 @@ collections:
         label: Page title
         widget: string
         hint: Plain-text page title. Used for default metadata and the URL when creating a study.
+      - name: slug
+        label: URL slug (last path segment)
+        widget: string
+        required: false
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
+          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        pattern:
+          - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+          - Use lowercase letters, numbers, and single hyphens.
+      - name: url
+        label: Full page path (optional override)
+        widget: string
+        required: false
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
+          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
+          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        pattern:
+          - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+          - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+      - name: aliases
+        label: Previous URLs (redirects)
+        widget: list
+        required: false
+        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+          redirects automatically. Do not use the URL of another page.
+        field:
+          name: path
+          label: Previous path
+          widget: string
+          pattern:
+            - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+            - Use /lowercase-words/ with a trailing slash; system paths are reserved.
       - name: hero_title
         label: Billboard — display heading
         widget: text
@@ -5314,6 +5551,38 @@ collections:
         widget: string
         hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
           have a separate display heading.
+      - name: slug
+        label: URL slug (last path segment)
+        widget: string
+        required: false
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
+          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        pattern:
+          - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+          - Use lowercase letters, numbers, and single hyphens.
+      - name: url
+        label: Full page path (optional override)
+        widget: string
+        required: false
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
+          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
+          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        pattern:
+          - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+          - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+      - name: aliases
+        label: Previous URLs (redirects)
+        widget: list
+        required: false
+        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+          redirects automatically. Do not use the URL of another page.
+        field:
+          name: path
+          label: Previous path
+          widget: string
+          pattern:
+            - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+            - Use /lowercase-words/ with a trailing slash; system paths are reserved.
       - name: hero_title
         label: Billboard — display heading
         widget: text
@@ -5605,6 +5874,38 @@ collections:
       - name: title
         label: Name
         widget: string
+      - name: slug
+        label: URL slug (last path segment)
+        widget: string
+        required: false
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
+          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        pattern:
+          - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+          - Use lowercase letters, numbers, and single hyphens.
+      - name: url
+        label: Full page path (optional override)
+        widget: string
+        required: false
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
+          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
+          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        pattern:
+          - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+          - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+      - name: aliases
+        label: Previous URLs (redirects)
+        widget: list
+        required: false
+        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
+          redirects automatically. Do not use the URL of another page.
+        field:
+          name: path
+          label: Previous path
+          widget: string
+          pattern:
+            - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+            - Use /lowercase-words/ with a trailing slash; system paths are reserved.
       - name: subtitle
         label: Profile introduction
         widget: text
@@ -6310,10 +6611,16 @@ collections:
                 - HTML
                 - RSS
                 - SearchIndex
+                - Redirects
           - name: outputFormats
             label: outputFormats
             widget: hidden
             default:
+              Redirects:
+                mediaType: text/x-redirects
+                baseName: _redirects
+                isPlainText: true
+                notAlternative: true
               SearchIndex:
                 mediaType: application/json
                 baseName: search-index
@@ -6337,6 +6644,18 @@ collections:
             widget: hidden
             default:
               noindex: false
+          - name: permalinks
+            label: Staff permalink rules (system)
+            widget: hidden
+            default:
+              page:
+                about: /about/:slugorcontentbasename/
+          - name: mediaTypes
+            label: Redirect output type (system)
+            widget: hidden
+            default:
+              text/x-redirects:
+                suffixes: [""]
           - name: disableKinds
             label: disableKinds
             widget: hidden

@@ -1,0 +1,10 @@
+{{- /* Resolve site links by stable source path or a saved previous URL. */ -}}
+{{- $href := . | default "" -}}
+{{- if and (hasPrefix $href "/") (not (hasPrefix $href "//")) -}}
+  {{- $path := index (findRE `^[^?#]+` $href 1) 0 -}}
+  {{- $suffix := strings.TrimPrefix $path $href -}}
+  {{- $routes := partialCached "page-routes.html" site -}}
+  {{- $target := index $routes $path | default (index $routes (printf "%s/" (strings.TrimRight "/" $path))) -}}
+  {{- with $target -}}{{- $href = printf "%s%s" . $suffix -}}{{- end -}}
+{{- end -}}
+{{- return $href -}}

@@ -2,7 +2,7 @@
 
 <div class="site-shell"><main class="message-desk" id="main">
 <nav aria-label='{{ index $copy "aria_label_nav_8" }}' class="contact-breadcrumb"><a href="/">{{ index $copy "a_55" }}</a><span aria-hidden="true">{{ index $copy "span_31" }}</span><span aria-current="page">{{ index $copy "span_32" }}</span></nav>
-<section aria-labelledby="contact-title" class="desk-intro"><h1 id="contact-title">{{ .Params.hero_title | safeHTML }}</h1><p class="desk-lead">{{ (.Params.subtitle | default .Params.lead) | safeHTML }}</p><nav aria-label='{{ index $copy "aria_label_nav_9" }}' class="desk-context-links"><a href="/services/">{{ index $copy "a_56" }}</a><a href="/case-studies/">{{ index $copy "a_57" }}</a></nav></section>
+<section aria-labelledby="contact-title" class="desk-intro"><h1 id="contact-title">{{ .Params.hero_title | safeHTML }}</h1><p class="desk-lead">{{ (.Params.subtitle | default .Params.lead) | safeHTML }}</p><nav aria-label='{{ index $copy "aria_label_nav_9" }}' class="desk-context-links"><a href='{{ partial "page-url.html" "/services/" }}'>{{ index $copy "a_56" }}</a><a href='{{ partial "page-url.html" "/case-studies/" }}'>{{ index $copy "a_57" }}</a></nav></section>
 <div class="desk-layout"><section aria-label='{{ index $copy "aria_label_section_1" }}' class="desk-message">
 <form action="/api/inquiries" aria-describedby="form-delivery-note" data-endpoint-enabled="{{ if (partial "inquiry-config.html" .).enabled }}true{{ else }}false{{ end }}" data-form-kind="contact" data-inquiry-form="" id="inquiry-form" method="post">
 <div class="desk-errors" data-form-errors="" hidden="" id="form-errors" role="alert" tabindex="-1"><h3>{{ index $copy "h3_8" }}</h3><ul></ul></div>

@@ -5,8 +5,13 @@ enableRobotsTXT: true
 pagination:
   pagerSize: 10
 outputs:
-  home: [HTML, RSS, SearchIndex]
+  home: [HTML, RSS, SearchIndex, Redirects]
 outputFormats:
+  Redirects:
+    mediaType: text/x-redirects
+    baseName: _redirects
+    isPlainText: true
+    notAlternative: true
   SearchIndex:
     mediaType: application/json
     baseName: search-index
@@ -27,3 +32,12 @@ disableKinds: [taxonomy, term]
 security:
   funcs:
     getenv: ["^HUGO_", "^CI$", "^TURNSTILE_SITE_KEY$"]
+
+# Keep CMS storage stable while publishing profiles directly beneath About.
+permalinks:
+  page:
+    about: /about/:slugorcontentbasename/
+
+mediaTypes:
+  text/x-redirects:
+    suffixes: [""]

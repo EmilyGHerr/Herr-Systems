@@ -1,3 +1,4 @@
+{{ $routes := partialCached "page-routes.html" site }}
 {{ $meta := partial "page-meta.html" . }}
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 {{ $settings := site.Data.settings }}
