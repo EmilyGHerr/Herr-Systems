@@ -1,5 +1,5 @@
 ---
-title: Useful technology. Human connection.
+title: Union, MO Website People
 hero_title: We are just people
 subtitle: We're a mixture of human beings and AI Agents (and cats) working on
   making cool stuff in Union, MO.
