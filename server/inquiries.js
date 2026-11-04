@@ -1,4 +1,4 @@
-import { calculateEstimate, SERVICES, FEATURES } from '../static/pricing-calculator.js';
+import { calculateEstimate, SERVICES, FEATURES, HOSTING } from '../static/pricing-calculator.js';
 
 export const MAX_BODY_BYTES = 16384;
 export class InquiryError extends Error {
@@ -64,7 +64,7 @@ function quote(value) {
   for (const service of ['consulting', 'contract']) if (services.includes(service)) allowed.push(`${service}Hours`, `${service}Focus`);
   keys(options, allowed);
   for (const [key, max] of [['templates', 20], ['consultingHours', 160], ['contractHours', 160]]) if (Object.hasOwn(options, key) && (!Number.isInteger(options[key]) || options[key] < 1 || options[key] > max)) reject();
-  for (const [key, values] of [['design', ['standard', 'custom']], ['hosting', ['hosting', 'managed']], ['consultingFocus', ['planning', 'review', 'architecture']], ['contractFocus', ['development', 'maintenance', 'team']]]) if (Object.hasOwn(options, key) && !values.includes(options[key])) reject();
+  for (const [key, values] of [['design', ['standard', 'custom']], ['hosting', Object.keys(HOSTING)], ['consultingFocus', ['planning', 'review', 'architecture']], ['contractFocus', ['development', 'maintenance', 'team']]]) if (Object.hasOwn(options, key) && !values.includes(options[key])) reject();
   if (Object.hasOwn(options, 'features')) {
     selection(options.features, Object.keys(FEATURES), Object.keys(FEATURES).length);
     if (options.features.some(key => !services.includes(FEATURES[key].service))) reject();

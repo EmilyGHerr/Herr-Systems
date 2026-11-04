@@ -1,4 +1,4 @@
-import { calculateEstimate } from './pricing-calculator.js?v=services-3';
+import { calculateEstimate } from './pricing-calculator.js?v=hosting-plans-4';
 const form = document.querySelector('#estimate-form');
 const money = value => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
 const groups = [...form.querySelectorAll('[data-service-options]')];

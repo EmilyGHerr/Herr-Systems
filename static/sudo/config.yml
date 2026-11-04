@@ -1919,6 +1919,11 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Hosting."
+                  - name: option_ecommerce
+                    label: E-Commerce Hosting choice label
+                    widget: text
+                    required: false
+                    hint: "Location: Estimate builder / Hosting."
                   - name: hosting_help_1
                     label: Paragraph
                     widget: text

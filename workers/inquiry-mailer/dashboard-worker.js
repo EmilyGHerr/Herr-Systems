@@ -17,7 +17,11 @@ var FEATURES = Object.freeze({
   agentReview: { service: "agentic", label: "Additional evaluation and handoff", price: 210 },
   agentIntegration: { service: "agentic", label: "Additional tool connection", price: 140 }
 });
-var HOSTING = Object.freeze({ hosting: { label: "Hosting and backups", price: 35 }, managed: { label: "Hosting and routine maintenance", price: 70 } });
+var HOSTING = Object.freeze({
+  static: { label: "Static Site Hosting", price: 5 },
+  basic: { label: "Basic Hosting", price: 10 },
+  ecommerce: { label: "E-Commerce Hosting", price: 25 }
+});
 var list = /* @__PURE__ */ __name((value) => Array.isArray(value) ? value : [], "list");
 var own = /* @__PURE__ */ __name((object2, key) => typeof key === "string" && Object.hasOwn(object2, key), "own");
 function bounded(value, fallback, max) {
@@ -52,7 +56,7 @@ function calculateEstimate(input = {}) {
   let monthly = 0;
   let support = "No hosting selected";
   if (selected.has("hosting")) {
-    options.hosting = own(HOSTING, input.hosting) ? input.hosting : "hosting";
+    options.hosting = own(HOSTING, input.hosting) ? input.hosting : "static";
     ({ price: monthly, label: support } = HOSTING[options.hosting]);
   }
   return { services, options, lines, total: lines.reduce((sum, line) => sum + line.price, 0), monthly, support };
@@ -163,7 +167,7 @@ function quote(value) {
   for (const service of ["consulting", "contract"]) if (services.includes(service)) allowed.push(`${service}Hours`, `${service}Focus`);
   keys(options, allowed);
   for (const [key, max] of [["templates", 20], ["consultingHours", 160], ["contractHours", 160]]) if (Object.hasOwn(options, key) && (!Number.isInteger(options[key]) || options[key] < 1 || options[key] > max)) reject();
-  for (const [key, values] of [["design", ["standard", "custom"]], ["hosting", ["hosting", "managed"]], ["consultingFocus", ["planning", "review", "architecture"]], ["contractFocus", ["development", "maintenance", "team"]]]) if (Object.hasOwn(options, key) && !values.includes(options[key])) reject();
+  for (const [key, values] of [["design", ["standard", "custom"]], ["hosting", Object.keys(HOSTING)], ["consultingFocus", ["planning", "review", "architecture"]], ["contractFocus", ["development", "maintenance", "team"]]]) if (Object.hasOwn(options, key) && !values.includes(options[key])) reject();
   if (Object.hasOwn(options, "features")) {
     selection(options.features, Object.keys(FEATURES), Object.keys(FEATURES).length);
     if (options.features.some((key) => !services.includes(FEATURES[key].service))) reject();

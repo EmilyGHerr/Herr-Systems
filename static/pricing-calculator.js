@@ -9,7 +9,11 @@ export const FEATURES = Object.freeze({
   agentReview: { service: 'agentic', label: 'Additional evaluation and handoff', price: 210 },
   agentIntegration: { service: 'agentic', label: 'Additional tool connection', price: 140 },
 });
-export const HOSTING = Object.freeze({ hosting: { label: 'Hosting and backups', price: 35 }, managed: { label: 'Hosting and routine maintenance', price: 70 } });
+export const HOSTING = Object.freeze({
+  static: { label: 'Static Site Hosting', price: 5 },
+  basic: { label: 'Basic Hosting', price: 10 },
+  ecommerce: { label: 'E-Commerce Hosting', price: 25 },
+});
 const list = value => Array.isArray(value) ? value : [];
 const own = (object, key) => typeof key === 'string' && Object.hasOwn(object, key);
 function bounded(value, fallback, max) {
@@ -43,7 +47,7 @@ export function calculateEstimate(input = {}) {
   let monthly = 0;
   let support = 'No hosting selected';
   if (selected.has('hosting')) {
-    options.hosting = own(HOSTING, input.hosting) ? input.hosting : 'hosting';
+    options.hosting = own(HOSTING, input.hosting) ? input.hosting : 'static';
     ({ price: monthly, label: support } = HOSTING[options.hosting]);
   }
   return { services, options, lines, total: lines.reduce((sum, line) => sum + line.price, 0), monthly, support };
