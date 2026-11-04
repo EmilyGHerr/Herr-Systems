@@ -1,10 +1,10 @@
 ---
 title: Useful technology. Human connection.
 hero_title: We are just people
-subtitle: We're a mix of human beings and AI Agents working on making cool stuff
-  in Union, MO.
-description: We're a mix of human beings and AI Agents working on making cool
-  stuff in Union, MO.
+subtitle: We're a mixture of human beings and AI Agents (and cats) working on
+  making cool stuff in Union, MO.
+description: We're a mixture of human beings and AI Agents (and cats) working on
+  making cool stuff in Union, MO.
 copy:
   approach_8:
     kicker_11: 02 // HOW WE SHOW UP
@@ -35,7 +35,7 @@ copy:
   detail_billboard_art_3:
     alt_img_13: Pixel-art Herr Systems hexagon logo with sparse glowing pixels
       drifting upward like embers and smoke.
-    figcaption_7: GOOD PEOPLE. CLEAR SIGNAL.
+    figcaption_7: WE BUILD STUFF.
   about_services_9:
     kicker_12: 03 // PUTTING IT INTO PRACTICE
     help_title_1: A little less friction.
