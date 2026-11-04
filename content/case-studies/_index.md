@@ -24,8 +24,8 @@ copy:
     span_10: /
     span_11: Case studies
   case_disclosure_2:
-    case_disclosure_1: "Live project work and clearly labeled concept studies. Septagon is Emily Herr’s
-      self-directed community platform; the other studies describe fictional organizations and
+    case_disclosure_1: "Live project work and clearly labeled concept studies. Septagon and Burn.Blue are Emily Herr’s
+      self-directed projects; the concept studies describe fictional organizations and
       illustrative work, not commissioned client projects or measured business results."
   section_3:
     kicker_3: DIFFERENT CHALLENGES / ONE PRACTICAL APPROACH
