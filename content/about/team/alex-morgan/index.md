@@ -3,10 +3,8 @@ title: Emily Herr
 slug: emily-herr
 aliases:
   - /about/alex-morgan/
-subtitle: Alex brings structure to the early, sometimes messy stage of a website
-  project. In this fictional profile, they help a small team turn ideas,
-  references, and business goals into a visual direction people can understand
-  and use.
+subtitle: Emily is a systems architect, with over ten years of experience
+  building both front-end and back-end solutions.
 description: A child of the 90s with experience in both design and development.
 image: /uploads/img_1199.jpeg
 image_alt: Selfie of Emily Herr
@@ -20,22 +18,20 @@ skills:
   - Visual direction
   - Accessible typography
   - Wireframes & prototypes
-  - Content structure
+  - Baking
   - Design systems
-  - Client workshops
 facts:
-  focus: Websites, page templates, and design direction
-  collaboration: Business owners, developers, and content contributors
-  handoff: Responsive layouts, reusable components, and annotated design decisions
+  focus: System architecture and user interface
+  collaboration: Agents, code, and business owners (if absolutely needed)
+  handoff: ""
 approach:
-  - title: Listen before designing
-    text: Start with the audience, content, and the real job each page needs to do.
-  - title: Make the structure visible
-    text: Use a content map and lightweight wireframes to agree on the direction
-      before polishing it.
-  - title: Leave a useful handoff
-    text: Explain the design rules, document the reusable parts, and keep
-      implementation questions in the conversation.
+  - title: Understand requirements
+    text: Collect client needs and take notes and ask questions.
+  - title: Make a plan
+    text: Think through what technology is needed and consider the cost for each
+      piece.
+  - title: Make the thing
+    text: Full-send a prototype and get some client feedback on the outcome.
 contributions:
   - title: A service-led website
     text: Sketch a homepage, service-detail template, and contact journey that help
@@ -43,7 +39,8 @@ contributions:
   - title: A small design system
     text: Define type, spacing, color, and component patterns a team can carry into
       new pages.
-interests: TBD.
+interests: I'm a communist who likes to get stoned. My apartment is a mess and I
+  live with a couple of cats (Billie and Loki).
 related_service:
   url: /services/web-design/
   label: Explore web design
