@@ -1,4 +1,4 @@
-import assert from 'node:assert/strict';import path from 'node:path';import {readFile,writeFile,mkdir} from 'node:fs/promises';import YAML from 'yaml';import {load} from 'cheerio';import {fixture,build} from './support.mjs';import {cmsEntries} from './cms-entries.mjs';
+import assert from 'node:assert/strict';import path from 'node:path';import {readFile,writeFile,mkdir} from 'node:fs/promises';import YAML from 'yaml';import {load} from 'cheerio';import {fixture,build,files} from './support.mjs';import {cmsEntries} from './cms-entries.mjs';
 export async function verifyCollections(work){
  const dir=path.join(work,'collections');await mkdir(dir);const source=await fixture(dir),dest=path.join(dir,'output');const config=YAML.parse(await readFile(path.join(source,'static/sudo/config.yml'),'utf8'));
  const defaults=fields=>Object.fromEntries(fields.flatMap(f=>{
@@ -9,7 +9,7 @@ export async function verifyCollections(work){
  }));
  for(const name of ['services','case_studies']){
   const c=config.collections.find(c=>c.name===name);assert(c?.create,`${name} lacks a creatable collection`);assert.equal(c.path,'{{slug}}/index');assert.equal(c.format,'yaml-frontmatter');
-  const originals=cmsEntries(config,source).filter(e=>e.name.startsWith(name+':'));assert.equal(originals.length,name==='services'?6:3,`${name}: existing entry discovery`);
+  const originals=cmsEntries(config,source).filter(e=>e.name.startsWith(name+':'));const expected=(await files(path.join(source,c.folder))).filter(f=>f.endsWith('/index.md')).length;assert.equal(originals.length,expected,`${name}: existing entry discovery`);assert(expected>0,`${name}: no existing entries discovered`);
   const data={...defaults(c.fields),title:name==='services'?'Fixture new service':'Fixture new case study',description:'A real creation-fixture summary.',hero_title:'New detail fixture',subtitle:'New introduction fixture',draft:false,weight:99,image:'/assets/services/hosting-transparent.svg',image_alt:'Fixture image',listing_title:'Fixture organization',category:'Fixture category',homepage:{show:false},listing:{title:'Fixture card '+name,description:'Fixture card summary',includes:['Fixture included item']}};
   data.body=undefined;delete data.body;
   const slug='fixture-'+name.replaceAll('_','-'),relative=path.join(c.folder,c.path.replace('{{slug}}',slug)+'.md'),file=path.join(source,relative);await mkdir(path.dirname(file),{recursive:true});await writeFile(file,'---\n'+YAML.stringify(data)+'---\n\n## Fixture detail content\n\nNew editable Markdown content.\n');

@@ -24,10 +24,11 @@ copy:
     span_10: /
     span_11: Case studies
   case_disclosure_2:
-    case_disclosure_1: "Concept portfolio: fictional organizations and illustrative work, not
-      commissioned client projects or measured business results."
+    case_disclosure_1: "Live project work and clearly labeled concept studies. Septagon is Emily Herr’s
+      self-directed community platform; the other studies describe fictional organizations and
+      illustrative work, not commissioned client projects or measured business results."
   section_3:
-    kicker_3: THREE DIFFERENT CHALLENGES / ONE PRACTICAL APPROACH
+    kicker_3: DIFFERENT CHALLENGES / ONE PRACTICAL APPROACH
     collection_title_1: Inside the work.
   case_card_4:
     aria_label_a_5: Read the Maple Street Workshop case study
