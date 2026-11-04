@@ -1,54 +1,40 @@
 ---
-title: Jordan Ellis
-subtitle: 'Jordan helps people understand what is happening and what comes next. This
-  fictional profile illustrates the client-care side of a small team: translating
-  a broad request into an organized conversation and keeping delivery grounded in
-  an agreed scope.'
-description: A steady project partner bringing useful questions, organized feedback,
-  and clear next steps to the team.
-role: Client care & projects
+title: Billie
+slug: billie
+subtitle: "Billie is an indoor cat and our self-appointed Head of Gravity Testing. If something is sitting peacefully on a high surface, she considers that an unresolved issue."
+description: "Indoor cat. High-place enthusiast. Dedicated to finding out whether the thing on the shelf still falls when you push it."
+role: Head of Gravity Testing
 image: /uploads/about-headshot-3.svg
-image_alt: Illustrated demo portrait of Jordan Ellis, not a photograph of a real team
-  member
-specialty: Keeping people in the loop.
-sample: true
+image_alt: Temporary illustrated profile placeholder; Billie's photo will be added later
+specialty: Bringing things down to earth. Literally.
+sample: false
 weight: 30
 skills:
-- Project coordination
-- Client communication
-- Discovery conversations
-- Scope documentation
-- Feedback facilitation
-- Content planning
-- Launch checklists
-- Handoff guidance
+  - Knocking things off high places
+  - Shelf inspections
+  - Strategic napping
+  - Advanced lounging
+  - Box-based problem solving
+  - Unscheduled keyboard input
+  - Ignoring action items
+  - Looking completely innocent
 facts:
-  focus: Clear scope, communication, and project coordination
-  collaboration: Business owners, content contributors, and the delivery team
-  handoff: Agreed next steps, organized project notes, and a practical support plan
+  focus: Indoor operations and the downward movement of unattended objects
+  collaboration: Emily, preferably when she is trying to concentrate
+  handoff: The object is on the floor now. You're welcome.
 approach:
-- title: Ask useful questions
-  text: Understand the goal, the constraints, and what would make the project easier
-    to manage.
-- title: Keep decisions organized
-  text: Collect feedback in one place and make approvals, dependencies, and changes
-    visible.
-- title: Close the loop
-  text: Confirm what was delivered, explain the handoff, and clarify where to go for
-    ongoing help.
+  - title: Find the highest available surface
+    text: Get a good overview of the situation. Identify anything that appears too comfortable remaining where it was put.
+  - title: Apply one paw
+    text: Start with a gentle nudge. Escalate until gravity takes ownership of the deliverable.
+  - title: Decline the retrospective
+    text: Observe the result, make brief eye contact, and leave the human to document the incident.
 contributions:
-- title: A clear project brief
-  text: Bring goals, responsibilities, deliverables, and open questions into a scope
-    the whole team can use.
-- title: A practical launch handoff
-  text: Coordinate content checks, approvals, and next-step documentation before the
-    project changes hands.
-interests: Away from the project board, this demo version of Jordan enjoys community
-  events, illustrated notebooks, and finding the best quiet corner in an independent
-  coffee shop.
-related_service:
-  url: /services/#consulting
-  label: Explore consulting
+  - title: Continuous gravity assurance
+    text: A rigorous, entirely unsolicited testing program for objects stored above floor level. Previous results do not eliminate the need to test again.
+  - title: A healthier relationship with work
+    text: A reminder that not everything needs to be a meeting, a metric, or even productive. Sometimes the correct next step is a nap.
+interests: "Indoor living, high places, naps, and relocating things from those high places. Outdoor expeditions are not part of her job description. Neither is picking anything back up."
 fragment: pages/staff-profile.html
 styles:
 - /retro3.css
@@ -77,8 +63,8 @@ seo:
     twitterDescription: ''
 ---
 
-Jordan makes room for the questions people sometimes hesitate to ask. What is included? Who supplies the content? Which decision is needed now, and which can wait? Those details shape a calmer project for everyone involved.
+Billie is a real cat with an honorary job title and absolutely no billable hours. She is part of life behind Herr Systems, not the person handling your project. Please direct all actual questions, approvals, and requests for opposable thumbs to Emily.
 
-They help collect the right context, bring feedback together, and surface dependencies before they become surprises. The aim is not more meetings; it is a shared understanding of the next useful step.
+As an indoor cat, Billie keeps her operations close to home. Her particular area of interest is knocking things off high places—a field in which the research is apparently never finished. An object on a shelf is not a finished arrangement. It is a proposal.
 
-At handoff, Jordan helps gather the practical notes: where the important information lives, how to request changes, and what ongoing support covers. A project should feel understandable after launch, not only while the team is building it.
+Her working philosophy is simple: if it moves, investigate. If it does not move, try a paw. If it falls, the experiment was successful. Cleanup belongs to a different department.
