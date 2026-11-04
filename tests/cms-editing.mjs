@@ -24,7 +24,9 @@ export async function verifyCms(work,root){
    }else if(field.widget==='object'){
     if(data[field.name]&&typeof data[field.name]==='object')count+=markText(field.fields||[],data[field.name]);
    }else{
-    const marker='CMS_EDIT_'+markers.length+'_END';data[field.name]=marker;markers.push(marker);count++;
+    const marker='CMS_EDIT_'+markers.length+'_END';
+    // Link destinations need valid URLs, not plain-text markers rejected by the renderer.
+    data[field.name]=field.name.endsWith('_url')?'https://example.com/'+marker:marker;markers.push(marker);count++;
    }
   }
   return count;

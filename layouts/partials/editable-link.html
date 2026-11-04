@@ -1,0 +1,7 @@
+{{- /* Allow only explicit web/contact schemes, local paths and anchors before safeURL.
+     Invalid or omitted editor values preserve the original destination. */ -}}
+{{- $href := .value | default "" | strings.TrimSpace -}}
+{{- if or (not (findRE `^(https?://|mailto:|tel:|/($|[^/])|#)` $href)) (findRE `\s` $href) -}}
+  {{- $href = .fallback -}}
+{{- end -}}
+{{- return (partial "page-url.html" $href | safeURL) -}}
