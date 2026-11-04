@@ -1,0 +1,59 @@
+{{- /* Public paths are independent of immutable Decap/source identities. */ -}}
+{{- $routes := dict -}}
+{{- $owners := dict -}}
+{{- $pathPattern := `^/([a-z0-9]+(-[a-z0-9]+)*/)*$` -}}
+{{- range site.Pages -}}
+  {{- if .File -}}
+    {{- $owner := .File.Path -}}
+    {{- $target := .RelPermalink -}}
+    {{- if not .IsHome -}}
+      {{- with .Params.url -}}
+        {{- if or (not (findRE $pathPattern .)) (findRE `^/(api|sudo|assets|uploads|fonts|staff)(/|$)` .) (eq . "/") (eq . "/about/team/") -}}
+          {{- errorf "%s: invalid or reserved full page path %q" $owner . -}}
+        {{- end -}}
+      {{- end -}}
+      {{- with .Params.slug -}}{{- if not (findRE `^[a-z0-9]+(-[a-z0-9]+)*$` .) -}}{{- errorf "%s: invalid URL slug %q" $owner . -}}{{- end -}}{{- end -}}
+      {{- if or (not (findRE $pathPattern $target)) (findRE `^/(api|sudo|assets|uploads|fonts|staff)(/|$)` $target) (eq $target "/about/team/") -}}
+        {{- errorf "%s: public URL %q must be a lowercase trailing-slash page path outside reserved system directories" $owner $target -}}
+      {{- end -}}
+    {{- end -}}
+    {{- with index $owners $target -}}{{- errorf "Duplicate public URL %s in %s and %s" $target . $owner -}}{{- end -}}
+    {{- $owners = merge $owners (dict $target $owner) -}}
+    {{- $routes = merge $routes (dict $target $target) -}}
+  {{- end -}}
+{{- end -}}
+{{- range site.Pages -}}
+  {{- if .File -}}
+    {{- $owner := .File.Path -}}{{- $target := .RelPermalink -}}
+    {{- $original := printf "%s/" (strings.TrimRight "/" .Path) -}}
+    {{- $paths := slice $original -}}
+    {{- if eq .Params.fragment "pages/staff-profile.html" -}}
+      {{- $paths = $paths | append (printf "/about/%s/" .File.ContentBaseName) -}}
+    {{- end -}}
+    {{- range .Aliases -}}{{- $paths = $paths | append . -}}{{- end -}}
+    {{- range $paths -}}
+      {{- $path := . -}}
+      {{- if or (not (findRE $pathPattern $path)) (findRE `^/(api|sudo|assets|uploads|fonts|staff)(/|$)` $path) -}}
+        {{- errorf "%s: invalid or reserved previous URL %q" $owner $path -}}
+      {{- end -}}
+      {{- with index $routes $path -}}
+        {{- if ne . $target -}}{{- errorf "%s: previous URL %s conflicts with another page (%s)" $owner $path . -}}{{- end -}}
+      {{- end -}}
+      {{- $routes = merge $routes (dict $path $target) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- with site.GetPage "/about" -}}
+  {{- $owner := .File.Path -}}{{- $target := .RelPermalink -}}
+  {{- range slice "/staff/" "/about/team/" -}}
+    {{- $path := . -}}
+    {{- with index $owners $path -}}
+      {{- if ne . $owner -}}{{- errorf "Special redirect %s conflicts with page owner %s" $path . -}}{{- end -}}
+    {{- end -}}
+    {{- with index $routes $path -}}
+      {{- if ne . $target -}}{{- errorf "Special redirect %s conflicts with another page route (%s)" $path . -}}{{- end -}}
+    {{- end -}}
+    {{- $routes = merge $routes (dict $path $target) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $routes -}}

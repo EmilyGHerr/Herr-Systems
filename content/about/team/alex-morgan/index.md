@@ -1,5 +1,8 @@
 ---
 title: Emily Herr
+slug: emily-herr
+aliases:
+  - /about/alex-morgan/
 subtitle: Alex brings structure to the early, sometimes messy stage of a website
   project. In this fictional profile, they help a small team turn ideas,
   references, and business goals into a visual direction people can understand

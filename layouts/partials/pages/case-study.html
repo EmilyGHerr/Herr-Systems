@@ -6,7 +6,7 @@
 <nav aria-label='{{ index $copy "breadcrumb_aria_label" }}' class="detail-breadcrumb">
 <a href="/">{{ index $copy "breadcrumb_home_label" }}</a>
 <span aria-hidden="true">{{ index $copy "breadcrumb_separator_before" }}</span>
-<a href="/case-studies/">{{ index $copy "breadcrumb_directory_label" }}</a>
+<a href='{{ partial "page-url.html" "/case-studies/" }}'>{{ index $copy "breadcrumb_directory_label" }}</a>
 <span aria-hidden="true">{{ index $copy "breadcrumb_separator_after" }}</span>
 <span aria-current="page">{{ (index $copy "breadcrumb_current_label") | default .Params.listing_title | default .Title }}</span>
 </nav>
@@ -174,7 +174,7 @@
 <a href="#outcomes">{{ index $copy "navigation_outcomes" }}</a>
 <a href="#lessons">{{ index $copy "navigation_lessons" }}</a>
 </nav>
-<a class="case-link" href="/case-studies/">{{ index $copy "contents_return_label" }}</a>
+<a class="case-link" href='{{ partial "page-url.html" "/case-studies/" }}'>{{ index $copy "contents_return_label" }}</a>
 </aside>
 </div>{{ else }}<div class="case-story">{{ .Content }}</div>{{ end }}</article>{{ if index $copy "next_url" }}<section class="case-next">
 <div>
@@ -182,10 +182,10 @@
 <h2>{{ index $copy "next_heading" }}</h2>
 <p>{{ index $copy "next_description" }}</p>
 </div>
-<a class="button" href='{{ index $copy "next_url" }}'>{{ index $copy "next_button_label" }} <b aria-hidden="true">{{ index $copy "next_button_icon" }}</b>
+<a class="button" href='{{ partial "page-url.html" (index $copy "next_url") }}'>{{ index $copy "next_button_label" }} <b aria-hidden="true">{{ index $copy "next_button_icon" }}</b>
 </a>
 </section>{{ end }}<div class="case-return">
-<a href='{{ index $copy "contact_url" }}'>{{ index $copy "contact_label" }}</a>
+<a href='{{ partial "page-url.html" (index $copy "contact_url") }}'>{{ index $copy "contact_label" }}</a>
 </div>
 </main>
 </div>
