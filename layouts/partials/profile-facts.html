@@ -1,0 +1,15 @@
+{{- $facts := .Params.facts | default dict -}}
+{{- $items := slice -}}
+{{- range slice (dict "key" "focus" "label" "Focus") (dict "key" "collaboration" "label" "Works with") (dict "key" "handoff" "label" "A useful handoff") -}}
+  {{- $value := index $facts .key | default "" | strings.TrimSpace -}}
+  {{- $label := .label -}}
+  {{- with $value -}}
+    {{- $items = $items | append (dict "label" $label "value" .) -}}
+  {{- end -}}
+{{- end -}}
+{{- with $items -}}
+<section class="profile-facts" aria-labelledby="profile-facts-title">
+  <h2 id="profile-facts-title">At a glance</h2>
+  <dl>{{ range . }}<dt>{{ .label }}</dt><dd>{{ .value }}</dd>{{ end }}</dl>
+</section>
+{{- end -}}
