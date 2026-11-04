@@ -1,10 +1,8 @@
 ---
+draft: false
 title: Burn.Blue — a website with an AI-assisted publishing workflow
-hero_title: A useful website.<br/>A repeatable publishing system.
+hero_title: Burn.Blue<br /> Agentic Web
 subtitle: A Hugo website paired with Jules, running on Hermes Agent, to turn a
-  content brief into a researched article, a versioned update, and a verified
-  Cloudflare deployment.
-lead: A Hugo website paired with Jules, running on Hermes Agent, to turn a
   content brief into a researched article, a versioned update, and a verified
   Cloudflare deployment.
 description: How Burn.Blue combines a Hugo website, Jules on Hermes Agent,
@@ -13,37 +11,10 @@ description: How Burn.Blue combines a Hugo website, Jules on Hermes Agent,
 listing_title: Burn.Blue
 category: Web design + AI-assisted publishing
 weight: 6
-draft: false
-styles:
-  - /retro3.css
-  - /services.css
-  - /services-billboard.css
-  - /service-detail.css
-  - /case-studies.css
-  - /interactions.css
-  - /navigation.css
-scripts:
-  - /navigation.js
-  - /retro3.js
-fragment: pages/case-study.html
-body_class: services-billboard-variant service-detail-page case-page
-detail_layout: article
 image: /uploads/burn-blue-homepage.jpg
 image_alt: Burn.Blue’s live homepage, with its blue flame branding, website and
   workflow headline, and example lead-response workflow.
-listing:
-  title: Burn.Blue
-  description: A live services website with a repeatable Jules / Hermes workflow
-    for researching, writing, building, publishing, and verifying blog content.
-  aria_label: Read the Burn.Blue case study
-  link_text: Explore the study →
-homepage:
-  show: true
-  title: Burn.Blue
-  description: A live services website with a repeatable Jules / Hermes workflow
-    for researching, writing, building, publishing, and verifying blog content.
-  aria_label: Read the Burn.Blue case study
-  link_text: Explore the study →
+detail_layout: article
 copy:
   breadcrumb:
     breadcrumb_current_label: Burn.Blue
@@ -63,6 +34,35 @@ copy:
   contact:
     contact_label: Want a website and a publishing workflow that work together? Let’s talk →
     contact_url: /contact/
+lead: A Hugo website paired with Jules, running on Hermes Agent, to turn a
+  content brief into a researched article, a versioned update, and a verified
+  Cloudflare deployment.
+styles:
+  - /retro3.css
+  - /services.css
+  - /services-billboard.css
+  - /service-detail.css
+  - /case-studies.css
+  - /interactions.css
+  - /navigation.css
+scripts:
+  - /navigation.js
+  - /retro3.js
+fragment: pages/case-study.html
+body_class: services-billboard-variant service-detail-page case-page
+listing:
+  title: Burn.Blue
+  description: A live services website with a repeatable Jules / Hermes workflow
+    for researching, writing, building, publishing, and verifying blog content.
+  aria_label: Read the Burn.Blue case study
+  link_text: Explore the study →
+homepage:
+  show: true
+  title: Burn.Blue
+  description: A live services website with a repeatable Jules / Hermes workflow
+    for researching, writing, building, publishing, and verifying blog content.
+  aria_label: Read the Burn.Blue case study
+  link_text: Explore the study →
 seo:
   search:
     title: Burn.Blue Case Study | Jules & Hermes Publishing Automation | Herr Systems
