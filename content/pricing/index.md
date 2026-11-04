@@ -8,7 +8,7 @@ styles:
   - /services-billboard.css
   - /interactions.css
   - /service-detail.css
-  - /pricing.css?v=pricing-faq-1
+  - /pricing.css?v=inline-faq-2
   - /navigation.css
   - /inquiry-form.css
 scripts:

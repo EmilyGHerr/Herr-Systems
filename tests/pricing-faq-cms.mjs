@@ -18,9 +18,7 @@ try {
  await page.goto(server.url+'/sudo/');await page.getByRole('button',{name:'Login',exact:true}).click();
  await page.evaluate(()=>location.hash='#/collections/pages/entries/pricing');
  await page.locator('[id^="hero_title-field-"]').waitFor();
- await page.getByText('Frequently asked questions — below pricing content',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();
- const title=page.locator('[id^="title-field-"]').filter({visible:true}).last();await title.fill('FAQ heading edited in real Decap');
- await page.locator('[id^="intro-field-"]').fill('FAQ intro edited in real Decap');
+ await page.getByText('Pricing explanation — accordions below the text',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();
  await page.getByText(original.faq.items[0].question,{exact:true}).last().locator('..').locator('button').first().click();
  await page.locator('[id^="question-field-"]').filter({visible:true}).first().fill('Question edited in real Decap');
  await page.locator('[contenteditable="true"]').filter({visible:true}).first().fill('Answer edited in real Decap');
@@ -28,6 +26,6 @@ try {
  await page.waitForFunction(()=>window.repoFiles.content.pricing['index.md'].content.includes('Question edited in real Decap'));
  const saved=await page.evaluate(()=>window.repoFiles.content.pricing['index.md'].content);
  const data=YAML.parse(saved.match(/^---\n([\s\S]*?)\n---/)[1]);
- assert.equal(data.faq.title,'FAQ heading edited in real Decap');assert.equal(data.faq.intro,'FAQ intro edited in real Decap');assert.equal(data.faq.items[0].question,'Question edited in real Decap');assert.equal(data.faq.items[0].answer.trim(),'Answer edited in real Decap');assert.equal(data.faq.items.length,original.faq.items.length);assert.deepEqual(errors,[]);
- console.log('PASS real Decap Pricing editor: FAQ controls render, heading/intro/question/answer edits publish to isolated backend, zero browser errors');
+ assert.equal(data.faq.title,original.faq.title);assert.equal(data.faq.intro,original.faq.intro);assert.equal(data.faq.items[0].question,'Question edited in real Decap');assert.equal(data.faq.items[0].answer.trim(),'Answer edited in real Decap');assert.equal(data.faq.items.length,original.faq.items.length);assert.deepEqual(errors,[]);
+ console.log('PASS real Decap Pricing editor: inline accordion controls render, question/answer edits publish, old heading/intro preserved but not exposed to isolated backend, zero browser errors');
 } finally {await browser?.close();await server?.close();await cleanup(work);}

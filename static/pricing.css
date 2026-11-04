@@ -528,14 +528,10 @@
 /* The same native FAQ accordions used on the service and contact pages. */
 .pricing-page .pricing-faq {
   --detail-muted: var(--pricing-muted);
-  margin-top: clamp(36px, 5vw, 56px);
+  margin-top: 24px;
 }
-.pricing-page .pricing-faq .detail-section {
-  padding: clamp(28px, 4vw, 40px) 0 0;
-}
-.pricing-page .pricing-faq h2 {
-  font: 400 clamp(32px, 3.5vw, 44px)/1.15 var(--pixel);
-  letter-spacing: 0.01em;
+.pricing-page .pricing-explainer-content {
+  min-width: 0;
 }
 .pricing-page .pricing-faq summary {
   line-height: 1.6;
