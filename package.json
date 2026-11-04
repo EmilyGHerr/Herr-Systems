@@ -5,6 +5,7 @@
   "scripts": {
     "test": "node tests/verify.mjs && node tests/contact-faq.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs && node tests/home-spacing.mjs && node tests/internal-heading-spacing.mjs && npm run test:forms && npm run test:backend && npm run test:deployment && npm run test:runtime",
     "test:cms-ui": "node tests/cms-ui.mjs",
+    "test:cms-contact": "node tests/contact-faq-cms.mjs",
     "test:visual": "node tests/visual.mjs",
     "test:all": "npm test && npm run test:visual",
     "test:install": "playwright install chromium firefox",
