@@ -6,7 +6,7 @@
 <h1 id="directory-title">{{ .Params.hero_title | safeHTML }}</h1>
 <p class="detail-lead">{{ (.Params.subtitle | default .Params.lead) | safeHTML }}</p>
 <div class="detail-actions"><a class="button" href="#project">{{ index $copy "button_11" }} <b aria-hidden="true">{{ index $copy "b_32" }}</b></a><a class="plain-link" href="#process">{{ index $copy "plain_link_7" }}</a></div></div>
-<figure class="detail-billboard-art"><img alt='{{ index $copy "alt_img_20" }}' height="288" src="/assets/services/web-design-billboard.svg" width="384"/><figcaption>{{ index $copy "figcaption_11" }}</figcaption></figure>
+<figure class="detail-billboard-art"><img alt='{{ index $copy "alt_img_20" }}' height="288" src='{{ (index $copy "image_path") | default "/assets/services/web-design-billboard.svg" }}' width="384"/><figcaption>{{ index $copy "figcaption_11" }}</figcaption></figure>
 </section>
 </div>
 <div class="site-shell">

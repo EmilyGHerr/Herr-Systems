@@ -1,6 +1,7 @@
+{{- $profileCopy := partial "staff-copy.html" . -}}
 {{- $facts := .Params.facts | default dict -}}
 {{- $items := slice -}}
-{{- range slice (dict "key" "focus" "label" "Focus") (dict "key" "collaboration" "label" "Works with") (dict "key" "handoff" "label" "A useful handoff") -}}
+{{- range slice (dict "key" "focus" "label" (index $profileCopy "profile_focus_label")) (dict "key" "collaboration" "label" (index $profileCopy "profile_collaboration_label")) (dict "key" "handoff" "label" (index $profileCopy "profile_handoff_label")) -}}
   {{- $value := index $facts .key | default "" | strings.TrimSpace -}}
   {{- $label := .label -}}
   {{- with $value -}}
@@ -9,7 +10,7 @@
 {{- end -}}
 {{- with $items -}}
 <section class="profile-facts" aria-labelledby="profile-facts-title">
-  <h2 id="profile-facts-title">At a glance</h2>
+  <h2 id="profile-facts-title">{{ index $profileCopy "profile_facts_heading" }}</h2>
   <dl>{{ range . }}<dt>{{ .label }}</dt><dd>{{ .value }}</dd>{{ end }}</dl>
 </section>
 {{- end -}}

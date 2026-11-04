@@ -18,19 +18,6 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
-          - name: aliases
-            label: Additional home URLs (redirects to /)
-            widget: list
-            required: false
-            hint: The homepage always lives at /. Add previous or alternative paths here to redirect visitors to the
-              homepage.
-            field:
-              name: path
-              label: Previous path
-              widget: string
-              pattern:
-                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -69,11 +56,13 @@ collections:
                     label: Primary button — link destination
                     widget: string
                     required: false
-                    default: '#contact'
-                    hint: 'Use /contact/ for a site page, #contact for a homepage section, or a full https:// address. mailto: and tel: links are also supported. Blank uses #contact.'
+                    default: "#contact"
+                    hint: "Use /contact/ for a site page, #contact for a homepage section, or a full https:// address.
+                      mailto: and tel: links are also supported. Blank uses #contact."
                     pattern:
-                      - '^$|^(?:/(?!/)|#|https?://|mailto:|tel:)\S*$'
-                      - 'Use a site path starting with /, a #section, or an http://, https://, mailto: or tel: link without spaces.'
+                      - ^$|^(?:/(?!/)|#|https?://|mailto:|tel:)\S*$
+                      - "Use a site path starting with /, a #section, or an http://, https://,
+                        mailto: or tel: link without spaces."
                   - name: b_3
                     label: Emphasis / icon
                     widget: text
@@ -89,11 +78,13 @@ collections:
                     widget: string
                     required: false
                     default: /services/
-                    hint: 'Use a site path, #section, or full https:// address. mailto: and tel: links are also supported. Blank uses /services/.'
+                    hint: "Use a site path, #section, or full https:// address. mailto: and tel: links are also
+                      supported. Blank uses /services/."
                     pattern:
-                      - '^$|^(?:/(?!/)|#|https?://|mailto:|tel:)\S*$'
-                      - 'Use a site path starting with /, a #section, or an http://, https://, mailto: or tel: link without spaces.'
-                summary: Billboard — heading and actions
+                      - ^$|^(?:/(?!/)|#|https?://|mailto:|tel:)\S*$
+                      - "Use a site path starting with /, a #section, or an http://, https://,
+                        mailto: or tel: link without spaces."
+                summary: Edit this section — Billboard — heading and actions
               - name: notice_2
                 label: Announcement / system message
                 widget: object
@@ -115,7 +106,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Announcement / system message."
-                summary: Announcement / system message
+                summary: Edit this section — Announcement / system message
               - name: services_3
                 label: Services — section heading
                 widget: object
@@ -141,7 +132,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Services — section heading."
-                summary: Services — section heading
+                summary: Edit this section — Services — section heading
               - name: article_4
                 label: Service card — Web design
                 widget: hidden
@@ -314,7 +305,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Pricing overview. Link destination: /pricing/."
-                summary: Pricing overview
+                summary: Edit this section — Pricing overview
               - name: case_studies_11
                 label: Case studies — section heading
                 widget: object
@@ -355,7 +346,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Case studies — section heading. Accessibility text; not a visible headline."
-                summary: Case studies — section heading
+                summary: Edit this section — Case studies — section heading
               - name: case_card_12
                 label: Case study card — Maple Street Workshop
                 widget: hidden
@@ -506,8 +497,10 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact — next step."
-                summary: Contact — next step
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Contact — next step
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: lead
             label: Lead
             widget: hidden
@@ -537,6 +530,19 @@ collections:
             label: body_class
             widget: hidden
             default: ""
+          - name: aliases
+            label: Additional home URLs (redirects to /)
+            widget: list
+            required: false
+            hint: The homepage always lives at /. Add previous or alternative paths here to redirect visitors to
+              the homepage.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: seo
             label: Search engines and social sharing
             widget: object
@@ -615,30 +621,6 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
-          - name: url
-            label: Full page path (optional override)
-            widget: string
-            required: false
-            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
-              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
-              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
-              /sudo/, /uploads/, and /staff/."
-            pattern:
-              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
-          - name: aliases
-            label: Previous URLs (redirects)
-            widget: list
-            required: false
-            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-              redirects automatically. Do not use the URL of another page.
-            field:
-              name: path
-              label: Previous path
-              widget: string
-              pattern:
-                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -683,7 +665,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
+                summary: Edit this section — Billboard — breadcrumb navigation
               - name: case_disclosure_2
                 label: Concept study disclosure
                 widget: object
@@ -694,7 +676,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Concept study disclosure."
-                summary: Concept study disclosure
+                summary: Edit this section — Concept study disclosure
               - name: section_3
                 label: Inside the work.
                 widget: object
@@ -710,7 +692,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Inside the work.."
-                summary: Inside the work.
+                summary: Edit this section — Inside the work.
               - name: case_card_4
                 label: Case study card — Maple Street Workshop
                 widget: hidden
@@ -866,8 +848,10 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Next study / closing call to action."
-                summary: Next study / closing call to action
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Next study / closing call to action
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: lead
             label: Lead
             widget: hidden
@@ -897,6 +881,30 @@ collections:
             label: body_class
             widget: hidden
             default: services-billboard-variant service-detail-page case-page
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional.
+              Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+              leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for
+              the default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original
+              filename-based URL redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: seo
             label: Search engines and social sharing
             widget: object
@@ -975,30 +983,6 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
-          - name: url
-            label: Full page path (optional override)
-            widget: string
-            required: false
-            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
-              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
-              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
-              /sudo/, /uploads/, and /staff/."
-            pattern:
-              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
-          - name: aliases
-            label: Previous URLs (redirects)
-            widget: list
-            required: false
-            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-              redirects automatically. Do not use the URL of another page.
-            field:
-              name: path
-              label: Previous path
-              widget: string
-              pattern:
-                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -1043,7 +1027,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
+                summary: Edit this section — Billboard — breadcrumb navigation
               - name: services_2
                 label: Services — section heading
                 widget: object
@@ -1065,7 +1049,7 @@ collections:
                     required: false
                     default: SERVICES
                     hint: The number is calculated automatically from published service entries.
-                summary: Services — section heading
+                summary: Edit this section — Services — section heading
               - name: web_design_3
                 label: Service card — Web Design
                 widget: hidden
@@ -1531,8 +1515,10 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact — next step."
-                summary: Contact — next step
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Contact — next step
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: lead
             label: Lead
             widget: hidden
@@ -1560,6 +1546,30 @@ collections:
             label: body_class
             widget: hidden
             default: services-billboard-variant services-list-page
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional.
+              Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+              leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for
+              the default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original
+              filename-based URL redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: seo
             label: Search engines and social sharing
             widget: object
@@ -1638,38 +1648,6 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
-          - name: slug
-            label: URL slug (last path segment)
-            widget: string
-            required: false
-            hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
-              this CMS entry or its source filename. Blank keeps the original filename-based slug.
-            pattern:
-              - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
-              - Use lowercase letters, numbers, and single hyphens.
-          - name: url
-            label: Full page path (optional override)
-            widget: string
-            required: false
-            hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
-              trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
-              paths such as /api/, /sudo/, /uploads/, and /staff/."
-            pattern:
-              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
-          - name: aliases
-            label: Previous URLs (redirects)
-            widget: list
-            required: false
-            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-              redirects automatically. Do not use the URL of another page.
-            field:
-              name: path
-              label: Previous path
-              widget: string
-              pattern:
-                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -1714,7 +1692,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
+                summary: Edit this section — Billboard — breadcrumb navigation
               - name: pricing_workbench_2
                 label: Estimate builder
                 widget: object
@@ -1775,7 +1753,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder. Link destination: #estimate-summary."
-                summary: Estimate builder
+                summary: Edit this section — Estimate builder
               - name: estimate_controls_3
                 label: Estimate builder / Project options
                 widget: object
@@ -1796,7 +1774,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Project options."
-                summary: Estimate builder / Project options
+                summary: Edit this section — Estimate builder / Project options
               - name: option_section_4
                 label: 01 · Choose your services
                 widget: object
@@ -1862,7 +1840,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: 01 · Choose your services."
-                summary: 01 · Choose your services
+                summary: Edit this section — 01 · Choose your services
               - name: web_options_5
                 label: Estimate builder / Web Design / Web Development
                 widget: object
@@ -1973,7 +1951,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
-                summary: Estimate builder / Web Design / Web Development
+                summary: Edit this section — Estimate builder / Web Design / Web Development
               - name: design_options_6
                 label: Estimate builder / Design approach
                 widget: object
@@ -2004,7 +1982,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Design approach."
-                summary: Estimate builder / Design approach
+                summary: Edit this section — Estimate builder / Design approach
               - name: hosting_options_7
                 label: Estimate builder / Hosting
                 widget: object
@@ -2040,7 +2018,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Hosting."
-                summary: Estimate builder / Hosting
+                summary: Edit this section — Estimate builder / Hosting
               - name: agentic_options_8
                 label: Estimate builder / Agentic Setups
                 widget: object
@@ -2086,7 +2064,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Agentic Setups."
-                summary: Estimate builder / Agentic Setups
+                summary: Edit this section — Estimate builder / Agentic Setups
               - name: consulting_options_9
                 label: Estimate builder / Consulting
                 widget: object
@@ -2127,7 +2105,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Consulting."
-                summary: Estimate builder / Consulting
+                summary: Edit this section — Estimate builder / Consulting
               - name: contract_options_10
                 label: Estimate builder / Contract Work
                 widget: object
@@ -2168,7 +2146,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate builder / Contract Work."
-                summary: Estimate builder / Contract Work
+                summary: Edit this section — Estimate builder / Contract Work
               - name: option_section_11
                 label: Your quote request
                 widget: object
@@ -2214,7 +2192,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Your quote request."
-                summary: Your quote request
+                summary: Edit this section — Your quote request
               - name: estimate_summary_12
                 label: The estimate
                 widget: object
@@ -2280,7 +2258,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: The estimate."
-                summary: The estimate
+                summary: Edit this section — The estimate
               - name: estimate_disclaimer_13
                 label: Estimate notes and disclaimers
                 widget: object
@@ -2356,8 +2334,10 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Estimate notes and disclaimers. Link destination: /services/contract-work/."
-                summary: Estimate notes and disclaimers
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Estimate notes and disclaimers
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: lead
             label: Lead
             widget: hidden
@@ -2413,7 +2393,7 @@ collections:
                 widget: list
                 collapsed: true
                 required: false
-                summary: '{{fields.question}}'
+                summary: "{{fields.question}}"
                 hint: Add, remove, or drag questions into the order you want them displayed.
                 fields:
                   - name: question
@@ -2423,6 +2403,39 @@ collections:
                     label: Answer
                     widget: markdown
                     hint: Supports paragraphs, lists, emphasis, and links.
+          - name: slug
+            label: URL slug (last path segment)
+            widget: string
+            required: false
+            hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public
+              URL, not this CMS entry or its source filename. Blank keeps the original
+              filename-based slug.
+            pattern:
+              - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+              - Use lowercase letters, numbers, and single hyphens.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+              leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for
+              the default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original
+              filename-based URL redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: seo
             label: Search engines and social sharing
             widget: object
@@ -2501,38 +2514,6 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
-          - name: slug
-            label: URL slug (last path segment)
-            widget: string
-            required: false
-            hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
-              this CMS entry or its source filename. Blank keeps the original filename-based slug.
-            pattern:
-              - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
-              - Use lowercase letters, numbers, and single hyphens.
-          - name: url
-            label: Full page path (optional override)
-            widget: string
-            required: false
-            hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
-              trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
-              paths such as /api/, /sudo/, /uploads/, and /staff/."
-            pattern:
-              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
-          - name: aliases
-            label: Previous URLs (redirects)
-            widget: list
-            required: false
-            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-              redirects automatically. Do not use the URL of another page.
-            field:
-              name: path
-              label: Previous path
-              widget: string
-              pattern:
-                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -2577,7 +2558,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
+                summary: Edit this section — Billboard — breadcrumb navigation
               - name: desk_context_links_2
                 label: Billboard — related links
                 widget: object
@@ -2598,7 +2579,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — related links. Link destination: /case-studies/."
-                summary: Billboard — related links
+                summary: Edit this section — Billboard — related links
               - name: desk_message_3
                 label: Contact form — accessibility
                 widget: object
@@ -2609,7 +2590,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — accessibility. Accessibility text; not a visible headline."
-                summary: Contact form — accessibility
+                summary: Edit this section — Contact form — accessibility
               - name: form_errors_4
                 label: Contact form — validation summary
                 widget: object
@@ -2620,7 +2601,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — validation summary."
-                summary: Contact form — validation summary
+                summary: Edit this section — Contact form — validation summary
               - name: desk_field_5
                 label: Contact form — I’m thinking about…
                 widget: object
@@ -2671,7 +2652,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — I’m thinking about…."
-                summary: Contact form — I’m thinking about…
+                summary: Edit this section — Contact form — I’m thinking about…
               - name: desk_field_6
                 label: Contact form — Your name
                 widget: object
@@ -2692,7 +2673,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — Your name."
-                summary: Contact form — Your name
+                summary: Edit this section — Contact form — Your name
               - name: desk_field_7
                 label: Contact form — Email address
                 widget: object
@@ -2713,7 +2694,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — Email address."
-                summary: Contact form — Email address
+                summary: Edit this section — Contact form — Email address
               - name: desk_field_8
                 label: Contact form — Business or organization
                 widget: object
@@ -2734,7 +2715,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — Business or organization."
-                summary: Contact form — Business or organization
+                summary: Edit this section — Contact form — Business or organization
               - name: desk_field_9
                 label: Contact form — Current website
                 widget: object
@@ -2755,7 +2736,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — Current website."
-                summary: Contact form — Current website
+                summary: Edit this section — Contact form — Current website
               - name: desk_field_10
                 label: Contact form — Tell us a little about it
                 widget: object
@@ -2786,7 +2767,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — Tell us a little about it."
-                summary: Contact form — Tell us a little about it
+                summary: Edit this section — Contact form — Tell us a little about it
               - name: inquiry_form_11
                 label: Contact form — delivery notice, submit button and feedback
                 widget: object
@@ -2838,7 +2819,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact form — delivery notice, submit button and feedback."
-                summary: Contact form — delivery notice, submit button and feedback
+                summary: Edit this section — Contact form — delivery notice, submit button and feedback
               - name: desk_direct_12
                 label: Direct contact sidebar
                 widget: object
@@ -2934,8 +2915,10 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Direct contact sidebar."
-                summary: Direct contact sidebar
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Direct contact sidebar
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: lead
             label: Lead
             widget: hidden
@@ -2989,7 +2972,7 @@ collections:
                 widget: list
                 collapsed: true
                 required: false
-                summary: '{{fields.question}}'
+                summary: "{{fields.question}}"
                 hint: Add, remove, or drag questions into the order you want them displayed.
                 fields:
                   - name: question
@@ -2999,6 +2982,39 @@ collections:
                     label: Answer
                     widget: markdown
                     hint: Supports paragraphs, lists, emphasis, and links.
+          - name: slug
+            label: URL slug (last path segment)
+            widget: string
+            required: false
+            hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public
+              URL, not this CMS entry or its source filename. Blank keeps the original
+              filename-based slug.
+            pattern:
+              - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
+              - Use lowercase letters, numbers, and single hyphens.
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+              leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for
+              the default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original
+              filename-based URL redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: seo
             label: Search engines and social sharing
             widget: object
@@ -3077,30 +3093,6 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
-          - name: url
-            label: Full page path (optional override)
-            widget: string
-            required: false
-            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
-              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
-              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
-              /sudo/, /uploads/, and /staff/."
-            pattern:
-              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
-          - name: aliases
-            label: Previous URLs (redirects)
-            widget: list
-            required: false
-            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-              redirects automatically. Do not use the URL of another page.
-            field:
-              name: path
-              label: Previous path
-              widget: string
-              pattern:
-                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -3145,7 +3137,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
+                summary: Edit this section — Billboard — breadcrumb navigation
               - name: directory_intro_2
                 label: Billboard — introduction
                 widget: object
@@ -3166,12 +3158,17 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — introduction. Link destination: #approach."
-                summary: Billboard — introduction
+                summary: Edit this section — Billboard — introduction
               - name: detail_billboard_art_3
                 label: Billboard — illustration and caption
                 widget: object
                 collapsed: true
                 fields:
+                  - name: image_path
+                    label: Billboard illustration
+                    widget: image
+                    required: false
+                    hint: The image beside the About page headline. Leave blank for the original artwork.
                   - name: alt_img_13
                     label: Image description
                     widget: text
@@ -3182,38 +3179,39 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — illustration and caption."
-                summary: Billboard — illustration and caption
+                summary: Edit this section — Billboard — illustration and caption
               - name: detail_overview_4
-                label: Useful work. Real relationships.
+                label: Our story — Useful work. Real relationships.
                 widget: object
-                collapsed: true
+                collapsed: false
                 fields:
                   - name: kicker_9
-                    label: Section eyebrow / small heading
+                    label: Story — small heading
                     widget: text
                     required: false
-                    hint: "Location: Useful work. Real relationships.."
+                    hint: Visible in the main story section of the About page.
                   - name: story_title_1
-                    label: Heading
+                    label: Story heading
                     widget: text
                     required: false
-                    hint: "Location: Useful work. Real relationships.."
+                    hint: Visible in the main story section of the About page.
                   - name: p_26
-                    label: Paragraph 2
+                    label: Opening paragraph
                     widget: text
                     required: false
-                    hint: "Location: Useful work. Real relationships.."
+                    hint: Visible in the main story section of the About page.
                   - name: p_27
-                    label: Paragraph 3
+                    label: Design and development paragraph
                     widget: text
                     required: false
-                    hint: "Location: Useful work. Real relationships.."
+                    hint: Visible in the main story section of the About page.
                   - name: p_28
-                    label: Paragraph 4
+                    label: How we start paragraph
                     widget: text
                     required: false
-                    hint: "Location: Useful work. Real relationships.."
-                summary: Useful work. Real relationships.
+                    hint: Visible in the main story section of the About page.
+                summary: Edit the story heading and three paragraphs
+                hint: This is the main introduction below the billboard on /about/.
               - name: detail_fit_5
                 label: Less noise. More care.
                 widget: object
@@ -3254,9 +3252,9 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Less noise. More care.."
-                summary: Less noise. More care.
+                summary: Edit this section — Less noise. More care.
               - name: team_6
-                label: Emily Herr. A direct connection.
+                label: Team directory — heading and introduction
                 widget: object
                 collapsed: true
                 fields:
@@ -3275,7 +3273,8 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Emily Herr. A direct connection.."
-                summary: Emily Herr. A direct connection.
+                summary: Edit the team introduction
+                hint: Edit names, biographies, roles and portraits in the Staff collection.
               - name: staff_card_7
                 label: Team / Emily Herr
                 widget: hidden
@@ -3363,7 +3362,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Easy to work with. Serious about the work.."
-                summary: Easy to work with. Serious about the work.
+                summary: Edit this section — Easy to work with. Serious about the work.
               - name: about_services_9
                 label: Service links
                 widget: object
@@ -3394,7 +3393,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Service links. Link destination: /services/."
-                summary: Service links
+                summary: Edit this section — Service links
               - name: contact_10
                 label: Contact — next step
                 widget: object
@@ -3441,8 +3440,10 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Contact — next step."
-                summary: Contact — next step
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Contact — next step
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: lead
             label: Lead
             widget: hidden
@@ -3472,6 +3473,30 @@ collections:
             label: body_class
             widget: hidden
             default: services-billboard-variant service-detail-page about-page
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional.
+              Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+              leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for
+              the default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original
+              filename-based URL redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: seo
             label: Search engines and social sharing
             widget: object
@@ -3550,30 +3575,6 @@ collections:
             widget: string
             hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
               have a separate display heading.
-          - name: url
-            label: Full page path (optional override)
-            widget: string
-            required: false
-            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional. Overrides the
-              slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and trailing slashes. No
-              domain, spaces, query or #fragment. Leave blank for the default path. Avoid system paths such as /api/,
-              /sudo/, /uploads/, and /staff/."
-            pattern:
-              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
-          - name: aliases
-            label: Previous URLs (redirects)
-            widget: list
-            required: false
-            hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-              redirects automatically. Do not use the URL of another page.
-            field:
-              name: path
-              label: Previous path
-              widget: string
-              pattern:
-                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
-                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: hero_title
             label: Billboard — display heading
             widget: text
@@ -3618,7 +3619,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
-                summary: Billboard — breadcrumb navigation
+                summary: Edit this section — Billboard — breadcrumb navigation
               - name: section_2
                 label: Featured article — section label
                 widget: object
@@ -3629,7 +3630,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Featured article — section label."
-                summary: Featured article — section label
+                summary: Edit this section — Featured article — section label
               - name: post_feature_3
                 label: Article card — A clearer website starts with better questions.
                 widget: hidden
@@ -3702,7 +3703,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: A few useful things to know.."
-                summary: A few useful things to know.
+                summary: Edit this section — A few useful things to know.
               - name: post_card_5
                 label: Detail Section / Start small. Automate something useful.
                 widget: hidden
@@ -3819,7 +3820,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Blog listing — supporting note."
-                summary: Blog listing — supporting note
+                summary: Edit this section — Blog listing — supporting note
               - name: a_8
                 label: Back to top link
                 widget: object
@@ -3830,8 +3831,10 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Back to top link. Link destination: mailto:{{ .Site.Data.settings.email }}."
-                summary: Back to top link
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Back to top link
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: lead
             label: Lead
             widget: hidden
@@ -3861,6 +3864,30 @@ collections:
             label: body_class
             widget: hidden
             default: services-billboard-variant service-detail-page blog-page
+          - name: url
+            label: Full page path (optional override)
+            widget: string
+            required: false
+            hint: "Change this directory page’s URL here. Its child pages keep their own URLs. Optional.
+              Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+              leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for
+              the default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
+            pattern:
+              - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+              - Use /lowercase-words/ with a trailing slash; system paths are reserved.
+          - name: aliases
+            label: Previous URLs (redirects)
+            widget: list
+            required: false
+            hint: When changing a previously published custom URL, add its old path here. The original
+              filename-based URL redirects automatically. Do not use the URL of another page.
+            field:
+              name: path
+              label: Previous path
+              widget: string
+              pattern:
+                - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
+                - Use /lowercase-words/ with a trailing slash; system paths are reserved.
           - name: seo
             label: Search engines and social sharing
             widget: object
@@ -3962,8 +3989,9 @@ collections:
         label: URL slug (last path segment)
         widget: string
         required: false
-        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
-          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public
+          URL, not this CMS entry or its source filename. Blank keeps the original filename-based
+          slug.
         pattern:
           - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
           - Use lowercase letters, numbers, and single hyphens.
@@ -3971,9 +3999,9 @@ collections:
         label: Full page path (optional override)
         widget: string
         required: false
-        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
-          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
-          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+          leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for the
+          default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
         pattern:
           - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
           - Use /lowercase-words/ with a trailing slash; system paths are reserved.
@@ -3981,8 +4009,8 @@ collections:
         label: Previous URLs (redirects)
         widget: list
         required: false
-        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-          redirects automatically. Do not use the URL of another page.
+        hint: When changing a previously published custom URL, add its old path here. The original
+          filename-based URL redirects automatically. Do not use the URL of another page.
         field:
           name: path
           label: Previous path
@@ -4041,7 +4069,7 @@ collections:
       - name: copy
         label: Detailed layout — page sections
         widget: object
-        collapsed: true
+        collapsed: false
         fields:
           - name: detail_breadcrumb_1
             label: Billboard — breadcrumb navigation
@@ -4078,7 +4106,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Billboard — breadcrumb navigation."
-            summary: Billboard — breadcrumb navigation
+            summary: Edit this section — Billboard — breadcrumb navigation
           - name: directory_intro_2
             label: Billboard — introduction
             widget: object
@@ -4099,12 +4127,17 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Billboard — introduction. Link destination: #process."
-            summary: Billboard — introduction
+            summary: Edit this section — Billboard — introduction
           - name: detail_billboard_art_3
             label: Billboard — illustration and caption
             widget: object
             collapsed: true
             fields:
+              - name: image_path
+                label: Detailed layout — billboard illustration
+                widget: image
+                required: false
+                hint: Used by the detailed service layout. The standard-layout illustration is a separate field.
               - name: alt_img_20
                 label: Image description
                 widget: text
@@ -4115,7 +4148,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Billboard — illustration and caption."
-            summary: Billboard — illustration and caption
+            summary: Edit this section — Billboard — illustration and caption
           - name: detail_overview_4
             label: Make it easy to choose you.
             widget: object
@@ -4171,7 +4204,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Make it easy to choose you.. Link destination: /about/."
-            summary: Make it easy to choose you.
+            summary: Edit this section — Make it easy to choose you.
           - name: detail_fit_5
             label: A good fit if…
             widget: object
@@ -4202,7 +4235,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: A good fit if…."
-            summary: A good fit if…
+            summary: Edit this section — A good fit if…
           - name: detail_subtypes_6
             label: Web design options
             widget: object
@@ -4338,7 +4371,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Web design options."
-            summary: Web design options
+            summary: Edit this section — Web design options
           - name: process_7
             label: Project process
             widget: object
@@ -4399,7 +4432,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Project process."
-            summary: Project process
+            summary: Edit this section — Project process
           - name: detail_faq_8
             label: Frequently asked questions
             widget: object
@@ -4460,7 +4493,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Frequently asked questions."
-            summary: Frequently asked questions
+            summary: Edit this section — Frequently asked questions
           - name: project_9
             label: Project enquiry — closing call to action
             widget: object
@@ -4507,7 +4540,7 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Project enquiry — closing call to action."
-            summary: Project enquiry — closing call to action
+            summary: Edit this section — Project enquiry — closing call to action
           - name: a_10
             label: Back to top link
             widget: object
@@ -4518,9 +4551,11 @@ collections:
                 widget: text
                 required: false
                 hint: "Location: Back to top link. Link destination: /services/."
-            summary: Back to top link
+            summary: Edit this section — Back to top link
         hint: Used only when “Use detailed service layout” is on. The standard layout uses Main content
-          instead.
+          instead. Edit the visible content below. Each named section has an arrow to show its
+          fields. Card details come from Services, Case studies, Blog, or Staff entries; shared
+          labels come from Site settings.
         required: false
       - name: body
         label: Standard layout — main content
@@ -4756,8 +4791,9 @@ collections:
         label: URL slug (last path segment)
         widget: string
         required: false
-        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
-          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public
+          URL, not this CMS entry or its source filename. Blank keeps the original filename-based
+          slug.
         pattern:
           - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
           - Use lowercase letters, numbers, and single hyphens.
@@ -4765,9 +4801,9 @@ collections:
         label: Full page path (optional override)
         widget: string
         required: false
-        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
-          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
-          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+          leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for the
+          default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
         pattern:
           - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
           - Use /lowercase-words/ with a trailing slash; system paths are reserved.
@@ -4775,8 +4811,8 @@ collections:
         label: Previous URLs (redirects)
         widget: list
         required: false
-        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-          redirects automatically. Do not use the URL of another page.
+        hint: When changing a previously published custom URL, add its old path here. The original
+          filename-based URL redirects automatically. Do not use the URL of another page.
         field:
           name: path
           label: Previous path
@@ -4843,11 +4879,13 @@ collections:
       - name: copy
         label: Study sections — top to bottom
         widget: object
-        collapsed: true
+        collapsed: false
         required: false
         hint: Disclosure, cover caption, related study and contact link work in both formats. Project facts
           and story sections are for Detailed format only. New records never inherit example project
-          copy.
+          copy. Edit the visible content below. Each named section has an arrow to show its fields.
+          Card details come from Services, Case studies, Blog, or Staff entries; shared labels come
+          from Site settings.
         fields:
           - name: breadcrumb
             label: Breadcrumb navigation
@@ -4884,6 +4922,7 @@ collections:
                 label: Current label
                 widget: text
                 required: false
+            summary: Edit this section — Breadcrumb navigation
           - name: disclosure
             label: Project / concept disclosure
             widget: object
@@ -4896,6 +4935,7 @@ collections:
                 required: false
                 default: "Concept study: illustrative work, not a commissioned client project or measured business
                   results."
+            summary: Edit this section — Project / concept disclosure
           - name: cover
             label: Cover caption
             widget: object
@@ -4906,6 +4946,7 @@ collections:
                 label: Caption
                 widget: text
                 required: false
+            summary: Edit this section — Cover caption
           - name: facts
             label: Project facts
             widget: object
@@ -4944,6 +4985,7 @@ collections:
                 label: Status
                 widget: text
                 required: false
+            summary: Edit this section — Project facts
           - name: brief
             label: 01 — Starting point
             widget: object
@@ -4978,6 +5020,7 @@ collections:
                 label: Boundary label
                 widget: text
                 required: false
+            summary: Edit this section — 01 — Starting point
           - name: discovery
             label: 02 — Discovery and direction
             widget: object
@@ -5020,6 +5063,7 @@ collections:
                 label: Step 4
                 widget: text
                 required: false
+            summary: Edit this section — 02 — Discovery and direction
           - name: decisions
             label: 03 — Design decisions
             widget: object
@@ -5058,6 +5102,7 @@ collections:
                 label: Decision 3 text
                 widget: text
                 required: false
+            summary: Edit this section — 03 — Design decisions
           - name: examples
             label: 04 — Work up close
             widget: object
@@ -5124,6 +5169,7 @@ collections:
                 label: Mobile text
                 widget: text
                 required: false
+            summary: Edit this section — 04 — Work up close
           - name: detail_image
             label: Detail illustration
             widget: object
@@ -5143,6 +5189,7 @@ collections:
                 label: Caption
                 widget: text
                 required: false
+            summary: Edit this section — Detail illustration
           - name: implementation
             label: 05 — Implementation
             widget: object
@@ -5193,6 +5240,7 @@ collections:
                 label: Verification note
                 widget: text
                 required: false
+            summary: Edit this section — 05 — Implementation
           - name: handoff
             label: 06 — Delivery and ownership
             widget: object
@@ -5263,6 +5311,7 @@ collections:
                 label: Phase 4 label
                 widget: text
                 required: false
+            summary: Edit this section — 06 — Delivery and ownership
           - name: outcomes
             label: 07 — Outcomes
             widget: object
@@ -5289,6 +5338,7 @@ collections:
                 label: Evidence text
                 widget: text
                 required: false
+            summary: Edit this section — 07 — Outcomes
           - name: lessons
             label: 08 — Takeaway
             widget: object
@@ -5307,6 +5357,7 @@ collections:
                 label: Text
                 widget: text
                 required: false
+            summary: Edit this section — 08 — Takeaway
           - name: contents
             label: Contents sidebar
             widget: object
@@ -5323,6 +5374,7 @@ collections:
                 widget: text
                 required: false
                 default: ← All case studies
+            summary: Edit this section — Contents sidebar
           - name: navigation
             label: Contents section links
             widget: object
@@ -5366,6 +5418,7 @@ collections:
                 label: Lessons
                 widget: text
                 required: false
+            summary: Edit this section — Contents section links
           - name: next
             label: Related / next study
             widget: object
@@ -5401,6 +5454,7 @@ collections:
                 widget: text
                 required: false
                 default: »
+            summary: Edit this section — Related / next study
           - name: contact
             label: Closing contact link
             widget: object
@@ -5417,6 +5471,7 @@ collections:
                 widget: text
                 required: false
                 default: Have a similar challenge? Let’s talk →
+            summary: Edit this section — Closing contact link
       - name: lead
         label: Lead
         widget: hidden
@@ -5602,8 +5657,9 @@ collections:
         label: URL slug (last path segment)
         widget: string
         required: false
-        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
-          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public
+          URL, not this CMS entry or its source filename. Blank keeps the original filename-based
+          slug.
         pattern:
           - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
           - Use lowercase letters, numbers, and single hyphens.
@@ -5611,9 +5667,9 @@ collections:
         label: Full page path (optional override)
         widget: string
         required: false
-        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
-          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
-          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+          leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for the
+          default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
         pattern:
           - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
           - Use /lowercase-words/ with a trailing slash; system paths are reserved.
@@ -5621,8 +5677,8 @@ collections:
         label: Previous URLs (redirects)
         widget: list
         required: false
-        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-          redirects automatically. Do not use the URL of another page.
+        hint: When changing a previously published custom URL, add its old path here. The original
+          filename-based URL redirects automatically. Do not use the URL of another page.
         field:
           name: path
           label: Previous path
@@ -5701,6 +5757,7 @@ collections:
                 widget: text
                 required: false
             required: false
+            summary: Edit this section — Billboard — breadcrumb navigation
           - name: cover
             label: Article cover image
             widget: object
@@ -5711,6 +5768,7 @@ collections:
                 widget: text
                 required: false
             required: false
+            summary: Edit this section — Article cover image
           - name: takeaway
             label: Article takeaway
             widget: object
@@ -5729,6 +5787,7 @@ collections:
                 widget: text
                 required: false
             required: false
+            summary: Edit this section — Article takeaway
           - name: author
             label: Article author
             widget: object
@@ -5747,6 +5806,7 @@ collections:
                 widget: text
                 required: false
             required: false
+            summary: Edit this section — Article author
           - name: contents
             label: Article contents sidebar
             widget: object
@@ -5781,6 +5841,7 @@ collections:
                       - ^#[A-Za-z0-9_-]+$
                       - "Use an on-page #section-id."
             required: false
+            summary: Edit this section — Article contents sidebar
           - name: footer
             label: Article footer
             widget: object
@@ -5803,7 +5864,10 @@ collections:
                 widget: text
                 required: false
             required: false
-        hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+            summary: Edit this section — Article footer
+        hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+          details come from Services, Case studies, Blog, or Staff entries; shared labels come from
+          Site settings.
         required: false
       - name: body
         label: Main content
@@ -5925,8 +5989,9 @@ collections:
         label: URL slug (last path segment)
         widget: string
         required: false
-        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public URL, not
-          this CMS entry or its source filename. Blank keeps the original filename-based slug.
+        hint: Optional. Use lowercase words separated by hyphens, for example emily-herr. Changes the public
+          URL, not this CMS entry or its source filename. Blank keeps the original filename-based
+          slug.
         pattern:
           - ^$|^[a-z0-9]+(-[a-z0-9]+)*$
           - Use lowercase letters, numbers, and single hyphens.
@@ -5934,9 +5999,9 @@ collections:
         label: Full page path (optional override)
         widget: string
         required: false
-        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with leading and
-          trailing slashes. No domain, spaces, query or #fragment. Leave blank for the default path. Avoid system
-          paths such as /api/, /sudo/, /uploads/, and /staff/."
+        hint: "Optional. Overrides the slug. Use a path such as /about/emily-herr/ or /get-in-touch/ with
+          leading and trailing slashes. No domain, spaces, query or #fragment. Leave blank for the
+          default path. Avoid system paths such as /api/, /sudo/, /uploads/, and /staff/."
         pattern:
           - ^$|^/(?!api/|sudo/|assets/|uploads/|fonts/|staff/)([a-z0-9]+(-[a-z0-9]+)*/)+$
           - Use /lowercase-words/ with a trailing slash; system paths are reserved.
@@ -5944,8 +6009,8 @@ collections:
         label: Previous URLs (redirects)
         widget: list
         required: false
-        hint: When changing a previously published custom URL, add its old path here. The original filename-based URL
-          redirects automatically. Do not use the URL of another page.
+        hint: When changing a previously published custom URL, add its old path here. The original
+          filename-based URL redirects automatically. Do not use the URL of another page.
         field:
           name: path
           label: Previous path
@@ -6245,7 +6310,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Header — logo and theme controls."
-                summary: Header — logo and theme controls
+                summary: Edit this section — Header — logo and theme controls
               - name: nav_2
                 label: Desktop navigation — labels and dropdowns
                 widget: object
@@ -6342,7 +6407,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /contact/."
-                summary: Desktop navigation — labels and dropdowns
+                summary: Edit this section — Desktop navigation — labels and dropdowns
               - name: mobile_nav_3
                 label: Mobile navigation
                 widget: object
@@ -6373,7 +6438,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Mobile navigation."
-                summary: Mobile navigation
+                summary: Edit this section — Mobile navigation
               - name: site_menu_header_4
                 label: Expanded menu — heading and close button
                 widget: object
@@ -6400,7 +6465,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Expanded menu — heading and close button."
-                summary: Expanded menu — heading and close button
+                summary: Edit this section — Expanded menu — heading and close button
               - name: site_menu_links_5
                 label: Expanded menu — page links
                 widget: object
@@ -6446,7 +6511,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /contact/."
-                summary: Expanded menu — page links
+                summary: Edit this section — Expanded menu — page links
               - name: site_menu_services_6
                 label: Expanded menu — service links
                 widget: object
@@ -6487,7 +6552,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/contract-work/."
-                summary: Expanded menu — service links
+                summary: Edit this section — Expanded menu — service links
               - name: site_menu_note_7
                 label: Expanded menu — supporting note
                 widget: object
@@ -6498,7 +6563,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Expanded menu — supporting note."
-                summary: Expanded menu — supporting note
+                summary: Edit this section — Expanded menu — supporting note
               - name: noscript_8
                 label: Navigation fallback — JavaScript disabled
                 widget: object
@@ -6545,7 +6610,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
-                summary: Navigation fallback — JavaScript disabled
+                summary: Edit this section — Navigation fallback — JavaScript disabled
               - name: global_footer_9
                 label: Footer illustration — accessibility
                 widget: object
@@ -6556,7 +6621,7 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Footer illustration — accessibility. Accessibility text; not a visible headline."
-                summary: Footer illustration — accessibility
+                summary: Edit this section — Footer illustration — accessibility
               - name: footer_info_10
                 label: Footer — business details
                 widget: object
@@ -6582,8 +6647,123 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Footer — business details. Link destination: #top."
-                summary: Footer — business details
-            hint: Expand a section to edit nearby headings, text, links and accessibility labels together.
+                summary: Edit this section — Footer — business details
+              - name: staff_profiles_11
+                label: Staff pages — headings, invitations and profile links
+                widget: object
+                collapsed: true
+                summary: Edit shared staff-page text
+                hint: Shared across every Staff profile and the About page profile links. Individual biographies,
+                  skills, roles and facts are edited in Staff.
+                fields:
+                  - name: profile_home
+                    label: Breadcrumb — Home
+                    widget: text
+                    required: false
+                    default: Home
+                  - name: profile_about_directory
+                    label: Breadcrumb — About
+                    widget: text
+                    required: false
+                    default: About
+                  - name: profile_contact_button
+                    label: Billboard — contact button
+                    widget: text
+                    required: false
+                    default: Talk with our team
+                  - name: profile_skills_link
+                    label: Billboard — skills link
+                    widget: text
+                    required: false
+                    default: Explore skills ↓
+                  - name: profile_about_label
+                    label: Biography — eyebrow
+                    widget: text
+                    required: false
+                    default: ABOUT
+                  - name: profile_about_heading
+                    label: Biography — heading ({name} inserts first name)
+                    widget: text
+                    required: false
+                    default: A little about {name}.
+                  - name: profile_approach_heading
+                    label: Working approach — heading
+                    widget: text
+                    required: false
+                    default: How I work
+                  - name: profile_contributions_heading
+                    label: Contributions — heading
+                    widget: text
+                    required: false
+                    default: What I bring to a project
+                  - name: profile_interests_heading
+                    label: Interests — heading
+                    widget: text
+                    required: false
+                    default: Beyond the brief
+                  - name: profile_toolkit_label
+                    label: Skills — eyebrow
+                    widget: text
+                    required: false
+                    default: THE TOOLKIT
+                  - name: profile_skills_heading
+                    label: Skills — heading
+                    widget: text
+                    required: false
+                    default: Skills & strengths
+                  - name: profile_facts_heading
+                    label: At a glance — heading
+                    widget: text
+                    required: false
+                    default: At a glance
+                  - name: profile_focus_label
+                    label: At a glance — focus label
+                    widget: text
+                    required: false
+                    default: Focus
+                  - name: profile_collaboration_label
+                    label: At a glance — collaboration label
+                    widget: text
+                    required: false
+                    default: Works with
+                  - name: profile_handoff_label
+                    label: At a glance — handoff label
+                    widget: text
+                    required: false
+                    default: A useful handoff
+                  - name: profile_connect_heading
+                    label: Closing invitation — heading
+                    widget: text
+                    required: false
+                    default: Good projects start with a conversation.
+                  - name: profile_connect_text
+                    label: Closing invitation — paragraph
+                    widget: text
+                    required: false
+                    default: Tell us what you’re trying to make easier. We’ll work out the scope and who can help.
+                  - name: profile_connect_button
+                    label: Closing invitation — button
+                    widget: text
+                    required: false
+                    default: Start a conversation
+                  - name: profile_others_heading
+                    label: Related people — heading
+                    widget: text
+                    required: false
+                    default: Meet the rest of the team
+                  - name: profile_team_link
+                    label: Related people — return link
+                    widget: text
+                    required: false
+                    default: Back to the team →
+                  - name: profile_view_link
+                    label: About directory — profile link
+                    widget: text
+                    required: false
+                    default: View profile →
+            hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
+              details come from Services, Case studies, Blog, or Staff entries; shared labels come
+              from Site settings.
           - name: skip_label
             label: Skip Label
             widget: string
@@ -6702,7 +6882,8 @@ collections:
             widget: hidden
             default:
               text/x-redirects:
-                suffixes: [""]
+                suffixes:
+                  - ""
           - name: disableKinds
             label: disableKinds
             widget: hidden

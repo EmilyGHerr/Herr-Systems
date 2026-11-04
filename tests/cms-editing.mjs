@@ -11,6 +11,10 @@ const save=async(f,d)=>{const s=await read(f);await writeFile(f,s.replace(/^---\
 export async function verifyCms(work,root){
  const dir=path.join(work,'cms-editing');await mkdir(dir);const source=await fixture(dir);const output=path.join(dir,'output');
  const config=YAML.parse(await read(path.join(source,'static/sudo/config.yml')));
+ // Ensure optional shared staff labels are exercised even after editors clear all current facts or draft profiles.
+ const staffFixture=path.join(source,'content/about/team/cms-field-coverage/index.md');
+ await mkdir(path.dirname(staffFixture),{recursive:true});
+ await writeFile(staffFixture,'---\ntitle: CMS field coverage\nsubtitle: Isolated fixture\ndescription: Isolated field coverage\nfragment: pages/staff-profile.html\nsample: false\nfacts:\n  focus: Fixture focus\n  collaboration: Fixture collaboration\n  handoff: Fixture handoff\n---\nFixture biography.\n');
  const entries=cmsEntries(config,source);
  let checked=0;const markers=[];
  const markText=(fields,data)=>{

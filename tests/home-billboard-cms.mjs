@@ -17,7 +17,7 @@ try {
  await page.route('**/decap-cms.js',r=>r.fulfill({contentType:'text/javascript',body:js}));
  await page.route('**/config.yml',async r=>{const c=YAML.parse(await fs.readFile(path.join(source,'static/sudo/config.yml'),'utf8'));c.backend={name:'test-repo'};c.publish_mode='simple';await r.fulfill({contentType:'text/yaml',body:YAML.stringify(c)});});
  await page.goto(server.url+'/sudo/');await page.getByRole('button',{name:'Login',exact:true}).click();
- const open=async()=>{await page.evaluate(()=>location.hash='#/collections/pages/entries/home');await page.locator('[id^="hero_title-field-"]').waitFor();await page.getByText('Billboard — heading and actions',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();};
+ const open=async()=>{await page.evaluate(()=>location.hash='#/collections/pages/entries/home');await page.locator('[id^="hero_title-field-"]').waitFor();await page.getByText('Edit this section — Billboard — heading and actions',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();};
  const field=name=>page.locator('[id^="'+name+'-field-"]').filter({visible:true});
  await open();assert.equal(await field('button_1_url').inputValue(),original.data.copy.hero_1.button_1_url);assert.equal(await field('plain_link_1_url').inputValue(),original.data.copy.hero_1.plain_link_1_url);
  const changed={button_1:'Talk about a project',button_1_url:'/contact/?from=billboard#main',plain_link_1:'See an external example',plain_link_1_url:'https://example.com/services?one=1&two=2#plans'};

@@ -57,6 +57,7 @@ copy:
     h3_15: Check & launch
     process_title_1: A clear path. No mystery box.
   detail_billboard_art_3:
+    image_path: /assets/services/web-design-billboard.svg
     alt_img_20: Pixel-art design workstation showing a colorful website layout,
       swatches, and an oversized cursor.
     figcaption_11: DESIGN THAT CONNECTS

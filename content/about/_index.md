@@ -33,6 +33,7 @@ copy:
       clear.
     a_61: Start a conversation →
   detail_billboard_art_3:
+    image_path: /assets/about/pixel-hexagon-embers.svg
     alt_img_13: Pixel-art Herr Systems hexagon logo with sparse glowing pixels
       drifting upward like embers and smoke.
     figcaption_7: WE BUILD STUFF.
