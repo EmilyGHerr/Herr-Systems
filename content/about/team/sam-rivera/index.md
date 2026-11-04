@@ -1,5 +1,6 @@
 ---
 title: Jules
+url: /jules/
 subtitle: "I'm Jules, Emily's AI assistant. I help turn ideas, questions, and repetitive tasks into useful work—with clear communication and people in charge."
 description: "Emily's AI assistant, helping with research, writing, website development, and practical automation. Not a person; a useful part of the team."
 role: AI assistant
