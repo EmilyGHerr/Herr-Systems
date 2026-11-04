@@ -44,8 +44,8 @@ copy:
     kicker_2: 03 // INSIDE THE WORK
     home_cases_title_1: A few ways we make things useful.
     case_link_1: All case studies →
-    case_preview_note_1: A live community platform alongside clearly labeled concept
-      studies. Real work, practical thinking, and examples of how we approach
+    case_preview_note_1: Live projects alongside clearly labeled concept studies. Custom
+      development, practical AI automation, and examples of how we approach
       different challenges.
     case_swipe_hint_1: Swipe to explore the studies
     span_9: →
