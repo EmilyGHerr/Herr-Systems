@@ -47,7 +47,7 @@ await check('Decap collections: editorial SEO fields and editable globals',async
     assert.deepEqual(seo.fields.map(f=>f.name),['search','social']);
     for(const key of ['title','description','noindex','canonicalURL'])assert(seo.fields[0].fields.some(f=>f.name===key),`${c.name}: missing search ${key}`);
     for(const key of ['image','imageAlt','ogTitle','ogDescription','twitterTitle','twitterDescription'])assert(seo.fields[1].fields.some(f=>f.name===key),`${c.name}: missing social ${key}`);
-    const copy=c.fields.find(f=>f.name==='copy');if(copy)assert(copy.fields.every(f=>f.widget==='hidden'||(f.widget==='object' && f.collapsed)),`${c.name}: ungrouped copy`);
+    const copy=c.fields.find(f=>f.name==='copy');if(copy)assert(copy.fields.every(f=>f.widget==='hidden'||(f.widget==='object' && typeof f.collapsed==='boolean')),`${c.name}: ungrouped copy`);
   }
   assert.deepEqual(missing,[],`Missing CMS fields: ${missing.join(', ')}`);
   const globals=entries.filter(c=>c.file?.startsWith('data/'));

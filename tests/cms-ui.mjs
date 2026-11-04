@@ -16,7 +16,7 @@ try {
  await page.goto(server.url+'/sudo/');await page.getByRole('button',{name:'Login',exact:true}).click();await page.getByRole('link',{name:'Home',exact:true}).click();await page.getByText('Announcement / system message',{exact:true}).last().waitFor();
  const text=await page.locator('body').innerText();const groups=['BILLBOARD — HEADING AND ACTIONS','ANNOUNCEMENT / SYSTEM MESSAGE','SERVICES — SECTION HEADING','PRICING OVERVIEW','CASE STUDIES — SECTION HEADING','CONTACT — NEXT STEP','SEARCH ENGINES AND SOCIAL SHARING'];
  let previous=-1;for(const label of groups){const index=text.indexOf(label);assert(index>previous,`Missing / out-of-order section ${label}`);previous=index;}
- await page.getByText('Announcement / system message',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();await page.getByText('Show announcement below the billboard',{exact:false}).first().waitFor();
+ await page.getByText('Edit this section — Announcement / system message',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();await page.getByText('Show announcement below the billboard',{exact:false}).first().waitFor();
  assert((await page.locator('body').innerText()).includes('ANNOUNCEMENT MESSAGE'));
  await page.getByText('Search engines and social sharing',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();await page.getByText('Google / search results',{exact:true}).last().waitFor();
  await page.getByText('Google / search results',{exact:true}).last().getByRole('button',{name:'Expand',exact:true}).click();await page.getByText('Search result title',{exact:false}).first().waitFor();
