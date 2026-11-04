@@ -429,3 +429,27 @@
     font-size: 19px;
   }
 }
+
+/* Reuse the service-page FAQ layout and native details/summary accordions. */
+.contact-page .contact-faq {
+  --detail-muted: var(--desk-muted);
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.contact-page .contact-faq .detail-section {
+  padding: clamp(28px, 4vw, 40px) 0 0;
+}
+.contact-page .contact-faq h2 {
+  font: 400 clamp(32px, 3.5vw, 44px)/1.15 var(--pixel);
+  letter-spacing: 0.01em;
+}
+.contact-page .contact-faq summary {
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.contact-page .contact-faq summary:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 5px;
+}
+.contact-page .contact-faq .faq-answer {
+  overflow-wrap: anywhere;
+}

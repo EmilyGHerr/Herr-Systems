@@ -2788,6 +2788,40 @@ collections:
             label: body_class
             widget: hidden
             default: contact-page
+          - name: faq
+            label: Frequently asked questions — below contact content
+            widget: object
+            collapsed: true
+            required: false
+            fields:
+              - name: enabled
+                label: Show FAQ section
+                widget: boolean
+                default: true
+                required: false
+                hint: Hiding the section keeps your saved questions and answers.
+              - name: title
+                label: Section heading
+                widget: string
+              - name: intro
+                label: Introductory text
+                widget: text
+                required: false
+              - name: items
+                label: Questions and answers
+                widget: list
+                collapsed: true
+                required: false
+                summary: '{{fields.question}}'
+                hint: Add, remove, or drag questions into the order you want them displayed.
+                fields:
+                  - name: question
+                    label: Question
+                    widget: string
+                  - name: answer
+                    label: Answer
+                    widget: markdown
+                    hint: Supports paragraphs, lists, emphasis, and links.
           - name: seo
             label: Search engines and social sharing
             widget: object

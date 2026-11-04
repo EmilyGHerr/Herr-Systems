@@ -210,11 +210,13 @@
 .service-detail summary::marker {
   color: var(--cyan);
 }
-.service-detail .detail-questions p {
+.service-detail .detail-questions p,
+.service-detail .detail-questions .faq-answer {
   margin: 14px 0 0;
   max-width: 62ch;
   color: var(--detail-muted);
   font-size: 15px;
+  line-height: 1.75;
 }
 .service-detail .detail-contact {
   scroll-margin-top: 100px;
@@ -368,3 +370,6 @@
     padding-bottom: 28px;
   }
 }
+
+.service-detail .faq-answer > :first-child { margin-top: 0; }
+.service-detail .faq-answer > :last-child { margin-bottom: 0; }
