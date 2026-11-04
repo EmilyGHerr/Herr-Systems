@@ -2371,7 +2371,7 @@ collections:
               - /services-billboard.css
               - /interactions.css
               - /service-detail.css
-              - /pricing.css?v=pricing-faq-1
+              - /pricing.css?v=inline-faq-2
               - /navigation.css
               - /inquiry-form.css
           - name: scripts
@@ -2391,23 +2391,22 @@ collections:
             widget: hidden
             default: services-billboard-variant pricing-page
           - name: faq
-            label: Frequently asked questions — below pricing content
+            label: Pricing explanation — accordions below the text
             widget: object
             collapsed: true
             required: false
             fields:
               - name: enabled
-                label: Show FAQ section
+                label: Show pricing accordions
                 widget: boolean
                 default: true
                 required: false
-                hint: Hiding the section keeps your saved questions and answers.
+                hint: Hiding the accordions keeps your saved questions and answers.
               - name: title
-                label: Section heading
-                widget: string
+                widget: hidden
+                required: false
               - name: intro
-                label: Introductory text
-                widget: text
+                widget: hidden
                 required: false
               - name: items
                 label: Questions and answers
