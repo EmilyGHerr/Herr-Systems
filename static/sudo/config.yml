@@ -3223,11 +3223,6 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Emily Herr. A direct connection.."
-                  - name: preview_note
-                    label: Sample staff disclosure
-                    widget: text
-                    required: false
-                    hint: Shown above the team when any visible profile is marked as a fictional demo.
                 summary: Emily Herr. A direct connection.
               - name: staff_card_7
                 label: Team / Emily Herr
