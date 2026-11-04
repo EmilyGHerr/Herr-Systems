@@ -8,3 +8,25 @@
 .service-detail :is(p, ul, ol, blockquote, pre, table):not(.kicker) + :is(h2, h3, h4, h5, h6) {
   margin-top: clamp(28px, 3vw, 44px);
 }
+
+/* Give prose lists the same type scale as paragraphs. Explicitly scoped to
+   content, not navigation, author cards, pricing controls or profile skill chips.
+   Fixed sizes avoid compounding the font size in nested Markdown lists. */
+.service-detail .service-prose :is(p, ul, ol) {
+  color: var(--detail-muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+.blog-page .article-prose :is(ul, ol) {
+  color: var(--detail-muted);
+  font-size: 18px;
+  line-height: 1.85;
+}
+.staff-profile-page #profile-about :is(p:not(.profile-label, .profile-intro), ul, ol) {
+  color: var(--profile-muted);
+  font-size: 16px;
+  line-height: 1.85;
+}
+@media (max-width: 720px) {
+  .blog-page .article-prose :is(ul, ol) { font-size: 17px; }
+}
