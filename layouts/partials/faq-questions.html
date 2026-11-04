@@ -1,0 +1,6 @@
+{{- /* Native accordions shared by service and contact FAQs; no JavaScript required. */ -}}
+<div class="detail-questions">
+{{ range . }}
+<details><summary>{{ .question }}</summary><div class="faq-answer">{{ .answer | markdownify }}</div></details>
+{{ end }}
+</div>

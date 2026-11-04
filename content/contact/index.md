@@ -3,7 +3,8 @@ title: Big idea? Small question?
 description: Tell us what you’re working on or what ought to work better. No finished brief needed.
 styles:
   - /retro3.css
-  - /contact.css
+  - /service-detail.css
+  - /contact.css?v=contact-faq-1
   - /interactions.css
   - /navigation.css
   - /inquiry-form.css
@@ -91,6 +92,23 @@ copy:
     direct_60: ✦
     direct_62: Working with businesses near and far.
     direct_61: Local roots. Open lines.
+faq:
+  enabled: true
+  title: A few questions before you get in touch.
+  intro: You don’t need a finished brief or all the technical answers. Here are a few useful starting points.
+  items:
+    - question: What should I include in my message?
+      answer: Tell us what you’re trying to do, what isn’t working, and who it’s for. A link to your current website and any timing or budget context are helpful, but not required. Please leave out passwords, payment information, and other sensitive details.
+    - question: Do I need a finished project brief?
+      answer: No. An idea, a rough outline, or a small question is enough to start. We can help clarify the goal and work out a practical next step before agreeing on the scope.
+    - question: Can you help with an existing website or setup?
+      answer: Yes. We can discuss improvements, hosting, integrations, or a defined development task without starting everything over. Share what you already have and what you’d like to change; we’ll confirm what fits.
+    - question: Where can I get an idea of the cost?
+      answer: Use our [pricing calculator](/pricing/) for a planning estimate, or describe the work in your message. We agree on scope and final pricing before work starts; third-party costs and ongoing services are discussed separately.
+    - question: Do you work with businesses outside your local area?
+      answer: Yes. We work with businesses near and far. Tell us where you’re based and what you need, and we can discuss a suitable way to collaborate.
+    - question: What happens after I get in touch?
+      answer: We review your starting point, ask useful questions, and talk through what help could look like. Then we agree on the next step, including scope, pricing, and timing, before work begins.
 body_class: contact-page
 subtitle: Tell us what you’re working on or what ought to work better. No finished brief needed.
 seo:
