@@ -1,82 +1,80 @@
 ---
-title: Alex Morgan
-subtitle: Alex brings structure to the early, sometimes messy stage of a website project.
-  In this fictional profile, they help a small team turn ideas, references, and business
-  goals into a visual direction people can understand and use.
-description: A thoughtful designer connecting business goals with clear content, useful
-  layouts, and a little personality.
-role: Design and Strategy
-image: /uploads/about-headshot-1.svg
-image_alt: Illustrated demo portrait of Alex Morgan, not a photograph of a real team
-  member
-specialty: Clarity meets creativity.
-sample: true
+title: Emily Herr
+subtitle: Alex brings structure to the early, sometimes messy stage of a website
+  project. In this fictional profile, they help a small team turn ideas,
+  references, and business goals into a visual direction people can understand
+  and use.
+description: A child of the 90s with experience in both design and development.
+image: /uploads/img_1199.jpeg
+image_alt: Selfie of Emily Herr
+role: Architect
+specialty: Make cool shit.
+sample: false
 weight: 10
 skills:
-- Information architecture
-- Responsive web design
-- Visual direction
-- Accessible typography
-- Wireframes & prototypes
-- Content structure
-- Design systems
-- Client workshops
+  - Information architecture
+  - Responsive web design
+  - Visual direction
+  - Accessible typography
+  - Wireframes & prototypes
+  - Content structure
+  - Design systems
+  - Client workshops
 facts:
   focus: Websites, page templates, and design direction
   collaboration: Business owners, developers, and content contributors
   handoff: Responsive layouts, reusable components, and annotated design decisions
 approach:
-- title: Listen before designing
-  text: Start with the audience, content, and the real job each page needs to do.
-- title: Make the structure visible
-  text: Use a content map and lightweight wireframes to agree on the direction before
-    polishing it.
-- title: Leave a useful handoff
-  text: Explain the design rules, document the reusable parts, and keep implementation
-    questions in the conversation.
+  - title: Listen before designing
+    text: Start with the audience, content, and the real job each page needs to do.
+  - title: Make the structure visible
+    text: Use a content map and lightweight wireframes to agree on the direction
+      before polishing it.
+  - title: Leave a useful handoff
+    text: Explain the design rules, document the reusable parts, and keep
+      implementation questions in the conversation.
 contributions:
-- title: A service-led website
-  text: Sketch a homepage, service-detail template, and contact journey that help
-    a visitor choose their next step.
-- title: A small design system
-  text: Define type, spacing, color, and component patterns a team can carry into
-    new pages.
-interests: Away from the screen, this demo version of Alex collects old interface
-  references, photographs hand-painted signs, and finds reasons to take the scenic
-  walking route.
+  - title: A service-led website
+    text: Sketch a homepage, service-detail template, and contact journey that help
+      a visitor choose their next step.
+  - title: A small design system
+    text: Define type, spacing, color, and component patterns a team can carry into
+      new pages.
+interests: TBD.
 related_service:
   url: /services/web-design/
   label: Explore web design
-fragment: pages/staff-profile.html
-styles:
-- /retro3.css
-- /services.css
-- /services-billboard.css
-- /service-detail.css
-- /staff-profile.css
-- /interactions.css
-- /navigation.css
-scripts:
-- /navigation.js
-- /retro3.js
-body_class: services-billboard-variant service-detail-page staff-profile-page
 seo:
   search:
-    title: ''
-    description: ''
+    title: ""
+    description: ""
     noindex: false
-    canonicalURL: ''
+    canonicalURL: ""
   social:
-    image: ''
-    imageAlt: ''
-    ogTitle: ''
-    ogDescription: ''
-    twitterTitle: ''
-    twitterDescription: ''
+    image: ""
+    imageAlt: ""
+    ogTitle: ""
+    ogDescription: ""
+    twitterTitle: ""
+    twitterDescription: ""
+fragment: pages/staff-profile.html
+styles:
+  - /retro3.css
+  - /services.css
+  - /services-billboard.css
+  - /service-detail.css
+  - /staff-profile.css
+  - /interactions.css
+  - /navigation.css
+scripts:
+  - /navigation.js
+  - /retro3.js
+body_class: services-billboard-variant service-detail-page staff-profile-page
 ---
+When I think back on my childhood I remember walking across town after middle school and hunkering down in the basement of the law office my mom worked at so I could play Pokemon on my GBA for the couple hours she had left to work before she ended her day.
 
-Good design starts with knowing what a visitor is trying to do. Alex focuses on the questions behind a brief: what needs to be easy to find, what makes a business distinct, and what would help someone feel ready to get in touch.
+I also remember my Pokemon obsession leading me to talking about hidden islands and secret event tickets on the Nintendo nSider forums at the city library. I was so enamored by the message board structure and design and all the systems and groups of people talking online.
 
-Their work moves from content outlines and quick layout sketches to responsive page templates. Typography, spacing, and contrast are considered together, so the result has personality without making the useful information harder to read.
+One thing led to another and eventually I was making my own little crappy Proboards forum, teaching myself CSS via the limited editor they allowed on the free tier.
 
-Alex likes collaborative reviews with a clear question to answer. Instead of asking whether a design “feels right,” they walk through the decisions, explain the trade-offs, and make the next round of feedback manageable.
+That feeling is still what hooks me. Sure, everyone (unfortunately) needs money to live, so I have to do this for money, but I still really do it to chase that feeling of building something up and watching it work after it's deployed.
