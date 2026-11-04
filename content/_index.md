@@ -60,8 +60,10 @@ copy:
   hero_1:
     kicker_1: WELCOME TO HERR SYSTEMS!
     button_1: Get started
+    button_1_url: "#contact"
     b_3: »
     plain_link_1: Explore our services
+    plain_link_1_url: /services/
   article_5:
     h3_2: Development
     p_3: Fast, tidy functionality built around what your business needs.

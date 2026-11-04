@@ -61,20 +61,38 @@ collections:
                     required: false
                     hint: "Location: Billboard — heading and actions."
                   - name: button_1
-                    label: Link text
+                    label: Primary button — text
                     widget: text
                     required: false
-                    hint: "Location: Billboard — heading and actions. Link destination: #contact."
+                    hint: Text inside the primary billboard button.
+                  - name: button_1_url
+                    label: Primary button — link destination
+                    widget: string
+                    required: false
+                    default: '#contact'
+                    hint: 'Use /contact/ for a site page, #contact for a homepage section, or a full https:// address. mailto: and tel: links are also supported. Blank uses #contact.'
+                    pattern:
+                      - '^$|^(?:/(?!/)|#|https?://|mailto:|tel:)\S*$'
+                      - 'Use a site path starting with /, a #section, or an http://, https://, mailto: or tel: link without spaces.'
                   - name: b_3
                     label: Emphasis / icon
                     widget: text
                     required: false
                     hint: "Location: Billboard — heading and actions."
                   - name: plain_link_1
-                    label: Link text 2
+                    label: Secondary button — text
                     widget: text
                     required: false
-                    hint: "Location: Billboard — heading and actions. Link destination: /services/."
+                    hint: Text inside the secondary billboard link.
+                  - name: plain_link_1_url
+                    label: Secondary button — link destination
+                    widget: string
+                    required: false
+                    default: /services/
+                    hint: 'Use a site path, #section, or full https:// address. mailto: and tel: links are also supported. Blank uses /services/.'
+                    pattern:
+                      - '^$|^(?:/(?!/)|#|https?://|mailto:|tel:)\S*$'
+                      - 'Use a site path starting with /, a #section, or an http://, https://, mailto: or tel: link without spaces.'
                 summary: Billboard — heading and actions
               - name: notice_2
                 label: Announcement / system message
