@@ -1,11 +1,14 @@
 ---
 title: Billie
 slug: billie
-subtitle: "Billie is an indoor cat and our self-appointed Head of Gravity Testing. If something is sitting peacefully on a high surface, she considers that an unresolved issue."
-description: "Indoor cat. High-place enthusiast. Dedicated to finding out whether the thing on the shelf still falls when you push it."
-role: Head of Gravity Testing
-image: /uploads/about-headshot-3.svg
+subtitle: Billie is an indoor cat and our self-appointed Head of Gravity
+  Testing. If something is sitting peacefully on a high surface, she considers
+  that an unresolved issue.
+description: Indoor cat. High-place enthusiast. Dedicated to finding out whether
+  the thing on the shelf still falls when you push it.
+image: /uploads/img_1914.jpeg
 image_alt: Temporary illustrated profile placeholder; Billie's photo will be added later
+role: Head of Gravity Testing
 specialty: Bringing things down to earth. Literally.
 sample: false
 weight: 30
@@ -24,43 +27,50 @@ facts:
   handoff: The object is on the floor now. You're welcome.
 approach:
   - title: Find the highest available surface
-    text: Get a good overview of the situation. Identify anything that appears too comfortable remaining where it was put.
+    text: Get a good overview of the situation. Identify anything that appears too
+      comfortable remaining where it was put.
   - title: Apply one paw
-    text: Start with a gentle nudge. Escalate until gravity takes ownership of the deliverable.
+    text: Start with a gentle nudge. Escalate until gravity takes ownership of the
+      deliverable.
   - title: Decline the retrospective
-    text: Observe the result, make brief eye contact, and leave the human to document the incident.
+    text: Observe the result, make brief eye contact, and leave the human to
+      document the incident.
 contributions:
   - title: Continuous gravity assurance
-    text: A rigorous, entirely unsolicited testing program for objects stored above floor level. Previous results do not eliminate the need to test again.
+    text: A rigorous, entirely unsolicited testing program for objects stored above
+      floor level. Previous results do not eliminate the need to test again.
   - title: A healthier relationship with work
-    text: A reminder that not everything needs to be a meeting, a metric, or even productive. Sometimes the correct next step is a nap.
-interests: "Indoor living, high places, naps, and relocating things from those high places. Outdoor expeditions are not part of her job description. Neither is picking anything back up."
-fragment: pages/staff-profile.html
-styles:
-- /retro3.css
-- /services.css
-- /services-billboard.css
-- /service-detail.css
-- /staff-profile.css
-- /interactions.css
-- /navigation.css
-scripts:
-- /navigation.js
-- /retro3.js
-body_class: services-billboard-variant service-detail-page staff-profile-page
+    text: A reminder that not everything needs to be a meeting, a metric, or even
+      productive. Sometimes the correct next step is a nap.
+interests: Indoor living, high places, naps, and relocating things from those
+  high places. Outdoor expeditions are not part of her job description. Neither
+  is picking anything back up.
 seo:
   search:
-    title: ''
-    description: ''
+    title: ""
+    description: ""
     noindex: false
-    canonicalURL: ''
+    canonicalURL: ""
   social:
-    image: ''
-    imageAlt: ''
-    ogTitle: ''
-    ogDescription: ''
-    twitterTitle: ''
-    twitterDescription: ''
+    image: ""
+    imageAlt: ""
+    ogTitle: ""
+    ogDescription: ""
+    twitterTitle: ""
+    twitterDescription: ""
+fragment: pages/staff-profile.html
+styles:
+  - /retro3.css
+  - /services.css
+  - /services-billboard.css
+  - /service-detail.css
+  - /staff-profile.css
+  - /interactions.css
+  - /navigation.css
+scripts:
+  - /navigation.js
+  - /retro3.js
+body_class: services-billboard-variant service-detail-page staff-profile-page
 ---
 
 Billie is a real cat with an honorary job title and absolutely no billable hours. She is part of life behind Herr Systems, not the person handling your project. Please direct all actual questions, approvals, and requests for opposable thumbs to Emily.
