@@ -7,7 +7,8 @@ styles:
   - /services.css
   - /services-billboard.css
   - /interactions.css
-  - /pricing.css
+  - /service-detail.css
+  - /pricing.css?v=pricing-faq-1
   - /navigation.css
   - /inquiry-form.css
 scripts:
@@ -171,6 +172,25 @@ copy:
     p_25: ", and we’ll scope it around your team."
     a_53: consulting
     a_54: contract work
+faq:
+  enabled: true
+  title: A few questions about pricing.
+  intro: What the estimate covers, what stays separate, and how we agree on the work.
+  items:
+    - question: Is the calculator a final quote?
+      answer: No. It provides a sample estimate to help you plan. We review your goals, existing systems, content, and requirements before agreeing on the scope and final price. Sending a quote request does not book work or commit you to a project.
+    - question: Do you charge hourly or per project?
+      answer: Our hourly rate is **$70/hour**. We can also agree on a fixed price for a defined project. A well-scoped project can cost less than the equivalent hourly total, but there is no guaranteed percentage discount. We confirm the approach before work starts.
+    - question: Does each website page count as a separate template?
+      answer: No. A template is a reusable layout for a type of content, such as a homepage, service detail, or blog article. Ten service pages using the same layout count as one template. Content entry, migration, and custom functionality are scoped separately.
+    - question: How much does hosting cost, and can I choose it on its own?
+      answer: Static Site Hosting is **$5/month**, Basic Hosting is **$10/month**, and E-Commerce Hosting is **$25/month**. Hosting is separate from one-time project work and can be discussed for an existing site without a new website build. We confirm the appropriate plan and coverage first; migration and unlimited development are not included.
+    - question: Which costs are separate from the estimate?
+      answer: Domain names, paid themes or plugins, third-party subscriptions, AI model subscriptions or API usage, payment processing, taxes where applicable, and work outside the agreed scope are separate. Ongoing monitoring and monthly support are also scoped separately. We discuss relevant costs before work begins.
+    - question: What if I only need consulting, contract help, or a small change?
+      answer: You do not need a website package. Select Consulting or Contract Work in the calculator, or [tell us what you need](/contact/). Planned hours are a starting allowance, not a booking or a guaranteed completion time. We agree on a bounded scope, pricing, and timing before starting.
+    - question: What happens if the scope changes?
+      answer: We agree on inclusions, revision rounds, the schedule, and how change requests will be handled before starting. If you need something outside that scope, we discuss the additional work and its pricing before proceeding.
 body_class: services-billboard-variant pricing-page
 subtitle: Our hourly rate is <strong>$70/hour</strong>. Defined projects can cost less than the
   equivalent hourly total. We agree on the scope and price before work starts.
