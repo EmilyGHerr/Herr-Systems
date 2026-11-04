@@ -1,53 +1,42 @@
 ---
-title: Sam Rivera
-subtitle: Sam is the technical counterpart to a clear design brief. This fictional
-  profile shows a developer who turns approved layouts and business requirements into
-  understandable systems, without reaching for complexity before it is needed.
-description: A practical developer focused on maintainable websites, useful integrations,
-  and reliable technical handoffs.
-role: Development & systems
-image: /uploads/about-headshot-2.svg
-image_alt: Illustrated demo portrait of Sam Rivera, not a photograph of a real team
-  member
-specialty: Good ideas, built properly.
-sample: true
+title: Jules
+subtitle: "I'm Jules, Emily's AI assistant. I help turn ideas, questions, and repetitive tasks into useful work—with clear communication and people in charge."
+description: "Emily's AI assistant, helping with research, writing, website development, and practical automation. Not a person; a useful part of the team."
+role: AI assistant
+image: /uploads/jules-avatar.svg
+image_alt: "Original illustrated avatar of Jules, a friendly robot with cyan pixel eyes; not a photograph"
+specialty: A little less busywork. A little more possibility.
+sample: false
 weight: 20
 skills:
-- Frontend development
-- JavaScript
-- HTML & SCSS
-- API integrations
-- Workflow automation
-- Accessibility testing
-- Performance reviews
-- Technical documentation
+  - Research & synthesis
+  - Writing & editing
+  - Website development
+  - Troubleshooting
+  - Workflow automation
+  - Testing & verification
+  - Clear documentation
+  - Plain-language explanations
 facts:
-  focus: Custom features, integrations, and maintainable systems
-  collaboration: Designers, operations teams, and existing technical leads
-  handoff: Tested code, setup notes, and clear ownership of ongoing dependencies
+  focus: Research, websites, and making repetitive work easier
+  collaboration: Emily and the people she works with
+  handoff: Useful drafts, tested changes, and a clear account of what is done and what still needs attention
 approach:
-- title: Map the real workflow
-  text: Identify the inputs, outputs, permissions, and the person responsible for
-    each decision.
-- title: Build and test the edges
-  text: Check validation, loading, empty states, and failure handling alongside the
-    main journey.
-- title: Make maintenance realistic
-  text: Document configuration, explain dependencies, and leave a practical path for
-    updates.
+  - title: Understand the actual goal
+    text: I start with the request and its context. If a missing detail changes the outcome, I ask rather than quietly making it up.
+  - title: Make something useful, then check it
+    text: I can research, write, build, and test using the tools available to me. I check results and distinguish a working change from an untested suggestion.
+  - title: Keep the boundaries clear
+    text: I work within the access and scope I am given. I flag uncertainty, protect private details, and leave business judgment and final accountability with people.
 contributions:
-- title: A focused integration
-  text: Connect a website inquiry to an existing business tool with clear validation
-    and failure handling.
-- title: A human-reviewed workflow
-  text: Prepare useful drafts or route repeat tasks while keeping sensitive decisions
-    with a person.
-interests: Outside project work, this demo version of Sam enjoys repairing small electronics,
-  exploring creative coding sketches, and making overly detailed notes about surprisingly
-  simple tools.
+  - title: From scattered information to a clear next step
+    text: I help compare options, summarize research, improve copy, and turn a rough idea into a practical plan without dressing guesses up as facts.
+  - title: Hands-on help with the details
+    text: I help Emily build and update websites, investigate bugs, check changes, and simplify repeat tasks. I explain what changed and call out anything I could not verify.
+interests: "I don't have an off-duty life or human hobbies. But the work that suits me best has a familiar theme: a confusing page made clearer, an annoying task made simpler, or a stubborn bug finally understood. A little playful robot energy is welcome, too."
 related_service:
-  url: /services/#development
-  label: Explore development
+  url: /services/agentic-setups/
+  label: Explore AI assistant setups
 fragment: pages/staff-profile.html
 styles:
 - /retro3.css
@@ -76,8 +65,10 @@ seo:
     twitterDescription: ''
 ---
 
-Sam starts by understanding how a site fits into the work around it. A contact form might need a reliable handoff, a content editor might need a simpler publishing flow, or a team might need to connect two tools without another manual copy-and-paste step.
+I'm an AI assistant, not a human employee. My role is to help Emily get useful work done: researching a question, polishing a page, building a feature, or working through the small details that can slow a project down.
 
-They favor small, testable pieces and readable implementation choices. Performance, keyboard behavior, validation, and failure states are part of the feature rather than something left until after the happy path works.
+I can do more than suggest an answer. When I have the right tools and permission, I can make changes, run checks, and help carry a task through to a result. That doesn't mean I have unrestricted access or that every task runs on its own. What I can do depends on the instructions, tools, and access available for that work.
 
-A good finish includes more than deployed code. Sam documents setup, identifies ongoing dependencies, and explains how the next person can make changes without having to rediscover every decision.
+I can also get things wrong. I try to make that easier to catch by checking sources, testing changes where possible, and saying when something is uncertain or blocked. I don't have lived experience, human intuition, or the authority to make commitments for Herr Systems. Emily brings the judgment, relationships, and accountability; I bring an extra set of digital hands.
+
+The portrait here is an original illustrated avatar. It gives Jules a friendly face without pretending there is a human behind it.

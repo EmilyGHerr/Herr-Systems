@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 560" role="img" aria-labelledby="title desc">
+<title id="title">Jules, AI assistant</title><desc id="desc">An original robot avatar with an ivory shell, a navy face screen, cyan pixel eyes, and a friendly smile against a midnight-blue background.</desc>
+<defs>
+ <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0b1426"/><stop offset="1" stop-color="#162c46"/></linearGradient>
+ <linearGradient id="shell" x2=".8" y2="1"><stop stop-color="#f4f5eb"/><stop offset="1" stop-color="#9eafb7"/></linearGradient>
+ <linearGradient id="body" x2=".8" y2="1"><stop stop-color="#cbd7d7"/><stop offset="1" stop-color="#708d9a"/></linearGradient>
+ <radialGradient id="halo"><stop stop-color="#2a9ca6" stop-opacity=".4"/><stop offset="1" stop-color="#2a9ca6" stop-opacity="0"/></radialGradient>
+ <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#a6e7ed" stroke-opacity=".045"/></pattern>
+</defs>
+<path fill="url(#bg)" d="M0 0h480v560H0z"/><path fill="url(#grid)" d="M0 0h480v560H0z"/>
+<ellipse cx="240" cy="255" rx="235" ry="250" fill="url(#halo)"/>
+<g fill="#60ddd7"><path opacity=".65" d="M70 108h8v8h-8zm322 86h8v8h-8zM88 385h6v6h-6z"/><path opacity=".3" d="M359 91h12v12h-12zM54 274h8v8h-8zm348 145h6v6h-6z"/></g>
+<path d="M229 112v42h22v-42" fill="#769ba8"/><path d="M228 97h24v24h-24z" fill="#73e7dc"/><path d="M232 101h9v7h-9z" fill="#d2fff3"/>
+<path d="M210 357h60v78h-60z" fill="#73909a"/><path d="M210 379h60v13h-60z" fill="#345c70"/>
+<path d="M77 560v-55q0-67 66-89l54-18 43 25 43-25 54 18q66 22 66 89v55z" fill="url(#body)"/>
+<path d="m197 398 43 25 43-25 20 29-63 39-63-39z" fill="#e0e7e2"/>
+<path d="M116 499v61m248-61v61" stroke="#486b7c" stroke-width="10"/>
+<rect x="206" y="487" width="68" height="39" rx="8" fill="#24475c"/><path d="M222 502h10v10h-10zm16 0h10v10h-10z" fill="#76eadb"/><path d="M254 502h5v10h-5z" fill="#8facb5"/>
+<rect x="79" y="226" width="33" height="90" rx="12" fill="#648d9d"/><rect x="368" y="226" width="33" height="90" rx="12" fill="#648d9d"/>
+<path d="M97 214q0-65 65-65h156q65 0 65 65v93q0 66-66 66H163q-66 0-66-66z" fill="#091321" opacity=".28" transform="translate(0 9)"/>
+<rect x="97" y="149" width="286" height="224" rx="61" fill="url(#shell)"/>
+<path d="M128 191q13-22 43-22h137" fill="none" stroke="#fff" stroke-opacity=".65" stroke-width="7" stroke-linecap="round"/>
+<rect x="121" y="194" width="238" height="146" rx="34" fill="#304a5a"/>
+<rect x="127" y="200" width="226" height="134" rx="29" fill="#0c1d2c"/>
+<path d="M147 220h180" stroke="#254053" stroke-width="3" stroke-linecap="round"/>
+<g fill="#7bf2df"><path d="M165 247h13v-7h13v7h13v28h-13v7h-13v-7h-13zm111 0h13v-7h13v7h13v28h-13v7h-13v-7h-13z"/>
+<path d="M214 291h13v8h26v-8h13v17h-13v5h-26v-5h-13z"/></g>
+<path d="M143 294h27m140 0h27" stroke="#467689" stroke-width="5" stroke-linecap="round"/>
+<path d="M226 355h28" stroke="#6c8993" stroke-width="4" stroke-linecap="round"/>
+</svg>
