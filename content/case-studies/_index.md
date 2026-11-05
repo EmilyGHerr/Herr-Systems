@@ -1,11 +1,10 @@
 ---
-title: Good thinking. Useful work.
-hero_title: Good thinking.<br/>Useful work.
-subtitle: A closer look at how a brief becomes a practical website or a better
-  way of working. The decisions, the details, and the reasons behind them.
-description: A closer look at how a brief becomes a practical website or a
-  better way of working. The decisions, the details, and the reasons behind
-  them.
+title: Projects we've worked on.
+hero_title: Projects we've worked on.
+subtitle: A closer look at some real-world examples of our services in action
+  and the work it took to get them there.
+description: A closer look at some real-world examples of our services in action
+  and the work it took to get them there.
 copy:
   detail_breadcrumb_1:
     aria_label_nav_5: Breadcrumb
