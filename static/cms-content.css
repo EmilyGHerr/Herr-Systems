@@ -5,8 +5,13 @@
 
 /* Separate new prose sections from preceding copy without moving first headings
    or changing card, billboard, and navigation spacing. */
-.service-detail :is(p, ul, ol, blockquote, pre, table):not(.kicker) + :is(h2, h3, h4, h5, h6) {
+.service-detail :is(p, ul, ol, blockquote, pre, table):not(.kicker, .case-label) + :is(h2, h3, h4, h5, h6) {
   margin-top: clamp(28px, 3vw, 44px);
+}
+
+/* Keep card eyebrows close to their titles on both listing surfaces. */
+.case-page .case-card .case-label, .home-case-studies .case-card .case-label {
+  margin-bottom: 8px;
 }
 
 /* Give prose lists the same type scale as paragraphs. Explicitly scoped to

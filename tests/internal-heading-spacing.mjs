@@ -17,6 +17,17 @@ try {
     console.log(`PASS ${route} ${width}px ${theme}: ${headings.length} headings have >=28px separation`);
    }
   }
+  for(const route of ["/","/case-studies/"]) {
+   await page.goto(server.url+route);await page.evaluate(()=>document.fonts.ready);
+   for(const theme of ["dark","light"]) {
+    await page.evaluate(t=>document.documentElement.dataset.theme=t,theme);
+    const cards=await page.locator('.case-card-copy').evaluateAll(cs=>cs.map(c=>{const label=c.querySelector('.case-label'),title=c.querySelector('h3');return {text:title.textContent,gap:title.getBoundingClientRect().top-label.getBoundingClientRect().bottom,margin:parseFloat(getComputedStyle(title).marginTop)};}));
+    assert(cards.length>0);
+    for(const c of cards)assert(Math.abs(c.gap-8)<0.2&&c.margin===0,`${route} ${width}px ${theme}: ${c.text} eyebrow gap=${c.gap}, title margin=${c.margin}`);
+    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route+': overflow');
+    console.log(`PASS ${route} ${width}px ${theme}: all card eyebrows have 8px title gap`);
+   }
+  }
   await page.close();
  }
 } finally {await browser?.close();await server?.close();await cleanup(work);}
