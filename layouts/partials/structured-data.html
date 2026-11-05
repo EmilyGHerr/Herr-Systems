@@ -89,7 +89,7 @@
 {{- if $p.IsSection -}}
   {{- $items := slice -}}
   {{- $children := $p.RegularPages.ByWeight -}}
-  {{- if eq $p.Section "blog" -}}{{- $children = $p.RegularPages.ByDate.Reverse -}}{{- end -}}
+  {{- if eq $p.Section "blog" -}}{{- with $p.Paginator -}}{{- $children = .Pages -}}{{- end -}}{{- end -}}
   {{- if eq $p.Params.fragment "pages/about.html" -}}{{- $children = (where site.RegularPages "Params.fragment" "pages/staff-profile.html").ByTitle.ByWeight -}}{{- end -}}
   {{- range $children -}}
     {{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "url" .Permalink "name" (partial "schema-text.html" (.Params.listing.title | default .Params.listing_title | default .Title))) -}}

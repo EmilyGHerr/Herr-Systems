@@ -48,11 +48,11 @@ function faq(p,enabled){
  assert(details.length);assert.equal(p.webpage.mainEntity.length,details.length);const html=v=>load(String(v),{},false).html().trim();
  details.each((i,e)=>{const q=p.webpage.mainEntity[i];assert(is(q,'Question'));assert(is(q.acceptedAnswer,'Answer'));assert.equal(q.name,norm(p.$(e).find('summary').text()));assert.equal(html(q.acceptedAnswer.text),html(p.$(e).find('.faq-answer').html()),'Answer HTML matches renderer');});
 }
-function crumbs(p,urls){const n=p.graph.find(n=>is(n,'BreadcrumbList'));assert(n);const e=n.itemListElement;assert.deepEqual(e.map(e=>typeof e.item==='string'?e.item:e.item?.['@id']||e.item?.url),urls.map(abs));assert.deepEqual(e.map(e=>e.position),e.map((_,i)=>i+1));for(const x of e)assert(plain(x.name||x.item?.name));assert(!JSON.stringify(e).includes('/about/team/'));}
+function crumbs(p,urls){const n=p.graph.find(n=>is(n,'BreadcrumbList'));assert(n);const e=n.itemListElement;assert.deepEqual(e.map(e=>typeof e.item==='string'?e.item:e.item?.['@id']||e.item?.url),urls.map(abs));assert.deepEqual(e.map(e=>e.position),e.map((_,i)=>i+1));for(const x of e)assert(plain(x.name||x.item?.name));assert(!JSON.stringify(e).includes('/about/team/'));const visible=p.$('nav.detail-breadcrumb,nav.contact-breadcrumb').first().children().toArray().filter(el=>p.$(el).attr('aria-hidden')!=='true').map(el=>norm(p.$(el).text())).filter(v=>v&&v!=='/');assert.deepEqual(e.map(el=>el.name),visible,'Breadcrumb names follow the visible trail');}
 function article(p,d,author){const a=p.get(p.canonical+'#article');assert(is(a,'BlogPosting'));assert.equal(a.headline,plain(d.hero_title||d.title));assert.equal(a.description,p.webpage.description);assert.equal(image(a.image),image(p.webpage.image));for(const k of ['datePublished','dateModified']){assert.match(a[k],/^\d{4}-\d{2}-\d{2}(?:T.*)?$/);assert(Number.isFinite(Date.parse(a[k])));}assert.equal(Date.parse(a.datePublished),Date.parse(d.date));assert(Date.parse(a.dateModified)>=Date.parse(a.datePublished));ref(a.publisher,bid);ref(a.mainEntityOfPage,p.canonical+'#webpage');if(author){ref(a.author,author);assert(is(p.get(author),'Person'));}else assert(!Object.hasOwn(a,'author'),'AI author omitted');}
 function list(p,records){const n=p.get(p.canonical+'#list');assert(is(n,'ItemList'));const e=n.itemListElement;const actual=e.map(e=>({url:typeof e.item==='string'?e.item:e.item?.url||e.item?.['@id']||e.url,name:e.name||e.item?.name}));const expected=records.map(r=>({url:abs(route(r)),name:plain(r.data.listing?.title||r.data.listing_title||r.data.title)}));const sort=r=>r.sort((a,b)=>a.url.localeCompare(b.url));assert.deepEqual(sort(actual),sort(expected),'Published children and current URLs');assert.deepEqual(e.map(e=>e.position),e.map((_,i)=>i+1));}
 
-// Only disposable fixtures are mutated. Nine builds cover baseline and combined independent edits.
+// Only disposable fixtures are mutated. Ten builds cover baseline and combined independent edits.
 export async function verifyStructuredData(work){
  const dir=path.join(work,'structured-data');await mkdir(dir,{recursive:true});const source=await fixture(dir),dest=path.join(dir,'output');
  const records=await Promise.all((await files(path.join(source,'content'))).filter(f=>f.endsWith('.md')).map(async f=>({file:path.relative(source,f).split(path.sep).join('/'),...parseRecord(await text(f))})));
@@ -106,6 +106,13 @@ export async function verifyStructuredData(work){
  await check('cleared detailed FAQs and absent optional business settings',async()=>{
   const p=await page(dest,route(detailed));assert(!is(p.webpage,'FAQPage'));assert.equal(p.$('.detail-questions details').length,0);ref(p.webpage.mainEntity,p.canonical+'#service');
   for(const k of ['email','telephone','location','address','image'])assert(!Object.hasOwn(p.get(bid),k));
+ });
+ service.data.draft=false;service.data.seo.search.canonicalURL='https://herr.test/canonical-service/';await save(service);
+ for(let i=0;i<11;i++){const r=structuredClone(post);r.file=`content/blog/schema-pagination-${i}/index.md`;Object.assign(r.data,{title:`Pagination fixture ${i}`,hero_title:`Pagination fixture ${i}`,url:'',slug:'',date:`2026-01-${String(i+1).padStart(2,'0')}`});await save(r);}
+ run();
+ await check('canonical override and paginated blog list parity',async()=>{
+  const p=await page(dest,route(service));assert.equal(p.canonical,'https://herr.test/canonical-service/');ref(p.get(p.canonical+'#service').mainEntityOfPage,p.canonical+'#webpage');
+  for(const suffix of ['', 'page/2/']){const listPage=await page(dest,route(sections[1])+suffix);const actual=listPage.get(listPage.canonical+'#list').itemListElement.map(i=>({url:i.url,name:i.name}));const visible=listPage.$('.post-feature h2 a,.post-card h3 a').toArray().map(el=>({url:abs(listPage.$(el).attr('href')),name:plain(listPage.$(el).text())}));assert.deepEqual(actual,visible,'Only this page’s visible articles belong in its ItemList');}
  });
  console.log(`Structured-data execution: ${pages} published pages, ${builds} fixture builds, ${failures.length} mismatches`);
  assert.equal(failures.length,0,`Structured-data mismatches (${failures.length}):\n${failures.join('\n')}`);return {pages,builds,fixtureOnly:true};
