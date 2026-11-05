@@ -1,11 +1,17 @@
+{{- $page := . -}}
 {{- $profileCopy := partial "staff-copy.html" . -}}
-{{- $facts := .Params.facts | default dict -}}
+{{- $facts := .Params.facts -}}
 {{- $items := slice -}}
-{{- range slice (dict "key" "focus" "label" (index $profileCopy "profile_focus_label")) (dict "key" "collaboration" "label" (index $profileCopy "profile_collaboration_label")) (dict "key" "handoff" "label" (index $profileCopy "profile_handoff_label")) -}}
-  {{- $value := index $facts .key | default "" | strings.TrimSpace -}}
-  {{- $label := .label -}}
-  {{- with $value -}}
-    {{- $items = $items | append (dict "label" $label "value" .) -}}
+{{- if reflect.IsSlice $facts -}}
+  {{- range $facts -}}
+    {{- $value := .value | default "" | strings.TrimSpace -}}
+    {{- if $value -}}{{- $items = $items | append (dict "label" .label "value" ($page.RenderString (dict "display" "inline") $value)) -}}{{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $facts = $facts | default dict -}}
+  {{- range slice (dict "key" "focus" "label" (index $profileCopy "profile_focus_label")) (dict "key" "collaboration" "label" (index $profileCopy "profile_collaboration_label")) (dict "key" "handoff" "label" (index $profileCopy "profile_handoff_label")) -}}
+    {{- $value := index $facts .key | default "" | strings.TrimSpace -}}
+    {{- if $value -}}{{- $items = $items | append (dict "label" .label "value" $value) -}}{{- end -}}
   {{- end -}}
 {{- end -}}
 {{- with $items -}}

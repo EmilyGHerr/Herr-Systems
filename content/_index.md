@@ -44,9 +44,9 @@ copy:
     kicker_2: 03 // INSIDE THE WORK
     home_cases_title_1: A few ways we make things useful.
     case_link_1: All case studies →
-    case_preview_note_1: Live projects alongside clearly labeled concept studies. Custom
-      development, practical AI automation, and examples of how we approach
-      different challenges.
+    case_preview_note_1: Live projects alongside clearly labeled concept studies.
+      Custom development, practical AI automation, and examples of how we
+      approach different challenges.
     case_swipe_hint_1: Swipe to explore the studies
     span_9: →
     aria_label_div_1: Case studies
@@ -94,13 +94,18 @@ copy:
     home_pricing_title_1: $70
     span_8: / hour
     home_rate_note_1: Our rates are transparent
-    strong_1: Clear Scope. No Surprises.
-    p_8: Know what you’re paying for before the work begins. Our hourly rate is $70,
-      with the scope, costs, and next steps explained in plain language.
-    p_9: For a clearly defined project, per-project pricing can work out lower than
+    plain_link_2: Explore pricing & build an estimate →
+    pricing_body: >-
+      **Clear Scope. No Surprises.**
+
+
+      Know what you’re paying for before the work begins. Our hourly rate is
+      $70, with the scope, costs, and next steps explained in plain language.
+
+
+      For a clearly defined project, per-project pricing can work out lower than
       the equivalent hourly total. We’ll agree on the price up front and discuss
       any changes before adding work.
-    plain_link_2: Explore pricing & build an estimate →
 lead: Friendly websites, reliable hosting, and helpful automations for local
   businesses doing great work in the real world.
 styles:
@@ -129,4 +134,5 @@ seo:
     ogDescription: ""
     twitterTitle: ""
     twitterDescription: ""
+editor_content_version: 1
 ---

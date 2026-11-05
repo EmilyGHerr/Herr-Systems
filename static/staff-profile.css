@@ -104,7 +104,7 @@
   padding: 0;
   list-style: none;
 }
-.staff-profile-page .profile-approach li {
+.staff-profile-page .profile-approach > li {
   display: flex;
   gap: 20px;
 }

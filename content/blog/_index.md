@@ -1,6 +1,7 @@
 ---
 title: Notes from the workshop.
-description: Practical ideas for a clearer website, smoother workflows, and technology that earns its keep.
+description: Practical ideas for a clearer website, smoother workflows, and
+  technology that earns its keep.
 styles:
   - /retro3.css
   - /services.css
@@ -14,7 +15,8 @@ scripts:
   - /retro3.js
 fragment: pages/blog.html
 hero_title: Notes from the workshop.
-lead: Practical ideas for a clearer website, smoother workflows, and technology that earns its keep.
+lead: Practical ideas for a clearer website, smoother workflows, and technology
+  that earns its keep.
 copy:
   detail_breadcrumb_1:
     aria_label_nav_11: Breadcrumb
@@ -30,7 +32,8 @@ copy:
     span_41: /
     span_42: 4 min read
     a_63: A clearer website starts with better questions.
-    p_36: Before colors, layouts, or clever effects, get clear on what your visitors actually need.
+    p_36: Before colors, layouts, or clever effects, get clear on what your visitors
+      actually need.
     button_7: Read the story
     b_25: »
   detail_section_4:
@@ -43,7 +46,8 @@ copy:
     span_44: /
     span_45: 2 min read
     a_64: Start small. Automate something useful.
-    p_37: A practical way to choose your first automation without handing over the whole business.
+    p_37: A practical way to choose your first automation without handing over the
+      whole business.
     plain_link_5: Read the story →
   post_card_6:
     aria_label_a_10: "Read: What should good website hosting cover?"
@@ -52,14 +56,16 @@ copy:
     span_47: /
     span_48: 2 min read
     a_65: What should good website hosting cover?
-    p_38: "Go beyond disk space: the practical questions to ask about backups, updates, and ownership."
+    p_38: "Go beyond disk space: the practical questions to ask about backups,
+      updates, and ownership."
     plain_link_6: Read the story →
   p_7:
-    p_39: Have a question we should untangle?
+    p_39: Have a question we should untangle\?
   a_8:
     a_66: Send us a note →
 body_class: services-billboard-variant service-detail-page blog-page
-subtitle: Practical ideas for a clearer website, smoother workflows, and technology that earns its keep.
+subtitle: Practical ideas for a clearer website, smoother workflows, and
+  technology that earns its keep.
 seo:
   search:
     title: ""
@@ -73,4 +79,5 @@ seo:
     ogDescription: ""
     twitterTitle: ""
     twitterDescription: ""
+editor_content_version: 1
 ---
