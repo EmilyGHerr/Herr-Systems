@@ -25,11 +25,11 @@ copy:
     cover_caption: Septagon / the live homepage, captured November 2026.
   next:
     next_eyebrow: NEXT STUDY
-    next_heading: Maple Street Workshop
+    next_heading: St. Louis Water Damage Help
     next_button_label: Explore the next study
     next_button_icon: »
-    next_url: /case-studies/maple-street-workshop/
-    next_body: Web design \+ development / concept study
+    next_url: /case-studies/st-louis-water-damage-help/
+    next_body: Web design + AI-assisted development
   contact:
     contact_label: Need something more than a brochure website? Let’s talk →
     contact_url: /contact/
