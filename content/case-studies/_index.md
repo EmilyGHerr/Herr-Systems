@@ -1,23 +1,11 @@
 ---
 title: Good thinking. Useful work.
+hero_title: Good thinking.<br/>Useful work.
+subtitle: A closer look at how a brief becomes a practical website or a better
+  way of working. The decisions, the details, and the reasons behind them.
 description: A closer look at how a brief becomes a practical website or a
   better way of working. The decisions, the details, and the reasons behind
   them.
-styles:
-  - /retro3.css
-  - /services.css
-  - /services-billboard.css
-  - /service-detail.css
-  - /case-studies.css
-  - /interactions.css
-  - /navigation.css
-scripts:
-  - /navigation.js
-  - /retro3.js
-fragment: pages/case-studies.html
-hero_title: Good thinking.<br/>Useful work.
-lead: A closer look at how a brief becomes a practical website or a better way
-  of working. The decisions, the details, and the reasons behind them.
 copy:
   detail_breadcrumb_1:
     aria_label_nav_5: Breadcrumb
@@ -25,10 +13,7 @@ copy:
     span_10: /
     span_11: Case studies
   case_disclosure_2:
-    case_disclosure_1: Live project work and clearly labeled concept studies.
-      Septagon and Burn.Blue are Emily Herr’s self-directed projects; the
-      concept studies describe fictional organizations and illustrative work,
-      not commissioned client projects or measured business results.
+    case_disclosure_1: ""
   section_3:
     kicker_3: DIFFERENT CHALLENGES / ONE PRACTICAL APPROACH
     collection_title_1: Inside the work.
@@ -67,9 +52,21 @@ copy:
     p_17: Tell us where the friction is\. We’ll start there\.
     button_3: Let’s talk
     b_7: »
+lead: A closer look at how a brief becomes a practical website or a better way
+  of working. The decisions, the details, and the reasons behind them.
+styles:
+  - /retro3.css
+  - /services.css
+  - /services-billboard.css
+  - /service-detail.css
+  - /case-studies.css
+  - /interactions.css
+  - /navigation.css
+scripts:
+  - /navigation.js
+  - /retro3.js
+fragment: pages/case-studies.html
 body_class: services-billboard-variant service-detail-page case-page
-subtitle: A closer look at how a brief becomes a practical website or a better
-  way of working. The decisions, the details, and the reasons behind them.
 seo:
   search:
     title: ""
