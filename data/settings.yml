@@ -1,13 +1,13 @@
 brand: Herr Systems
 owner: Emily Herr
-description: Web design, development, hosting, AI workflow setup, consulting and contract support
-  from Herr Systems.
+description: Web design, development, hosting, AI workflow setup, consulting and
+  contract support from Herr Systems.
 seoImage: /assets/davy-hexagon-mark.png
 location: Union, Missouri
 email: hello@herrsystems.com
 phone: "7177442552"
 address: ""
-noindex: true
+noindex: false
 copy:
   noscript_8:
     aria_label_nav_4: All pages
@@ -38,7 +38,8 @@ copy:
     span_6: © 2026 / FRANKLIN COUNTY, MO + REMOTE
     a_13: RETURN TO TOP ↑
   global_footer_9:
-    aria_label_svg_1: Pixel-art night scene showing a Herr Systems field station, mountains, moon, and radio tower
+    aria_label_svg_1: Pixel-art night scene showing a Herr Systems field station,
+      mountains, moon, and radio tower
   site_menu_note_7:
     site_menu_note_1: Useful websites. Clear next steps.
   brand_tools_1:
@@ -67,6 +68,29 @@ copy:
     a_11: Blog
     span_4: ▾
     a_12: Contact
+  staff_profiles_11:
+    profile_approach_heading: How I work
+    profile_skills_link: Explore skills ↓
+    profile_collaboration_label: Works with
+    profile_about_directory: About
+    profile_team_link: Back to the team →
+    profile_contact_button: Talk with our team
+    profile_about_label: ABOUT
+    profile_contributions_heading: What I bring to a project
+    profile_facts_heading: At a glance
+    profile_home: Home
+    profile_interests_heading: Beyond the brief
+    profile_connect_heading: Good projects start with a conversation.
+    profile_focus_label: Focus
+    profile_connect_text: Tell us what you’re trying to make easier. We’ll work out
+      the scope and who can help.
+    profile_about_heading: A little about {name}.
+    profile_skills_heading: Skills & strengths
+    profile_others_heading: Meet the rest of the team
+    profile_connect_button: Start a conversation
+    profile_toolkit_label: THE TOOLKIT
+    profile_view_link: View profile →
+    profile_handoff_label: A useful handoff
   mobile_nav_3:
     aria_label_nav_2: Mobile navigation
     a_14: Services
@@ -81,28 +105,6 @@ copy:
     a_26: Agentic Setups
     a_27: Consulting
     a_28: Contract Work
-  staff_profiles_11:
-    profile_home: Home
-    profile_about_directory: About
-    profile_contact_button: Talk with our team
-    profile_skills_link: Explore skills ↓
-    profile_about_label: ABOUT
-    profile_about_heading: A little about {name}.
-    profile_approach_heading: How I work
-    profile_contributions_heading: What I bring to a project
-    profile_interests_heading: Beyond the brief
-    profile_toolkit_label: THE TOOLKIT
-    profile_skills_heading: Skills & strengths
-    profile_facts_heading: At a glance
-    profile_focus_label: Focus
-    profile_collaboration_label: Works with
-    profile_handoff_label: A useful handoff
-    profile_connect_heading: Good projects start with a conversation.
-    profile_connect_text: Tell us what you’re trying to make easier. We’ll work out the scope and who can help.
-    profile_connect_button: Start a conversation
-    profile_others_heading: Meet the rest of the team
-    profile_team_link: Back to the team →
-    profile_view_link: View profile →
 skip_label: Skip to main content
 service_fit_label: A good fit for your next step
 services_label: Services
