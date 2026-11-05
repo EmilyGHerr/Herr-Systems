@@ -5490,6 +5490,15 @@ collections:
         widget: string
         hint: Plain text. Used in listings, terminal search and default metadata. The visible billboard can
           have a separate display heading.
+      - name: author
+        label: Post as / author
+        widget: relation
+        collection: staff
+        search_fields: [title, role]
+        display_fields: [title]
+        value_field: "{{slug}}"
+        required: false
+        hint: Choose a staff profile for the byline below the title and introduction. The name links to that profile. Leave empty for no personal byline.
       - name: slug
         label: URL slug (last path segment)
         widget: string
@@ -5626,7 +5635,7 @@ collections:
             required: false
             summary: Edit this section — Article takeaway
           - name: author
-            label: Article author
+            label: Publisher / footer credit
             widget: object
             collapsed: true
             fields:
@@ -5643,7 +5652,7 @@ collections:
                 widget: string
                 required: false
             required: false
-            summary: Edit this section — Article author
+            summary: Edit this section — Publisher / footer credit
           - name: contents
             label: Article contents sidebar
             widget: object
