@@ -8,7 +8,8 @@ permissions:
   contents: read
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    # Keep browser dependency packages on the supported LTS runner.
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - uses: peaceiris/actions-hugo@v3

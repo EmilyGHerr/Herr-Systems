@@ -53,7 +53,19 @@ try {
  async function readRaw(scope){return (await(await mode(scope,true)).evaluate(e=>Array.from(e.children).map(line=>line.textContent.replace(/\uFEFF/g,'')).join('\n'))).trim();}
  const parts=entry.file.split('/');
  const saved=()=>page.evaluate(parts=>parts.reduce((o,k)=>o[k],window.repoFiles).content,parts);
- async function publish(){const previous=await saved();await page.getByRole('button',{name:'Publish',exact:true}).click();await page.getByText('Publish now',{exact:true}).click();await page.waitForFunction(({parts,previous})=>parts.reduce((o,k)=>o?.[k],window.repoFiles)?.content!==previous,{parts,previous});return saved();}
+ async function publish(){
+ const previous=await saved(),menu=page.getByText('Publish now',{exact:true});
+ // The drag library can consume the first click after drop. Require the actual
+ // publish menu to open; retry only the UI click, never the save/assertions.
+ for(let attempt=0;attempt<3;attempt++){
+  await page.getByRole('button',{name:'Publish',exact:true}).click();
+  try{await menu.waitFor({state:'visible',timeout:1500});break;}
+  catch(error){if(attempt===2)throw error;}
+ }
+ await menu.click();
+ await page.waitForFunction(({parts,previous})=>parts.reduce((o,k)=>o?.[k],window.repoFiles)?.content!==previous,{parts,previous});
+ return saved();
+}
  function preserve(raw,changes){const actual=parse(raw),expected=structuredClone(before.data);for(const [section,key,value]of changes)expected.copy[section][key]=value;assert.deepEqual(actual.data,expected,'Unrelated front matter changed');assert.equal(actual.body.trim(),before.body.trim(),'Unrelated Markdown body changed');}
  const dir=path.join(work,'render');await fs.mkdir(dir);const source=await fixture(dir),dest=path.join(dir,'output'),renderPage=await context.newPage();
  async function render(raw){await fs.writeFile(path.join(source,entry.file),raw);build(source,dest);renderServer??=await serve(dest);const html=await fs.readFile(path.join(dest,aboutRoute,'index.html'),'utf8');assert(!/<p\b[^>]*>(?:(?!<\/p>)[\s\S])*<(?:p|div|ul|ol|h[1-6])\b/i.test(html),'Invalid nested paragraph/block HTML in generated source');await renderPage.goto(renderServer.url+aboutRoute);assert.equal(await renderPage.locator('p p, p > ul, p > ol').count(),0);const $=load(await renderPage.content());heading($);return $;}

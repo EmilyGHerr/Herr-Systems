@@ -110,5 +110,9 @@
   {
     "source": "/assets/about/headshot-3.svg",
     "library": "/uploads/about-headshot-3.svg"
+  },
+  {
+    "source": "/assets/social/herr-systems-terminal.png",
+    "library": "/uploads/social-herr-systems-terminal.png"
   }
 ]
