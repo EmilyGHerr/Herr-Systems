@@ -4628,6 +4628,37 @@ collections:
         label: Page title
         widget: string
         hint: Plain-text page title. Used for default metadata and the URL when creating a study.
+      - name: homepage
+        label: Homepage display
+        widget: object
+        collapsed: false
+        required: false
+        hint: Choose whether this study appears on the homepage. Turning it off keeps the study published and listed on the Case Studies page.
+        fields:
+          - name: show
+            label: Show on homepage
+            widget: boolean
+            required: false
+            default: false
+          - name: title
+            label: Card title
+            widget: string
+            required: false
+            hint: Blank uses the organization / listing title.
+          - name: description
+            label: Card summary
+            widget: text
+            required: false
+            hint: Blank uses the page summary.
+          - name: aria_label
+            label: Accessible link description
+            widget: string
+            required: false
+          - name: link_text
+            label: Open case study link label
+            widget: string
+            required: false
+            default: Explore the study →
       - name: slug
         label: URL slug (last path segment)
         widget: string
@@ -5340,36 +5371,6 @@ collections:
         collapsed: true
         required: false
         fields:
-          - name: title
-            label: Card title
-            widget: string
-            required: false
-            hint: Blank uses the organization / listing title.
-          - name: description
-            label: Card summary
-            widget: text
-            required: false
-            hint: Blank uses the page summary.
-          - name: aria_label
-            label: Accessible link description
-            widget: string
-            required: false
-          - name: link_text
-            label: Open case study link label
-            widget: string
-            required: false
-            default: Explore the study →
-      - name: homepage
-        label: Homepage — case study card
-        widget: object
-        collapsed: true
-        required: false
-        fields:
-          - name: show
-            label: Show on the homepage
-            widget: boolean
-            required: false
-            default: false
           - name: title
             label: Card title
             widget: string

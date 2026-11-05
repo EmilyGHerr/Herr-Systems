@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/verify.mjs && npm run test:cms-pages && npm run test:editor && node tests/profile-facts.mjs && node tests/page-urls.mjs && node tests/contact-faq.mjs && node tests/pricing-faq.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs && node tests/home-spacing.mjs && node tests/home-billboard-links.mjs && node tests/internal-heading-spacing.mjs && node tests/content-list-typography.mjs && npm run test:forms && npm run test:backend && npm run test:deployment && npm run test:runtime",
+    "test": "node tests/verify.mjs && npm run test:cms-pages && npm run test:editor && node tests/profile-facts.mjs && node tests/page-urls.mjs && node tests/contact-faq.mjs && node tests/pricing-faq.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs && node tests/home-spacing.mjs && node tests/home-billboard-links.mjs && node tests/case-study-homepage.mjs && node tests/internal-heading-spacing.mjs && node tests/content-list-typography.mjs && npm run test:forms && npm run test:backend && npm run test:deployment && npm run test:runtime",
     "test:cms-billboard": "node tests/home-billboard-cms.mjs",
     "test:cms-ui": "node tests/cms-ui.mjs",
     "test:cms-pricing": "node tests/pricing-faq-cms.mjs",
