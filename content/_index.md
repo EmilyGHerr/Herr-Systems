@@ -42,7 +42,7 @@ copy:
     case_link_4: Explore the study →
   case_studies_11:
     kicker_2: 03 // INSIDE THE WORK
-    home_cases_title_1: Project's we've worked on.
+    home_cases_title_1: Projects we've worked on.
     case_link_1: All case studies →
     case_preview_note_1: Live projects alongside clearly labeled concept studies.
       Custom development, practical AI automation, and examples of how we
