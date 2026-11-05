@@ -9,14 +9,15 @@
 {{- $brand := partial "schema-text.html" ($settings.brand | default site.Title) -}}
 {{- $name := partial "schema-text.html" ($p.Params.hero_title | default $p.Title) -}}
 {{- $description := partial "schema-text.html" ($p.Params.subtitle | default $p.Params.lead | default $p.Description | default $settings.description) -}}
-{{- $image := $p.Params.image | default .image -}}
+{{- $image := $p.Params.image | default "" | strings.TrimSpace -}}
+{{- if not $image -}}{{- $image = .image | default "" | strings.TrimSpace -}}{{- end -}}
 {{- if and (eq $p.Params.fragment "pages/service.html") $p.Params.detailed_layout -}}{{- $copy := partial "cms-copy.html" $p.Params.copy -}}{{- $image = index $copy "image_path" | default "/assets/services/web-design-billboard.svg" -}}{{- end -}}
 {{- $business := dict "@type" "LocalBusiness" "@id" $businessID "name" $brand "url" $base "description" (partial "schema-text.html" $settings.description) "logo" ("assets/davy-hexagon-mark.png" | absURL) -}}
 {{- with $settings.email | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "email" .) -}}{{- end -}}
 {{- with $settings.phone -}}{{- $phone := partial "phone.html" . -}}{{- with $phone.display -}}{{- $business = merge $business (dict "telephone" (strings.TrimPrefix "tel:" $phone.href)) -}}{{- end -}}{{- end -}}
 {{- with $settings.location | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "location" (dict "@type" "Place" "name" .)) -}}{{- end -}}
 {{- with $settings.address | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "address" .) -}}{{- end -}}
-{{- with $settings.seoImage -}}{{- $business = merge $business (dict "image" (. | absURL)) -}}{{- end -}}
+{{- with $settings.seoImage | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "image" (. | absURL)) -}}{{- end -}}
 {{- $website := dict "@type" "WebSite" "@id" $siteID "name" $brand "url" $base "publisher" (dict "@id" $businessID) "inLanguage" site.Language.LanguageCode -}}
 {{- $types := slice "WebPage" -}}
 {{- if eq $p.Params.fragment "pages/contact.html" -}}{{- $types = $types | append "ContactPage" -}}

@@ -102,10 +102,10 @@ export async function verifyStructuredData(work){
   const qs=p.webpage.mainEntity;assert(is(p.webpage,'FAQPage'));assert.equal(qs.length,1);assert.equal(qs[0].name,p.$('.detail-questions summary').text());assert.equal(plain(qs[0].acceptedAnswer.text),plain(p.$('.detail-questions .faq-answer').html()));
   assert.equal(p.get(bid).email,hostileEmail);assert.equal(p.$('#schema-injected').length,0,'JSON cannot terminate its script tag');
  });
- setCopy(detailed,'faq_items',[]);for(const k of ['email','phone','location','address','seoImage'])delete s[k];await saveSettings();await save(detailed);run();
+ setCopy(detailed,'faq_items',[]);for(const k of ['email','phone','location','address','seoImage'])delete s[k];s.seoImage=' 	 ';await saveSettings();await save(detailed);run();
  await check('cleared detailed FAQs and absent optional business settings',async()=>{
   const p=await page(dest,route(detailed));assert(!is(p.webpage,'FAQPage'));assert.equal(p.$('.detail-questions details').length,0);ref(p.webpage.mainEntity,p.canonical+'#service');
-  for(const k of ['email','telephone','location','address','image'])assert(!Object.hasOwn(p.get(bid),k));
+  for(const k of ['email','telephone','location','address','image'])assert(!Object.hasOwn(p.get(bid),k));const pricingPage=await page(dest,route(pricing));assert(!Object.hasOwn(pricingPage.webpage,'image'),'Whitespace-only fallback image is omitted');
  });
  service.data.draft=false;service.data.seo.search.canonicalURL='https://herr.test/canonical-service/';await save(service);
  for(let i=0;i<11;i++){const r=structuredClone(post);r.file=`content/blog/schema-pagination-${i}/index.md`;Object.assign(r.data,{title:`Pagination fixture ${i}`,hero_title:`Pagination fixture ${i}`,url:'',slug:'',date:`2026-01-${String(i+1).padStart(2,'0')}`});await save(r);}
