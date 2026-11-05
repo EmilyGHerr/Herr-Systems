@@ -16,6 +16,10 @@ try{
    node[parts.at(-1)]={path:file,content:await fs.readFile(path.join(root,file),'utf8')};
   }
  }}await walk('content');await walk('data');
+ // Seed a real change even when the published post already has the target author.
+ const authorFixture=seed.content.blog['a-clearer-website']['index.md'];
+ const authorRaw=parse(authorFixture.content);authorRaw.data.author='';
+ authorFixture.content=['---',YAML.stringify(authorRaw.data).trimEnd(),'---',authorRaw.body].join(String.fromCharCode(10));
  const output=path.join(work,'public');build(root,output);server=await serve(output);
  const response=await fetch('https://unpkg.com/decap-cms@3.17.0/dist/decap-cms.js');assert(response.ok);const js=await response.text();assert(js.length>1000000);
  browser=await chromium.launch();page=await browser.newPage({viewport:{width:1440,height:1000}});
