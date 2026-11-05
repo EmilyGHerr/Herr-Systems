@@ -68,3 +68,18 @@
 }
 .staff-profile-page .profile-facts dd > :first-child { margin-top: 0; }
 .staff-profile-page .profile-facts dd > :last-child { margin-bottom: 0; }
+
+/* Linked single-post attribution, below the title and introductory description. */
+.blog-single-page .blog-intro .post-byline {
+  display: block;
+  margin: 20px 0 0;
+  color: var(--detail-muted);
+  font: 500 14px/1.7 var(--mono);
+}
+.blog-single-page .post-byline a {
+  color: var(--info-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-single-page .post-byline a:hover,
+.blog-single-page .post-byline a:focus-visible { color: var(--cyan); }

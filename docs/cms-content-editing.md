@@ -36,3 +36,9 @@ Rich Text is the normal writing mode; Markdown remains available. Clearing an in
 ## Case studies on the homepage
 
 Open **Case studies**, choose a study, and use **Homepage display → Show on homepage** directly below its page title. Turn it off to remove only its homepage card; the Case Studies directory and published detail page remain available. Publish the entry to apply the change. New studies start with homepage display off.
+
+## Blog author attribution
+
+In **Blog**, choose **Post as / author** below the title, for either a new or existing article. Search staff by name or role, select a profile, then publish. The article displays “By [name]” beneath its heading and introduction, with the name linking to the staff profile. Profile name and public URL edits are reflected automatically; no article edits are needed.
+
+The choice is editorial attribution, not a change to the signed-in account or its permissions. Clear the selection for no personal byline. Existing posts are not assigned a person automatically. The older **Publisher / footer credit** group remains separate from the selected personal author.

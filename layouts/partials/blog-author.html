@@ -1,0 +1,9 @@
+{{- /* Resolve stable Decap entry identities, never user-provided hrefs or mutable display names. */ -}}
+{{- $author := false -}}
+{{- with .Params.author -}}
+  {{- $identity := . -}}
+  {{- range where site.RegularPages "Params.fragment" "pages/staff-profile.html" -}}
+    {{- if or (eq .File.ContentBaseName $identity) (eq (printf "%s/index" .File.ContentBaseName) $identity) -}}{{- $author = . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $author -}}

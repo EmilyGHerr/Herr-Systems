@@ -1,0 +1,3 @@
+{{- with partial "blog-author.html" . -}}
+<p class="post-byline">By <a rel="author" href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+{{- end -}}

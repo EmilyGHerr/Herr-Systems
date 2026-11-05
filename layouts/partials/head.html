@@ -5,7 +5,9 @@
 {{ $brand := $settings.brand | default site.Title }}
 {{ $title := $meta.seotitle | default (printf "%s // %s" .Title $brand) }}
 {{ $description := $meta.seodescription | default .Description | default $settings.description }}
-{{ with $settings.owner }}<meta name="author" content="{{ . }}">{{ end }}
+{{ $authorName := $settings.owner }}
+{{ if and .IsPage (eq .Section "blog") }}{{ with partial "blog-author.html" . }}{{ $authorName = .Title }}{{ end }}{{ end }}
+{{ with $authorName }}<meta name="author" content="{{ . }}">{{ end }}
 <meta name="description" content="{{ $description }}"><meta name="theme-color" content="#164f91"><title>{{ $title }}</title>
 {{ $canonical := $meta.canonicalurl | default .Permalink }}
 {{ if and .IsSection (eq .Section "blog") }}{{ with .Paginator }}{{ if gt .PageNumber 1 }}{{ $canonical = .URL | absURL }}{{ end }}{{ end }}{{ end }}
