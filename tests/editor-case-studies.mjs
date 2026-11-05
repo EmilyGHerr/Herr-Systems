@@ -33,7 +33,7 @@ try {
  const build=name=>{const out=join(tmp,name);execFileSync('hugo',['--source',fixture,'--destination',out,'--cleanDestinationDir'],{stdio:'pipe'});return out;};
  const archived=join(root,'tests/fixtures/archived-case-studies');
  // Historical migration fixtures remain available after concepts leave the portfolio.
- for(const slug of ['maple-street-workshop','fieldnote-operations']) {
+ for(const slug of ['northline-community','maple-street-workshop','fieldnote-operations']) {
   const file=join(fixture,'content/case-studies',slug,'index.md');
   if(!existsSync(file)){mkdirSync(join(fixture,'content/case-studies',slug),{recursive:true});cpSync(join(archived,slug+'.md'),file);}
  }

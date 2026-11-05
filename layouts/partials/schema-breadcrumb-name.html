@@ -1,0 +1,14 @@
+{{- $copy := partial "cms-copy.html" .Params.copy -}}
+{{- $name := .Title -}}
+{{- if .IsHome -}}{{- $name = site.Data.settings.blog_home | default "Home" -}}
+{{- else if eq .Params.fragment "pages/staff-profile.html" -}}{{- $name = .Title -}}
+{{- else if eq .Params.fragment "pages/case-study.html" -}}{{- $name = index $copy "breadcrumb_current_label" | default .Params.listing_title | default .Title -}}
+{{- else if and .IsPage (eq .Section "blog") -}}{{- $name = index $copy "current_label" | default .Params.category | default .Title -}}
+{{- else if and (eq .Params.fragment "pages/service.html") .Params.detailed_layout -}}{{- $name = index $copy "span_60" | default .Title -}}
+{{- else if .IsSection -}}
+  {{- $keys := dict "services" "span_13" "case-studies" "span_11" "about" "span_37" "blog" "span_39" -}}
+  {{- with index $keys .Section -}}{{- $name = index $copy . | default $name -}}{{- end -}}
+{{- else if eq .Params.fragment "pages/contact.html" -}}{{- $name = index $copy "span_32" | default .Title -}}
+{{- else if eq .Params.fragment "pages/pricing.html" -}}{{- $name = index $copy "span_22" | default .Title -}}
+{{- end -}}
+{{- return (partial "schema-text.html" $name) -}}

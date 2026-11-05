@@ -1,0 +1,2 @@
+{{- /* Same editorial values as the visible page, normalized to plain schema text. */ -}}
+{{- return (. | default "" | replaceRE `(?i)<br\s*/?>` " " | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace) -}}

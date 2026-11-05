@@ -25,3 +25,5 @@
 
 {{ $imageAlt := $meta.seoimagealt }}{{ if not $meta.seoimage }}{{ $imageAlt = $imageAlt | default $settings.seoImageAlt }}{{ end }}
 {{ with $imageAlt }}<meta property="og:image:alt" content="{{ . }}"><meta name="twitter:image:alt" content="{{ . }}">{{ end }}
+
+{{ partial "structured-data.html" (dict "page" . "canonical" $canonical "image" $image) }}
