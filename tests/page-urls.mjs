@@ -23,6 +23,16 @@ export async function verifyPageUrls(work) {
   const original=await snapshot(path.join(root,'content'));
   const dir=path.join(work,'page-urls'); await mkdir(dir,{recursive:true});
   const source=await fixture(dir), dest=path.join(dir,'output');
+  // Historical URL-migration scenarios use isolated archived concepts, not public records.
+  for(const slug of ['maple-street-workshop','fieldnote-operations']) {
+    const file=path.join(source,'content/case-studies',slug,'index.md');
+    try { await stat(file); } catch(error) {
+      if(error.code!=='ENOENT')throw error;
+      await mkdir(path.dirname(file),{recursive:true});
+      await writeFile(file,await text(path.join(root,'tests/fixtures/archived-case-studies',slug+'.md')));
+    }
+  }
+
   const settingsFile=path.join(source,'data/settings.yml'), settings=YAML.parse(await text(settingsFile));
   settings.noindex=false; await writeFile(settingsFile,YAML.stringify(settings));
   const config=YAML.parse(await text(path.join(source,'static/sudo/config.yml')));
