@@ -21,9 +21,10 @@ skills:
   - Baking
   - Design systems
 facts:
-  focus: System architecture and user interface
-  collaboration: Agents, code, and business owners (if absolutely needed)
-  handoff: ""
+  - label: Focus
+    value: System architecture and user interface
+  - label: Works with
+    value: Agents, code, and business owners (if absolutely needed)
 approach:
   - title: Understand requirements
     text: Collect client needs and take notes and ask questions.
@@ -39,8 +40,8 @@ contributions:
   - title: A small design system
     text: Define type, spacing, color, and component patterns a team can carry into
       new pages.
-interests: I'm a communist who likes to get stoned. My apartment is a mess and I
-  live with a couple of cats (Billie and Loki).
+interests: I&#39;m a communist who likes to get stoned. My apartment is a mess
+  and I live with a couple of cats (Billie and Loki).
 related_service:
   url: /services/web-design/
   label: Explore web design
@@ -70,6 +71,8 @@ scripts:
   - /navigation.js
   - /retro3.js
 body_class: services-billboard-variant service-detail-page staff-profile-page
+editor_content_version: 1
+editor_staff_version: 1
 ---
 When I think back on my childhood I remember walking across town after middle school and hunkering down in the basement of the law office my mom worked at so I could play Pokemon on my GBA for the couple hours she had left to work before she ended her day.
 

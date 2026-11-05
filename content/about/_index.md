@@ -8,19 +8,17 @@ description: We're a mixture of human beings and AI Agents (and cats) working on
 copy:
   approach_8:
     kicker_11: 02 // HOW WE SHOW UP
-    detail_step_1: "01"
-    p_31: Your business is the starting point. We ask questions, learn what matters,
-      and agree on a scope that makes sense.
-    detail_step_2: "02"
-    p_32: We choose practical tools and make thoughtful decisions about
-      accessibility, performance, and the details people notice.
-    detail_step_3: "03"
-    p_33: You know what we’re working on, where your feedback fits, and what happens
-      next. No mystery box at the finish line.
-    h3_10: Listen first
     approach_title_1: Easy to work with. Serious about the work.
-    h3_11: Build with care
-    h3_12: Keep it clear
+    approach_items:
+      - title: Listen first
+        body: Your business is the starting point. We ask questions, learn what matters,
+          and agree on a scope that makes sense.
+      - title: Build with care
+        body: We choose practical tools and make thoughtful decisions about
+          accessibility, performance, and the details people notice.
+      - title: Keep it clear
+        body: You know what we’re working on, where your feedback fits, and what happens
+          next. No mystery box at the finish line.
   detail_breadcrumb_1:
     aria_label_nav_10: Breadcrumb
     a_60: Home
@@ -52,24 +50,30 @@ copy:
   team_6:
     kicker_10: ""
     team_title_1: Meet the team.
-    p_29: Check out the people you're going to be working and communicating with.
+    p_29: Check out the people you&#39;re going to be working and communicating with.
   detail_fit_5:
     detail_label_1: OUR OPERATING PRINCIPLES
     principles_title_1: Less noise. More care.
-    li_19: Understand the business before choosing the tools.
-    li_20: Make the important things easy to find and use.
-    li_21: Explain the work in plain language.
-    li_22: Keep people in control of their technology.
     about_location_1: CLEAR COMMUNICATION / REMOTE FRIENDLY
+    principles_items:
+      - Understand the business before choosing the tools.
+      - Make the important things easy to find and use.
+      - Explain the work in plain language.
+      - Keep people in control of their technology.
   detail_overview_4:
     kicker_9: THE PEOPLE BEHIND THE PIXELS
     story_title_1: Useful work. Real relationships.
-    p_26: "Herr Systems is built around a simple idea: the web should make running
-      your business easier, not give you another thing to worry about."
-    p_27: We bring design and technical work together, so the way your website looks
+    story_body: >-
+      Herr Systems is built around a simple idea: the web should make running
+      your business easier, not give you another thing to worry about.
+
+
+      We bring design and technical work together, so the way your website looks
       and the way it works serve the same purpose. Clear information, thoughtful
       details, and a next step your customers can actually find.
-    p_28: From a first website to a better workflow, we start with a conversation.
+
+
+      From a first website to a better workflow, we start with a conversation.
       What are you trying to do? What gets in the way? Then we help turn the
       answers into something useful—without adding complexity for its own sake.
   contact_10:
@@ -111,4 +115,5 @@ seo:
     ogDescription: ""
     twitterTitle: ""
     twitterDescription: ""
+editor_content_version: 1
 ---

@@ -26,10 +26,10 @@ copy:
   next:
     next_eyebrow: NEXT STUDY
     next_heading: Maple Street Workshop
-    next_description: Web design + development / concept study
     next_button_label: Explore the next study
     next_button_icon: »
     next_url: /case-studies/maple-street-workshop/
+    next_body: Web design \+ development / concept study
   contact:
     contact_label: Need something more than a brochure website? Let’s talk →
     contact_url: /contact/
@@ -76,6 +76,7 @@ seo:
     ogDescription: Custom Angular and Laravel development for a live gaming community.
     twitterTitle: "Septagon: a community with a home of its own"
     twitterDescription: Custom Angular and Laravel development for a live gaming community.
+editor_content_version: 1
 ---
 
 ## The project at a glance

@@ -22,9 +22,12 @@ skills:
   - Ignoring action items
   - Looking completely innocent
 facts:
-  focus: Indoor operations and the downward movement of unattended objects
-  collaboration: Emily, preferably when she is trying to concentrate
-  handoff: The object is on the floor now. You're welcome.
+  - label: Focus
+    value: Indoor operations and the downward movement of unattended objects
+  - label: Works with
+    value: Emily, preferably when she is trying to concentrate
+  - label: A useful handoff
+    value: The object is on the floor now. You&#39;re welcome.
 approach:
   - title: Find the highest available surface
     text: Get a good overview of the situation. Identify anything that appears too
@@ -71,6 +74,8 @@ scripts:
   - /navigation.js
   - /retro3.js
 body_class: services-billboard-variant service-detail-page staff-profile-page
+editor_content_version: 1
+editor_staff_version: 1
 ---
 
 Billie is a real cat with an honorary job title and absolutely no billable hours. She is part of life behind Herr Systems, not the person handling your project. Please direct all actual questions, approvals, and requests for opposable thumbs to Emily.

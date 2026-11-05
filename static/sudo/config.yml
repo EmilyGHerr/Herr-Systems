@@ -44,12 +44,12 @@ collections:
                 fields:
                   - name: kicker_1
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — heading and actions."
                   - name: button_1
                     label: Primary button — text
-                    widget: text
+                    widget: string
                     required: false
                     hint: Text inside the primary billboard button.
                   - name: button_1_url
@@ -65,7 +65,7 @@ collections:
                         mailto: or tel: link without spaces."
                   - name: b_3
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — heading and actions."
                   - name: plain_link_1
@@ -103,7 +103,7 @@ collections:
                     hint: "Location: Announcement / system message."
                   - name: b_4
                     label: Announcement prefix
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Announcement / system message."
                 summary: Edit this section — Announcement / system message
@@ -114,12 +114,12 @@ collections:
                 fields:
                   - name: span_7
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Services — section heading."
                   - name: h2_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Services — section heading."
                   - name: all_services_link_1
@@ -129,7 +129,7 @@ collections:
                     hint: "Location: Services — section heading. Link destination: /services/."
                   - name: b_5
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Services — section heading."
                 summary: Edit this section — Services — section heading
@@ -272,12 +272,12 @@ collections:
                 fields:
                   - name: home_pricing_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Pricing overview."
                   - name: span_8
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Pricing overview."
                   - name: home_rate_note_1
@@ -285,21 +285,15 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Pricing overview."
-                  - name: strong_1
-                    label: Label 2
-                    widget: text
+                  - name: pricing_body
+                    label: Pricing explanation
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
                     required: false
-                    hint: "Location: Pricing overview."
-                  - name: p_8
-                    label: Paragraph 2
-                    widget: text
-                    required: false
-                    hint: "Location: Pricing overview."
-                  - name: p_9
-                    label: Paragraph 3
-                    widget: text
-                    required: false
-                    hint: "Location: Pricing overview."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
                   - name: plain_link_2
                     label: Link text
                     widget: text
@@ -313,12 +307,12 @@ collections:
                 fields:
                   - name: kicker_2
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Case studies — section heading."
                   - name: home_cases_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Case studies — section heading."
                   - name: case_link_1
@@ -338,12 +332,12 @@ collections:
                     hint: "Location: Case studies — section heading."
                   - name: span_9
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Case studies — section heading."
                   - name: aria_label_div_1
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Case studies — section heading. Accessibility text; not a visible headline."
                 summary: Edit this section — Case studies — section heading
@@ -479,22 +473,26 @@ collections:
                 fields:
                   - name: home_hire_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: p_13
-                    label: Paragraph
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Contact — next step."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                   - name: button_2
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step. Link destination: /contact/."
                   - name: b_6
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                 summary: Edit this section — Contact — next step
@@ -612,6 +610,9 @@ collections:
                     required: false
                     hint: Optional. Blank uses the search description.
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+          - name: editor_content_version
+            widget: hidden
+            default: 1
       - name: case-studies
         label: Case studies — directory
         file: content/case-studies/_index.md
@@ -647,22 +648,22 @@ collections:
                 fields:
                   - name: aria_label_nav_5
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
                   - name: a_44
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
                   - name: span_10
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                   - name: span_11
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                 summary: Edit this section — Billboard — breadcrumb navigation
@@ -684,12 +685,12 @@ collections:
                 fields:
                   - name: kicker_3
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Inside the work.."
                   - name: collection_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Inside the work.."
                 summary: Edit this section — Inside the work.
@@ -825,27 +826,31 @@ collections:
                 fields:
                   - name: kicker_4
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Next study / closing call to action."
                   - name: h2_2
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Next study / closing call to action."
                   - name: p_17
-                    label: Paragraph 2
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Next study / closing call to action."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                   - name: button_3
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Next study / closing call to action. Link destination: /contact/."
                   - name: b_7
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Next study / closing call to action."
                 summary: Edit this section — Next study / closing call to action
@@ -974,6 +979,9 @@ collections:
                     required: false
                     hint: Optional. Blank uses the search description.
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+          - name: editor_content_version
+            widget: hidden
+            default: 1
       - name: services
         label: Services — directory
         file: content/services/_index.md
@@ -1009,22 +1017,22 @@ collections:
                 fields:
                   - name: aria_label_nav_6
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
                   - name: a_48
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
                   - name: span_12
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                   - name: span_13
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                 summary: Edit this section — Billboard — breadcrumb navigation
@@ -1035,7 +1043,7 @@ collections:
                 fields:
                   - name: services_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Services — section heading."
                   - name: span_14
@@ -1482,32 +1490,36 @@ collections:
                 fields:
                   - name: kicker_5
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: h2_3
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: h2_4
                     label: Heading 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: em_1
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: p_18
-                    label: Paragraph 2
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Contact — next step."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                   - name: b_14
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: small_2
@@ -1639,6 +1651,9 @@ collections:
                     required: false
                     hint: Optional. Blank uses the search description.
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+          - name: editor_content_version
+            widget: hidden
+            default: 1
       - name: pricing
         label: Pricing and estimate builder
         file: content/pricing/index.md
@@ -1674,22 +1689,22 @@ collections:
                 fields:
                   - name: aria_label_nav_7
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
                   - name: a_49
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
                   - name: span_21
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                   - name: span_22
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                 summary: Edit this section — Billboard — breadcrumb navigation
@@ -1700,19 +1715,23 @@ collections:
                 fields:
                   - name: kicker_6
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder."
                   - name: estimate_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder."
                   - name: p_19
-                    label: Paragraph 2
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Estimate builder."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                   - name: estimate_tag_1
                     label: Label
                     widget: text
@@ -1725,7 +1744,7 @@ collections:
                     hint: "Location: Estimate builder."
                   - name: a_50
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder."
                   - name: pricing_note_2
@@ -1735,7 +1754,7 @@ collections:
                     hint: "Location: Estimate builder."
                   - name: span_23
                     label: Label 5
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder."
                   - name: mobile_project_total_1
@@ -1750,7 +1769,7 @@ collections:
                     hint: "Location: Estimate builder."
                   - name: a_51
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder. Link destination: #estimate-summary."
                 summary: Edit this section — Estimate builder
@@ -1771,7 +1790,7 @@ collections:
                     hint: "Location: Estimate builder / Project options."
                   - name: span_28
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Project options."
                 summary: Edit this section — Estimate builder / Project options
@@ -1782,7 +1801,7 @@ collections:
                 fields:
                   - name: h3_7
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: 01 · Choose your services."
                   - name: services_help_1
@@ -1792,7 +1811,7 @@ collections:
                     hint: "Location: 01 · Choose your services."
                   - name: strong_2
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: 01 · Choose your services."
                   - name: small_3
@@ -1802,7 +1821,7 @@ collections:
                     hint: "Location: 01 · Choose your services."
                   - name: strong_3
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: 01 · Choose your services."
                   - name: small_4
@@ -1812,7 +1831,7 @@ collections:
                     hint: "Location: 01 · Choose your services."
                   - name: strong_4
                     label: Label 5
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: 01 · Choose your services."
                   - name: small_5
@@ -1822,7 +1841,7 @@ collections:
                     hint: "Location: 01 · Choose your services."
                   - name: strong_5
                     label: Label 7
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: 01 · Choose your services."
                   - name: small_6
@@ -1832,7 +1851,7 @@ collections:
                     hint: "Location: 01 · Choose your services."
                   - name: strong_6
                     label: Label 9
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: 01 · Choose your services."
                   - name: small_7
@@ -1848,12 +1867,12 @@ collections:
                 fields:
                   - name: legend_1
                     label: Group heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: control_label_1
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: template_count_output_1
@@ -1863,12 +1882,12 @@ collections:
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: span_24
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: span_25
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: template_explainer_1
@@ -1878,7 +1897,7 @@ collections:
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: strong_7
                     label: Label 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: template_pricing_1
@@ -1888,12 +1907,12 @@ collections:
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: h4_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: strong_8
                     label: Label 5
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: small_10
@@ -1903,12 +1922,12 @@ collections:
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: b_15
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: strong_9
                     label: Label 7
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: small_11
@@ -1918,12 +1937,12 @@ collections:
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: b_16
                     label: Emphasis / icon 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: strong_10
                     label: Label 9
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: small_12
@@ -1933,12 +1952,12 @@ collections:
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: b_17
                     label: Emphasis / icon 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: strong_11
                     label: Label 11
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: small_13
@@ -1948,7 +1967,7 @@ collections:
                     hint: "Location: Estimate builder / Web Design / Web Development."
                   - name: b_18
                     label: Emphasis / icon 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Web Design / Web Development."
                 summary: Edit this section — Estimate builder / Web Design / Web Development
@@ -1959,12 +1978,12 @@ collections:
                 fields:
                   - name: legend_2
                     label: Group heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Design approach."
                   - name: span_26
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Design approach."
                   - name: small_8
@@ -1974,7 +1993,7 @@ collections:
                     hint: "Location: Estimate builder / Design approach."
                   - name: span_27
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Design approach."
                   - name: small_9
@@ -1990,12 +2009,12 @@ collections:
                 fields:
                   - name: legend_3
                     label: Group heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Hosting."
                   - name: control_label_2
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Hosting."
                   - name: option_1
@@ -2026,7 +2045,7 @@ collections:
                 fields:
                   - name: legend_4
                     label: Group heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Agentic Setups."
                   - name: control_help_1
@@ -2036,7 +2055,7 @@ collections:
                     hint: "Location: Estimate builder / Agentic Setups."
                   - name: strong_12
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Agentic Setups."
                   - name: small_14
@@ -2046,12 +2065,12 @@ collections:
                     hint: "Location: Estimate builder / Agentic Setups."
                   - name: b_19
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Agentic Setups."
                   - name: strong_13
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Agentic Setups."
                   - name: small_15
@@ -2061,7 +2080,7 @@ collections:
                     hint: "Location: Estimate builder / Agentic Setups."
                   - name: b_20
                     label: Emphasis / icon 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Agentic Setups."
                 summary: Edit this section — Estimate builder / Agentic Setups
@@ -2072,17 +2091,17 @@ collections:
                 fields:
                   - name: legend_5
                     label: Group heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Consulting."
                   - name: control_label_3
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Consulting."
                   - name: control_label_4
                     label: Field label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Consulting."
                   - name: option_3
@@ -2113,17 +2132,17 @@ collections:
                 fields:
                   - name: legend_6
                     label: Group heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Contract Work."
                   - name: control_label_5
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Contract Work."
                   - name: control_label_6
                     label: Field label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate builder / Contract Work."
                   - name: option_6
@@ -2154,7 +2173,7 @@ collections:
                 fields:
                   - name: quote_contact_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Your quote request."
                   - name: control_help_2
@@ -2169,27 +2188,27 @@ collections:
                     hint: "Location: Your quote request."
                   - name: a_52
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Your quote request. Link destination: mailto:{{ .Site.Data.settings.email }}."
                   - name: label_1
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Your quote request."
                   - name: label_2
                     label: Field label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Your quote request."
                   - name: label_3
                     label: Field label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Your quote request."
                   - name: label_4
                     label: Field label 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Your quote request."
                 summary: Edit this section — Your quote request
@@ -2200,12 +2219,12 @@ collections:
                 fields:
                   - name: kicker_7
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: The estimate."
                   - name: summary_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: The estimate."
                   - name: scope_summary_1
@@ -2215,7 +2234,7 @@ collections:
                     hint: "Location: The estimate."
                   - name: span_29
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: The estimate."
                   - name: project_total_1
@@ -2225,7 +2244,7 @@ collections:
                     hint: "Location: The estimate."
                   - name: span_30
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: The estimate."
                   - name: monthly_total_1
@@ -2245,12 +2264,12 @@ collections:
                     hint: "Location: The estimate."
                   - name: button_4
                     label: Button text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: The estimate."
                   - name: b_21
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: The estimate."
                   - name: submit_status_1
@@ -2266,74 +2285,28 @@ collections:
                 fields:
                   - name: kicker_8
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate notes and disclaimers."
                   - name: pricing_details_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate notes and disclaimers."
                   - name: pricing_details_title_2
                     label: Heading 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Estimate notes and disclaimers."
-                  - name: p_20
-                    label: Paragraph 2
-                    widget: text
+                  - name: estimate_notes_body
+                    label: Estimate explanation and notes
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
                     required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: strong_14
-                    label: Label
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: p_21
-                    label: Paragraph 3
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: strong_15
-                    label: Label 2
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: p_22
-                    label: Paragraph 4
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: strong_16
-                    label: Label 3
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: p_23
-                    label: Paragraph 5
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: p_24
-                    label: Paragraph 6
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: p_25
-                    label: Paragraph 7
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers."
-                  - name: a_53
-                    label: Link text
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers. Link destination: /services/consulting/."
-                  - name: a_54
-                    label: Link text 2
-                    widget: text
-                    required: false
-                    hint: "Location: Estimate notes and disclaimers. Link destination: /services/contract-work/."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
                 summary: Edit this section — Estimate notes and disclaimers
             hint: Edit the visible content below. Each named section has an arrow to show its fields. Card
               details come from Services, Case studies, Blog, or Staff entries; shared labels come
@@ -2505,6 +2478,9 @@ collections:
                     required: false
                     hint: Optional. Blank uses the search description.
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+          - name: editor_content_version
+            widget: hidden
+            default: 1
       - name: contact
         label: Contact
         file: content/contact/index.md
@@ -2540,22 +2516,22 @@ collections:
                 fields:
                   - name: aria_label_nav_8
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
                   - name: a_55
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
                   - name: span_31
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                   - name: span_32
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                 summary: Edit this section — Billboard — breadcrumb navigation
@@ -2566,17 +2542,17 @@ collections:
                 fields:
                   - name: aria_label_nav_9
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — related links. Accessibility text; not a visible headline."
                   - name: a_56
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — related links. Link destination: /services/."
                   - name: a_57
                     label: Link text 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — related links. Link destination: /case-studies/."
                 summary: Edit this section — Billboard — related links
@@ -2587,7 +2563,7 @@ collections:
                 fields:
                   - name: aria_label_section_1
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — accessibility. Accessibility text; not a visible headline."
                 summary: Edit this section — Contact form — accessibility
@@ -2598,7 +2574,7 @@ collections:
                 fields:
                   - name: h3_8
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — validation summary."
                 summary: Edit this section — Contact form — validation summary
@@ -2609,7 +2585,7 @@ collections:
                 fields:
                   - name: label_5
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — I’m thinking about…."
                   - name: field_optional_1
@@ -2660,12 +2636,12 @@ collections:
                 fields:
                   - name: label_6
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Your name."
                   - name: span_33
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Your name."
                   - name: placeholder_inquiry_name_1
@@ -2681,12 +2657,12 @@ collections:
                 fields:
                   - name: label_7
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Email address."
                   - name: span_34
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Email address."
                   - name: placeholder_inquiry_email_1
@@ -2702,7 +2678,7 @@ collections:
                 fields:
                   - name: label_8
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Business or organization."
                   - name: field_optional_2
@@ -2723,7 +2699,7 @@ collections:
                 fields:
                   - name: label_9
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Current website."
                   - name: field_optional_3
@@ -2744,12 +2720,12 @@ collections:
                 fields:
                   - name: label_10
                     label: Field label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Tell us a little about it."
                   - name: span_35
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — Tell us a little about it."
                   - name: message_hint_1
@@ -2785,7 +2761,7 @@ collections:
                     hint: "Location: Contact form — delivery notice, submit button and feedback."
                   - name: a_58
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — delivery notice, submit button and feedback. Link destination:
                       mailto:{{ .Site.Data.settings.email }}."
@@ -2801,7 +2777,7 @@ collections:
                     hint: "Location: Contact form — delivery notice, submit button and feedback."
                   - name: b_22
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — delivery notice, submit button and feedback."
                   - name: desk_errors_1
@@ -2811,7 +2787,7 @@ collections:
                     hint: "Location: Contact form — delivery notice, submit button and feedback."
                   - name: a_59
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact form — delivery notice, submit button and feedback."
                   - name: desk_errors_2
@@ -2841,10 +2817,14 @@ collections:
                     required: false
                     hint: "Location: Direct contact sidebar."
                   - name: direct_48
-                    label: Paragraph 2
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Direct contact sidebar."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                   - name: direct_49
                     label: Label
                     widget: text
@@ -2870,36 +2850,30 @@ collections:
                     widget: text
                     required: false
                     hint: "Location: Direct contact sidebar."
-                  - name: direct_54
-                    label: Emphasis / icon
-                    widget: text
+                  - name: next_steps
+                    label: What happens next
+                    widget: list
                     required: false
-                    hint: "Location: Direct contact sidebar."
-                  - name: direct_55
-                    label: Label 5
-                    widget: text
-                    required: false
-                    hint: "Location: Direct contact sidebar."
-                  - name: direct_56
-                    label: Emphasis / icon 2
-                    widget: text
-                    required: false
-                    hint: "Location: Direct contact sidebar."
-                  - name: direct_57
-                    label: Label 6
-                    widget: text
-                    required: false
-                    hint: "Location: Direct contact sidebar."
-                  - name: direct_58
-                    label: Emphasis / icon 3
-                    widget: text
-                    required: false
-                    hint: "Location: Direct contact sidebar."
-                  - name: direct_59
-                    label: Label 7
-                    widget: text
-                    required: false
-                    hint: "Location: Direct contact sidebar."
+                    collapsed: true
+                    allow_add: true
+                    summary: "{{fields.body}}"
+                    fields:
+                      - name: body
+                        label: Description
+                        widget: markdown
+                        modes:
+                          - rich_text
+                          - raw
+                        required: false
+                        hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                          prefer."
+                      - name: label
+                        label: Custom step label (optional)
+                        widget: string
+                        required: false
+                        hint: Leave blank for automatic numbering.
+                    hint: Add, remove or reorder steps; numbers update automatically.
+                    default: []
                   - name: direct_60
                     label: Label 8
                     widget: text
@@ -3084,6 +3058,9 @@ collections:
                     required: false
                     hint: Optional. Blank uses the search description.
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+          - name: editor_content_version
+            widget: hidden
+            default: 1
       - name: about
         label: About
         file: content/about/_index.md
@@ -3119,22 +3096,22 @@ collections:
                 fields:
                   - name: aria_label_nav_10
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
                   - name: a_60
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
                   - name: span_36
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                   - name: span_37
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                 summary: Edit this section — Billboard — breadcrumb navigation
@@ -3145,12 +3122,12 @@ collections:
                 fields:
                   - name: button_5
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — introduction. Link destination: #team."
                   - name: b_23
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — introduction."
                   - name: plain_link_3
@@ -3171,7 +3148,7 @@ collections:
                     hint: The image beside the About page headline. Leave blank for the original artwork.
                   - name: alt_img_13
                     label: Image description
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — illustration and caption. Accessibility text; not a visible headline."
                   - name: figcaption_7
@@ -3187,29 +3164,23 @@ collections:
                 fields:
                   - name: kicker_9
                     label: Story — small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: Visible in the main story section of the About page.
                   - name: story_title_1
                     label: Story heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: Visible in the main story section of the About page.
-                  - name: p_26
-                    label: Opening paragraph
-                    widget: text
+                  - name: story_body
+                    label: Story
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
                     required: false
-                    hint: Visible in the main story section of the About page.
-                  - name: p_27
-                    label: Design and development paragraph
-                    widget: text
-                    required: false
-                    hint: Visible in the main story section of the About page.
-                  - name: p_28
-                    label: How we start paragraph
-                    widget: text
-                    required: false
-                    hint: Visible in the main story section of the About page.
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
                 summary: Edit the story heading and three paragraphs
                 hint: This is the main introduction below the billboard on /about/.
               - name: detail_fit_5
@@ -3219,34 +3190,33 @@ collections:
                 fields:
                   - name: detail_label_1
                     label: Paragraph
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Less noise. More care.."
                   - name: principles_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Less noise. More care.."
-                  - name: li_19
-                    label: List item
-                    widget: text
+                  - name: principles_items
+                    label: Principles
+                    widget: list
                     required: false
-                    hint: "Location: Less noise. More care.."
-                  - name: li_20
-                    label: List item 2
-                    widget: text
-                    required: false
-                    hint: "Location: Less noise. More care.."
-                  - name: li_21
-                    label: List item 3
-                    widget: text
-                    required: false
-                    hint: "Location: Less noise. More care.."
-                  - name: li_22
-                    label: List item 4
-                    widget: text
-                    required: false
-                    hint: "Location: Less noise. More care.."
+                    collapsed: true
+                    allow_add: true
+                    field:
+                      name: item
+                      label: Item
+                      widget: markdown
+                      modes:
+                        - rich_text
+                        - raw
+                      required: false
+                      hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                        prefer."
+                    hint: Add, remove or drag items to reorder. There is no fixed number of items.
+                    default: []
+                    summary: "{{fields.item}}"
                   - name: about_location_1
                     label: Paragraph 2
                     widget: text
@@ -3260,19 +3230,23 @@ collections:
                 fields:
                   - name: kicker_10
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Emily Herr. A direct connection.."
                   - name: team_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Emily Herr. A direct connection.."
                   - name: p_29
-                    label: Paragraph 2
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Emily Herr. A direct connection.."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                 summary: Edit the team introduction
                 hint: Edit names, biographies, roles and portraits in the Staff collection.
               - name: staff_card_7
@@ -3309,59 +3283,42 @@ collections:
                 fields:
                   - name: kicker_11
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Easy to work with. Serious about the work.."
                   - name: approach_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Easy to work with. Serious about the work.."
-                  - name: detail_step_1
-                    label: Label
-                    widget: text
+                  - name: approach_items
+                    label: Working approach steps
+                    widget: list
                     required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: h3_10
-                    label: Heading 2
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: p_31
-                    label: Paragraph 2
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: detail_step_2
-                    label: Label 2
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: h3_11
-                    label: Heading 3
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: p_32
-                    label: Paragraph 3
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: detail_step_3
-                    label: Label 3
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: h3_12
-                    label: Heading 4
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
-                  - name: p_33
-                    label: Paragraph 4
-                    widget: text
-                    required: false
-                    hint: "Location: Easy to work with. Serious about the work.."
+                    collapsed: true
+                    allow_add: true
+                    summary: "{{fields.title}}"
+                    fields:
+                      - name: title
+                        label: Heading
+                        widget: string
+                        required: false
+                      - name: body
+                        label: Description
+                        widget: markdown
+                        modes:
+                          - rich_text
+                          - raw
+                        required: false
+                        hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                          prefer."
+                      - name: label
+                        label: Custom step label (optional)
+                        widget: string
+                        required: false
+                        hint: Leave blank for automatic numbering.
+                    hint: Add, remove or reorder steps; numbers update automatically.
+                    default: []
                 summary: Edit this section — Easy to work with. Serious about the work.
               - name: about_services_9
                 label: Service links
@@ -3370,24 +3327,28 @@ collections:
                 fields:
                   - name: kicker_12
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Service links."
                   - name: help_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Service links."
                   - name: help_title_2
                     label: Heading 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Service links."
                   - name: p_34
-                    label: Paragraph 2
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Service links."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                   - name: plain_link_4
                     label: Link text
                     widget: text
@@ -3401,38 +3362,42 @@ collections:
                 fields:
                   - name: kicker_13
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: contact_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: contact_title_2
                     label: Heading 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: em_2
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: p_35
-                    label: Paragraph 2
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Contact — next step."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                   - name: button_6
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step. Link destination: mailto:{{ .Site.Data.settings.email
                       }}?subject=Let%E2%80%99s%20talk%20about%20a%20project."
                   - name: b_24
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Contact — next step."
                   - name: small_16
@@ -3566,6 +3531,9 @@ collections:
                     required: false
                     hint: Optional. Blank uses the search description.
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+          - name: editor_content_version
+            widget: hidden
+            default: 1
       - name: blog
         label: Blog — listing
         file: content/blog/_index.md
@@ -3601,22 +3569,22 @@ collections:
                 fields:
                   - name: aria_label_nav_11
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
                   - name: a_62
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
                   - name: span_38
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                   - name: span_39
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Billboard — breadcrumb navigation."
                 summary: Edit this section — Billboard — breadcrumb navigation
@@ -3627,7 +3595,7 @@ collections:
                 fields:
                   - name: kicker_blog_eyebrow_1
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Featured article — section label."
                 summary: Edit this section — Featured article — section label
@@ -3695,12 +3663,12 @@ collections:
                 fields:
                   - name: kicker_14
                     label: Section eyebrow / small heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: A few useful things to know.."
                   - name: more_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: A few useful things to know.."
                 summary: Edit this section — A few useful things to know.
@@ -3816,10 +3784,14 @@ collections:
                 collapsed: true
                 fields:
                   - name: p_39
-                    label: Paragraph
-                    widget: text
+                    label: Content
+                    widget: markdown
                     required: false
-                    hint: "Location: Blog listing — supporting note."
+                    hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+                      prefer."
+                    modes:
+                      - rich_text
+                      - raw
                 summary: Edit this section — Blog listing — supporting note
               - name: a_8
                 label: Back to top link
@@ -3828,7 +3800,7 @@ collections:
                 fields:
                   - name: a_66
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Back to top link. Link destination: mailto:{{ .Site.Data.settings.email }}."
                 summary: Edit this section — Back to top link
@@ -3957,6 +3929,9 @@ collections:
                     required: false
                     hint: Optional. Blank uses the search description.
             hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+          - name: editor_content_version
+            widget: hidden
+            default: 1
     editor:
       preview: false
   - name: services
@@ -4078,32 +4053,32 @@ collections:
             fields:
               - name: aria_label_nav_18
                 label: Accessibility label
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — breadcrumb navigation. Accessibility text; not a visible headline."
               - name: a_86
                 label: Link text
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — breadcrumb navigation. Link destination: /."
               - name: span_58
                 label: Label
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — breadcrumb navigation."
               - name: a_87
                 label: Link text 2
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — breadcrumb navigation. Link destination: /services/."
               - name: span_59
                 label: Label 2
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — breadcrumb navigation."
               - name: span_60
                 label: Label 3
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — breadcrumb navigation."
             summary: Edit this section — Billboard — breadcrumb navigation
@@ -4114,17 +4089,17 @@ collections:
             fields:
               - name: button_11
                 label: Link text
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — introduction. Link destination: #project."
               - name: b_32
                 label: Emphasis / icon
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — introduction."
               - name: plain_link_7
                 label: Link text 2
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — introduction. Link destination: #process."
             summary: Edit this section — Billboard — introduction
@@ -4140,12 +4115,12 @@ collections:
                 hint: Used by the detailed service layout. The standard-layout illustration is a separate field.
               - name: alt_img_20
                 label: Image description
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — illustration and caption. Accessibility text; not a visible headline."
               - name: figcaption_11
                 label: Image caption
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Billboard — illustration and caption."
             summary: Edit this section — Billboard — illustration and caption
@@ -4156,52 +4131,39 @@ collections:
             fields:
               - name: kicker_21
                 label: Section eyebrow / small heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Make it easy to choose you.."
               - name: overview_title_1
                 label: Heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Make it easy to choose you.."
-              - name: p_46
-                label: Paragraph 2
-                widget: text
+              - name: overview_body
+                label: Overview
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
-                hint: "Location: Make it easy to choose you.."
-              - name: p_47
-                label: Paragraph 3
-                widget: text
-                required: false
-                hint: "Location: Make it easy to choose you.."
-              - name: p_48
-                label: Paragraph 4
-                widget: text
-                required: false
-                hint: "Location: Make it easy to choose you.."
-              - name: p_49
-                label: Paragraph 5
-                widget: text
-                required: false
-                hint: "Location: Make it easy to choose you.."
               - name: h2_5
                 label: Heading 2
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Make it easy to choose you.."
               - name: a_88
                 label: Link text
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Make it easy to choose you.. Link destination: #project."
               - name: a_89
                 label: Link text 2
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Make it easy to choose you.. Link destination: /services/."
               - name: a_90
                 label: Link text 3
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Make it easy to choose you.. Link destination: /about/."
             summary: Edit this section — Make it easy to choose you.
@@ -4212,29 +4174,29 @@ collections:
             fields:
               - name: detail_label_2
                 label: Paragraph
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: A good fit if…."
               - name: fit_title_1
                 label: Heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: A good fit if…."
-              - name: li_23
-                label: List item
-                widget: text
+              - name: fit_items
+                label: A good fit if
+                widget: list
                 required: false
-                hint: "Location: A good fit if…."
-              - name: li_24
-                label: List item 2
-                widget: text
-                required: false
-                hint: "Location: A good fit if…."
-              - name: li_25
-                label: List item 3
-                widget: text
-                required: false
-                hint: "Location: A good fit if…."
+                field:
+                  name: item
+                  label: Item
+                  widget: markdown
+                  modes:
+                    - rich_text
+                    - raw
+                  required: false
+                default: []
+                collapsed: true
+                summary: "{{fields.item}}"
             summary: Edit this section — A good fit if…
           - name: detail_subtypes_6
             label: Web design options
@@ -4243,134 +4205,53 @@ collections:
             fields:
               - name: subtypes_title_1
                 label: Heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Web design options."
-              - name: p_50
-                label: Paragraph
-                widget: text
+              - name: subtypes_body
+                label: Options introduction
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
-                hint: "Location: Web design options."
-              - name: summary_3
-                label: Label
-                widget: text
+              - name: subtype_items
+                label: Web design options
+                widget: list
                 required: false
-                hint: "Location: Web design options."
-              - name: p_51
-                label: Paragraph 2
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: a_91
-                label: Link text
-                widget: text
-                required: false
-                hint: "Location: Web design options. Link destination: #project."
-              - name: span_61
-                label: Label 2
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: summary_4
-                label: Label 3
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: p_52
-                label: Paragraph 3
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: a_92
-                label: Link text 2
-                widget: text
-                required: false
-                hint: "Location: Web design options. Link destination: #project."
-              - name: span_62
-                label: Label 4
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: summary_5
-                label: Label 5
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: p_53
-                label: Paragraph 4
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: a_93
-                label: Link text 3
-                widget: text
-                required: false
-                hint: "Location: Web design options. Link destination: #project."
-              - name: span_63
-                label: Label 6
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: summary_6
-                label: Label 7
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: p_54
-                label: Paragraph 5
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: a_94
-                label: Link text 4
-                widget: text
-                required: false
-                hint: "Location: Web design options. Link destination: #project."
-              - name: span_64
-                label: Label 8
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: summary_7
-                label: Label 9
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: p_55
-                label: Paragraph 6
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: a_95
-                label: Link text 5
-                widget: text
-                required: false
-                hint: "Location: Web design options. Link destination: #project."
-              - name: span_65
-                label: Label 10
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: summary_8
-                label: Label 11
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: p_56
-                label: Paragraph 7
-                widget: text
-                required: false
-                hint: "Location: Web design options."
-              - name: a_96
-                label: Link text 6
-                widget: text
-                required: false
-                hint: "Location: Web design options. Link destination: #project."
-              - name: span_66
-                label: Label 12
-                widget: text
-                required: false
-                hint: "Location: Web design options."
+                collapsed: true
+                summary: "{{fields.title}}{{fields.question}}"
+                fields:
+                  - name: id
+                    label: Anchor ID (keep existing IDs stable)
+                    widget: string
+                    required: false
+                  - name: title
+                    label: Title
+                    widget: string
+                    required: false
+                  - name: body
+                    label: Description
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                  - name: link_label
+                    label: Link text
+                    widget: string
+                    required: false
+                  - name: link_url
+                    label: Link destination
+                    widget: string
+                    required: false
+                    default: "#project"
+                    hint: "Local path, #anchor, https://, mailto:, or tel: link."
+                  - name: icon
+                    label: Link icon
+                    widget: string
+                    required: false
+                default: []
             summary: Edit this section — Web design options
           - name: process_7
             label: Project process
@@ -4379,59 +4260,33 @@ collections:
             fields:
               - name: kicker_22
                 label: Section eyebrow / small heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project process."
               - name: process_title_1
                 label: Heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project process."
-              - name: detail_step_4
-                label: Label
-                widget: text
+              - name: process_items
+                label: Process steps (automatically numbered)
+                widget: list
                 required: false
-                hint: "Location: Project process."
-              - name: h3_13
-                label: Heading 2
-                widget: text
-                required: false
-                hint: "Location: Project process."
-              - name: p_57
-                label: Paragraph 2
-                widget: text
-                required: false
-                hint: "Location: Project process."
-              - name: detail_step_5
-                label: Label 2
-                widget: text
-                required: false
-                hint: "Location: Project process."
-              - name: h3_14
-                label: Heading 3
-                widget: text
-                required: false
-                hint: "Location: Project process."
-              - name: p_58
-                label: Paragraph 3
-                widget: text
-                required: false
-                hint: "Location: Project process."
-              - name: detail_step_6
-                label: Label 3
-                widget: text
-                required: false
-                hint: "Location: Project process."
-              - name: h3_15
-                label: Heading 4
-                widget: text
-                required: false
-                hint: "Location: Project process."
-              - name: p_59
-                label: Paragraph 4
-                widget: text
-                required: false
-                hint: "Location: Project process."
+                collapsed: true
+                summary: "{{fields.title}}{{fields.question}}"
+                fields:
+                  - name: title
+                    label: Step title
+                    widget: string
+                    required: false
+                  - name: body
+                    label: Description
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
             summary: Edit this section — Project process
           - name: detail_faq_8
             label: Frequently asked questions
@@ -4440,59 +4295,40 @@ collections:
             fields:
               - name: kicker_23
                 label: Section eyebrow / small heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Frequently asked questions."
               - name: faq_title_1
                 label: Heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Frequently asked questions."
-              - name: p_60
-                label: Paragraph 2
-                widget: text
+              - name: faq_body
+                label: FAQ introduction
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
-                hint: "Location: Frequently asked questions."
-              - name: summary_9
-                label: Label
-                widget: text
+              - name: faq_items
+                label: Questions and answers
+                widget: list
                 required: false
-                hint: "Location: Frequently asked questions."
-              - name: p_61
-                label: Paragraph 3
-                widget: text
-                required: false
-                hint: "Location: Frequently asked questions."
-              - name: summary_10
-                label: Label 2
-                widget: text
-                required: false
-                hint: "Location: Frequently asked questions."
-              - name: p_62
-                label: Paragraph 4
-                widget: text
-                required: false
-                hint: "Location: Frequently asked questions."
-              - name: summary_11
-                label: Label 3
-                widget: text
-                required: false
-                hint: "Location: Frequently asked questions."
-              - name: p_63
-                label: Paragraph 5
-                widget: text
-                required: false
-                hint: "Location: Frequently asked questions."
-              - name: summary_12
-                label: Label 4
-                widget: text
-                required: false
-                hint: "Location: Frequently asked questions."
-              - name: p_64
-                label: Paragraph 6
-                widget: text
-                required: false
-                hint: "Location: Frequently asked questions."
+                collapsed: true
+                summary: "{{fields.title}}{{fields.question}}"
+                fields:
+                  - name: question
+                    label: Question
+                    widget: string
+                    required: false
+                  - name: answer
+                    label: Answer
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
             summary: Edit this section — Frequently asked questions
           - name: project_9
             label: Project enquiry — closing call to action
@@ -4501,43 +4337,45 @@ collections:
             fields:
               - name: kicker_24
                 label: Section eyebrow / small heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project enquiry — closing call to action."
               - name: project_title_1
                 label: Heading
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project enquiry — closing call to action."
               - name: project_title_2
                 label: Heading 2
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project enquiry — closing call to action."
               - name: em_3
                 label: Label
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project enquiry — closing call to action."
-              - name: p_65
-                label: Paragraph 2
-                widget: text
+              - name: project_body
+                label: Project invitation
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
-                hint: "Location: Project enquiry — closing call to action."
               - name: button_12
                 label: Link text
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project enquiry — closing call to action. Link destination: mailto:{{
                   .Site.Data.settings.email }}?subject=Web%20design%20project%20inquiry."
               - name: b_33
                 label: Emphasis / icon
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project enquiry — closing call to action."
               - name: small_17
                 label: Label 2
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Project enquiry — closing call to action."
             summary: Edit this section — Project enquiry — closing call to action
@@ -4548,7 +4386,7 @@ collections:
             fields:
               - name: a_97
                 label: Link text
-                widget: text
+                widget: string
                 required: false
                 hint: "Location: Back to top link. Link destination: /services/."
             summary: Edit this section — Back to top link
@@ -4770,6 +4608,9 @@ collections:
                 required: false
                 hint: Optional. Blank uses the search description.
         hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+      - name: editor_content_version
+        widget: hidden
+        default: 1
   - name: case_studies
     label: Case studies
     label_singular: Case study
@@ -4895,32 +4736,32 @@ collections:
             fields:
               - name: breadcrumb_aria_label
                 label: Aria label
-                widget: text
+                widget: string
                 required: false
                 default: Breadcrumb
               - name: breadcrumb_home_label
                 label: Home label
-                widget: text
+                widget: string
                 required: false
                 default: Home
               - name: breadcrumb_separator_before
                 label: Separator before
-                widget: text
+                widget: string
                 required: false
                 default: /
               - name: breadcrumb_directory_label
                 label: Directory label
-                widget: text
+                widget: string
                 required: false
                 default: Case studies
               - name: breadcrumb_separator_after
                 label: Separator after
-                widget: text
+                widget: string
                 required: false
                 default: /
               - name: breadcrumb_current_label
                 label: Current label
-                widget: text
+                widget: string
                 required: false
             summary: Edit this section — Breadcrumb navigation
           - name: disclosure
@@ -4953,38 +4794,22 @@ collections:
             collapsed: true
             required: false
             fields:
-              - name: facts_organization_label
-                label: Organization label
-                widget: text
+              - name: facts_items
+                label: Project facts
+                widget: list
                 required: false
-              - name: facts_organization
-                label: Organization
-                widget: text
-                required: false
-              - name: facts_type_label
-                label: Type label
-                widget: text
-                required: false
-              - name: facts_type
-                label: Type
-                widget: text
-                required: false
-              - name: facts_role_label
-                label: Role label
-                widget: text
-                required: false
-              - name: facts_role
-                label: Role
-                widget: text
-                required: false
-              - name: facts_status_label
-                label: Status label
-                widget: text
-                required: false
-              - name: facts_status
-                label: Status
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: label
+                    label: Label
+                    widget: string
+                    required: false
+                  - name: text
+                    label: Value
+                    widget: string
+                    required: false
+                default: []
             summary: Edit this section — Project facts
           - name: brief
             label: 01 — Starting point
@@ -4994,31 +4819,29 @@ collections:
             fields:
               - name: brief_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: brief_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: brief_text
-                label: Text
-                widget: text
+              - name: brief_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: brief_objective_heading
                 label: Objective heading
-                widget: text
+                widget: string
                 required: false
-              - name: brief_objective
-                label: Objective
-                widget: text
-                required: false
-              - name: brief_boundary
-                label: Boundary
-                widget: text
-                required: false
-              - name: brief_boundary_label
-                label: Boundary label
-                widget: text
+              - name: brief_objective_body
+                label: objective body
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
             summary: Edit this section — 01 — Starting point
           - name: discovery
@@ -5029,40 +4852,38 @@ collections:
             fields:
               - name: discovery_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: discovery_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: discovery_text
-                label: Text
-                widget: text
-                required: false
-              - name: discovery_direction
-                label: Direction
-                widget: text
+              - name: discovery_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: discovery_journey_label
                 label: Journey label
-                widget: text
+                widget: string
                 required: false
-              - name: discovery_step_1
-                label: Step 1
-                widget: text
+              - name: discovery_journey
+                label: Visitor journey
+                widget: list
                 required: false
-              - name: discovery_step_2
-                label: Step 2
-                widget: text
-                required: false
-              - name: discovery_step_3
-                label: Step 3
-                widget: text
-                required: false
-              - name: discovery_step_4
-                label: Step 4
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: text
+                    label: Text
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
             summary: Edit this section — 02 — Discovery and direction
           - name: decisions
             label: 03 — Design decisions
@@ -5072,36 +4893,31 @@ collections:
             fields:
               - name: decisions_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: decisions_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: decisions_decision_1_heading
-                label: Decision 1 heading
-                widget: text
+              - name: decisions_items
+                label: Design decisions
+                widget: list
                 required: false
-              - name: decisions_decision_1_text
-                label: Decision 1 text
-                widget: text
-                required: false
-              - name: decisions_decision_2_heading
-                label: Decision 2 heading
-                widget: text
-                required: false
-              - name: decisions_decision_2_text
-                label: Decision 2 text
-                widget: text
-                required: false
-              - name: decisions_decision_3_heading
-                label: Decision 3 heading
-                widget: text
-                required: false
-              - name: decisions_decision_3_text
-                label: Decision 3 text
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: heading
+                    label: Heading
+                    widget: string
+                    required: false
+                  - name: body
+                    label: Decision
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
             summary: Edit this section — 03 — Design decisions
           - name: examples
             label: 04 — Work up close
@@ -5111,63 +4927,78 @@ collections:
             fields:
               - name: examples_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: examples_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: examples_intro
-                label: Intro
-                widget: text
+              - name: examples_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: examples_before_label
                 label: Before label
-                widget: text
+                widget: string
                 required: false
-              - name: examples_before_1
-                label: Before 1
-                widget: text
+              - name: examples_before_items
+                label: Before
+                widget: list
                 required: false
-              - name: examples_before_2
-                label: Before 2
-                widget: text
-                required: false
-              - name: examples_before_3
-                label: Before 3
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: text
+                    label: Text
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
               - name: examples_after_label
                 label: After label
-                widget: text
+                widget: string
                 required: false
-              - name: examples_after_1
-                label: After 1
-                widget: text
+              - name: examples_after_items
+                label: After
+                widget: list
                 required: false
-              - name: examples_after_2
-                label: After 2
-                widget: text
-                required: false
-              - name: examples_after_3
-                label: After 3
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: text
+                    label: Text
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
               - name: examples_detail_heading
                 label: Detail heading
-                widget: text
+                widget: string
                 required: false
-              - name: examples_detail_text
-                label: Detail text
-                widget: text
+              - name: examples_detail_body
+                label: detail body
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: examples_mobile_heading
                 label: Mobile heading
-                widget: text
+                widget: string
                 required: false
-              - name: examples_mobile_text
-                label: Mobile text
-                widget: text
+              - name: examples_mobile_body
+                label: mobile body
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
             summary: Edit this section — 04 — Work up close
           - name: detail_image
@@ -5198,47 +5029,55 @@ collections:
             fields:
               - name: implementation_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: implementation_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: implementation_text
-                label: Text
-                widget: text
+              - name: implementation_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: implementation_edge_cases_heading
                 label: Edge cases heading
-                widget: text
+                widget: string
                 required: false
-              - name: implementation_edge_cases_text
-                label: Edge cases text
-                widget: text
+              - name: implementation_edge_cases_body
+                label: edge cases body
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: implementation_verification_heading
                 label: Verification heading
-                widget: text
+                widget: string
                 required: false
-              - name: implementation_check_1
-                label: Check 1
-                widget: text
+              - name: implementation_checks
+                label: Verification checks
+                widget: list
                 required: false
-              - name: implementation_check_2
-                label: Check 2
-                widget: text
-                required: false
-              - name: implementation_check_3
-                label: Check 3
-                widget: text
-                required: false
-              - name: implementation_check_4
-                label: Check 4
-                widget: text
-                required: false
-              - name: implementation_verification_note
-                label: Verification note
-                widget: text
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: text
+                    label: Text
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
+              - name: implementation_verification_body
+                label: verification body
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
             summary: Edit this section — 05 — Implementation
           - name: handoff
@@ -5249,68 +5088,57 @@ collections:
             fields:
               - name: handoff_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: handoff_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: handoff_text
-                label: Text
-                widget: text
+              - name: handoff_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
-              - name: handoff_deliverable_1
-                label: Deliverable 1
-                widget: text
+              - name: handoff_deliverables
+                label: Deliverables
+                widget: list
                 required: false
-              - name: handoff_deliverable_2
-                label: Deliverable 2
-                widget: text
-                required: false
-              - name: handoff_deliverable_3
-                label: Deliverable 3
-                widget: text
-                required: false
-              - name: handoff_deliverable_4
-                label: Deliverable 4
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: text
+                    label: Text
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
               - name: handoff_sequence_heading
                 label: Sequence heading
-                widget: text
+                widget: string
                 required: false
-              - name: handoff_phase_1_text
-                label: Phase 1 text
-                widget: text
+              - name: handoff_phases
+                label: Delivery phases
+                widget: list
                 required: false
-              - name: handoff_phase_1_label
-                label: Phase 1 label
-                widget: text
-                required: false
-              - name: handoff_phase_2_text
-                label: Phase 2 text
-                widget: text
-                required: false
-              - name: handoff_phase_2_label
-                label: Phase 2 label
-                widget: text
-                required: false
-              - name: handoff_phase_3_text
-                label: Phase 3 text
-                widget: text
-                required: false
-              - name: handoff_phase_3_label
-                label: Phase 3 label
-                widget: text
-                required: false
-              - name: handoff_phase_4_text
-                label: Phase 4 text
-                widget: text
-                required: false
-              - name: handoff_phase_4_label
-                label: Phase 4 label
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: label
+                    label: Phase label
+                    widget: string
+                    required: false
+                  - name: text
+                    label: Description
+                    widget: markdown
+                    modes:
+                      - rich_text
+                      - raw
+                    required: false
+                default: []
             summary: Edit this section — 06 — Delivery and ownership
           - name: outcomes
             label: 07 — Outcomes
@@ -5320,23 +5148,29 @@ collections:
             fields:
               - name: outcomes_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: outcomes_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: outcomes_text
-                label: Text
-                widget: text
+              - name: outcomes_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: outcomes_evidence_heading
                 label: Evidence heading
-                widget: text
+                widget: string
                 required: false
-              - name: outcomes_evidence_text
-                label: Evidence text
-                widget: text
+              - name: outcomes_evidence_body
+                label: evidence body
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
             summary: Edit this section — 07 — Outcomes
           - name: lessons
@@ -5347,15 +5181,18 @@ collections:
             fields:
               - name: lessons_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
               - name: lessons_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: lessons_text
-                label: Text
-                widget: text
+              - name: lessons_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
             summary: Edit this section — 08 — Takeaway
           - name: contents
@@ -5366,12 +5203,12 @@ collections:
             fields:
               - name: contents_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
                 default: INSIDE THIS STUDY
               - name: contents_return_label
                 label: Return label
-                widget: text
+                widget: string
                 required: false
                 default: ← All case studies
             summary: Edit this section — Contents sidebar
@@ -5383,41 +5220,34 @@ collections:
             fields:
               - name: navigation_aria_label
                 label: Aria label
-                widget: text
+                widget: string
                 required: false
                 default: Case study contents
-              - name: navigation_brief
-                label: Brief
-                widget: text
+              - name: navigation_items
+                label: Contents links
+                widget: list
                 required: false
-              - name: navigation_discovery
-                label: Discovery
-                widget: text
-                required: false
-              - name: navigation_decisions
-                label: Decisions
-                widget: text
-                required: false
-              - name: navigation_examples
-                label: Examples
-                widget: text
-                required: false
-              - name: navigation_implementation
-                label: Implementation
-                widget: text
-                required: false
-              - name: navigation_handoff
-                label: Handoff
-                widget: text
-                required: false
-              - name: navigation_outcomes
-                label: Outcomes
-                widget: text
-                required: false
-              - name: navigation_lessons
-                label: Lessons
-                widget: text
-                required: false
+                collapsed: true
+                summary: "{{fields.heading}}{{fields.label}}{{fields.text}}"
+                fields:
+                  - name: id
+                    label: Section anchor (stable)
+                    widget: select
+                    required: false
+                    options:
+                      - brief
+                      - discovery
+                      - decisions
+                      - examples
+                      - implementation
+                      - handoff
+                      - outcomes
+                      - lessons
+                  - name: label
+                    label: Link label
+                    widget: string
+                    required: false
+                default: []
             summary: Edit this section — Contents section links
           - name: next
             label: Related / next study
@@ -5433,25 +5263,28 @@ collections:
                   /case-studies/project-name/.
               - name: next_eyebrow
                 label: Eyebrow
-                widget: text
+                widget: string
                 required: false
                 default: NEXT STUDY
               - name: next_heading
                 label: Heading
-                widget: text
+                widget: string
                 required: false
-              - name: next_description
-                label: Description
-                widget: text
+              - name: next_body
+                label: Story
+                widget: markdown
+                modes:
+                  - rich_text
+                  - raw
                 required: false
               - name: next_button_label
                 label: Button label
-                widget: text
+                widget: string
                 required: false
                 default: Explore the next study
               - name: next_button_icon
                 label: Button icon
-                widget: text
+                widget: string
                 required: false
                 default: »
             summary: Edit this section — Related / next study
@@ -5468,7 +5301,7 @@ collections:
                 default: /contact/
               - name: contact_label
                 label: Label
-                widget: text
+                widget: string
                 required: false
                 default: Have a similar challenge? Let’s talk →
             summary: Edit this section — Closing contact link
@@ -5625,6 +5458,9 @@ collections:
                 required: false
                 hint: Optional. Blank uses the search description.
         hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+      - name: editor_content_version
+        widget: hidden
+        default: 1
     filter:
       field: fragment
       value: pages/case-study.html
@@ -5734,27 +5570,27 @@ collections:
             fields:
               - name: breadcrumb_label
                 label: Breadcrumb label
-                widget: text
+                widget: string
                 required: false
               - name: home_label
                 label: Home label
-                widget: text
+                widget: string
                 required: false
               - name: home_separator
                 label: Home separator
-                widget: text
+                widget: string
                 required: false
               - name: blog_label
                 label: Blog label
-                widget: text
+                widget: string
                 required: false
               - name: blog_separator
                 label: Blog separator
-                widget: text
+                widget: string
                 required: false
               - name: current_label
                 label: Current label
-                widget: text
+                widget: string
                 required: false
             required: false
             summary: Edit this section — Billboard — breadcrumb navigation
@@ -5776,11 +5612,11 @@ collections:
             fields:
               - name: takeaway_aria_label
                 label: Takeaway aria label
-                widget: text
+                widget: string
                 required: false
               - name: takeaway_label
                 label: Takeaway label
-                widget: text
+                widget: string
                 required: false
               - name: takeaway_text
                 label: Takeaway text
@@ -5803,7 +5639,7 @@ collections:
                 required: false
               - name: author_link_label
                 label: Author link label
-                widget: text
+                widget: string
                 required: false
             required: false
             summary: Edit this section — Article author
@@ -5814,11 +5650,11 @@ collections:
             fields:
               - name: contents_label
                 label: Contents label
-                widget: text
+                widget: string
                 required: false
               - name: contents_return_label
                 label: Contents return label
-                widget: text
+                widget: string
                 required: false
               - name: contents_aria_label
                 label: Contents accessibility label
@@ -5849,19 +5685,19 @@ collections:
             fields:
               - name: footer_label
                 label: Footer label
-                widget: text
+                widget: string
                 required: false
               - name: footer_title
                 label: Closing heading
-                widget: text
+                widget: string
                 required: false
               - name: footer_link_label
                 label: Contact link text
-                widget: text
+                widget: string
                 required: false
               - name: footer_link_icon
                 label: Footer link icon
-                widget: text
+                widget: string
                 required: false
             required: false
             summary: Edit this section — Article footer
@@ -5968,6 +5804,9 @@ collections:
                 required: false
                 hint: Optional. Blank uses the search description.
         hint: These control previews, not the visible billboard. Blank overrides inherit defaults.
+      - name: editor_content_version
+        widget: hidden
+        default: 1
     format: yaml-frontmatter
     label_singular: Article
   - name: staff
@@ -6062,21 +5901,26 @@ collections:
           widget: string
       - name: facts
         label: At a glance
-        widget: object
+        widget: list
         required: false
         fields:
-          - name: focus
-            label: Focus
+          - name: label
+            label: Label
             widget: string
             required: false
-          - name: collaboration
-            label: Works with
-            widget: string
+          - name: value
+            label: Value
+            widget: markdown
+            modes:
+              - rich_text
+              - raw
             required: false
-          - name: handoff
-            label: A useful handoff
-            widget: string
-            required: false
+            hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+              prefer."
+        collapsed: true
+        summary: "{{fields.label}}"
+        hint: Add, remove or reorder facts. Blank values are omitted.
+        default: []
       - name: approach
         label: How I work
         widget: list
@@ -6087,7 +5931,15 @@ collections:
             widget: string
           - name: text
             label: Description
-            widget: text
+            widget: markdown
+            modes:
+              - rich_text
+              - raw
+            required: false
+            hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+              prefer."
+        default: []
+        collapsed: true
       - name: contributions
         label: What I bring to a project
         widget: list
@@ -6098,11 +5950,24 @@ collections:
             widget: string
           - name: text
             label: Description
-            widget: text
+            widget: markdown
+            modes:
+              - rich_text
+              - raw
+            required: false
+            hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+              prefer."
+        default: []
+        collapsed: true
       - name: interests
         label: Beyond the brief
-        widget: text
+        widget: markdown
         required: false
+        modes:
+          - rich_text
+          - raw
+        hint: "Write naturally: paragraphs, emphasis, links and lists. Switch to Markdown only if you
+          prefer."
       - name: related_service
         label: Related service
         widget: object
@@ -6210,6 +6075,12 @@ collections:
         label: body_class
         widget: hidden
         default: services-billboard-variant service-detail-page staff-profile-page
+      - name: editor_content_version
+        widget: hidden
+        default: 1
+      - name: editor_staff_version
+        widget: hidden
+        default: 1
     label_singular: Staff profile
     format: yaml-frontmatter
     editor:
@@ -6276,18 +6147,18 @@ collections:
                 fields:
                   - name: aria_label_a_1
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Header — logo and theme controls. Link destination: /. Accessibility text; not a
                       visible headline."
                   - name: span_1
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Header — logo and theme controls."
                   - name: b_1
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Header — logo and theme controls."
                   - name: small_1
@@ -6297,17 +6168,17 @@ collections:
                     hint: "Location: Header — logo and theme controls."
                   - name: aria_label_button_1
                     label: Accessibility label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Header — logo and theme controls. Accessibility text; not a visible headline."
                   - name: title_button_1
                     label: Tooltip
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Header — logo and theme controls."
                   - name: span_2
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Header — logo and theme controls."
                 summary: Edit this section — Header — logo and theme controls
@@ -6318,93 +6189,93 @@ collections:
                 fields:
                   - name: aria_label_nav_1
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Accessibility text; not a visible
                       headline."
                   - name: summary_1
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: span_3
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: a_1
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /services/."
                   - name: a_2
                     label: Link text 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/web-design/."
                   - name: a_3
                     label: Link text 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/development/."
                   - name: a_4
                     label: Link text 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /services/hosting/."
                   - name: a_5
                     label: Link text 5
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/agentic-setups/."
                   - name: a_6
                     label: Link text 6
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/consulting/."
                   - name: a_7
                     label: Link text 7
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/contract-work/."
                   - name: a_8
                     label: Link text 8
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /case-studies/."
                   - name: a_9
                     label: Link text 9
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /pricing/."
                   - name: summary_2
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: span_4
                     label: Label 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: a_10
                     label: Link text 10
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /about/."
                   - name: a_11
                     label: Link text 11
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /blog/."
                   - name: a_12
                     label: Link text 12
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /contact/."
                 summary: Edit this section — Desktop navigation — labels and dropdowns
@@ -6415,22 +6286,22 @@ collections:
                 fields:
                   - name: aria_label_nav_2
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Mobile navigation. Accessibility text; not a visible headline."
                   - name: a_14
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Mobile navigation. Link destination: /services/."
                   - name: a_15
                     label: Link text 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Mobile navigation. Link destination: /case-studies/."
                   - name: a_16
                     label: Link text 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Mobile navigation. Link destination: /contact/."
                   - name: mobile_more_1
@@ -6451,12 +6322,12 @@ collections:
                     hint: "Location: Expanded menu — heading and close button."
                   - name: site_menu_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — heading and close button."
                   - name: aria_label_button_2
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — heading and close button. Accessibility text; not a visible
                       headline."
@@ -6473,7 +6344,7 @@ collections:
                 fields:
                   - name: aria_label_nav_3
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — page links. Accessibility text; not a visible headline."
                   - name: active_1
@@ -6483,32 +6354,32 @@ collections:
                     hint: "Location: Expanded menu — page links. Link destination: /."
                   - name: a_17
                     label: Link text 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /services/."
                   - name: a_18
                     label: Link text 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /case-studies/."
                   - name: a_19
                     label: Link text 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /pricing/."
                   - name: a_20
                     label: Link text 5
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /about/."
                   - name: a_21
                     label: Link text 6
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /blog/."
                   - name: a_22
                     label: Link text 7
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /contact/."
                 summary: Edit this section — Expanded menu — page links
@@ -6519,37 +6390,37 @@ collections:
                 fields:
                   - name: site_menu_services_title_1
                     label: Heading
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — service links."
                   - name: a_23
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/web-design/."
                   - name: a_24
                     label: Link text 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/development/."
                   - name: a_25
                     label: Link text 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/hosting/."
                   - name: a_26
                     label: Link text 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/agentic-setups/."
                   - name: a_27
                     label: Link text 5
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/consulting/."
                   - name: a_28
                     label: Link text 6
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/contract-work/."
                 summary: Edit this section — Expanded menu — service links
@@ -6571,7 +6442,7 @@ collections:
                 fields:
                   - name: aria_label_nav_4
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled. Accessibility text; not a visible
                       headline."
@@ -6582,32 +6453,32 @@ collections:
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_29
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_30
                     label: Label 3
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_31
                     label: Label 4
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_32
                     label: Label 5
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_33
                     label: Label 6
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_34
                     label: Label 7
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                 summary: Edit this section — Navigation fallback — JavaScript disabled
@@ -6618,7 +6489,7 @@ collections:
                 fields:
                   - name: aria_label_svg_1
                     label: Accessibility label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Footer illustration — accessibility. Accessibility text; not a visible headline."
                 summary: Edit this section — Footer illustration — accessibility
@@ -6629,22 +6500,22 @@ collections:
                 fields:
                   - name: b_2
                     label: Emphasis / icon
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Footer — business details."
                   - name: span_5
                     label: Label
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Footer — business details."
                   - name: span_6
                     label: Label 2
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Footer — business details."
                   - name: a_13
                     label: Link text
-                    widget: text
+                    widget: string
                     required: false
                     hint: "Location: Footer — business details. Link destination: #top."
                 summary: Edit this section — Footer — business details
@@ -6668,7 +6539,7 @@ collections:
                     default: About
                   - name: profile_contact_button
                     label: Billboard — contact button
-                    widget: text
+                    widget: string
                     required: false
                     default: Talk with our team
                   - name: profile_skills_link
@@ -6678,62 +6549,62 @@ collections:
                     default: Explore skills ↓
                   - name: profile_about_label
                     label: Biography — eyebrow
-                    widget: text
+                    widget: string
                     required: false
                     default: ABOUT
                   - name: profile_about_heading
                     label: Biography — heading ({name} inserts first name)
-                    widget: text
+                    widget: string
                     required: false
                     default: A little about {name}.
                   - name: profile_approach_heading
                     label: Working approach — heading
-                    widget: text
+                    widget: string
                     required: false
                     default: How I work
                   - name: profile_contributions_heading
                     label: Contributions — heading
-                    widget: text
+                    widget: string
                     required: false
                     default: What I bring to a project
                   - name: profile_interests_heading
                     label: Interests — heading
-                    widget: text
+                    widget: string
                     required: false
                     default: Beyond the brief
                   - name: profile_toolkit_label
                     label: Skills — eyebrow
-                    widget: text
+                    widget: string
                     required: false
                     default: THE TOOLKIT
                   - name: profile_skills_heading
                     label: Skills — heading
-                    widget: text
+                    widget: string
                     required: false
                     default: Skills & strengths
                   - name: profile_facts_heading
                     label: At a glance — heading
-                    widget: text
+                    widget: string
                     required: false
                     default: At a glance
                   - name: profile_focus_label
                     label: At a glance — focus label
-                    widget: text
+                    widget: hidden
                     required: false
                     default: Focus
                   - name: profile_collaboration_label
                     label: At a glance — collaboration label
-                    widget: text
+                    widget: hidden
                     required: false
                     default: Works with
                   - name: profile_handoff_label
                     label: At a glance — handoff label
-                    widget: text
+                    widget: hidden
                     required: false
                     default: A useful handoff
                   - name: profile_connect_heading
                     label: Closing invitation — heading
-                    widget: text
+                    widget: string
                     required: false
                     default: Good projects start with a conversation.
                   - name: profile_connect_text
@@ -6743,12 +6614,12 @@ collections:
                     default: Tell us what you’re trying to make easier. We’ll work out the scope and who can help.
                   - name: profile_connect_button
                     label: Closing invitation — button
-                    widget: text
+                    widget: string
                     required: false
                     default: Start a conversation
                   - name: profile_others_heading
                     label: Related people — heading
-                    widget: text
+                    widget: string
                     required: false
                     default: Meet the rest of the team
                   - name: profile_team_link

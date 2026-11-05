@@ -1,0 +1,8 @@
+{{- /* A present empty value intentionally clears prose; only absent values use legacy markup. */ -}}
+{{- if isset .copy .key -}}
+  {{- $html := .page.RenderString (dict "display" "block") (printf "%v" (index .copy .key | default "")) -}}
+  {{- with .firstClass -}}{{- $html = replaceRE "^<p>" (printf "<p class=\"%s\">" (htmlEscape .)) $html -}}{{- end -}}
+  {{- $html | safeHTML -}}
+{{- else -}}
+  {{- .legacy | default "" | safeHTML -}}
+{{- end -}}

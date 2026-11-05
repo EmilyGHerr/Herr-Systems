@@ -131,11 +131,11 @@
   color: var(--detail-muted);
   font-size: 15px;
 }
-.service-detail .detail-checklist li {
+.service-detail .detail-checklist > li {
   padding-left: 20px;
   position: relative;
 }
-.service-detail .detail-checklist li::before {
+.service-detail .detail-checklist > li::before {
   content: "+";
   position: absolute;
   left: 0;
@@ -174,7 +174,7 @@
   margin: 0;
   padding: 0;
 }
-.service-detail .detail-process li {
+.service-detail .detail-process > li {
   padding-top: 20px;
   border-top: 2px solid var(--cyan);
 }
@@ -274,7 +274,7 @@
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  .service-detail .detail-process li {
+  .service-detail .detail-process > li {
     padding-left: 56px;
     position: relative;
   }

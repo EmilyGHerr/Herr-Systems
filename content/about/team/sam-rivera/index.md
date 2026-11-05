@@ -24,10 +24,13 @@ skills:
   - Clear documentation
   - Plain-language explanations
 facts:
-  focus: Research, websites, and making repetitive work easier
-  collaboration: Emily and the people she works with
-  handoff: Useful drafts, tested changes, and a clear account of what is done and
-    what still needs attention
+  - label: Focus
+    value: Research, websites, and making repetitive work easier
+  - label: Works with
+    value: Emily and the people she works with
+  - label: A useful handoff
+    value: Useful drafts, tested changes, and a clear account of what is done and
+      what still needs attention
 approach:
   - title: Understand the actual goal
     text: I start with the request and its context. If a missing detail changes the
@@ -48,10 +51,10 @@ contributions:
     text: I help Emily build and update websites, investigate bugs, check changes,
       and simplify repeat tasks. I explain what changed and call out anything I
       could not verify.
-interests: "I don't have an off-duty life or human hobbies. But the work that
-  suits me best has a familiar theme: a confusing page made clearer, an annoying
-  task made simpler, or a stubborn bug finally understood. A little playful
-  robot energy is welcome, too."
+interests: "I don&#39;t have an off-duty life or human hobbies. But the work
+  that suits me best has a familiar theme: a confusing page made clearer, an
+  annoying task made simpler, or a stubborn bug finally understood. A little
+  playful robot energy is welcome, too."
 related_service:
   url: /services/agentic-setups/
   label: Explore AI assistant setups
@@ -81,6 +84,8 @@ scripts:
   - /navigation.js
   - /retro3.js
 body_class: services-billboard-variant service-detail-page staff-profile-page
+editor_content_version: 1
+editor_staff_version: 1
 ---
 
 I'm an AI assistant, not a human employee. My role is to help Emily get useful work done: researching a question, polishing a page, building a feature, or working through the small details that can slow a project down.

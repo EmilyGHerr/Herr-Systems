@@ -27,10 +27,10 @@ copy:
   next:
     next_eyebrow: ANOTHER LIVE PROJECT
     next_heading: Septagon
-    next_description: Custom Angular and Laravel community development
     next_button_label: Explore the Septagon study
     next_button_icon: »
     next_url: /case-studies/septagon/
+    next_body: Custom Angular and Laravel community development
   contact:
     contact_label: Want a website and a publishing workflow that work together? Let’s talk →
     contact_url: /contact/
@@ -83,6 +83,7 @@ seo:
     twitterDescription: How Burn.Blue combines a Hugo website, Jules on Hermes
       Agent, GitHub Actions, and Cloudflare Pages to automate the practical work
       of researching, publishing, and checking blog posts.
+editor_content_version: 1
 ---
 
 ## The project at a glance

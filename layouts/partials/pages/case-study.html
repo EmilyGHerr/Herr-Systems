@@ -1,3 +1,4 @@
+{{ $page := . }}
 {{ $defaults := dict "breadcrumb_aria_label" "Breadcrumb" "breadcrumb_home_label" "Home" "breadcrumb_separator_before" "/" "breadcrumb_directory_label" "Case studies" "breadcrumb_separator_after" "/" "disclosure_text" "Concept study: illustrative work, not a commissioned client project or measured business results." "contact_label" "Have a similar challenge? Let’s talk →" "contact_url" "/contact/" "next_eyebrow" "NEXT STUDY" "next_button_label" "Explore the next study" "next_button_icon" "»" "contents_eyebrow" "INSIDE THIS STUDY" "contents_return_label" "← All case studies" "navigation_aria_label" "Case study contents" }}
 {{ $copy := merge (dict "breadcrumb_current_label" (.Params.listing_title | default .Title)) $defaults (partial "cms-copy.html" .Params.copy) }}
 
@@ -20,7 +21,11 @@
 <p class="case-disclosure">{{ index $copy "disclosure_text" }}</p>{{ if .Params.image }}<figure class="case-cover">
 <img alt='{{ .Params.image_alt }}' fetchpriority="high" height="630" src="{{ .Params.image }}" width="1200"/>
 <figcaption>{{ index $copy "cover_caption" }}</figcaption>
-</figure>{{ end }}{{ if eq .Params.detail_layout "structured" }}<dl class="case-facts">
+</figure>{{ end }}{{ if eq .Params.detail_layout "structured" }}{{ if isset $copy "facts_items" }}<dl class="case-facts">{{ range index $copy "facts_items" }}<div>
+<dt>{{ .label }}</dt>
+<dd>{{ .text }}</dd>
+</div>
+{{ end }}</dl>{{ else }}<dl class="case-facts">
 <div>
 <dt>{{ index $copy "facts_organization_label" }}</dt>
 <dd>{{ index $copy "facts_organization" }}</dd>
@@ -37,36 +42,38 @@
 <dt>{{ index $copy "facts_status_label" }}</dt>
 <dd>{{ index $copy "facts_status" }}</dd>
 </div>
-</dl>
+</dl>{{ end }}
 <div class="case-story-layout">
 <div class="case-story">
 <section id="brief">
 <p class="kicker">{{ index $copy "brief_eyebrow" }}</p>
 <h2>{{ index $copy "brief_heading" }}</h2>
-<p>{{ index $copy "brief_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "brief_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "brief_text" | default ""))))) }}
 <div class="case-callout">
 <h3>{{ index $copy "brief_objective_heading" }}</h3>
-<p>{{ index $copy "brief_objective" }}</p>
-<p>
-<b>{{ index $copy "brief_boundary_label" }}</b> {{ index $copy "brief_boundary" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "brief_objective_body" "legacy" (printf `<p>%s</p> <p> <b>%s</b> %s</p>` (htmlEscape (printf "%v" (index $copy "brief_objective" | default ""))) (htmlEscape (printf "%v" (index $copy "brief_boundary_label" | default ""))) (htmlEscape (printf "%v" (index $copy "brief_boundary" | default ""))))) }}
 </div>
 </section>
 <section id="discovery">
 <p class="kicker">{{ index $copy "discovery_eyebrow" }}</p>
 <h2>{{ index $copy "discovery_heading" }}</h2>
-<p>{{ index $copy "discovery_text" }}</p>
-<p>{{ index $copy "discovery_direction" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "discovery_body" "legacy" (printf `<p>%s</p> <p>%s</p>` (htmlEscape (printf "%v" (index $copy "discovery_text" | default ""))) (htmlEscape (printf "%v" (index $copy "discovery_direction" | default ""))))) }}
 <div aria-label='{{ index $copy "discovery_journey_label" }}' class="case-path">
-<span>{{ index $copy "discovery_step_1" }}</span>
+{{ if isset $copy "discovery_journey" }}{{ range index $copy "discovery_journey" }}<span>{{ $page.RenderString .text }}</span>
+{{ end }}{{ else }}<span>{{ index $copy "discovery_step_1" }}</span>
 <span>{{ index $copy "discovery_step_2" }}</span>
 <span>{{ index $copy "discovery_step_3" }}</span>
 <span>{{ index $copy "discovery_step_4" }}</span>
+{{ end }}
 </div>
 </section>
 <section id="decisions">
 <p class="kicker">{{ index $copy "decisions_eyebrow" }}</p>
 <h2>{{ index $copy "decisions_heading" }}</h2>
-<div class="case-decision">
+{{ if isset $copy "decisions_items" }}{{ range index $copy "decisions_items" }}<div class="case-decision">
+<h3>{{ .heading }}</h3>
+{{ partial "editor-prose.html" (dict "page" $page "copy" . "key" "body" "legacy" "") }}</div>
+{{ end }}{{ else }}<div class="case-decision">
 <h3>{{ index $copy "decisions_decision_1_heading" }}</h3>
 <p>{{ index $copy "decisions_decision_1_text" }}</p>
 </div>
@@ -78,66 +85,77 @@
 <h3>{{ index $copy "decisions_decision_3_heading" }}</h3>
 <p>{{ index $copy "decisions_decision_3_text" }}</p>
 </div>
+{{ end }}
 </section>
 <section id="examples">
 <p class="kicker">{{ index $copy "examples_eyebrow" }}</p>
 <h2>{{ index $copy "examples_heading" }}</h2>
-<p>{{ index $copy "examples_intro" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "examples_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "examples_intro" | default ""))))) }}
 <div class="case-compare">
 <div>
 <p class="case-label">{{ index $copy "examples_before_label" }}</p>
 <ul>
-<li>{{ index $copy "examples_before_1" }}</li>
+{{ if isset $copy "examples_before_items" }}{{ range index $copy "examples_before_items" }}<li>{{ $page.RenderString .text }}</li>
+{{ end }}{{ else }}<li>{{ index $copy "examples_before_1" }}</li>
 <li>{{ index $copy "examples_before_2" }}</li>
 <li>{{ index $copy "examples_before_3" }}</li>
+{{ end }}
 </ul>
 </div>
 <div>
 <p class="case-label">{{ index $copy "examples_after_label" }}</p>
 <ul>
-<li>{{ index $copy "examples_after_1" }}</li>
+{{ if isset $copy "examples_after_items" }}{{ range index $copy "examples_after_items" }}<li>{{ $page.RenderString .text }}</li>
+{{ end }}{{ else }}<li>{{ index $copy "examples_after_1" }}</li>
 <li>{{ index $copy "examples_after_2" }}</li>
 <li>{{ index $copy "examples_after_3" }}</li>
+{{ end }}
 </ul>
 </div>
 </div>
 <h3>{{ index $copy "examples_detail_heading" }}</h3>
-<p>{{ index $copy "examples_detail_text" }}</p>{{ if index $copy "detail_image_path" }}<figure class="case-detail-figure">
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "examples_detail_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "examples_detail_text" | default ""))))) }}{{ if index $copy "detail_image_path" }}<figure class="case-detail-figure">
 <img alt='{{ index $copy "detail_image_alt" }}' height="630" loading="lazy" src='{{ index $copy "detail_image_path" }}' width="1200"/>
 <figcaption>{{ index $copy "detail_image_caption" }}</figcaption>
 </figure>{{ end }}<h3>{{ index $copy "examples_mobile_heading" }}</h3>
-<p>{{ index $copy "examples_mobile_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "examples_mobile_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "examples_mobile_text" | default ""))))) }}
 </section>
 <section id="implementation">
 <p class="kicker">{{ index $copy "implementation_eyebrow" }}</p>
 <h2>{{ index $copy "implementation_heading" }}</h2>
-<p>{{ index $copy "implementation_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "implementation_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "implementation_text" | default ""))))) }}
 <h3>{{ index $copy "implementation_edge_cases_heading" }}</h3>
-<p>{{ index $copy "implementation_edge_cases_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "implementation_edge_cases_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "implementation_edge_cases_text" | default ""))))) }}
 <div class="case-callout">
 <h3>{{ index $copy "implementation_verification_heading" }}</h3>
 <ul>
-<li>{{ index $copy "implementation_check_1" }}</li>
+{{ if isset $copy "implementation_checks" }}{{ range index $copy "implementation_checks" }}<li>{{ $page.RenderString .text }}</li>
+{{ end }}{{ else }}<li>{{ index $copy "implementation_check_1" }}</li>
 <li>{{ index $copy "implementation_check_2" }}</li>
 <li>{{ index $copy "implementation_check_3" }}</li>
 <li>{{ index $copy "implementation_check_4" }}</li>
+{{ end }}
 </ul>
-<p>{{ index $copy "implementation_verification_note" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "implementation_verification_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "implementation_verification_note" | default ""))))) }}
 </div>
 </section>
 <section id="handoff">
 <p class="kicker">{{ index $copy "handoff_eyebrow" }}</p>
 <h2>{{ index $copy "handoff_heading" }}</h2>
-<p>{{ index $copy "handoff_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "handoff_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "handoff_text" | default ""))))) }}
 <ul>
-<li>{{ index $copy "handoff_deliverable_1" }}</li>
+{{ if isset $copy "handoff_deliverables" }}{{ range index $copy "handoff_deliverables" }}<li>{{ $page.RenderString .text }}</li>
+{{ end }}{{ else }}<li>{{ index $copy "handoff_deliverable_1" }}</li>
 <li>{{ index $copy "handoff_deliverable_2" }}</li>
 <li>{{ index $copy "handoff_deliverable_3" }}</li>
 <li>{{ index $copy "handoff_deliverable_4" }}</li>
+{{ end }}
 </ul>
 <h3>{{ index $copy "handoff_sequence_heading" }}</h3>
 <ol class="case-phases">
-<li>
+{{ if isset $copy "handoff_phases" }}{{ range index $copy "handoff_phases" }}<li>
+<b>{{ .label }}</b> {{ $page.RenderString .text }}</li>
+{{ end }}{{ else }}<li>
 <b>{{ index $copy "handoff_phase_1_label" }}</b> {{ index $copy "handoff_phase_1_text" }}</li>
 <li>
 <b>{{ index $copy "handoff_phase_2_label" }}</b> {{ index $copy "handoff_phase_2_text" }}</li>
@@ -145,27 +163,29 @@
 <b>{{ index $copy "handoff_phase_3_label" }}</b> {{ index $copy "handoff_phase_3_text" }}</li>
 <li>
 <b>{{ index $copy "handoff_phase_4_label" }}</b> {{ index $copy "handoff_phase_4_text" }}</li>
+{{ end }}
 </ol>
 </section>
 <section id="outcomes">
 <p class="kicker">{{ index $copy "outcomes_eyebrow" }}</p>
 <h2>{{ index $copy "outcomes_heading" }}</h2>
-<p>{{ index $copy "outcomes_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "outcomes_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "outcomes_text" | default ""))))) }}
 <div class="case-callout">
 <h3>{{ index $copy "outcomes_evidence_heading" }}</h3>
-<p>{{ index $copy "outcomes_evidence_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "outcomes_evidence_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "outcomes_evidence_text" | default ""))))) }}
 </div>
 </section>
 <section id="lessons">
 <p class="kicker">{{ index $copy "lessons_eyebrow" }}</p>
 <h2>{{ index $copy "lessons_heading" }}</h2>
-<p>{{ index $copy "lessons_text" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "lessons_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "lessons_text" | default ""))))) }}
 </section>
 </div>
 <aside class="case-contents">
 <p class="kicker">{{ index $copy "contents_eyebrow" }}</p>
 <nav aria-label='{{ index $copy "navigation_aria_label" }}'>
-<a href="#brief">{{ index $copy "navigation_brief" }}</a>
+{{ if isset $copy "navigation_items" }}{{ range index $copy "navigation_items" }}<a href="#{{ .id }}">{{ .label }}</a>
+{{ end }}{{ else }}<a href="#brief">{{ index $copy "navigation_brief" }}</a>
 <a href="#discovery">{{ index $copy "navigation_discovery" }}</a>
 <a href="#decisions">{{ index $copy "navigation_decisions" }}</a>
 <a href="#examples">{{ index $copy "navigation_examples" }}</a>
@@ -173,14 +193,16 @@
 <a href="#handoff">{{ index $copy "navigation_handoff" }}</a>
 <a href="#outcomes">{{ index $copy "navigation_outcomes" }}</a>
 <a href="#lessons">{{ index $copy "navigation_lessons" }}</a>
+{{ end }}
 </nav>
 <a class="case-link" href='{{ partial "page-url.html" "/case-studies/" }}'>{{ index $copy "contents_return_label" }}</a>
 </aside>
-</div>{{ else }}<div class="case-story">{{ .Content }}</div>{{ end }}</article>{{ if index $copy "next_url" }}<section class="case-next">
+</div>{{ else }}<div class="case-story">{{ .Content }}</div>
+{{ end }}</article>{{ if index $copy "next_url" }}<section class="case-next">
 <div>
 <p class="kicker">{{ index $copy "next_eyebrow" }}</p>
 <h2>{{ index $copy "next_heading" }}</h2>
-<p>{{ index $copy "next_description" }}</p>
+{{ partial "editor-prose.html" (dict "page" $page "copy" $copy "key" "next_body" "legacy" (printf `<p>%s</p>` (htmlEscape (printf "%v" (index $copy "next_description" | default ""))))) }}
 </div>
 <a class="button" href='{{ partial "page-url.html" (index $copy "next_url") }}'>{{ index $copy "next_button_label" }} <b aria-hidden="true">{{ index $copy "next_button_icon" }}</b>
 </a>

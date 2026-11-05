@@ -12,6 +12,9 @@ try {
   const data=YAML.parse(original.match(/^---\n([\s\S]*?)\n---/)[1]);
   data.url='/test-profile-facts/';
   const cases=[
+    ['editable list',[{label:'Custom first',value:'**First** value'},{label:'Custom second',value:'Second value'},{label:'Custom third',value:'Third value'},{label:'Custom fourth',value:'Fourth value'}],['Custom first','Custom second','Custom third','Custom fourth'],['First value','Second value','Third value','Fourth value']],
+    ['empty editable list',[],[],[]],
+    ['blank editable values',[{label:'Hide this',value:'  '},{label:'Keep this',value:'  Useful value  '}],['Keep this'],['Useful value']],
     ['filled',{focus:'Focus value',collaboration:'Team value',handoff:'Handoff value'},['Focus','Works with','A useful handoff'],['Focus value','Team value','Handoff value']],
     ['blank handoff',{focus:'Focus value',collaboration:'Team value',handoff:''},['Focus','Works with'],['Focus value','Team value']],
     ['missing fields',{focus:'Focus value'},['Focus'],['Focus value']],

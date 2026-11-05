@@ -6,7 +6,7 @@ Open /sudo/ and select a collection. Refresh the editor and reopen the entry aft
 
 Home, Services, Case studies, Pricing, Contact, About and Blog each have their own entry. The billboard display heading and introduction are separate from the page title and search/listing summary. The Page sections group is open, and each inner summary says it edits a section. Use its expand arrow to reveal that section's controls. URL overrides, old-URL redirects and search/social options follow the main content.
 
-On About, **Our story — Useful work. Real relationships.** opens automatically. Edit **Story heading**, **Opening paragraph**, **Design and development paragraph**, and **How we start paragraph**. The sidebar principles, team introduction, working approach, service links and closing contact section have their own groups. Billboard artwork is under **Billboard — illustration and caption**.
+On About, **Our story — Useful work. Real relationships.** opens automatically. Edit **Story heading** and the single **Story** rich-text block. Write as many paragraphs as you need; use the toolbar for emphasis, links and lists, or switch to Markdown. Under **Less noise. More care.**, **Principles** is an add/remove/reorder list—there are no fixed bullet slots to fill. **Working approach steps** works the same way, with a heading and rich description for each step and automatic numbering. The team introduction, service links and closing contact section have their own groups. Billboard artwork is under **Billboard — illustration and caption**.
 
 ## Content shown in cards
 
@@ -24,3 +24,11 @@ Legacy hidden example-card fields are retained only for compatibility; use the c
 ## Verification
 
 npm run test:cms-pages audits source-page ownership, checks image bindings and fallbacks, opens the real pinned Decap editor with an isolated in-memory backend, edits content on every Site pages entry, saves/reopens it, and rebuilds the exact saved records. It also checks shared staff labels. It never logs into production or publishes test wording to GitHub. npm test includes this regression gate plus the complete existing suite.
+
+## Natural content blocks and flexible lists
+
+Use one rich-text editor for a continuous passage, not separate fields for each paragraph. The About story, Home pricing explanation, pricing notes and detailed service overview follow this pattern. Other standalone explanatory copy supports rich text too. Short headings, buttons, image descriptions and form labels remain compact controls because they belong to distinct visible elements.
+
+Repeated editorial content uses lists: principles, working/project steps, service fit bullets, design-option accordions, detailed-service FAQs, contact next steps, and structured case-study sequences/cards/bullets. Use Add, remove, and drag-to-reorder controls; empty lists stay empty. Numbered steps number themselves. Keep existing service-option IDs when other pages link to those anchors.
+
+Rich Text is the normal writing mode; Markdown remains available. Clearing an intentional block/list does not restore old migration content. Older saved records still have renderer fallbacks, but do not save a stale editor tab after a schema change: refresh and reopen the entry first.

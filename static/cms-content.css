@@ -30,3 +30,41 @@
 @media (max-width: 720px) {
   .blog-page .article-prose :is(ul, ol) { font-size: 17px; }
 }
+
+/* Editable content can contain arbitrary paragraphs/lists, not fixed text slots.
+   Keep prose readable without applying card/step decoration to nested items. */
+.service-detail .detail-overview > div > :is(ul, ol, blockquote) {
+  max-width: 72ch;
+  color: var(--detail-muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+.service-detail .detail-process {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+.service-detail .detail-process > li :is(ul, ol, blockquote) {
+  color: var(--detail-muted);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.service-detail :is(.detail-process > li, .detail-checklist > li) > :is(p, ul, ol) + :is(p, ul, ol) {
+  margin-top: 12px;
+}
+.service-detail .detail-checklist > li > :first-child { margin-top: 0; }
+.service-detail .detail-checklist > li > :last-child { margin-bottom: 0; }
+.home-pricing > div:last-child > :is(ul, ol, blockquote),
+.pricing-explainer-content > :is(ul, ol, blockquote) {
+  font-size: 16px;
+  line-height: 1.75;
+}
+@media (max-width: 720px) {
+  .service-detail .detail-process { grid-template-columns: 1fr; }
+}
+
+.staff-profile-page .profile-section :is(ul, ol, blockquote):not(.profile-approach) {
+  color: var(--profile-muted);
+  font-size: 16px;
+  line-height: 1.85;
+}
+.staff-profile-page .profile-facts dd > :first-child { margin-top: 0; }
+.staff-profile-page .profile-facts dd > :last-child { margin-bottom: 0; }
