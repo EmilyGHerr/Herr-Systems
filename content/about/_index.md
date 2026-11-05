@@ -1,6 +1,6 @@
 ---
 title: Union, MO Website People
-hero_title: We are just people
+hero_title: About HerrSystems
 subtitle: We're a mixture of human beings and AI Agents (and cats) working on
   making cool stuff in Union, MO.
 description: We're a mixture of human beings and AI Agents (and cats) working on
@@ -61,21 +61,19 @@ copy:
       - Explain the work in plain language.
       - Keep people in control of their technology.
   detail_overview_4:
-    kicker_9: THE PEOPLE BEHIND THE PIXELS
-    story_title_1: Useful work. Real relationships.
+    kicker_9: Who are we?
+    story_title_1: We are just people.
     story_body: >-
-      Herr Systems is built around a simple idea: the web should make running
-      your business easier, not give you another thing to worry about.
+      Herr Systems is a small team of people (just one person right now)
+      operating in Union, Missouri with the goal of helping small businesses
+      with their websites, online systems, dashboards, or anything else you
+      would access with a browser.
 
 
-      We bring design and technical work together, so the way your website looks
-      and the way it works serve the same purpose. Clear information, thoughtful
-      details, and a next step your customers can actually find.
+      We are not a marketing company. We don't dress up in suits or use corporate jargon and won't tell you we need to touch base or circle back (gag). We don't offer advertising services because we don't like ads (who likes ads anyway?).
 
 
-      From a first website to a better workflow, we start with a conversation.
-      What are you trying to do? What gets in the way? Then we help turn the
-      answers into something useful—without adding complexity for its own sake.
+      Our prices are cheap compared to agencies and we can work with your budget. Give us a try.
   contact_10:
     kicker_13: LET’S START WITH A CONVERSATION
     contact_title_1: Good work starts
