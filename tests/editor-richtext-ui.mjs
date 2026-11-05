@@ -65,9 +65,20 @@ try {
  await rich.fill('UI story ');await rich.press('End');
  await story.getByTitle('Bold',{exact:true}).click();await page.keyboard.insertText('careful bold');await story.getByTitle('Bold',{exact:true}).click();
  await page.keyboard.insertText(' and ');await story.getByTitle('Italic',{exact:true}).click();await page.keyboard.insertText('human emphasis');await story.getByTitle('Italic',{exact:true}).click();await page.keyboard.insertText('.');await page.keyboard.press('Enter');await page.keyboard.insertText('Another paragraph with ');
- await page.keyboard.insertText('a useful link');for(const character of 'a useful link')await page.keyboard.press('Shift+ArrowLeft');
- page.once('dialog',dialog=>dialog.accept('https://example.org/rich-story'));
- await story.getByTitle('Link',{exact:true}).click();
+ await page.keyboard.insertText('a useful link');
+ // Wait for Slate's committed text/selection before invoking the link toolbar.
+ await page.waitForFunction(()=>window.getSelection()?.anchorNode?.textContent?.endsWith('a useful link'));
+ for(let length=1;length<='a useful link'.length;length++){
+  await page.keyboard.press('Shift+ArrowLeft');
+  await page.waitForFunction(expected=>window.getSelection()?.toString()===expected,'a useful link'.slice(-length));
+ }
+ // Pinned Slate debounces DOM -> model selection by 100ms. The toolbar reads
+ // model selection; DOM selection alone is not a readiness signal.
+ await page.waitForTimeout(150);
+ assert.equal(await page.evaluate(()=>window.getSelection()?.toString()),'a useful link');
+ const linkDialog=page.waitForEvent('dialog').then(dialog=>dialog.accept('https://example.org/rich-story'));
+ await story.getByTitle('Link',{exact:true}).click();await linkDialog;
+ await rich.locator('a').waitFor();
  await rich.locator('strong, b').waitFor();assert.equal(await rich.locator('em, i').innerText(),'human emphasis');assert.equal(await rich.locator('a').innerText(),'a useful link');
  const richSaved=await publish(),richData=parse(richSaved).data.copy.detail_overview_4.story_body;
  assert.match(richData,/\*\*careful bold\*\*/);assert.match(richData,/(?:\*human emphasis\*|_human emphasis_)/);assert.match(richData,/\[a useful link\]\(https:\/\/example\.org\/rich-story\)/);assert.match(richData,/\.\s*\n\s*\nAnother paragraph/);
