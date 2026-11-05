@@ -1,10 +1,10 @@
 ---
 title: Union, MO Web Developers
 hero_title: Technology<br/><em>Should Be Fun.</em>
-subtitle: Friendly websites, reliable hosting, and helpful automations for local
-  businesses doing great work in the real world.
-description: Friendly websites, reliable hosting, and helpful automations for
-  local businesses doing great work in the real world.
+subtitle: Full-stack web engineers local to the Union, MO area who can help you
+  with your website projects.
+description: Full-stack web engineers local to the Union, MO area who can help
+  you with your website projects.
 copy:
   case_card_12:
     aria_label_a_2: Read the Maple Street Workshop case study
@@ -42,12 +42,12 @@ copy:
     case_link_4: Explore the study →
   case_studies_11:
     kicker_2: 03 // INSIDE THE WORK
-    home_cases_title_1: A few ways we make things useful.
+    home_cases_title_1: Project's we've worked on.
     case_link_1: All case studies →
     case_preview_note_1: Live projects alongside clearly labeled concept studies.
       Custom development, practical AI automation, and examples of how we
       approach different challenges.
-    case_swipe_hint_1: Swipe to explore the studies
+    case_swipe_hint_1: Swipe to explore
     span_9: →
     aria_label_div_1: Case studies
   notice_2:
@@ -99,13 +99,10 @@ copy:
       **Clear Scope. No Surprises.**
 
 
-      Know what you’re paying for before the work begins. Our hourly rate is
-      $70, with the scope, costs, and next steps explained in plain language.
+      Know what you’re paying for before the work begins. Our hourly rate is $70, with the scope, costs, and next steps explained in plain language.
 
 
-      For a clearly defined project, per-project pricing can work out lower than
-      the equivalent hourly total. We’ll agree on the price up front and discuss
-      any changes before adding work.
+      For a clearly defined project, per-project pricing can work out lower than the equivalent hourly total. We’ll agree on the price up front and discuss any changes before adding work.
 lead: Friendly websites, reliable hosting, and helpful automations for local
   businesses doing great work in the real world.
 styles:
