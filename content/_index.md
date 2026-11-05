@@ -41,7 +41,7 @@ copy:
       gives a volunteer team a manageable way to keep it current.
     case_link_4: Explore the study →
   case_studies_11:
-    kicker_2: 03 // INSIDE THE WORK
+    kicker_2: INSIDE THE WORK
     home_cases_title_1: Projects we've worked on.
     case_link_1: All case studies →
     case_preview_note_1: Live projects alongside clearly labeled concept studies.
