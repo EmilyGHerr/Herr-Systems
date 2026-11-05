@@ -31,6 +31,12 @@ try {
  const helper=join(fixture,'layouts/partials/editor-prose.html');
  if(!existsSync(helper))writeFileSync(helper,'{{ if isset .copy .key }}{{ .page.RenderString (dict "display" "block") (index .copy .key | default "") }}{{ else }}{{ .legacy | safeHTML }}{{ end }}');
  const build=name=>{const out=join(tmp,name);execFileSync('hugo',['--source',fixture,'--destination',out,'--cleanDestinationDir'],{stdio:'pipe'});return out;};
+ const archived=join(root,'tests/fixtures/archived-case-studies');
+ // Historical migration fixtures remain available after concepts leave the portfolio.
+ for(const slug of ['maple-street-workshop','fieldnote-operations']) {
+  const file=join(fixture,'content/case-studies',slug,'index.md');
+  if(!existsSync(file)){mkdirSync(join(fixture,'content/case-studies',slug),{recursive:true});cpSync(join(archived,slug+'.md'),file);}
+ }
  const studies=['northline-community','maple-street-workshop','fieldnote-operations','septagon','burn-blue'];
  // Keep legacy-shaped input independent of the already-migrated production source.
  const legacyCopies=JSON.parse(readFileSync(join(root,'tests/fixtures/editor-case-studies-legacy.json'),'utf8'));

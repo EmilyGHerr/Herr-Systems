@@ -216,11 +216,11 @@ copy:
         label: What this study teaches
   next:
     next_eyebrow: NEXT STUDY
-    next_heading: Maple Street Workshop
+    next_heading: St. Louis Water Damage Help
     next_button_label: Explore the next study
     next_button_icon: »
-    next_url: /case-studies/maple-street-workshop/
-    next_body: Web design \+ development
+    next_url: /case-studies/st-louis-water-damage-help/
+    next_body: Web design + AI-assisted development
   contact:
     contact_label: Have a similar challenge? Let’s talk →
     contact_url: /contact/
