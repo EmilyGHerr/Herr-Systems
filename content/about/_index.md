@@ -53,13 +53,12 @@ copy:
     p_29: Check out the people you&#39;re going to be working and communicating with.
   detail_fit_5:
     detail_label_1: OUR OPERATING PRINCIPLES
-    principles_title_1: Less noise. More care.
-    about_location_1: CLEAR COMMUNICATION / REMOTE FRIENDLY
+    principles_title_1: Be Excellent
+    about_location_1: It's that easy.
     principles_items:
-      - Understand the business before choosing the tools.
-      - Make the important things easy to find and use.
-      - Explain the work in plain language.
-      - Keep people in control of their technology.
+      - Understand the requirements.
+      - Build the thing.
+      - There is no step 3.
   detail_overview_4:
     kicker_9: Who are we?
     story_title_1: We are just people.
