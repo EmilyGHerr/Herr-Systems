@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/structured-data.mjs && node tests/verify.mjs && node tests/case-study-disclosure.mjs && npm run test:blog-author && npm run test:cms-pages && npm run test:editor && node tests/profile-facts.mjs && node tests/page-urls.mjs && node tests/contact-faq.mjs && node tests/pricing-faq.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs && node tests/home-spacing.mjs && node tests/home-billboard-links.mjs && node tests/case-study-homepage.mjs && node tests/internal-heading-spacing.mjs && node tests/content-list-typography.mjs && npm run test:forms && npm run test:backend && npm run test:deployment && npm run test:runtime",
+    "test": "npm run test:social && node tests/structured-data.mjs && node tests/verify.mjs && node tests/case-study-disclosure.mjs && npm run test:blog-author && npm run test:cms-pages && npm run test:editor && node tests/profile-facts.mjs && node tests/page-urls.mjs && node tests/contact-faq.mjs && node tests/pricing-faq.mjs && node tests/page-transitions.mjs && node tests/font-loading.mjs && node tests/home-spacing.mjs && node tests/home-billboard-links.mjs && node tests/case-study-homepage.mjs && node tests/internal-heading-spacing.mjs && node tests/content-list-typography.mjs && npm run test:forms && npm run test:backend && npm run test:deployment && npm run test:runtime",
     "test:blog-author": "node tests/blog-author.mjs && node tests/blog-author-cms.mjs",
     "test:cms-author": "node tests/blog-author-cms.mjs",
     "test:cms-billboard": "node tests/home-billboard-cms.mjs",
@@ -25,7 +25,9 @@
     "test:runtime": "node tests/turnstile-runtime.mjs",
     "test:cms-pages": "node tests/cms-page-contract.mjs && node tests/cms-page-content.mjs",
     "test:editor": "node tests/editor-escaping.mjs && node tests/editor-content.mjs && node tests/editor-services.mjs && node tests/editor-case-studies.mjs && node tests/editor-richtext-ui.mjs",
-    "test:schema": "node tests/structured-data.mjs"
+    "test:schema": "node tests/structured-data.mjs",
+    "generate:social": "node scripts/generate-social-preview.mjs",
+    "test:social": "node tests/social-preview.mjs"
   },
   "devDependencies": {
     "cheerio": "^1.1.2",
