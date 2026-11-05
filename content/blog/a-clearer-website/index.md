@@ -1,25 +1,14 @@
 ---
 title: A clearer website starts with better questions.
-description: Before colors, layouts, or clever effects, get clear on what your visitors actually need.
-styles:
-- /retro3.css
-- /services.css
-- /services-billboard.css
-- /service-detail.css
-- /blog.css
-- /interactions.css
-- /navigation.css
-scripts:
-- /navigation.js
-- /retro3.js
-fragment: pages/blog-article.html
+author: sam-rivera/index
+hero_title: A clearer website starts with better questions.
+subtitle: Before colors, layouts, or clever effects, get clear on what your
+  visitors actually need.
 date: 2026-11-02
 category: Web design
+reading_label: 4 min read
 image: /assets/blog/clearer-website.svg
 image_alt: Pixel-art website on a desktop monitor with a clear call to action.
-reading_label: 4 min read
-hero_title: A clearer website starts with better questions.
-lead: Before colors, layouts, or clever effects, get clear on what your visitors actually need.
 copy:
   breadcrumb:
     breadcrumb_label: Breadcrumb
@@ -43,34 +32,49 @@ copy:
     contents_return_label: ← All workshop notes
     contents_aria_label: Article contents
     toc_links:
-    - label: Start with the person visiting
-      url: '#start-with-people'
-    - label: Give each page a job
-      url: '#give-pages-purpose'
-    - label: Make the important details easy to scan
-      url: '#make-reading-easy'
-    - label: Choose a useful next step
-      url: '#choose-next-step'
+      - label: Start with the person visiting
+        url: "#start-with-people"
+      - label: Give each page a job
+        url: "#give-pages-purpose"
+      - label: Make the important details easy to scan
+        url: "#make-reading-easy"
+      - label: Choose a useful next step
+        url: "#choose-next-step"
   footer:
     footer_label: KEEP THE SIGNAL GOING
     footer_title: Something here spark an idea?
     footer_link_label: Let’s talk
     footer_link_icon: »
+styles:
+  - /retro3.css
+  - /services.css
+  - /services-billboard.css
+  - /service-detail.css
+  - /blog.css
+  - /interactions.css
+  - /navigation.css
+scripts:
+  - /navigation.js
+  - /retro3.js
+fragment: pages/blog-article.html
 body_class: services-billboard-variant service-detail-page blog-page blog-single-page
-subtitle: Before colors, layouts, or clever effects, get clear on what your visitors actually need.
+lead: Before colors, layouts, or clever effects, get clear on what your visitors
+  actually need.
+description: Before colors, layouts, or clever effects, get clear on what your
+  visitors actually need.
 seo:
   search:
-    title: ''
-    description: ''
+    title: ""
+    description: ""
     noindex: false
-    canonicalURL: ''
+    canonicalURL: ""
   social:
-    image: ''
-    imageAlt: ''
-    ogTitle: ''
-    ogDescription: ''
-    twitterTitle: ''
-    twitterDescription: ''
+    image: ""
+    imageAlt: ""
+    ogTitle: ""
+    ogDescription: ""
+    twitterTitle: ""
+    twitterDescription: ""
 ---
 
 {{< article-section id="start-with-people" >}}
