@@ -1,0 +1,16 @@
+{{- /* Resolve ancestor labels from THIS page's visible breadcrumb, not another page's headline. */ -}}
+{{- $p := .page -}}{{- $ancestor := .ancestor -}}
+{{- $copy := partial "cms-copy.html" $p.Params.copy -}}
+{{- $name := partial "schema-breadcrumb-name.html" $ancestor -}}
+{{- if $ancestor.IsHome -}}
+  {{- $keys := dict "pages/contact.html" "a_55" "pages/pricing.html" "a_49" "pages/about.html" "a_60" "pages/services.html" "a_48" "pages/case-studies.html" "a_44" "pages/blog.html" "a_62" "pages/blog-article.html" "home_label" "pages/case-study.html" "breadcrumb_home_label" -}}
+  {{- if and (eq $p.Params.fragment "pages/service.html") $p.Params.detailed_layout -}}{{- $name = index $copy "a_86" -}}
+  {{- else if eq $p.Params.fragment "pages/staff-profile.html" -}}{{- $staff := partial "staff-copy.html" $p -}}{{- $name = index $staff "profile_home" -}}
+  {{- else -}}{{- with index $keys ($p.Params.fragment | default "") -}}{{- $name = index $copy . | default $name -}}{{- end -}}{{- end -}}
+{{- else if eq $ancestor.Section "services" -}}
+  {{- if $p.Params.detailed_layout -}}{{- $name = index $copy "a_87" | default $name -}}{{- else -}}{{- $name = site.Data.settings.services_label | default $name -}}{{- end -}}
+{{- else if eq $ancestor.Section "case-studies" -}}{{- $name = index $copy "breadcrumb_directory_label" | default "Case studies" -}}
+{{- else if eq $ancestor.Section "blog" -}}{{- $name = index $copy "blog_label" | default site.Data.settings.blog_label | default $name -}}
+{{- else if and (eq $ancestor.Section "about") (eq $p.Params.fragment "pages/staff-profile.html") -}}{{- $staff := partial "staff-copy.html" $p -}}{{- $name = index $staff "profile_about_directory" -}}
+{{- end -}}
+{{- return (partial "schema-text.html" $name) -}}

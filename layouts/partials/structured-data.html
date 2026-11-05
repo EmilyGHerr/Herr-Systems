@@ -1,0 +1,119 @@
+{{- /* Build one graph from existing content/settings. No parallel SEO content database. */ -}}
+{{- $p := .page -}}
+{{- $settings := site.Data.settings -}}
+{{- $base := site.Home.Permalink -}}
+{{- $url := .canonical -}}
+{{- $businessID := printf "%s#business" $base -}}
+{{- $siteID := printf "%s#website" $base -}}
+{{- $pageID := printf "%s#webpage" $url -}}
+{{- $brand := partial "schema-text.html" ($settings.brand | default site.Title) -}}
+{{- $name := partial "schema-text.html" ($p.Params.hero_title | default $p.Title) -}}
+{{- $description := partial "schema-text.html" ($p.Params.subtitle | default $p.Params.lead | default $p.Description | default $settings.description) -}}
+{{- $image := $p.Params.image | default "" | strings.TrimSpace -}}
+{{- if not $image -}}{{- $image = .image | default "" | strings.TrimSpace -}}{{- end -}}
+{{- if and (eq $p.Params.fragment "pages/service.html") $p.Params.detailed_layout -}}{{- $copy := partial "cms-copy.html" $p.Params.copy -}}{{- $image = index $copy "image_path" | default "/assets/services/web-design-billboard.svg" -}}{{- end -}}
+{{- $business := dict "@type" "LocalBusiness" "@id" $businessID "name" $brand "url" $base "description" (partial "schema-text.html" $settings.description) "logo" ("assets/davy-hexagon-mark.png" | absURL) -}}
+{{- with $settings.email | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "email" .) -}}{{- end -}}
+{{- with $settings.phone -}}{{- $phone := partial "phone.html" . -}}{{- with $phone.display -}}{{- $business = merge $business (dict "telephone" (strings.TrimPrefix "tel:" $phone.href)) -}}{{- end -}}{{- end -}}
+{{- with $settings.location | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "location" (dict "@type" "Place" "name" .)) -}}{{- end -}}
+{{- with $settings.address | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "address" .) -}}{{- end -}}
+{{- with $settings.seoImage | default "" | strings.TrimSpace -}}{{- $business = merge $business (dict "image" (. | absURL)) -}}{{- end -}}
+{{- $website := dict "@type" "WebSite" "@id" $siteID "name" $brand "url" $base "publisher" (dict "@id" $businessID) "inLanguage" site.Language.LanguageCode -}}
+{{- $types := slice "WebPage" -}}
+{{- if eq $p.Params.fragment "pages/contact.html" -}}{{- $types = $types | append "ContactPage" -}}
+{{- else if eq $p.Params.fragment "pages/about.html" -}}{{- $types = $types | append "AboutPage" -}}
+{{- else if $p.IsSection -}}{{- $types = $types | append "CollectionPage" -}}{{- end -}}
+{{- $page := dict "@type" $types "@id" $pageID "url" $url "name" $name "description" $description "isPartOf" (dict "@id" $siteID) "about" (dict "@id" $businessID) "inLanguage" site.Language.LanguageCode -}}
+{{- with $image -}}{{- $page = merge $page (dict "image" (. | absURL)) -}}{{- end -}}
+{{- $extras := slice -}}
+{{- /* Human identity is confirmed only for the named site owner; AI/pet/sample profiles aren't people. */ -}}
+{{- $isOwnerProfile := and (eq $p.Params.fragment "pages/staff-profile.html") (eq $p.Title $settings.owner) (not $p.Params.sample) -}}
+{{- if $isOwnerProfile -}}
+  {{- $personID := printf "%s#person" $p.Permalink -}}
+  {{- $person := dict "@type" "Person" "@id" $personID "name" $p.Title "url" $p.Permalink "description" $description "worksFor" (dict "@id" $businessID) -}}
+  {{- with $p.Params.role -}}{{- $person = merge $person (dict "jobTitle" .) -}}{{- end -}}
+  {{- with $p.Params.image -}}{{- $person = merge $person (dict "image" (. | absURL)) -}}{{- end -}}
+  {{- $extras = $extras | append $person -}}
+  {{- $types = slice "WebPage" "ProfilePage" -}}
+  {{- $page = merge $page (dict "mainEntity" (dict "@id" $personID)) -}}
+{{- end -}}
+{{- if and $p.IsPage (eq $p.Section "services") -}}
+  {{- $id := printf "%s#service" $url -}}
+  {{- $service := dict "@type" "Service" "@id" $id "url" $url "name" (partial "schema-text.html" $p.Title) "description" $description "provider" (dict "@id" $businessID) "mainEntityOfPage" (dict "@id" $pageID) -}}
+  {{- with $image -}}{{- $service = merge $service (dict "image" (. | absURL)) -}}{{- end -}}
+  {{- $extras = $extras | append $service -}}
+  {{- $page = merge $page (dict "mainEntity" (dict "@id" $id)) -}}
+{{- else if and $p.IsPage (eq $p.Section "blog") -}}
+  {{- $id := printf "%s#article" $url -}}
+  {{- $article := dict "@type" "BlogPosting" "@id" $id "url" $url "headline" $name "description" $description "publisher" (dict "@id" $businessID) "mainEntityOfPage" (dict "@id" $pageID) -}}
+  {{- with $image -}}{{- $article = merge $article (dict "image" (. | absURL)) -}}{{- end -}}
+  {{- if not $p.Date.IsZero -}}{{- $article = merge $article (dict "datePublished" ($p.Date.Format "2006-01-02T15:04:05Z07:00") "dateModified" ($p.Lastmod.Format "2006-01-02T15:04:05Z07:00")) -}}{{- end -}}
+  {{- with partial "blog-author.html" $p -}}
+    {{- if and (eq .Title $settings.owner) (not .Params.sample) -}}
+      {{- $personID := printf "%s#person" .Permalink -}}
+      {{- $extras = $extras | append (dict "@type" "Person" "@id" $personID "name" .Title "url" .Permalink) -}}
+      {{- $article = merge $article (dict "author" (dict "@id" $personID)) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $extras = $extras | append $article -}}
+  {{- $page = merge $page (dict "mainEntity" (dict "@id" $id)) -}}
+{{- else if and $p.IsPage (eq $p.Section "case-studies") -}}
+  {{- $id := printf "%s#project" $url -}}
+  {{- $project := dict "@type" "CreativeWork" "@id" $id "url" $url "name" $name "description" $description "mainEntityOfPage" (dict "@id" $pageID) -}}
+  {{- with $image -}}{{- $project = merge $project (dict "image" (. | absURL)) -}}{{- end -}}
+  {{- $extras = $extras | append $project -}}
+  {{- $page = merge $page (dict "mainEntity" (dict "@id" $id)) -}}
+{{- end -}}
+{{- /* Mirror each template's FAQ sources and visibility, including legacy service records. */ -}}
+{{- $faqItems := slice -}}
+{{- if in (slice "pages/contact.html" "pages/pricing.html") $p.Params.fragment -}}
+  {{- with $p.Params.faq -}}{{- if and (ne .enabled false) .items -}}{{- $faqItems = .items -}}{{- end -}}{{- end -}}
+{{- else if and (eq $p.Params.fragment "pages/service.html") $p.Params.detailed_layout -}}
+  {{- $copy := partial "cms-copy.html" $p.Params.copy -}}
+  {{- if isset $copy "faq_items" -}}
+    {{- range index $copy "faq_items" -}}{{- $faqItems = $faqItems | append (dict "question" .question "answer" ($p.RenderString (dict "display" "block") (.answer | default ""))) -}}{{- end -}}
+  {{- else -}}
+    {{- range slice (slice "summary_9" "p_61") (slice "summary_10" "p_62") (slice "summary_11" "p_63") (slice "summary_12" "p_64") -}}
+      {{- $faqItems = $faqItems | append (dict "question" (index $copy (index . 0)) "answer" (index $copy (index . 1))) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $questions := slice -}}
+{{- range $faqItems -}}
+  {{- $question := partial "schema-text.html" .question -}}
+  {{- $answer := .answer | default "" | markdownify -}}
+  {{- if and $question (partial "schema-text.html" .answer) -}}
+    {{- $questions = $questions | append (dict "@type" "Question" "name" $question "acceptedAnswer" (dict "@type" "Answer" "text" (string $answer))) -}}
+  {{- end -}}
+{{- end -}}
+{{- with $questions -}}{{- $types = $types | append "FAQPage" -}}{{- $page = merge $page (dict "mainEntity" .) -}}{{- end -}}
+{{- if $p.IsSection -}}
+  {{- $items := slice -}}
+  {{- $children := $p.RegularPages.ByWeight -}}
+  {{- if eq $p.Section "blog" -}}{{- with $p.Paginator -}}{{- $children = .Pages -}}{{- end -}}{{- end -}}
+  {{- if eq $p.Params.fragment "pages/about.html" -}}{{- $children = (where site.RegularPages "Params.fragment" "pages/staff-profile.html").ByTitle.ByWeight -}}{{- end -}}
+  {{- range $children -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add (len $items) 1) "url" .Permalink "name" (partial "schema-text.html" (.Params.listing.title | default .Params.listing_title | default .Title))) -}}
+  {{- end -}}
+  {{- with $items -}}
+    {{- $id := printf "%s#list" $url -}}
+    {{- $extras = $extras | append (dict "@type" "ItemList" "@id" $id "itemListElement" . "numberOfItems" (len .)) -}}
+    {{- $page = merge $page (dict "mainEntity" (dict "@id" $id)) -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $p.IsHome -}}
+  {{- $crumbs := slice -}}
+  {{- range $p.Ancestors.Reverse -}}
+    {{- if ne .Path "/about/team" -}}
+      {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" (partial "schema-breadcrumb-ancestor.html" (dict "page" $p "ancestor" .)) "item" .Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" (add (len $crumbs) 1) "name" (partial "schema-breadcrumb-name.html" $p) "item" $url) -}}
+  {{- $id := printf "%s#breadcrumbs" $url -}}
+  {{- $extras = $extras | append (dict "@type" "BreadcrumbList" "@id" $id "itemListElement" $crumbs) -}}
+  {{- $page = merge $page (dict "breadcrumb" (dict "@id" $id)) -}}
+{{- end -}}
+{{- $page = merge $page (dict "@type" $types) -}}
+{{- $graph := slice $business $website $page -}}
+{{- range $extras -}}{{- $graph = $graph | append . -}}{{- end -}}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>
