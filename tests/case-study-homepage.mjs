@@ -30,7 +30,7 @@ try {
   await page.waitForFunction(show=>window.repoFiles.content['case-studies']['burn-blue']['index.md'].content.includes('show: '+show),show);
   const saved=await page.evaluate(()=>window.repoFiles.content['case-studies']['burn-blue']['index.md'].content),record=parse(saved);
   const expected=structuredClone(original.data);expected.homepage.show=show;
-  assert.deepEqual(record.data,expected);assert.equal(record.body.trim(),original.body.trim());
+  assert.deepEqual(record.data,expected);assert.equal(record.body,original.body);
   await fs.writeFile(path.join(source,'content/case-studies/burn-blue/index.md'),saved);build(source,out);
   const home=load(await fs.readFile(path.join(out,'index.html'),'utf8')),directory=load(await fs.readFile(path.join(out,'case-studies/index.html'),'utf8'));
   const href=record.data.url||'/case-studies/'+(record.data.slug||'burn-blue')+'/';
