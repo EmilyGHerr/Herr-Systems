@@ -32,3 +32,7 @@ Use one rich-text editor for a continuous passage, not separate fields for each 
 Repeated editorial content uses lists: principles, working/project steps, service fit bullets, design-option accordions, detailed-service FAQs, contact next steps, and structured case-study sequences/cards/bullets. Use Add, remove, and drag-to-reorder controls; empty lists stay empty. Numbered steps number themselves. Keep existing service-option IDs when other pages link to those anchors.
 
 Rich Text is the normal writing mode; Markdown remains available. Clearing an intentional block/list does not restore old migration content. Older saved records still have renderer fallbacks, but do not save a stale editor tab after a schema change: refresh and reopen the entry first.
+
+## Case studies on the homepage
+
+Open **Case studies**, choose a study, and use **Homepage display → Show on homepage** directly below its page title. Turn it off to remove only its homepage card; the Case Studies directory and published detail page remain available. Publish the entry to apply the change. New studies start with homepage display off.
