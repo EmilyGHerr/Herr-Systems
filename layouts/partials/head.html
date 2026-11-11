@@ -12,7 +12,7 @@
 {{ $canonical := $meta.canonicalurl | default .Permalink }}
 {{ if and .IsSection (eq .Section "blog") }}{{ with .Paginator }}{{ if gt .PageNumber 1 }}{{ $canonical = .URL | absURL }}{{ end }}{{ end }}{{ end }}
 <link rel="canonical" href="{{ $canonical }}">
-<meta name="robots" content="{{ if partial "is-noindex.html" . }}noindex, follow{{ else }}index, follow{{ end }}">
+<meta name="robots" content="noindex, nofollow">
 <meta property="og:type" content="{{ if and .IsPage (eq .Section "blog") }}article{{ else }}website{{ end }}"><meta property="og:title" content="{{ $meta.ogtitle | default $title }}"><meta property="og:description" content="{{ $meta.ogdescription | default $description }}"><meta property="og:url" content="{{ $canonical }}"><meta property="og:site_name" content="{{ $brand }}">
 {{ $image := $meta.seoimage | default $settings.seoImage | default "/assets/social/herr-systems-terminal.png" }}
 {{ with $image }}
@@ -27,13 +27,12 @@
 {{ end }}
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{{ $meta.twittertitle | default $title }}"><meta name="twitter:description" content="{{ $meta.twitterdescription | default $description }}">
 <link rel="icon" type="image/png" sizes="85x85" href="{{ "assets/davy-hexagon-mark.png" | relURL }}"><link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any">
-{{ partial "site-fonts.html" . }}
-{{ partial "navigation-paint.html" . }}
-{{ range .Params.styles }}{{ if eq . "/retro3.css" }}{{ $css := resources.FromString "retro3.css" (readFile "static/retro3.css") | resources.Fingerprint "sha256" }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">{{ else }}<link rel="stylesheet" href="{{ . }}">{{ end }}{{ end }}
-{{ $contentCSS := resources.FromString "cms-content.css" (readFile "static/cms-content.css") | resources.Fingerprint "sha256" }}<link rel="stylesheet" href="{{ $contentCSS.RelPermalink }}">
 {{ if .IsHome }}<link rel="preload" href="{{ "search-index.json" | relURL }}" as="fetch" crossorigin="anonymous">{{ end }}
 
 {{ $imageAlt := $meta.seoimagealt }}{{ if not $meta.seoimage }}{{ $imageAlt = $imageAlt | default $settings.seoImageAlt }}{{ end }}
 {{ with $imageAlt }}<meta property="og:image:alt" content="{{ . }}"><meta name="twitter:image:alt" content="{{ . }}">{{ end }}
 
 {{ partial "structured-data.html" (dict "page" . "canonical" $canonical "image" $image) }}
+
+{{ range slice "brutalist.css" "brutalist-pages.css" "brutalist-hugo.css" }}{{ $css := resources.FromString . (readFile (printf "static/%s" .)) | resources.Fingerprint "sha256" }}<link rel="stylesheet" href="{{ $css.RelPermalink }}">{{ end }}
+{{ if .IsHome }}{{ $terminalCSS := resources.FromString "home-terminal.css" (readFile "static/home-terminal.css") | resources.Fingerprint "sha256" }}<link rel="stylesheet" href="{{ $terminalCSS.RelPermalink }}">{{ end }}

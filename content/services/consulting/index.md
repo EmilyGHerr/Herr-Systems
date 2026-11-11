@@ -1,12 +1,24 @@
 ---
-title: Consulting
-hero_title: Consulting. Built around your business.
-description: Make confident choices about your website, tools, and technical priorities. We help you
-  understand the options, spot unnecessary complexity, and turn a broad goal into an actionable
-  plan.
-lead: Make confident choices about your website, tools, and technical priorities. We help you
-  understand the options, spot unnecessary complexity, and turn a broad goal into an actionable
-  plan.
+title: Union MO Web Consulting
+hero_title: Consulting. Hire us to be your web experts.
+subtitle: We understand all the web stuff like SSL certs, domains, hosting, and
+  DNS. Hire us and we can give you expert advise. We won't upsell you.
+description: We understand all the web stuff like SSL certs, domains, hosting,
+  and DNS. Hire us and we can give you expert advise.
+image: /assets/services/consulting-transparent.svg
+image_alt: Pixel-art planning board with a route connecting project milestones
+  and a conversation bubble.
+caption: TRUTH, NOT SALES
+fit: Non-technical business owners who want to avoid sales people who like to talk.
+includes:
+  - Website, workflow, and technology reviews
+  - Practical recommendations and prioritized next steps
+  - Project scoping and guidance for your team
+detailed_layout: false
+cta: Discuss consulting →
+lead: Make confident choices about your website, tools, and technical
+  priorities. We help you understand the options, spot unnecessary complexity,
+  and turn a broad goal into an actionable plan.
 styles:
   - /retro3.css
   - /services.css
@@ -18,19 +30,34 @@ scripts:
   - /navigation.js
   - /retro3.js
 fragment: pages/service.html
-includes:
-  - Website, workflow, and technology reviews
-  - Practical recommendations and prioritized next steps
-  - Project scoping and guidance for your team
-fit: Business owners and teams who need a second opinion or a clearer technical direction.
-image: /assets/services/consulting-transparent.svg
-image_alt: Pixel-art planning board with a route connecting project milestones and a conversation bubble.
-caption: A CLEARER WAY FORWARD
-cta: Discuss consulting →
 body_class: services-billboard-variant service-detail-page
-subtitle: Make confident choices about your website, tools, and technical priorities. We help you
-  understand the options, spot unnecessary complexity, and turn a broad goal into an actionable
-  plan.
+weight: 50
+listing:
+  image_alt: Pixel-art planning board with a route connecting project milestones
+    and a conversation bubble.
+  fit_label: "A good fit for:"
+  caption: A CLEARER WAY FORWARD
+  includes:
+    - Website, workflow, and technology reviews
+    - Practical recommendations and prioritized next steps
+    - Project scoping and guidance for your team
+  fit: Business owners and teams who need a second opinion or a clearer technical
+    direction.
+  link_text: Discuss consulting
+  title: Consulting
+  image: /assets/services/consulting-transparent.svg
+  description: Make confident choices about your website, tools, and technical
+    priorities. We help you understand the options, spot unnecessary complexity,
+    and turn a broad goal into an actionable plan.
+  link_icon: →
+homepage:
+  show: true
+  title: Consulting
+  description: Clear technical advice and a practical plan for what comes next.
+  link_text: Learn more »
+  image: /assets/services/consulting-transparent.svg
+  image_width: 88
+  image_height: 66
 seo:
   search:
     title: ""
@@ -44,66 +71,19 @@ seo:
     ogDescription: ""
     twitterTitle: ""
     twitterDescription: ""
-detailed_layout: false
-weight: 50
-listing:
-  title: Consulting
-  description: Make confident choices about your website, tools, and technical priorities. We help you
-    understand the options, spot unnecessary complexity, and turn a broad goal into an actionable
-    plan.
-  includes:
-    - Website, workflow, and technology reviews
-    - Practical recommendations and prioritized next steps
-    - Project scoping and guidance for your team
-  fit: Business owners and teams who need a second opinion or a clearer technical direction.
-  fit_label: "A good fit for:"
-  link_text: Discuss consulting
-  image: /assets/services/consulting-transparent.svg
-  image_alt: Pixel-art planning board with a route connecting project milestones and a conversation bubble.
-  caption: A CLEARER WAY FORWARD
-  link_icon: →
-homepage:
-  show: true
-  title: Consulting
-  description: Clear technical advice and a practical plan for what comes next.
-  link_text: Learn more »
-  image: /assets/services/consulting-transparent.svg
-  image_width: 88
-  image_height: 66
 ---
+## This is what we do every day.
 
-## Consulting
+Do you not understand how your website works? Is something broken or not quite right and you can't get Chat GPT or Claude to fix it correctly?
 
-Make confident choices about your website, tools, and technical priorities. We help you understand the options, spot unnecessary complexity, and turn a broad goal into an actionable plan.
+We can fix it. Or we can tell you what to do instead. We're really good at this kind of stuff.
 
-- Website, workflow, and technology reviews
-- Practical recommendations and prioritized next steps
-- Project scoping and guidance for your team
+Hire us and show us the problem. We bill hourly just like any other service provider and can tell you up front what we think it might take to solve.
 
-Business owners and teams who need a second opinion or a clearer technical direction.
+## We care about the work. We won't upsell you.
 
-## Example engagement: choose the next useful improvement
+Some of us have worked (or currently work) for marketing agencies. We've been in calls with sales people and we get just as annoyed and irritated as you do with the corporate fake smiles and jargon. We won't ask you to circle back or touch base.
 
-A consultation can help turn a broad concern—an outdated website, too many disconnected tools, or an unclear project brief—into a manageable decision. We can examine the current setup, identify constraints, and outline sensible options before committing to a build.
+Nobody in real life talks like that. We can meet you in person or (preferably, if you can do a screen share) we can check out the project you need help on over a Google Meet or Zoom call.
 
-This is an example engagement, not a fixed package or a promise of specific business results. The review depth, deliverables, and any follow-up work would be scoped together.
-
-## What a review can cover
-
-- Whether visitors can understand the services, find important information, and contact the business.
-- Which manual workflow steps are creating unnecessary repetition.
-- Ownership, permissions, and maintenance obligations across the tools involved.
-- The trade-offs between improving the existing setup and replacing part of it.
-
-## How the conversation works
-
-1. **Bring the problem into focus.** Describe the goal, what currently gets in the way, and any time or budget constraints.
-2. **Review the evidence.** Walk through the relevant website or workflow rather than choosing tools from a feature list.
-3. **Compare practical options.** Identify dependencies, risks, and work that can wait.
-4. **Agree on next steps.** Leave with a prioritized recommendation and enough context to decide what to do next.
-
-## Example deliverables
-
-A short findings summary, a prioritized improvement list, open questions, and an outline for any implementation work. You can use the recommendations to plan a project or discuss the work with your existing team.
-
-[Start with a clearer technical direction →](/contact/)
+[Contact us](/contact/) to get started.

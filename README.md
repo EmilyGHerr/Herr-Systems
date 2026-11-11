@@ -1,100 +1,41 @@
-# Herr Systems
+# Local-only brutalist Hugo preview
 
-Hugo site for `EmilyGHerr/Herr-Systems`, converted from the approved
-`jules-the-ai/herr-systems-templates` layouts. The original CSS, artwork,
-header, footer, responsive layouts, terminal artwork and native navigation
-are reused, not redesigned.
+Isolated workspace: /home/syzygy/herr-systems-brutalist-hugo
+Content and metadata source: EmilyGHerr/Herr-Systems at 0607ced3c665ca2d4830c0660ca369192909555c.
+Design reference: jules-the-ai/herr-systems-brutalist-templates.
 
-## Build and preview
+The dev branch contains a build-only verification workflow. No deployment step, Functions/Workers, or Decap admin is installed.
+All content/data YAML and Markdown are copied unchanged from the production snapshot.
+Production canonical/social metadata is retained. Preview robots are intentionally noindex/nofollow.
+Contact and pricing forms are disconnected; both JS and no-JS prevent submission.
+Terminal is the production browser-only content navigator, not a system shell or live AI.
 
-Requires Hugo Extended 0.154.5 (the CI-pinned version). The compiled styles
-are committed, so deployment does not require Node or a CSS build.
+Build: hugo --baseURL https://herrsystems.com/
+Serve: python3 -m http.server 8106 --bind 0.0.0.0 --directory /home/syzygy/herr-systems-brutalist-hugo/public
 
-```sh
-hugo --gc --minify
-hugo server --bind 0.0.0.0 --disableFastRender
-```
+Content remains editable in Hugo frontmatter, Markdown, and data YAML. No CMS is connected.
 
-For tests: `npm ci`, `npx playwright install chromium`, then `npm test`.
-The verification workflow builds and uploads `public/` as an artifact; it does
-not change hosting or publish to an unconfigured production destination.
+## Verification
 
-## Content and CMS
+- 22 public pages and two route aliases retain production content and metadata.
+- All 25 files under content/ and data/ are byte-identical to the production snapshot.
+- The local preview intentionally overrides robots and form delivery and omits /sudo/.
+- Homepage terminal uses equal columns to the right of copy above 1000px, stacks at tablet widths, and appears first at phone widths.
+- Chromium: 308 page/viewport/theme checks, no overflow, JavaScript errors, external requests, or POSTs; commands/history/completion/navigation and no-JS form safety exercised.
+- Focused computed-text contrast scan covers representative page types in both themes at phone/desktop widths.
 
-Visit `/sudo/` for Decap CMS. Its GitHub backend writes to this repository's
-`main` branch. Production authentication uses Decap Turbo
-(see `docs/CMS.md`); its Site ID is configured in `static/sudo/config.yml`. Never put client secrets or access tokens in this repository.
+QA reports: tests/test-results/brutalist-browser.json, brutalist-contrast.json, brutalist-local-verification.json.
+Content/metadata verifier: tests/brutalist-local-verification.py (uses the separately built production baseline at /tmp/herr-brutalist-baseline).
+Browser tools currently reuse the installed Playwright dependency from the brutalist-template workspace; no Node dependencies are needed to build or serve Hugo.
 
-Page titles, subtitles, descriptions, SEO titles/descriptions, social images
-and indexability are editable. Page-specific copy and global contact details
-are stored as content/data, not duplicated through HTML pages. See the CMS
-documentation for the content model and collection editing.
+The preview server is temporary. To restart, run the Serve command above. Do not change the baseURL to the LAN URL: preserving the production baseURL keeps canonical/social/schema metadata matching production while links and alias navigation remain local-relative.
 
-## Homepage terminal
+## Approved-template presentation restoration
 
-Hugo generates `/search-index.json` on each build from actual published pages
-and service records. Individually noindexed pages and drafts are omitted. This is an
-independent browser navigation index, not permission to index the site in a
-search engine. Global crawler noindex does not disable this visitor-facing navigator.
+The active shared and internal stylesheets, static/brutalist.css and static/brutalist-pages.css, are byte-identical to the approved brutalist template repository. Production legacy CSS and navigation scripts are not loaded. Header, footer and text-only mobile menu use the approved template markup; homepage services use its original glyphs, native card links and hover effects. Only the homepage billboard/terminal receives visual adaptations; minimal structural/content-image rules support Hugo data without a second theme.
 
-Examples:
+Style regression: tests/brutalist-template-style-parity.mjs compares 180 computed default, hover and focus states against port 8105, in both themes. Browser matrix and content/metadata parity remain applicable. The original content/data files are unchanged.
 
-```text
-herr -help
-herr -services
-herr -service hosting
-herr -show web-design
-herr -search backups
-herr -open hosting
-ls
-cat pricing
-find automation
-clear
-```
+## Dev branch publication
 
-Native links, arrow-key history, bounded scrollback and Tab completion are
-retained. The terminal runs no shell commands, calls no AI service, sends no
-inquiries and persists no visitor input. Unavailable indexes show an error
-instead of fabricated responses.
-
-## Search engines
-
-Set `noindex: true` in global settings (or `params.noindex` in `hugo.yaml`) to
-emit `noindex, follow` on every page and `Disallow: /` in `robots.txt`. Set a
-page's `noindex` to exclude only that page. The automatic sitemap and terminal
-index omit noindex pages. `/sudo/` is always noindex and disallowed.
-
-Robots directives are crawler hints, not access controls. A previously indexed
-site may need to remain crawlable temporarily for crawlers to observe its
-noindex metadata; blocking crawling alone does not remove existing results.
-
-The production domain is `https://herrsystems.com/`, configured as `baseURL`
-in `hugo.yaml`. The content editor is at `https://herrsystems.com/sudo/`.
-Canonical URLs, Open Graph URLs, robots and sitemap use the configured baseURL.
-
-## Hosting
-
-For Cloudflare Pages Git integration: select this repository and `main`,
-leave Root directory blank, build command `hugo --gc --minify`, output `public`,
-and environment variable `HUGO_VERSION=0.154.5`. Use the Pages flow, not Workers
-`wrangler deploy`. Add the intended custom domain through your own Cloudflare
-account. No Cloudflare credentials are needed in the repository.
-
-Contact/quote forms retain the original same-origin submission adapter. Do
-not enable delivery until a real endpoint exists. The configured
-contact email controls the direct-email handoff; a static site alone cannot send email. Blank
-phone/address settings are intentionally omitted rather than filled with
-fictional contact details. Concept studies remain labelled as concepts, not
-presented as client engagements. Fictional staff profiles are not published.
-
-## Secure form configuration
-
-See [docs/FORMS.md](docs/FORMS.md). Set `TURNSTILE_SITE_KEY` as a public Pages
-variable (or use `data/forms.yml` as a fallback). Keep `TURNSTILE_SECRET_KEY`
-in Pages/Worker secrets, never in Git.
-Delivery remains disabled until a real validating Worker is deployed.
-
-The inquiry backend uses Pages Functions plus the private `herr-inquiry-mailer`
-Worker through the `INQUIRY_MAILER` service binding. See
-[docs/FORMS-DEPLOYMENT.md](docs/FORMS-DEPLOYMENT.md) for deployment and recipient
-configuration. Website builds remain `hugo --gc --minify` with output `public`.
+This redesign is published only on EmilyGHerr/Herr-Systems branch dev. Main is not changed or merged. The workflow builds and uploads a static artifact; it does not deploy. Existing hosting-provider Git integrations are managed outside this repository. Local-preview safety restrictions (noindex, no CMS, disconnected forms) remain intentional.

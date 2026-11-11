@@ -1,5 +1,2 @@
 User-agent: *
-{{ if or site.Params.noindex site.Data.settings.noindex }}Disallow: /
-{{ else }}Allow: /
-Disallow: /sudo/
-{{ end }}Sitemap: {{ "sitemap.xml" | absURL }}
+Disallow: /

@@ -2,8 +2,8 @@
 {{ $defaults := dict "breadcrumb_aria_label" "Breadcrumb" "breadcrumb_home_label" "Home" "breadcrumb_separator_before" "/" "breadcrumb_directory_label" "Case studies" "breadcrumb_separator_after" "/" "disclosure_text" "Concept study: illustrative work, not a commissioned client project or measured business results." "contact_label" "Have a similar challenge? Let’s talk →" "contact_url" "/contact/" "next_eyebrow" "NEXT STUDY" "next_button_label" "Explore the next study" "next_button_icon" "»" "contents_eyebrow" "INSIDE THIS STUDY" "contents_return_label" "← All case studies" "navigation_aria_label" "Case study contents" }}
 {{ $copy := merge (dict "breadcrumb_current_label" (.Params.listing_title | default .Title)) $defaults (partial "cms-copy.html" .Params.copy) }}
 
-<div class="billboard-stage services-directory">
-<section aria-labelledby="directory-title" class="directory-intro case-intro">
+<main class="services-directory service-detail case-main" id="main"><div class="hero-band">
+<section aria-labelledby="directory-title" class="page-intro directory-intro case-intro">
 <nav aria-label='{{ index $copy "breadcrumb_aria_label" }}' class="detail-breadcrumb">
 <a href="/">{{ index $copy "breadcrumb_home_label" }}</a>
 <span aria-hidden="true">{{ index $copy "breadcrumb_separator_before" }}</span>
@@ -13,10 +13,7 @@
 </nav>
 <h1 id="directory-title">{{ (.Params.hero_title | default .Title) | safeHTML }}</h1>
 <p class="detail-lead">{{ (.Params.subtitle | default .Params.lead) | safeHTML }}</p>
-</section>
-</div>
-<div class="site-shell">
-<main class="services-directory service-detail case-main" id="main">
+</section></div><div class="page-content">
 <article aria-labelledby="directory-title">
 <p class="case-disclosure">{{ index $copy "disclosure_text" }}</p>{{ if .Params.image }}<figure class="case-cover">
 <img alt='{{ .Params.image_alt }}' fetchpriority="high" height="630" src="{{ .Params.image }}" width="1200"/>
@@ -209,5 +206,4 @@
 </section>{{ end }}<div class="case-return">
 <a href='{{ partial "page-url.html" (index $copy "contact_url") }}'>{{ index $copy "contact_label" }}</a>
 </div>
-</main>
-</div>
+</div></main>
