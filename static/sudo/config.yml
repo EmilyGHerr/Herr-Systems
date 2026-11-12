@@ -4025,6 +4025,11 @@ collections:
         required: false
         hint: Used by the standard service layout. The directory card has a separate illustration override.
           Detailed layout sections have their own controls.
+      - name: fit_heading
+        label: Standard layout — sidebar heading
+        widget: string
+        required: false
+        hint: 'Heading above the good-fit text on this service page. Leave blank to use the shared Site settings heading ("A good fit for your next step"). Does not change directory cards.'
       - name: fit
         label: Good-fit text
         widget: text
