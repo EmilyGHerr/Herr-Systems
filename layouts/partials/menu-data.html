@@ -1,0 +1,7 @@
+{{- $menus := dict -}}
+{{- if isset site.Data "menus" -}}
+  {{- $menus = site.Data.menus -}}
+{{- else -}}
+  {{- $menus = partial "menu-legacy.html" . -}}
+{{- end -}}
+{{- return $menus -}}

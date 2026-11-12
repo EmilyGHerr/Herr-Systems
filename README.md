@@ -98,3 +98,35 @@ The inquiry backend uses Pages Functions plus the private `herr-inquiry-mailer`
 Worker through the `INQUIRY_MAILER` service binding. See
 [docs/FORMS-DEPLOYMENT.md](docs/FORMS-DEPLOYMENT.md) for deployment and recipient
 configuration. Website builds remain `hugo --gc --minify` with output `public`.
+
+
+## Editing site menus
+
+In `/sudo/`, open **Site-wide settings → Menus & navigation**. Each menu is an
+ordered list: add a link, edit its label and destination, remove it, or drag its
+handle to change its position. The collapsed row shows the label and destination.
+
+- **Desktop header links & dropdowns:** add dropdown links inside any header item.
+  A populated dropdown uses the parent label as its toggle; include a child link
+  for the parent page if visitors should be able to navigate there. Clearing its
+  dropdown links turns it back into a normal link with the parent's destination.
+- **Mobile bottom-bar links:** optional icons; the More button remains available
+  and opens the expanded menu. Large selections scroll horizontally with usable
+  minimum-width links and a pinned More button. Short labels work best here.
+- **Expanded menu — page links** and **Expanded menu — service links:** independently
+  ordered lists in the More dialog.
+- **No-JavaScript fallback links:** navigation shown when scripting is unavailable.
+- **Footer links:** includes the existing return-to-top link and can contain others.
+
+Destinations support root-relative site paths, `https://`, `http://`, `mailto:`,
+`tel:`, and `#fragment` links. Internal paths follow the site's saved page URL
+changes, including query strings and fragments. Unsupported schemes,
+protocol-relative URLs, controls and backslashes are rejected. Clearing a list
+really removes its links; old fixed links are not silently restored. Changes are
+saved in `data/menus.yml`; old copy fields remain preserved but hidden, while
+shared accessibility labels, dialog headings and More button text remain under
+Brand, contact and shared interface copy.
+
+Run `node tests/menus.mjs` and `node tests/menus-cms.mjs` for rendering and actual
+isolated Decap add/remove/drag/edit/publish/reopen coverage. These tests never
+write to the production CMS or use production authentication.

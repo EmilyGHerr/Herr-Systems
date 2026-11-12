@@ -1,0 +1,13 @@
+{{- $current := false -}}
+{{- $active := false -}}
+{{- $url := partial "menu-url.html" .url -}}
+{{- if hasPrefix $url "/" -}}
+  {{- $url = replaceRE `[?#].*$` "" $url -}}
+  {{- $current = eq .page.RelPermalink $url -}}
+  {{- $active = or $current (and (ne $url "/") (hasPrefix .page.RelPermalink (printf "%s/" (strings.TrimRight "/" $url)))) -}}
+  {{- /* Source identity keeps active states working when a section/child moves. */ -}}
+  {{- with site.GetPage (replaceRE `[?#].*$` "" .url) -}}
+    {{- $active = or $active (and .IsSection (eq $.page.Section .Section)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return (dict "current" $current "active" $active) -}}

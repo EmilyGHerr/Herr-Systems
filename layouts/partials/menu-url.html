@@ -1,0 +1,10 @@
+{{- /* Allowlist before safeURL. Never allow protocol-relative paths, backslashes,
+      controls (including encoded controls), or unrecognized schemes. */ -}}
+{{- $url := . | default "" -}}
+{{- $valid := and (not (findRE `[\x00-\x20\x7f-\x9f\\]` $url)) (not (findRE `(?i)%(?:0[0-9a-f]|1[0-9a-f]|7f|5c)` $url)) -}}
+{{- $allowed := or (and (hasPrefix $url "/") (not (hasPrefix $url "//"))) (hasPrefix $url "#") (gt (len (findRE `(?i)^(https?://[^/?#]+|mailto:[^\s]+|tel:[^\s]+)` $url)) 0) -}}
+{{- $result := "" -}}
+{{- if and $valid $allowed -}}
+  {{- $result = partial "page-url.html" $url -}}
+{{- end -}}
+{{- return $result -}}

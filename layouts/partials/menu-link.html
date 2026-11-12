@@ -1,0 +1,5 @@
+{{- $url := partial "menu-url.html" .item.url -}}
+{{- if $url -}}
+  {{- $state := partial "menu-active.html" (dict "page" .page "url" .item.url) -}}
+  <a href="{{ $url | safeURL }}"{{ if or $state.current (and .descendants $state.active) }} class="active"{{ end }}{{ if $state.current }} aria-current="page"{{ end }}>{{- if .image -}}{{- with .item.image -}}{{- $image := partial "menu-url.html" . -}}{{- if or (hasPrefix $image "/") (findRE `(?i)^https?://` $image) -}}<img alt="" aria-hidden="true" class="mobile-nav-art" height="24" src="{{ $image | safeURL }}" width="24"/>{{- end -}}{{- end -}}{{- end -}}{{ .item.label }}</a>
+{{- end -}}

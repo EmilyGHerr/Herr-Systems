@@ -53,7 +53,7 @@ try{
  $=await sidebar('hosting');assert.equal($('.detail-fit h3').text(),settings.service_fit_label);
  // Missing, empty, and null overrides retain the shared heading.
  for(const value of [undefined,'',null]){
-  const data=structuredClone(before.data);if(value!==undefined)data.fit_heading=value;
+  const data=structuredClone(before.data);delete data.fit_heading;if(value!==undefined)data.fit_heading=value;
   await fs.writeFile(path.join(source,file),['---',YAML.stringify(data).trimEnd(),'---',before.body].join('\n'));
   build(source,out);$=await sidebar('consulting');assert.equal($('.detail-fit h3').text(),settings.service_fit_label);
  }

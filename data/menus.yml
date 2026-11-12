@@ -1,0 +1,90 @@
+desktop:
+- label: Services
+  url: /services/
+  children:
+  - label: All services
+    url: /services/
+  - label: Web Design
+    url: /services/web-design/
+  - label: Development
+    url: /services/development/
+  - label: Hosting
+    url: /services/hosting/
+  - label: Agentic Setups
+    url: /services/agentic-setups/
+  - label: Consulting
+    url: /services/consulting/
+  - label: Contract Work
+    url: /services/contract-work/
+- label: Work
+  url: /case-studies/
+  children: []
+- label: Pricing
+  url: /pricing/
+  children: []
+- label: About
+  url: /about/
+  children:
+  - label: About us
+    url: /about/
+  - label: Blog
+    url: /blog/
+- label: Contact
+  url: /contact/
+  children: []
+mobile:
+- label: Services
+  url: /services/
+  image: /assets/services/web-design-transparent.svg
+- label: Work
+  url: /case-studies/
+  image: /assets/navigation/work.svg
+- label: Contact
+  url: /contact/
+  image: /assets/navigation/contact.svg
+expanded:
+- label: Home
+  url: /
+- label: All services
+  url: /services/
+- label: Work
+  url: /case-studies/
+- label: Pricing
+  url: /pricing/
+- label: About us
+  url: /about/
+- label: Blog
+  url: /blog/
+- label: Contact
+  url: /contact/
+services:
+- label: Web Design
+  url: /services/web-design/
+- label: Development
+  url: /services/development/
+- label: Hosting
+  url: /services/hosting/
+- label: Agentic Setups
+  url: /services/agentic-setups/
+- label: Consulting
+  url: /services/consulting/
+- label: Contract Work
+  url: /services/contract-work/
+fallback:
+- label: Home
+  url: /
+- label: All services
+  url: /services/
+- label: Work
+  url: /case-studies/
+- label: Pricing
+  url: /pricing/
+- label: About us
+  url: /about/
+- label: Blog
+  url: /blog/
+- label: Contact
+  url: /contact/
+footer:
+- label: RETURN TO TOP ↑
+  url: '#top'

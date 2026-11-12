@@ -6103,6 +6103,164 @@ collections:
   - name: settings
     label: Site-wide settings
     files:
+      - name: menus
+        label: Menus & navigation
+        file: data/menus.yml
+        fields:
+        - name: desktop
+          label: Desktop header links & dropdowns
+          widget: list
+          required: false
+          default: []
+          collapsed: true
+          summary: '{{fields.label}} → {{fields.url}}'
+          fields:
+          - name: label
+            label: Link label
+            widget: string
+          - name: url
+            label: Destination
+            widget: string
+            required: false
+            hint: 'Choose a site path such as /services/ or /contact/#inquiry, a full https:// or http:// URL, mailto:,
+              tel:, or a #fragment. Internal page links follow saved page URL changes.'
+            pattern:
+            - ^(?!.*[\u0000-\u0020\u007f-\u009f\\])(?!.*%([01][0-9a-fA-F]|7[fF]|5[cC]))(?:/(?!/).*|https?://[^/?#]+.*|mailto:[^\s]+|tel:[^\s]+|#.*)$
+            - 'Use a site path starting with / (not //), http(s) URL, mailto:, tel:, or #fragment. No spaces, controls
+              or backslashes.'
+          - name: children
+            label: Dropdown links (optional)
+            widget: list
+            required: false
+            default: []
+            collapsed: true
+            summary: '{{fields.label}} → {{fields.url}}'
+            fields:
+            - name: label
+              label: Link label
+              widget: string
+            - name: url
+              label: Destination
+              widget: string
+              hint: 'Choose a site path such as /services/ or /contact/#inquiry, a full https:// or http:// URL, mailto:,
+                tel:, or a #fragment. Internal page links follow saved page URL changes.'
+              pattern:
+              - ^(?!.*[\u0000-\u0020\u007f-\u009f\\])(?!.*%([01][0-9a-fA-F]|7[fF]|5[cC]))(?:/(?!/).*|https?://[^/?#]+.*|mailto:[^\s]+|tel:[^\s]+|#.*)$
+              - 'Use a site path starting with / (not //), http(s) URL, mailto:, tel:, or #fragment. No spaces, controls
+                or backslashes.'
+          hint: Add, remove or drag links to reorder them. Clearing this list removes its links. Add dropdown links to
+            turn a header item into a dropdown; the parent label opens the dropdown and its destination is used for active
+            state. Include a child link for the parent page if needed.
+        - name: mobile
+          label: Mobile bottom-bar links
+          widget: list
+          required: false
+          default: []
+          collapsed: true
+          summary: '{{fields.label}} → {{fields.url}}'
+          fields:
+          - name: label
+            label: Link label
+            widget: string
+          - name: url
+            label: Destination
+            widget: string
+            hint: 'Choose a site path such as /services/ or /contact/#inquiry, a full https:// or http:// URL, mailto:,
+              tel:, or a #fragment. Internal page links follow saved page URL changes.'
+            pattern:
+            - ^(?!.*[\u0000-\u0020\u007f-\u009f\\])(?!.*%([01][0-9a-fA-F]|7[fF]|5[cC]))(?:/(?!/).*|https?://[^/?#]+.*|mailto:[^\s]+|tel:[^\s]+|#.*)$
+            - 'Use a site path starting with / (not //), http(s) URL, mailto:, tel:, or #fragment. No spaces, controls
+              or backslashes.'
+          - name: image
+            label: Icon (optional)
+            widget: image
+            required: false
+          hint: Add, remove or drag links to reorder them. Clearing this list removes its links. The More button remains
+            at the end and is edited in shared interface copy.
+        - name: expanded
+          label: Expanded menu — page links
+          widget: list
+          required: false
+          default: []
+          collapsed: true
+          summary: '{{fields.label}} → {{fields.url}}'
+          fields:
+          - name: label
+            label: Link label
+            widget: string
+          - name: url
+            label: Destination
+            widget: string
+            hint: 'Choose a site path such as /services/ or /contact/#inquiry, a full https:// or http:// URL, mailto:,
+              tel:, or a #fragment. Internal page links follow saved page URL changes.'
+            pattern:
+            - ^(?!.*[\u0000-\u0020\u007f-\u009f\\])(?!.*%([01][0-9a-fA-F]|7[fF]|5[cC]))(?:/(?!/).*|https?://[^/?#]+.*|mailto:[^\s]+|tel:[^\s]+|#.*)$
+            - 'Use a site path starting with / (not //), http(s) URL, mailto:, tel:, or #fragment. No spaces, controls
+              or backslashes.'
+          hint: Add, remove or drag links to reorder them. Clearing this list removes its links.
+        - name: services
+          label: Expanded menu — service links
+          widget: list
+          required: false
+          default: []
+          collapsed: true
+          summary: '{{fields.label}} → {{fields.url}}'
+          fields:
+          - name: label
+            label: Link label
+            widget: string
+          - name: url
+            label: Destination
+            widget: string
+            hint: 'Choose a site path such as /services/ or /contact/#inquiry, a full https:// or http:// URL, mailto:,
+              tel:, or a #fragment. Internal page links follow saved page URL changes.'
+            pattern:
+            - ^(?!.*[\u0000-\u0020\u007f-\u009f\\])(?!.*%([01][0-9a-fA-F]|7[fF]|5[cC]))(?:/(?!/).*|https?://[^/?#]+.*|mailto:[^\s]+|tel:[^\s]+|#.*)$
+            - 'Use a site path starting with / (not //), http(s) URL, mailto:, tel:, or #fragment. No spaces, controls
+              or backslashes.'
+          hint: Add, remove or drag links to reorder them. Clearing this list removes its links.
+        - name: fallback
+          label: No-JavaScript fallback links
+          widget: list
+          required: false
+          default: []
+          collapsed: true
+          summary: '{{fields.label}} → {{fields.url}}'
+          fields:
+          - name: label
+            label: Link label
+            widget: string
+          - name: url
+            label: Destination
+            widget: string
+            hint: 'Choose a site path such as /services/ or /contact/#inquiry, a full https:// or http:// URL, mailto:,
+              tel:, or a #fragment. Internal page links follow saved page URL changes.'
+            pattern:
+            - ^(?!.*[\u0000-\u0020\u007f-\u009f\\])(?!.*%([01][0-9a-fA-F]|7[fF]|5[cC]))(?:/(?!/).*|https?://[^/?#]+.*|mailto:[^\s]+|tel:[^\s]+|#.*)$
+            - 'Use a site path starting with / (not //), http(s) URL, mailto:, tel:, or #fragment. No spaces, controls
+              or backslashes.'
+          hint: Add, remove or drag links to reorder them. Clearing this list removes its links.
+        - name: footer
+          label: Footer links
+          widget: list
+          required: false
+          default: []
+          collapsed: true
+          summary: '{{fields.label}} → {{fields.url}}'
+          fields:
+          - name: label
+            label: Link label
+            widget: string
+          - name: url
+            label: Destination
+            widget: string
+            hint: 'Choose a site path such as /services/ or /contact/#inquiry, a full https:// or http:// URL, mailto:,
+              tel:, or a #fragment. Internal page links follow saved page URL changes.'
+            pattern:
+            - ^(?!.*[\u0000-\u0020\u007f-\u009f\\])(?!.*%([01][0-9a-fA-F]|7[fF]|5[cC]))(?:/(?!/).*|https?://[^/?#]+.*|mailto:[^\s]+|tel:[^\s]+|#.*)$
+            - 'Use a site path starting with / (not //), http(s) URL, mailto:, tel:, or #fragment. No spaces, controls
+              or backslashes.'
+          hint: Add, remove or drag links to reorder them. Clearing this list removes its links.
       - name: settings
         label: Brand, contact and shared interface copy
         file: data/settings.yml
@@ -6210,7 +6368,7 @@ collections:
                       headline."
                   - name: summary_1
                     label: Label
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: span_3
@@ -6220,57 +6378,57 @@ collections:
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: a_1
                     label: Link text
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /services/."
                   - name: a_2
                     label: Link text 2
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/web-design/."
                   - name: a_3
                     label: Link text 3
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/development/."
                   - name: a_4
                     label: Link text 4
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /services/hosting/."
                   - name: a_5
                     label: Link text 5
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/agentic-setups/."
                   - name: a_6
                     label: Link text 6
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/consulting/."
                   - name: a_7
                     label: Link text 7
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination:
                       /services/contract-work/."
                   - name: a_8
                     label: Link text 8
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /case-studies/."
                   - name: a_9
                     label: Link text 9
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /pricing/."
                   - name: summary_2
                     label: Label 3
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: span_4
@@ -6280,17 +6438,17 @@ collections:
                     hint: "Location: Desktop navigation — labels and dropdowns."
                   - name: a_10
                     label: Link text 10
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /about/."
                   - name: a_11
                     label: Link text 11
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /blog/."
                   - name: a_12
                     label: Link text 12
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Desktop navigation — labels and dropdowns. Link destination: /contact/."
                 summary: Edit this section — Desktop navigation — labels and dropdowns
@@ -6306,17 +6464,17 @@ collections:
                     hint: "Location: Mobile navigation. Accessibility text; not a visible headline."
                   - name: a_14
                     label: Link text
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Mobile navigation. Link destination: /services/."
                   - name: a_15
                     label: Link text 2
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Mobile navigation. Link destination: /case-studies/."
                   - name: a_16
                     label: Link text 3
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Mobile navigation. Link destination: /contact/."
                   - name: mobile_more_1
@@ -6364,37 +6522,37 @@ collections:
                     hint: "Location: Expanded menu — page links. Accessibility text; not a visible headline."
                   - name: active_1
                     label: Link text
-                    widget: text
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /."
                   - name: a_17
                     label: Link text 2
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /services/."
                   - name: a_18
                     label: Link text 3
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /case-studies/."
                   - name: a_19
                     label: Link text 4
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /pricing/."
                   - name: a_20
                     label: Link text 5
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /about/."
                   - name: a_21
                     label: Link text 6
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /blog/."
                   - name: a_22
                     label: Link text 7
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — page links. Link destination: /contact/."
                 summary: Edit this section — Expanded menu — page links
@@ -6410,32 +6568,32 @@ collections:
                     hint: "Location: Expanded menu — service links."
                   - name: a_23
                     label: Link text
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/web-design/."
                   - name: a_24
                     label: Link text 2
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/development/."
                   - name: a_25
                     label: Link text 3
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/hosting/."
                   - name: a_26
                     label: Link text 4
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/agentic-setups/."
                   - name: a_27
                     label: Link text 5
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/consulting/."
                   - name: a_28
                     label: Link text 6
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Expanded menu — service links. Link destination: /services/contract-work/."
                 summary: Edit this section — Expanded menu — service links
@@ -6463,37 +6621,37 @@ collections:
                       headline."
                   - name: active_2
                     label: Label
-                    widget: text
+                    widget: hidden
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_29
                     label: Label 2
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_30
                     label: Label 3
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_31
                     label: Label 4
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_32
                     label: Label 5
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_33
                     label: Label 6
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                   - name: a_34
                     label: Label 7
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Navigation fallback — JavaScript disabled."
                 summary: Edit this section — Navigation fallback — JavaScript disabled
@@ -6530,7 +6688,7 @@ collections:
                     hint: "Location: Footer — business details."
                   - name: a_13
                     label: Link text
-                    widget: string
+                    widget: hidden
                     required: false
                     hint: "Location: Footer — business details. Link destination: #top."
                 summary: Edit this section — Footer — business details

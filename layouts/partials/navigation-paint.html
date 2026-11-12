@@ -8,6 +8,13 @@
   html[data-fonts-pending] body { visibility: hidden; }
   html[data-fonts-ready] body { animation: page-font-reveal 120ms ease-out; }
   @keyframes page-font-reveal { from { opacity: 0; } to { opacity: 1; } }
+  /* Editable menus can grow beyond the original fixed link count. */
+  .global-header .global-nav { min-width: 0; flex-wrap: wrap; }
+  .global-nav > a, .global-nav > .nav-dropdown { max-width: 100%; overflow-wrap: anywhere; }
+  .mobile-nav > a { overflow-wrap: anywhere; text-align: center; }
+  .mobile-nav > .mobile-more { position: sticky; right: 0; z-index: 1; background: #164f91; }
+  .footer-info { flex-wrap: wrap; }
+  .footer-info > a { overflow-wrap: anywhere; max-width: 100%; }
   @view-transition { navigation: auto; }
   ::view-transition-old(root),
   ::view-transition-new(root) { animation-duration: 160ms; animation-timing-function: ease-out; }
