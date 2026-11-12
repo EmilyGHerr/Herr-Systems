@@ -9,6 +9,7 @@ image: /assets/services/consulting-transparent.svg
 image_alt: Pixel-art planning board with a route connecting project milestones
   and a conversation bubble.
 caption: TRUTH, NOT SALES
+fit_heading: "Best For:"
 fit: Non-technical business owners who want to avoid sales people who like to talk.
 includes:
   - Website, workflow, and technology reviews
