@@ -36,7 +36,17 @@ try{
  // Exercise the flat expanded list; desktop child rendering is covered in menus.mjs.
  const tops=list=>list.locator('[class*="StyledListItemTopBar"]').filter({has:page.locator('[role="button"]')});
  const row=(list,i)=>tops(list).nth(i).locator('..');
- async function expand(list,i){const item=row(list,i);if(!await item.locator('input').filter({visible:true}).count())await tops(list).nth(i).locator('button').first().click();return item;}
+ async function expand(list,i){
+  const item=row(list,i),input=item.locator('input').filter({visible:true}).first();
+  // The drag library can consume the next click after drop. Retry only opening
+  // the row; retain the actual field-edit, publish and exact persistence checks.
+  for(let attempt=0;attempt<3;attempt++){
+   if(await input.isVisible())return item;
+   await tops(list).nth(i).locator('button').first().click();
+   try{await input.waitFor({state:'visible',timeout:1000});return item;}catch(e){if(attempt===2)throw e;}
+  }
+ }
+
  async function publish(previous){
   for(let attempt=0;attempt<3;attempt++){
    await page.getByRole('button',{name:'Publish',exact:true}).click();
