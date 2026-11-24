@@ -21,7 +21,8 @@
     }
   },
   "vars": {
-    "INQUIRY_FROM": "forms@herrsystems.com"
+    "INQUIRY_FROM": "forms@herrsystems.com",
+    "INQUIRY_DELIVERY_MODE": "outbox"
   },
   "send_email": [
     {
@@ -40,5 +41,37 @@
         "period": 60
       }
     }
-  ]
+  ],
+  "d1_databases": [
+    {
+      "binding": "INQUIRY_DB",
+      "database_name": "herr-inquiries",
+      "database_id": "47d4945b-0235-4e6a-ab17-558deffba796",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "INQUIRY_QUEUE",
+        "queue": "herr-inquiry-delivery"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "herr-inquiry-delivery",
+        "max_batch_size": 5,
+        "max_batch_timeout": 1,
+        "max_retries": 8,
+        "retry_delay": 60,
+        "max_concurrency": 1,
+        "dead_letter_queue": "herr-inquiry-dead-letter"
+      }
+    ]
+  },
+  "triggers": {
+    "crons": [
+      "*/5 * * * *"
+    ]
+  }
 }

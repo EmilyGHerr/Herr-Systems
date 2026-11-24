@@ -9,7 +9,7 @@ enabled: false
 
 The site key is PUBLIC and safe to commit. Both contact and quote forms use
 this file. Keep enabled false until a real /api/inquiries Worker validates
-tokens and delivers email. A blank site key also keeps delivery disabled.
+tokens and durably accepts inquiries. A blank site key also keeps delivery disabled.
 When disabled, neither the widget nor its third-party script is loaded.
 
 ## Cloudflare Pages variables (recommended)
@@ -44,7 +44,8 @@ deleting it from the latest revision is not sufficient.
 ## Backend security contract
 
 POST /api/inquiries receives JSON with turnstileToken, schemaVersion: 1,
-kind: contact or quote, contact fields and message. Quotes also include
+kind: contact or quote, contact fields and message, and an optional UUID-v4
+submissionId retained across unchanged retries. Quotes also include
 services/options/estimate. Before ANY email send the Worker must:
 
 - Validate origin, content type, bounded body/fields, and enforce rate limits.
@@ -55,8 +56,11 @@ services/options/estimate. Before ANY email send the Worker must:
   kind (contact or quote). Fail closed on errors/expiry/reuse/mismatch.
 - Deliver only to a configured fixed recipient. Treat quote totals as
   untrusted; recalculate or label as visitor supplied.
-- Return HTTP success with JSON {"ok":true} only after the email provider
-  accepts the send; otherwise a non-success status with {"ok":false}.
+- In outbox mode, return HTTP 202 with ok:true and a receiptId only after
+  durable D1 persistence. Email notification happens asynchronously and may
+  need retries or operator review. A successful response is NOT inbox delivery.
+- Legacy rollback mode retains synchronous provider acceptance semantics.
+  See INQUIRY-OUTBOX.md for schema-first rollout and operating procedures.
 - Never log secrets, tokens or message contents.
 
 Tokens are single use and expire after five minutes. The frontend resets

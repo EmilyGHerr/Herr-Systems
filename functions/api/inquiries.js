@@ -1,4 +1,4 @@
-import { InquiryError, reject, json, failure, readJson, normalizeInquiry, validIp } from '../../server/inquiries.js';
+import { InquiryError, reject, json, failure, readJson, normalizeInquiry, validIp, validSubmissionId } from '../../server/inquiries.js';
 
 export async function onRequest({ request, env }) {
   let stage = "request_validation";
@@ -44,7 +44,11 @@ export async function onRequest({ request, env }) {
       result = await response.json();
     } catch { reject(502, 'submission_unconfirmed'); }
     stage = "mailer_confirmation";
-    if (response.status === 202 && result?.ok === true && result.status === 'submitted') return json(202, { ok: true, status: 'submitted' });
+    if (response.status === 202 && result?.ok === true && result.status === 'submitted') {
+      if (result.receiptId !== undefined && !validSubmissionId(result.receiptId)) reject(502, 'submission_unconfirmed');
+      return json(202, { ok: true, status: 'submitted', ...(result.receiptId ? {receiptId:result.receiptId} : {}) });
+    }
+    if (response.status === 409) reject(409, 'submission_conflict');
     if ([400, 413, 415, 429, 503].includes(response.status)) reject(response.status, response.status === 429 ? 'rate_limited' : response.status === 503 ? 'service_unavailable' : 'invalid_request');
     reject(502, 'submission_unconfirmed');
   } catch (error) {

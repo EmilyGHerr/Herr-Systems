@@ -76,7 +76,7 @@ function quote(value) {
 export function normalizeInquiry(value, publicInput = false) {
   // The deployed frontend uses flat services/options/estimate; nested quote is also
   // accepted for schema-v1 callers, but mixing representations is rejected.
-  keys(value, ['schemaVersion', 'kind', 'contact', 'topic', 'message', 'quote', 'services', 'options', 'estimate', ...(publicInput ? ['turnstileToken'] : [])]);
+  keys(value, ['schemaVersion', 'submissionId', 'kind', 'contact', 'topic', 'message', 'quote', 'services', 'options', 'estimate', ...(publicInput ? ['turnstileToken'] : [])]);
   if (value.schemaVersion !== 1 || !['contact', 'quote'].includes(value.kind)) reject();
   keys(value.contact, ['name', 'email', 'business', 'website']);
   const contact = { name: text(value.contact.name, 100, true), email: email(value.contact.email), business: text(value.contact.business, 150), website: text(value.contact.website, 300) };
@@ -98,8 +98,15 @@ export function normalizeInquiry(value, publicInput = false) {
     if (flat && Object.hasOwn(value, 'quote')) reject();
     result.quote = quote(flat ? Object.fromEntries(['services', 'options', 'estimate'].filter(k => Object.hasOwn(value, k)).map(k => [k, value[k]])) : value.quote);
   } else if (flat || Object.hasOwn(value, 'quote')) reject();
+  if (Object.hasOwn(value, 'submissionId')) {
+    if (!validSubmissionId(value.submissionId)) reject();
+    result.submissionId = value.submissionId;
+  }
   if (publicInput) result.turnstileToken = text(value.turnstileToken, 2048, true);
   return result;
+}
+export function validSubmissionId(value) {
+  return typeof value === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(value);
 }
 export function validIp(value) {
   if (typeof value !== 'string' || value.length > 45) return false;

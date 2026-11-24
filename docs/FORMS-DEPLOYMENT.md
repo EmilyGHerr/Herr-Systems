@@ -1,5 +1,11 @@
 # Deploy the inquiry backend
 
+> Queued delivery: follow [INQUIRY-OUTBOX.md](INQUIRY-OUTBOX.md) first.
+> The checked-in production config uses D1-backed outbox delivery. The
+> single-attempt/direct-send descriptions below document the legacy rollback
+> path; they are not the receipt contract in outbox mode. Apply the additive
+> schema before deploying the new Worker configuration.
+
 ## Architecture
 
 Browser contact/quote form -> Pages Function `/api/inquiries` -> private

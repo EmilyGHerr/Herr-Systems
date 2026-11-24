@@ -4,6 +4,8 @@ const target = new URL("../workers/inquiry-mailer/dashboard-worker.js", import.m
 const code = (await readFile(source, "utf8")).split("\n").filter(line => !line.startsWith("//# sourceMappingURL=")).join("\n");
 const header = `// Paste-ready Cloudflare module Worker. Generated from reviewed index.js.
 // Required: SEND_EMAIL, INQUIRY_RATE_LIMITER, INQUIRY_TO, INQUIRY_FROM.
+// Outbox mode: INQUIRY_DB, INQUIRY_QUEUE, INQUIRY_DELIVERY_MODE=outbox.
+// Apply D1 schema first; follow docs/INQUIRY-OUTBOX.md for bindings/triggers.
 // Service-binding access only: disable workers.dev, preview URLs, custom routes.
 // No secrets belong in this file. Regenerate with npm run build:mailer-dashboard.
 

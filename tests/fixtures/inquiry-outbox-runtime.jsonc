@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "inquiry-outbox-runtime-test",
+  "main": "inquiry-outbox-runtime.js",
+  "compatibility_date": "2026-11-03",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [],
+  "d1_databases": [{
+    "binding": "INQUIRY_DB",
+    "database_name": "inquiry-outbox-runtime-test",
+    "database_id": "00000000-0000-4000-8000-000000000001",
+    "remote": false
+  }],
+  "queues": {
+    "producers": [{ "binding": "INQUIRY_QUEUE", "queue": "herr-inquiry-delivery" }],
+    "consumers": [{ "queue": "herr-inquiry-delivery", "max_batch_size": 1, "max_batch_timeout": 1 }]
+  }
+}
