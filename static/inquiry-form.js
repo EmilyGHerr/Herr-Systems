@@ -14,6 +14,7 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
   form.noValidate = true; button.disabled = false;
   const idleLabel = button.textContent;
   let pending = false;
+  let submissionSnapshot, submissionId;
   const verification = prepareTurnstile(form);
   function showStatus(message, state) {
     status.textContent = message; status.dataset.state = state; status.focus();
@@ -30,6 +31,7 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
     if (!pending) { status.textContent = ''; delete status.dataset.state; }
   });
   form.addEventListener('reset', () => {
+    submissionSnapshot = undefined; submissionId = undefined;
     clearErrors();
     void verification.reset();
     if (!pending) { status.textContent = ''; delete status.dataset.state; }
@@ -85,11 +87,19 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
     const data = new FormData(form);
     const text = key => String(data.get(key) || '').trim();
     const payload = {
-      schemaVersion: 1, kind: form.dataset.formKind, turnstileToken,
+      schemaVersion: 1, kind: form.dataset.formKind,
       contact: { name: text('name'), email: text('email'), business: text('business'), website: text('website') },
       topic: text('topic'), message: text('message'),
       ...(typeof form.buildInquiryPayload === 'function' ? form.buildInquiryPayload() : {}),
     };
+    // Keep the retry identity only in memory, independent of challenge refreshes.
+    // Payload builders cannot supply either transport-only field.
+    delete payload.turnstileToken; delete payload.submissionId;
+    const snapshot = JSON.stringify(payload);
+    if (snapshot !== submissionSnapshot || !submissionId) {
+      submissionId = crypto.randomUUID(); submissionSnapshot = snapshot;
+    }
+    payload.submissionId = submissionId; payload.turnstileToken = turnstileToken;
     pending = true; button.disabled = true; button.textContent = 'Sending…'; form.setAttribute('aria-busy', 'true');
     status.textContent = 'Sending your message…'; status.dataset.state = 'pending';
     const controller = new AbortController(); const timer = setTimeout(() => controller.abort(), 15000);
@@ -100,12 +110,17 @@ for (const form of document.querySelectorAll('[data-inquiry-form]')) {
       });
       const result = await response.json().catch(() => null);
       if (!response.ok || result?.ok !== true) {
-        showStatus(response.status === 429
-          ? 'Too many requests. Please wait before trying again, or contact us by email.'
-          : 'Your message could not be confirmed. Your details are still here. Please try again later or contact us by email.', 'error'); return;
+        let message = 'Your message could not be confirmed. Your details are still here. Please try again later or contact us by email.';
+        if (response.status === 429) message = 'Too many requests. Please wait before trying again, or contact us by email.';
+        else if (result?.error === 'verification_failed') message = 'Spam verification failed. Please complete verification again, then retry.';
+        else if (result?.error === 'verification_unavailable') message = 'Spam verification is temporarily unavailable. Your details are still here. Please try again later or contact us by email.';
+        else if (response.status === 409 && result?.error === 'submission_conflict') message = 'There is a submission conflict. We could not confirm this request. Your details are still here. Please contact us by email before resubmitting.';
+        showStatus(message, 'error'); return;
       }
       // Preserve inputs: they may have been edited while the snapshot was in flight.
-      showStatus('Your submitted message was received. We’ll reply using the email address you supplied.', 'success');
+      const receipt = typeof result.receiptId === 'string' && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(result.receiptId)
+        ? ` Receipt: ${result.receiptId}.` : '';
+      showStatus(`Your submitted message was received. We’ll reply using the email address you supplied.${receipt}`, 'success');
     } catch {
       showStatus('We couldn’t confirm receipt. Your details are still here. Check your connection or contact us by email before resubmitting.', 'error');
     } finally {

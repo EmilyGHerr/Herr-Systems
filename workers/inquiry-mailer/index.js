@@ -1,3 +1,4 @@
+import { acceptInquiry, consumeInquiries, recoverInquiries } from '../../server/inquiry-outbox.js';
 import { reject, json, failure, readJson, normalizeInquiry, keys, email, validIp, formatInquiry } from '../../server/inquiries.js';
 
 const providerCodes = new Set([
@@ -16,7 +17,7 @@ function diagnose(stage, error) {
 // is defense in depth, NOT authentication. Any exposed route would break this
 // trusted Pages → Worker envelope boundary. No public fetch routes are intended.
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     try {
       const url = new URL(request.url);
       if (url.origin !== 'https://inquiry-mailer.internal' || url.pathname !== '/send' || url.search) reject(404, 'not_found');
@@ -26,14 +27,17 @@ export default {
       if (!validIp(envelope.clientIp)) reject();
       // Revalidate and recalculate; no token, recipient, sender or subject accepted.
       const inquiry = normalizeInquiry(envelope.inquiry);
-      if (typeof env?.SEND_EMAIL?.send !== 'function' || typeof env?.INQUIRY_RATE_LIMITER?.limit !== 'function' || env?.INQUIRY_FROM !== 'forms@herrsystems.com') reject(503, 'service_unavailable');
+      const queued = env.INQUIRY_DELIVERY_MODE === 'outbox';
+      if (env.INQUIRY_DELIVERY_MODE !== undefined && !['outbox', 'legacy'].includes(env.INQUIRY_DELIVERY_MODE)) reject(503, 'service_unavailable');
+      if ((!queued && typeof env?.SEND_EMAIL?.send !== 'function') || typeof env?.INQUIRY_RATE_LIMITER?.limit !== 'function' || env?.INQUIRY_FROM !== 'forms@herrsystems.com') reject(503, 'service_unavailable');
       let to;
-      try { to = email(env.INQUIRY_TO); } catch { reject(503, 'service_unavailable'); }
+      try { if (!queued) to = email(env.INQUIRY_TO); } catch { reject(503, 'service_unavailable'); }
       let limit;
       try { limit = await env.INQUIRY_RATE_LIMITER.limit({ key: envelope.clientIp }); }
       catch { reject(503, 'service_unavailable'); }
       if (limit?.success === false) reject(429, 'rate_limited');
       if (limit?.success !== true) reject(503, 'service_unavailable');
+      if (queued) return json(202, await acceptInquiry(env, inquiry, ctx));
       let result;
       try {
         // One attempt only. An exception may mean the send was accepted but its
@@ -66,5 +70,9 @@ export default {
       // Provider acceptance is submission, never proof of inbox delivery.
       return json(202, { ok: true, status: 'submitted' });
     } catch (error) { return failure(error); }
+  },
+  queue: consumeInquiries,
+  async scheduled(_controller, env) {
+    if (env.INQUIRY_DELIVERY_MODE === 'outbox') await recoverInquiries(env);
   },
 };

@@ -1,5 +1,7 @@
 // Paste-ready Cloudflare module Worker. Generated from reviewed index.js.
 // Required: SEND_EMAIL, INQUIRY_RATE_LIMITER, INQUIRY_TO, INQUIRY_FROM.
+// Outbox mode: INQUIRY_DB, INQUIRY_QUEUE, INQUIRY_DELIVERY_MODE=outbox.
+// Apply D1 schema first; follow docs/INQUIRY-OUTBOX.md for bindings/triggers.
 // Service-binding access only: disable workers.dev, preview URLs, custom routes.
 // No secrets belong in this file. Regenerate with npm run build:mailer-dashboard.
 
@@ -177,7 +179,7 @@ function quote(value) {
 }
 __name(quote, "quote");
 function normalizeInquiry(value, publicInput = false) {
-  keys(value, ["schemaVersion", "kind", "contact", "topic", "message", "quote", "services", "options", "estimate", ...publicInput ? ["turnstileToken"] : []]);
+  keys(value, ["schemaVersion", "submissionId", "kind", "contact", "topic", "message", "quote", "services", "options", "estimate", ...publicInput ? ["turnstileToken"] : []]);
   if (value.schemaVersion !== 1 || !["contact", "quote"].includes(value.kind)) reject();
   keys(value.contact, ["name", "email", "business", "website"]);
   const contact = { name: text(value.contact.name, 100, true), email: email(value.contact.email), business: text(value.contact.business, 150), website: text(value.contact.website, 300) };
@@ -199,10 +201,18 @@ function normalizeInquiry(value, publicInput = false) {
     if (flat && Object.hasOwn(value, "quote")) reject();
     result.quote = quote(flat ? Object.fromEntries(["services", "options", "estimate"].filter((k) => Object.hasOwn(value, k)).map((k) => [k, value[k]])) : value.quote);
   } else if (flat || Object.hasOwn(value, "quote")) reject();
+  if (Object.hasOwn(value, "submissionId")) {
+    if (!validSubmissionId(value.submissionId)) reject();
+    result.submissionId = value.submissionId;
+  }
   if (publicInput) result.turnstileToken = text(value.turnstileToken, 2048, true);
   return result;
 }
 __name(normalizeInquiry, "normalizeInquiry");
+function validSubmissionId(value) {
+  return typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(value);
+}
+__name(validSubmissionId, "validSubmissionId");
 function validIp(value) {
   if (typeof value !== "string" || value.length > 45) return false;
   const v4 = /* @__PURE__ */ __name((s) => /^(?:\d{1,3}\.){3}\d{1,3}$/.test(s) && s.split(".").every((p) => Number(p) <= 255 && String(Number(p)) === p), "v4");
@@ -233,6 +243,221 @@ function formatInquiry(inquiry) {
 }
 __name(formatInquiry, "formatInquiry");
 
+// ../../server/inquiry-outbox.js
+var MAX_ATTEMPTS = 8;
+var LEASE_SECONDS = 120;
+var RETENTION_SECONDS = 90 * 24 * 60 * 60;
+var transientCodes = /* @__PURE__ */ new Set([
+  "E_RATE_LIMIT_EXCEEDED",
+  "E_DAILY_LIMIT_EXCEEDED",
+  "E_INTERNAL_SERVER_ERROR",
+  "E_EMAIL_SENDING_NOT_READY"
+]);
+var permanentCodes = /* @__PURE__ */ new Set([
+  "E_DELIVERY_FAILED",
+  "E_SENDER_NOT_VERIFIED",
+  "E_SENDER_DOMAIN_NOT_AVAILABLE",
+  "E_SENDER_DOMAIN_NOT_CONFIGURED",
+  "E_RECIPIENT_NOT_ALLOWED",
+  "E_RECIPIENT_PLAN_RESTRICTED",
+  "E_RECIPIENT_SUPPRESSED",
+  "E_ACCOUNT_SUSPENDED",
+  "E_VALIDATION_ERROR",
+  "E_FIELD_MISSING",
+  "E_TOO_MANY_RECIPIENTS",
+  "E_TOO_MANY_ATTACHMENTS",
+  "E_CONTENT_TOO_LARGE",
+  "E_HEADER_NOT_ALLOWED",
+  "E_HEADER_USE_API_FIELD",
+  "E_HEADER_VALUE_INVALID",
+  "E_HEADER_VALUE_TOO_LONG",
+  "E_HEADER_NAME_INVALID",
+  "E_HEADERS_TOO_LARGE",
+  "E_HEADERS_TOO_MANY"
+]);
+var now = /* @__PURE__ */ __name(() => Math.floor(Date.now() / 1e3), "now");
+var statement = /* @__PURE__ */ __name((env, sql, ...args) => env.INQUIRY_DB.prepare(sql).bind(...args), "statement");
+function diagnostic(stage, id, code) {
+  console.error(JSON.stringify({
+    event: "inquiry_outbox",
+    stage,
+    ...validSubmissionId(id) ? { receiptId: id } : {},
+    ...code ? { code } : {}
+  }));
+}
+__name(diagnostic, "diagnostic");
+function canonical(value) {
+  if (Array.isArray(value)) return value.map(canonical);
+  if (value && typeof value === "object") return Object.fromEntries(Object.keys(value).sort().map((k) => [k, canonical(value[k])]));
+  return value;
+}
+__name(canonical, "canonical");
+function requireStorage(env) {
+  if (typeof env?.INQUIRY_DB?.prepare !== "function" || typeof env?.INQUIRY_QUEUE?.send !== "function") reject(503, "service_unavailable");
+}
+__name(requireStorage, "requireStorage");
+async function dispatch(env, id) {
+  try {
+    await env.INQUIRY_QUEUE.send({ id });
+    await statement(env, "UPDATE inquiry_outbox SET enqueue_after=? WHERE id=? AND status='pending'", now() + 300, id).run();
+  } catch {
+    diagnostic("dispatch_pending", id);
+  }
+}
+__name(dispatch, "dispatch");
+async function acceptInquiry(env, input, ctx) {
+  requireStorage(env);
+  const inquiry = normalizeInquiry(input);
+  const id = inquiry.submissionId ?? crypto.randomUUID();
+  delete inquiry.submissionId;
+  const payload = JSON.stringify(canonical(inquiry));
+  const fingerprint = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(payload))), (b) => b.toString(16).padStart(2, "0")).join("");
+  const time = now();
+  await statement(env, `INSERT INTO inquiry_outbox
+    (id,fingerprint,payload,created_at,updated_at,next_attempt_at,enqueue_after)
+    VALUES (?,?,?,?,?,?,?) ON CONFLICT(id) DO NOTHING`, id, fingerprint, payload, time, time, time, time).run();
+  const saved = await statement(env, "SELECT fingerprint FROM inquiry_outbox WHERE id=?", id).first();
+  if (!saved) reject(503, "save_unconfirmed");
+  if (saved.fingerprint !== fingerprint) reject(409, "submission_conflict");
+  const publication = dispatch(env, id);
+  if (ctx?.waitUntil) ctx.waitUntil(publication);
+  else await publication;
+  return { ok: true, status: "submitted", receiptId: id };
+}
+__name(acceptInquiry, "acceptInquiry");
+async function transition(env, row, status, code, nextAttempt = 0) {
+  await statement(env, `UPDATE inquiry_outbox SET status=?,last_error=?,updated_at=?,
+    next_attempt_at=?,enqueue_after=?,lease_token=NULL,lease_expires_at=NULL
+    WHERE id=? AND status='sending' AND lease_token=?`, status, code, now(), nextAttempt, nextAttempt, row.id, row.lease_token).run();
+}
+__name(transition, "transition");
+async function processMessage(message, env) {
+  const id = message.body?.id;
+  if (!message.body || Object.keys(message.body).length !== 1 || !validSubmissionId(id)) {
+    diagnostic("invalid_queue_message");
+    message.retry({ delaySeconds: 60 });
+    return;
+  }
+  const time = now();
+  const existing = await statement(env, "SELECT * FROM inquiry_outbox WHERE id=?", id).first();
+  if (!existing || ["submitted", "failed", "ambiguous"].includes(existing.status)) {
+    message.ack();
+    return;
+  }
+  if (existing.status === "sending") {
+    if (existing.lease_expires_at <= time) {
+      await statement(env, `UPDATE inquiry_outbox SET status='ambiguous',last_error='send_interrupted',updated_at=?
+        WHERE id=? AND status='sending' AND lease_expires_at<=?`, time, id, time).run();
+      diagnostic("needs_attention", id, "send_interrupted");
+      message.ack();
+    } else message.retry({ delaySeconds: LEASE_SECONDS });
+    return;
+  }
+  if (existing.next_attempt_at > time) {
+    message.retry({ delaySeconds: Math.min(86400, existing.next_attempt_at - time) });
+    return;
+  }
+  if (existing.attempts >= MAX_ATTEMPTS) {
+    await statement(env, "UPDATE inquiry_outbox SET status='failed',last_error='attempts_exhausted',updated_at=? WHERE id=? AND status='pending'", time, id).run();
+    diagnostic("needs_attention", id, "attempts_exhausted");
+    message.ack();
+    return;
+  }
+  const token = crypto.randomUUID();
+  const row = await statement(
+    env,
+    `UPDATE inquiry_outbox SET status='sending',attempts=attempts+1,
+    lease_token=?,lease_expires_at=?,updated_at=?
+    WHERE id=? AND status='pending' AND next_attempt_at<=? AND attempts<? RETURNING *`,
+    token,
+    time + LEASE_SECONDS,
+    time,
+    id,
+    time,
+    MAX_ATTEMPTS
+  ).first();
+  if (!row) {
+    message.retry({ delaySeconds: LEASE_SECONDS });
+    return;
+  }
+  let inquiry, to;
+  try {
+    inquiry = normalizeInquiry(JSON.parse(row.payload));
+    if (env.INQUIRY_FROM !== "forms@herrsystems.com" || typeof env.SEND_EMAIL?.send !== "function") throw Error();
+    to = email(env.INQUIRY_TO);
+  } catch {
+    await transition(env, row, "failed", "notification_configuration");
+    diagnostic("needs_attention", id, "notification_configuration");
+    message.ack();
+    return;
+  }
+  let result;
+  let timer;
+  try {
+    result = await Promise.race([
+      env.SEND_EMAIL.send({
+        to,
+        from: env.INQUIRY_FROM,
+        replyTo: inquiry.contact.email,
+        subject: inquiry.kind === "quote" ? "Herr Systems quote inquiry" : "Herr Systems contact inquiry",
+        text: `Receipt: ${id}
+
+${formatInquiry(inquiry)}`
+      }),
+      new Promise((_, reject2) => {
+        timer = setTimeout(() => reject2(new Error("send_timeout")), 25e3);
+      })
+    ]);
+  } catch (error) {
+    const code = typeof error?.code === "string" && (transientCodes.has(error.code) || permanentCodes.has(error.code)) ? error.code : "send_unconfirmed";
+    const retry = transientCodes.has(code) && row.attempts < MAX_ATTEMPTS;
+    const state = retry ? "pending" : permanentCodes.has(code) || transientCodes.has(code) ? "failed" : "ambiguous";
+    const delay = Math.min(3600, 60 * 2 ** (row.attempts - 1));
+    await transition(env, row, state, code, retry ? now() + delay : 0);
+    diagnostic(retry ? "retry_scheduled" : "needs_attention", id, code);
+    if (retry) message.retry({ delaySeconds: delay });
+    else message.ack();
+    return;
+  } finally {
+    clearTimeout(timer);
+  }
+  if (typeof result?.messageId !== "string" || !result.messageId.trim() || /[\r\n\u0000]/.test(result.messageId)) {
+    await transition(env, row, "ambiguous", "acknowledgement_unconfirmed");
+    diagnostic("needs_attention", id, "acknowledgement_unconfirmed");
+    message.ack();
+    return;
+  }
+  await transition(env, row, "submitted", null);
+  message.ack();
+}
+__name(processMessage, "processMessage");
+async function consumeInquiries(batch, env) {
+  requireStorage(env);
+  if (batch.queue !== "herr-inquiry-delivery") throw Error("Unexpected queue");
+  for (const message of batch.messages) {
+    try {
+      await processMessage(message, env);
+    } catch {
+      diagnostic("consumer_unavailable", message.body?.id);
+      message.retry({ delaySeconds: 60 });
+    }
+  }
+}
+__name(consumeInquiries, "consumeInquiries");
+async function recoverInquiries(env) {
+  requireStorage(env);
+  const time = now();
+  const expired = await statement(env, "SELECT id FROM inquiry_outbox WHERE status='sending' AND lease_expires_at<=? LIMIT 100", time).all();
+  for (const row of expired.results) {
+    await statement(env, "UPDATE inquiry_outbox SET status='ambiguous',last_error='send_interrupted',updated_at=? WHERE id=? AND status='sending' AND lease_expires_at<=?", time, row.id, time).run();
+    diagnostic("needs_attention", row.id, "send_interrupted");
+  }
+  const due = await statement(env, "SELECT id FROM inquiry_outbox WHERE status='pending' AND enqueue_after<=? AND next_attempt_at<=? ORDER BY enqueue_after LIMIT 100", time, time).all();
+  for (const row of due.results) await dispatch(env, row.id);
+  await statement(env, "DELETE FROM inquiry_outbox WHERE created_at<?", time - RETENTION_SECONDS).run();
+}
+__name(recoverInquiries, "recoverInquiries");
+
 // index.js
 var providerCodes = /* @__PURE__ */ new Set([
   "E_SENDER_NOT_VERIFIED",
@@ -254,7 +479,7 @@ function diagnose(stage, error) {
 }
 __name(diagnose, "diagnose");
 var index_default = {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     try {
       const url = new URL(request.url);
       if (url.origin !== "https://inquiry-mailer.internal" || url.pathname !== "/send" || url.search) reject(404, "not_found");
@@ -263,10 +488,12 @@ var index_default = {
       keys(envelope, ["inquiry", "clientIp"]);
       if (!validIp(envelope.clientIp)) reject();
       const inquiry = normalizeInquiry(envelope.inquiry);
-      if (typeof env?.SEND_EMAIL?.send !== "function" || typeof env?.INQUIRY_RATE_LIMITER?.limit !== "function" || env?.INQUIRY_FROM !== "forms@herrsystems.com") reject(503, "service_unavailable");
+      const queued = env.INQUIRY_DELIVERY_MODE === "outbox";
+      if (env.INQUIRY_DELIVERY_MODE !== void 0 && !["outbox", "legacy"].includes(env.INQUIRY_DELIVERY_MODE)) reject(503, "service_unavailable");
+      if (!queued && typeof env?.SEND_EMAIL?.send !== "function" || typeof env?.INQUIRY_RATE_LIMITER?.limit !== "function" || env?.INQUIRY_FROM !== "forms@herrsystems.com") reject(503, "service_unavailable");
       let to;
       try {
-        to = email(env.INQUIRY_TO);
+        if (!queued) to = email(env.INQUIRY_TO);
       } catch {
         reject(503, "service_unavailable");
       }
@@ -278,6 +505,7 @@ var index_default = {
       }
       if (limit?.success === false) reject(429, "rate_limited");
       if (limit?.success !== true) reject(503, "service_unavailable");
+      if (queued) return json(202, await acceptInquiry(env, inquiry, ctx));
       let result;
       try {
         result = await env.SEND_EMAIL.send({
@@ -308,6 +536,10 @@ var index_default = {
     } catch (error) {
       return failure(error);
     }
+  },
+  queue: consumeInquiries,
+  async scheduled(_controller, env) {
+    if (env.INQUIRY_DELIVERY_MODE === "outbox") await recoverInquiries(env);
   }
 };
 export {
